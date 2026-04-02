@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 두부 - 순두부 르뱅쿠키 계산기</title>
+    <!-- Outfit & Noto Sans KR Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #926C4F;
+            --primary-dark: #6F4E37;
+            --accent: #E8C1A0;
+            --bg-color: #F8F5F2;
+            --glass: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(232, 193, 160, 0.2) 0, transparent 40%),
+                radial-gradient(at 100% 0%, rgba(146, 108, 79, 0.1) 0, transparent 40%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            color: #2D2D2D;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { width: 100%; max-width: 600px; animation: enter 1s var(--transition); }
+        @keyframes enter {
+            from { opacity: 0; transform: translateY(30px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        header { text-align: center; margin-bottom: 3rem; }
+        .breadcrumb { font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--primary); opacity: 0.7; margin-bottom: 0.5rem; letter-spacing: 0.1em; }
+        h1 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 2.8rem; color: var(--primary-dark); margin-bottom: 0.5rem; letter-spacing: -0.02em; line-height: 1.1; }
+        .subtitle { font-size: 1rem; color: #777; font-weight: 300; }
+
+        /* Calculator Section */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--primary-dark); display: flex; align-items: center; gap: 0.6rem; }
+        h2::before { content: ''; width: 3px; height: 18px; background: var(--primary); border-radius: 2px; }
+
+        .form-row { display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.8rem; }
+        label { font-size: 0.85rem; font-weight: 600; color: #555; }
+
+        select, input[type="number"] {
+            width: 100%; padding: 1rem 1.2rem; background: rgba(255, 255, 255, 0.4);
+            border: 1.5px solid var(--glass-border); border-radius: 16px; 
+            font-family: inherit; font-size: 1.1rem; font-weight: 600; color: var(--primary-dark);
+            box-shadow: var(--shadow-inner); outline: none; transition: var(--transition);
+        }
+        select:focus, input[type="number"]:focus { border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px rgba(146, 108, 79, 0.1); }
+
+        /* Button Groups */
+        .option-group { margin-bottom: 2rem; }
+        .btn-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .btn-check { display: none; }
+        .btn-label {
+            padding: 0.8rem 1.4rem; background: rgba(255, 255, 255, 0.3);
+            border: 1.5px solid var(--glass-border); border-radius: 12px;
+            font-size: 0.9rem; font-weight: 600; color: #666; cursor: pointer;
+            transition: var(--transition); user-select: none;
+        }
+        .btn-check:checked + .btn-label {
+            background: var(--primary); color: #fff; border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(146, 108, 79, 0.25); transform: translateY(-2px);
+        }
+        .btn-label:hover { background: rgba(255, 255, 255, 0.6); }
+
+        /* Main Action Button */
+        #calculate-btn {
+            width: 100%; padding: 1.2rem; background: var(--primary-dark);
+            color: #fff; border: none; border-radius: 16px;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer;
+            transition: var(--transition); box-shadow: 0 8px 24px rgba(111, 78, 55, 0.2);
+            margin-top: 1rem;
+        }
+        #calculate-btn:hover { background: var(--primary); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(111, 78, 55, 0.3); }
+        #calculate-btn:active { transform: translateY(0); }
+
+        /* Results Area */
+        .results-section { display: none; opacity: 0; transform: translateY(20px); transition: var(--transition); }
+        .results-section.show { display: block; opacity: 1; transform: translateY(0); }
+
+        .recipe-header { border-top: 1.5px solid var(--glass-border); padding-top: 2.5rem; margin-top: 1rem; }
+        .ingredient-list { margin-top: 1.5rem; }
+        .ingredient-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 0; border-bottom: 1px dotted var(--glass-border);
+            animation: staggerIn 0.5s var(--transition) both;
+        }
+        @keyframes staggerIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+
+        .ing-name { font-weight: 500; font-size: 1rem; color: #444; }
+        .ing-amount { font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--primary-dark); font-size: 1.2rem; }
+        .ing-unit { font-size: 0.8rem; font-weight: 400; color: #888; margin-left: 2px; }
+
+        /* Guide Section */
+        .guide-box { background: var(--accent); color: var(--primary-dark); padding: 1.8rem; border-radius: 20px; font-size: 0.95rem; margin-top: 2rem; position: relative; overflow: hidden; }
+        .guide-box::before { content: '"'; position: absolute; top: -10px; left: 10px; font-size: 5rem; opacity: 0.1; font-family: 'Outfit'; }
+        .guide-box strong { display: block; font-size: 1.1rem; margin-bottom: 0.8rem; }
+
+        footer { text-align: center; font-size: 0.75rem; color: #999; margin-top: 4rem; font-family: 'Outfit'; letter-spacing: 0.1em; }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 480px) {
+            h1 { font-size: 2.2rem; }
+            .card { padding: 1.5rem; border-radius: 24px; }
+            .form-row { grid-template-columns: 1fr; }
+            .btn-label { padding: 0.7rem 1.1rem; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="app">
+        <header>
+            <div class="breadcrumb">PROJECT DUBU / 르뱅쿠키</div>
+            <h1>순두부 르뱅쿠키</h1>
+            <p class="subtitle">개인 보유량 기반 맞춤형 레시피 시뮬레이터</p>
+        </header>
+
+        <div class="card">
+            <h2>기본 재료 & 보유량</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>어떤 재료 기준으로 계산할까요?</label>
+                    <select id="ref-ingredient">
+                        <!-- Options injected by JS -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>지금 가지고 있는 양 (g)</label>
+                    <input type="number" id="ref-amount" value="180" min="1">
+                </div>
+            </div>
+
+            <div class="option-group">
+                <label style="display:block; margin-bottom:1rem;">설탕 옵션</label>
+                <div class="btn-grid" id="sugar-options">
+                    <!-- Options injected by JS -->
+                </div>
+            </div>
+
+            <div class="option-group">
+                <label style="display:block; margin-bottom:1rem;">오븐 종류</label>
+                <div class="btn-grid" id="oven-options">
+                    <!-- Options injected by JS -->
+                </div>
+            </div>
+
+            <button id="calculate-btn">내 재료로 계산하기</button>
+        </div>
+
+        <div class="results-section" id="results-area">
+            <div class="card">
+                <div class="recipe-header">
+                    <h2>재료 업데이트 (맞춤형 레시피)</h2>
+                </div>
+                <div class="ingredient-list" id="ingredient-list">
+                    <!-- Results injected here -->
+                </div>
+
+                <div class="guide-box" id="guide-box">
+                    <strong>베이킹 가이드</strong>
+                    <p id="guide-text"></p>
+                </div>
+            </div>
+            
+            <footer>&copy; 2026 프로젝트 두부. ALL RIGHTS RESERVED.</footer>
+        </div>
+    </div>
+
+    <script src="recipe-config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const config = window.RECIPE_CONFIG;
+            const refSelect = document.getElementById('ref-ingredient');
+            const refAmount = document.getElementById('ref-amount');
+            const sugarContainer = document.getElementById('sugar-options');
+            const ovenContainer = document.getElementById('oven-options');
+            const calculateBtn = document.getElementById('calculate-btn');
+            const resultsArea = document.getElementById('results-area');
+            const listContainer = document.getElementById('ingredient-list');
+            const guideText = document.getElementById('guide-text');
+
+            // Initialize Reference Dropdown
+            refSelect.innerHTML = config.baseIngredients.map(ing => `
+                <option value="${ing.id}" ${ing.isReference ? 'selected' : ''}>
+                    ${ing.name} (기준 ${ing.amount}g)
+                </option>
+            `).join('');
+
+            // Initialize Sugar Options
+            sugarContainer.innerHTML = config.sugarOptions.map((opt, i) => `
+                <input type="radio" name="sugar" id="s-${opt.id}" class="btn-check" value="${opt.id}" ${i === 0 ? 'checked' : ''}>
+                <label for="s-${opt.id}" class="btn-label">${opt.name}</label>
+            `).join('');
+
+            // Initialize Oven Options
+            ovenContainer.innerHTML = config.ovenTypes.map((opt, i) => `
+                <input type="radio" name="oven" id="o-${opt.id}" class="btn-check" value="${opt.id}" ${i === 0 ? 'checked' : ''}>
+                <label for="o-${opt.id}" class="btn-label">${opt.name}</label>
+            `).join('');
+
+            calculateBtn.addEventListener('click', () => {
+                const selectedRefId = refSelect.value;
+                const userAmount = parseFloat(refAmount.value) || 0;
+                const selectedSugar = document.querySelector('input[name="sugar"]:checked').value;
+                const selectedOvenId = document.querySelector('input[name="oven"]:checked').value;
+
+                // Find Reference Base
+                const refBase = config.baseIngredients.find(ing => ing.id === selectedRefId);
+                const scale = userAmount / refBase.amount;
+
+                // Process Ingredients
+                let finalIngredients = [];
+                config.baseIngredients.forEach(ing => {
+                    // Check if it's sugar and if "Reduce" is selected
+                    if (selectedSugar === 'reduce' && config.sugarSubstitutes[ing.id]) {
+                        // Spread substitutes
+                        config.sugarSubstitutes[ing.id].forEach(sub => {
+                            finalIngredients.push({
+                                name: sub.name,
+                                amount: (ing.amount * scale * (sub.amount / ing.amount)).toFixed(1)
+                            });
+                        });
+                    } else {
+                        finalIngredients.push({
+                            name: ing.name,
+                            amount: (ing.amount * scale).toFixed(1)
+                        });
+                    }
+                });
+
+                // Display Ingredients
+                listContainer.innerHTML = finalIngredients.map((ing, idx) => `
+                    <div class="ingredient-item" style="animation-delay: ${idx * 0.05}s">
+                        <span class="ing-name">${ing.name}</span>
+                        <span class="ing-amount">${ing.amount}<span class="ing-unit">g</span></span>
+                    </div>
+                `).join('');
+
+                // Display Guide
+                const ovenObj = config.ovenTypes.find(o => o.id === selectedOvenId);
+                guideText.innerHTML = `<strong>${ovenObj.name} 오븐용:</strong><br>${ovenObj.guide}`;
+
+                // Show Results with Animation
+                resultsArea.classList.add('show');
+                resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>
