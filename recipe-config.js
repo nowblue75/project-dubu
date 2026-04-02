@@ -1,69 +1,67 @@
-const recipeConfig = {
-    recipeName: "순두부 르뱅쿠키 (8개 기준)",
+// 순두부 르뱅쿠키 원본 레시피 및 스크린샷 100% 반영 데이터 설정
+var recipeConfig = {
+    recipeName: "순두부 르뱅쿠키",
     
-    // 기본 배율 기준 (버터 180g 기준)
+    // 기본 설정 (기준 8개분량)
+    baseCount: 8,
+    
+    // 겉바속촉(Crispy Outside, Soft Inside) 정밀 굽기 데이터 테이블
+    // 무게(g)별 최적 굽기 시간(분) 매핑 (수분 사수를 위해 2분 편차 권장)
+    bakingTimeTable: [
+        { weight: 80, minTime: 10, maxTime: 12, label: "Small (S)", tip: "고온에서 짧게 구워 수분을 사수하세요!" },
+        { weight: 100, minTime: 12, maxTime: 14, label: "Medium (M)", tip: "가장 대중적인 사이즈로 겉바속촉의 정석입니다." },
+        { weight: 150, minTime: 16, maxTime: 18, label: "Large (L)", tip: "중심부까지 촉촉함이 유지되도록 주의하세요." },
+        { weight: 165, minTime: 20, maxTime: 22, label: "Classic Levain", tip: "겉면이 노릇해지면 즉시 꺼내어 잔열로 익히세요." },
+        { weight: 200, minTime: 23, maxTime: 25, label: "Jumbo (XL)", tip: "매우 크므로 겉이 타지 않게 중간에 확인이 필수입니다." }
+    ],
+    
+    // 예열 오프셋 (굽기 온도보다 10도 높게 설정)
+    preheatOffset: 10,
+
+    // 8개 분량 기준 베이스 전량 (g) 및 역할(role)
     baseIngredients: [
-        { id: "butter", name: "무염 버터", amount: 180, unit: "g", isReference: true },
-        { id: "sugar_brown", name: "황설탕", amount: 180, unit: "g" },
-        { id: "sugar_white", name: "흰설탕", amount: 60, unit: "g" },
-        { id: "egg", name: "달걀", amount: 55, unit: "g" },
-        { id: "flour_strong", name: "강력분", amount: 60, unit: "g" },
-        { id: "flour_allpurpose", name: "중력분 (또는 순두부 가루)", amount: 280, unit: "g" },
-        { id: "baking_soda", name: "베이킹소다", amount: 4, unit: "g" },
-        { id: "baking_powder", name: "베이킹파우더", amount: 4, unit: "g" },
-        { id: "salt", name: "소금", amount: 3, unit: "g" },
-        { id: "chocolate_chips", name: "초콜릿 칩", amount: 250, unit: "g" },
-        { id: "walnuts", name: "구운 호두", amount: 180, unit: "g" }
+        { id: "tofu", name: "순두부 (물기 제거 후)", amount: 100, role: "수분·촉촉함" },
+        { id: "butter", name: "차가운 버터", amount: 180, role: "풍미·결·퍼짐 방지", isReference: true },
+        { id: "egg", name: "달걀 (실온)", amount: 55, role: "구조·결합" },
+        { id: "sugar_brown", name: "황설탕", amount: 180, role: "꾸덕함·풍미·색" },
+        { id: "sugar_white", name: "흰설탕", amount: 60, role: "바삭함·카라멜라이징" },
+        { id: "flour_medium", name: "중력분", amount: 320, role: "구조" },
+        { id: "flour_strong", name: "강력분", amount: 60, role: "쫄깃함" },
+        { id: "baking_soda", name: "베이킹소다", amount: 4, role: "팽창" },
+        { id: "baking_powder", name: "베이킹파우더", amount: 4, role: "팽창" },
+        { id: "salt", name: "소금", amount: 3, role: "풍미 균형" },
+        { id: "nuts", name: "견과류 (호두/피칸)", amount: 150, role: "식감·풍미" },
+        { id: "chocolate_chips", name: "다크 초콜릿 칩", amount: 200, role: "포인트" }
     ],
 
-    // 옵션: 설탕 줄이기
-    sugarOptions: [
-        { id: "original", name: "오리지널", description: "블로그 원본 레시피 그대로 반영" },
-        { id: "reduce", name: "설탕 줄이기", description: "대체 감미료(알룰로스/스테비아) 활용" }
-    ],
-
-    // 설탕 리플레이스 로직 (설탕 줄이기 선택 시)
+    // 설탕 줄이기 상세 데이터
     sugarSubstitutes: {
-        sugar_brown: [
-            { name: "추가 유지 (버터/오일)", amount: 100, ratio: 100/180 },
-            { name: "분말 알룰로스", amount: 80, ratio: 80/180 }
-        ],
-        sugar_white: [
-            { name: "추가 유지 (버터/오일)", amount: 30, ratio: 30/60 },
-            { name: "에리스리톨/스테비아", amount: 30, ratio: 30/60 }
+        sugar_white: {
+            combinedName: "흰설탕(줄임) + 스테비아",
+            originalAmount: 60,
+            partAmounts: [
+                { label: "흰설탕", ratio: 0.5 },
+                { label: "스테비아", ratio: 0.5 }
+            ],
+            note: "바삭함을 위해 설탕 일부를 남기고, 당도는 대체당으로 채우는 안정적인 추천 비율입니다."
+        }
+    },
+
+    // 설탕 줄이기 안내
+    sugarInfo: {
+        title: "설탕 줄이기 — 가장 완벽한 대체 비율(50:50)",
+        tips: [
+            "쿠키의 핵심인 바삭함과 색감은 설탕의 캐러멜화에서 나옵니다. 100% 대체보다는 흰설탕의 50% 정도를 남기는 것이 가장 풍미가 좋습니다.",
+            "황설탕(180g)은 퍼짐과 꾸덕함을 위해 정량을 사용하여 황금 배합을 유지합니다.",
+            "스테비아 혹은 알룰로스 제품 종류에 따라 단맛의 농도가 다를 수 있으니, 제품 뒷면의 가이드를 참고하여 양을 가감하셔도 좋습니다."
         ]
     },
 
-    // 오븐 종류 및 가이드
+    // 오븐 상세 설정
     ovenTypes: [
-        { 
-            id: "convection", 
-            name: "컨벡션", 
-            temp: 180, 
-            time: 12, 
-            guide: "예열 180℃ → 굽기 170℃ 고정 (원본 레시피 기준). 냉장 휴지 12시간 필수 안내 포함." 
-        },
-        { 
-            id: "general", 
-            name: "일반 오븐", 
-            temp: 190, 
-            time: 15, 
-            guide: "열선 오븐의 경우 문을 자주 열면 온도가 급격히 떨어집니다. 상하 온도 조절에 주의하세요." 
-        },
-        { 
-            id: "airfryer", 
-            name: "에어프라이어", 
-            temp: 170, 
-            time: 10, 
-            guide: "윗면이 타기 쉬우므로 종이호일을 덮거나 온도를 10도 정도 낮춰서 테스트해 보세요." 
-        },
-        { 
-            id: "microwave", 
-            name: "전자레인지 오븐", 
-            temp: 180, 
-            time: 14, 
-            guide: "복합 오븐의 경우 팬 회전에 따라 색이 다르게 날 수 있습니다. 중간에 한 번 돌려주세요." 
-        }
+        { id: "convection", name: "컨벡션", bakeTemp: 170, guide: "예열은 실제 굽기보다 10℃ 높게 설정하여 오븐 문을 열 때의 손실을 보완합니다. 굽기 시작 시 170℃로 유지하세요." },
+        { id: "general", name: "일반 오븐", bakeTemp: 180, guide: "열선 오븐은 열이 직접적으로 닿으므로 팬 위치를 중간에 한번 돌려주는 것이 색을 내는 데 유리합니다." },
+        { id: "airfryer", name: "에어프라이어", bakeTemp: 160, guide: "에어프라이어는 윗면이 빠르게 탈 수 있으므로 굽는 시간 중간에 알루미늄 포일을 덮어 보호해주세요." }
     ]
 };
 
