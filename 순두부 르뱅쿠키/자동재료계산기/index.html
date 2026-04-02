@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>순두부 르뱅쿠키 - 자동 재료 계산기</title>
+    <!-- Google Fonts: Outfit, Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F8F4F0;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --primary: #8C6239;
+            --primary-light: #EADBC8;
+            --text-main: #3E3E3E;
+            --text-muted: #7E7E7E;
+            --accent: #B2967D;
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow: 0 8px 32px 0 rgba(140, 98, 57, 0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            background-image: 
+                radial-gradient(at 10% 20%, hsla(30,30%,98%,1) 0, transparent 50%), 
+                radial-gradient(at 90% 80%, hsla(20,20%,94%,1) 0, transparent 50%);
+        }
+
+        .container { width: 100%; max-width: 500px; animation: slideUp 0.6s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        header { text-align: center; margin-bottom: 2rem; }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; }
+        .subtitle { font-size: 0.9rem; color: var(--text-muted); font-weight: 300; }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        .input-field { display: flex; flex-direction: column; gap: 0.5rem; }
+        label { font-weight: 600; font-size: 0.85rem; color: var(--primary); }
+        input {
+            width: 100%; padding: 0.7rem; border: 1.5px solid transparent; background: #fff;
+            border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 1.1rem;
+            font-weight: 600; color: var(--primary); outline: none; transition: 0.2s;
+        }
+        input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(140, 98, 57, 0.1); }
+
+        .ingredient-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.8rem 0; border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+        .ingredient-item:last-child { border-bottom: none; }
+        .ingredient-name { font-weight: 500; font-size: 0.95rem; }
+        .ingredient-amount { font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--primary); }
+        .unit { font-size: 0.8rem; font-weight: 400; color: var(--text-muted); margin-left: 2px; }
+
+        .info-title { font-weight: 700; color: var(--primary); margin-bottom: 1rem; font-size: 1rem; }
+        .oven-info { background: var(--primary-light); border-radius: 12px; padding: 1rem; font-size: 0.9rem; }
+        .sub-item { margin-bottom: 0.8rem; list-style: none; font-size: 0.85rem; padding-left: 1.2rem; position: relative; }
+        .sub-item::before { content: '🍪'; position: absolute; left: 0; font-size: 0.8rem; }
+
+        footer { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="recipe-name">순두부 르뱅쿠키</h1>
+            <p class="subtitle">개수와 무게를 입력하면 재료가 자동 계산됩니다.</p>
+        </header>
+
+        <div class="card">
+            <div class="input-group">
+                <div class="input-field">
+                    <label>생산 개수 (개)</label>
+                    <input type="number" id="cookie-count" step="1">
+                </div>
+                <div class="input-field">
+                    <label>개당 무게 (g)</label>
+                    <input type="number" id="unit-weight">
+                </div>
+            </div>
+            <div id="ingredient-list"></div>
+        </div>
+
+        <div class="card">
+            <div class="info-title">✨ 베이킹 팁 & 대체 재료</div>
+            <ul id="sub-list"></ul>
+        </div>
+
+        <div class="card">
+            <div class="info-title">♨️ 오븐 설정</div>
+            <div id="oven-info" class="oven-info"></div>
+        </div>
+
+        <footer>&copy; 프로젝트 두부 - 자동재료계산기</footer>
+    </div>
+
+    <script src="recipe-config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const config = window.RECIPE_CONFIG;
+            const countInput = document.getElementById('cookie-count');
+            const weightInput = document.getElementById('unit-weight');
+            const listContainer = document.getElementById('ingredient-list');
+            const subContainer = document.getElementById('sub-list');
+            const ovenContainer = document.getElementById('oven-info');
+
+            document.getElementById('recipe-name').textContent = config.recipeName;
+            countInput.value = config.defaultCount;
+            weightInput.value = config.defaultUnitWeight;
+
+            function render() {
+                const count = parseFloat(countInput.value) || 0;
+                const weight = parseFloat(weightInput.value) || 0;
+                const totalTarget = count * weight;
+                const sumRatio = config.ingredients.reduce((s, i) => s + i.ratio, 0);
+
+                listContainer.innerHTML = config.ingredients.map(ing => {
+                    const amount = (totalTarget * (ing.ratio / sumRatio)).toFixed(1);
+                    return `<div class="ingredient-item">
+                        <span class="ingredient-name">${ing.name}</span>
+                        <span class="ingredient-amount">${amount}<span class="unit">g</span></span>
+                    </div>`;
+                }).join('');
+
+                subContainer.innerHTML = config.substitutions.map(s => `
+                    <li class="sub-item"><strong>${s.original}</strong> 대신 <strong>${s.substitute}</strong>: ${s.note}</li>
+                `).join('');
+
+                const o = config.baking.ovenTypes[0];
+                ovenContainer.innerHTML = `<strong>${o.name}</strong>: ${o.temp}℃ / ${o.time}분<br><span style="font-size:0.8rem; opacity:0.8;">${o.note}</span>`;
+            }
+
+            countInput.addEventListener('input', render);
+            weightInput.addEventListener('input', render);
+            render();
+        });
+    </script>
+</body>
+</html>
