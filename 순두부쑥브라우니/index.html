@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>순두부 쑥브라우니 화보 에디션</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="progress-bar"></div>
+
+    <main>
+
+        <!-- 01. 인터렉티브 재료: 식감의 미학 -->
+        <section class="active">
+            <div class="section-title">
+                <h2 class="serif">가장 정직한 조화</h2>
+            </div>
+            <div class="image-stage">
+                <img src="순두부쑥브라우니 (0).jpg" alt="재료 화보">
+                <!-- 핫스팟: 재료 전체 요약 -->
+                <div class="hotspot" style="top: 55%; left: 50%;">
+                    <div class="hotspot-content">
+                        <p class="title">재료의 본질</p>
+                        <p class="desc">순두부, 쑥, 통밀가루 등 자연에서 온 정직한 재료들이 만나 건강하고 깊은 맛을 완성합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. 순두부 베이스 -->
+        <section>
+            <div class="section-title">
+                <h2 class="serif">순두부: 식감의 혁신</h2>
+            </div>
+            <div class="image-stage">
+                <img src="순두부쑥브라우니 (2).jpg" alt="순두부 가공">
+                <div class="hotspot" style="top: 50%; left: 50%;">
+                    <div class="hotspot-content">
+                        <p class="title">순두부의 부드러움</p>
+                        <p class="desc">순두부의 단백질과 고소함이 브라우니의 베이스가 되어 묵직하면서도 편안한 맛을 완성합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. 조화의 정석 -->
+        <section>
+            <div class="section-title">
+                <h2 class="serif">조화의 정석</h2>
+            </div>
+            <div class="image-stage">
+                <img src="순두부쑥브라우니 (3).jpg" alt="미세 유화 단계">
+                <div class="hotspot" style="top: 50%; left: 60%;">
+                    <div class="hotspot-content">
+                        <p class="title">매끄러운 유화</p>
+                        <p class="desc">액체류와 순두부가 블렌더로 완벽히 유화되어 매끄러운 크림 상태가 될 때 찰기가 살아납니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. 저온의 미학: 은은한 베이킹 -->
+        <section>
+            <div class="section-title">
+                <h2 class="serif">저온의 미학</h2>
+            </div>
+            <div class="image-stage">
+                <img src="순두부쑥브라우니 (4).jpg" alt="오븐 속 브라우니">
+                <div class="hotspot" style="top: 30%; left: 30%;">
+                    <div class="hotspot-content">
+                        <p class="title">은은하게 익어가는 향</p>
+                        <p class="desc">저온에서 은은하게 구워낼 때 풍미가 극대화되며 속까지 촉촉하게 익어갑니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. 반전의 찰기 -->
+        <section>
+            <div class="section-title">
+                <h2 class="serif">반전의 찰기</h2>
+            </div>
+            <div class="image-stage">
+                <img src="순두부쑥브라우니 (1).jpg" alt="찰기 확인">
+                <div class="hotspot" style="top: 50%; left: 50%;">
+                    <div class="hotspot-content">
+                        <p class="title">떡 이상의 찰기</p>
+                        <p class="desc">밀가루와 순두부의 최적의 비율이 만들어내는 반전 찰기는 먹는 즐거움을 더해줍니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06. 숙성의 시간 -->
+        <section>
+            <div class="section-title">
+                <h2 class="serif">숙성의 미학</h2>
+            </div>
+            <div class="image-stage">
+                <img src="순두부쑥브라우니 (6).jpg" alt="최종 완성">
+                <div class="hotspot" style="top: 70%; left: 80%;">
+                    <div class="hotspot-content">
+                        <p class="title">완성되는 진가</p>
+                        <p class="desc">차갑게 3시간 이상 숙성할 때 비로소 모든 재료가 어우러져 최상의 브라우니가 탄생합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 08. 프로젝트 로고 -->
+        <section class="finale-section">
+            <div class="logo-reveal text-center">
+                <p class="serif text-xl opacity-40 mb-12">"건강한 원재료의 무한한 변신"</p>
+                <h2 class="serif text-5xl md:text-7xl font-bold tracking-[0.3em] text-[#C5A17A]">PROJECT DUBU</h2>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const progressBar = document.querySelector('.progress-bar');
+        
+        const observerOptions = {
+            threshold: 0.6
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sections.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+                    
+                    const index = Array.from(sections).indexOf(entry.target);
+                    const progress = ((index + 1) / sections.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        window.addEventListener('contextmenu', e => e.preventDefault());
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', e => e.preventDefault());
+        });
+    </script>
+</body>
+</html>

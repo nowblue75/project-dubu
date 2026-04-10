@@ -1,0 +1,218 @@
+/* Structure C Refined: 몰입형 한글 화보북 디자인 시스템 */
+:root {
+    --bg-dark: #0A0C0A;
+    --text-ivory: #FDFCFB;
+    --accent-gold: #C5A17A;
+    --accent-olive: #4A5B46;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    background-color: var(--bg-dark);
+}
+
+body {
+    color: var(--text-ivory);
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+.serif {
+    font-family: 'Noto Serif KR', serif;
+}
+
+/* 섹션 공통 스타일: 한 페이지 스냅 */
+section {
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 가로 이미지 비율 보존용 이미지 래퍼 */
+.image-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9; /* 가로형 사진에 최적화 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+/* 이미지가 잘리지 않도록 contain 적용 */
+.image-stage img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(197, 161, 122, 0.3); /* 은은한 골드 테두리 추가 */
+    border-radius: 8px; /* 부드러운 모서리 처리 */
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+section.active .image-stage img {
+    transform: scale(1.02);
+}
+
+/* 인터랙티브 핫스팟: 원본 안정 버전 복구 및 강화 */
+.hotspot {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: var(--accent-gold);
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(197, 161, 122, 0.4);
+    transition: all 0.4s ease;
+}
+
+.hotspot::before {
+    content: '+';
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.hotspot::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-gold);
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(3.5); opacity: 0; }
+}
+
+.hotspot:hover {
+    transform: scale(1.1);
+    background: #ffffff;
+}
+
+.hotspot:hover::before {
+    color: var(--accent-gold);
+}
+
+.hotspot-content {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    background: #000000 !important;
+    border: 1px solid var(--accent-gold);
+    color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    white-space: normal;
+    text-align: left;
+    z-index: 100;
+}
+
+.hotspot:hover .hotspot-content {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.hotspot-content p.title {
+    color: var(--accent-gold);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+}
+
+.hotspot-content p.desc {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.85;
+    font-weight: 300;
+}
+
+/* 타이포그래피 */
+.section-title {
+    margin-bottom: 0; /* 전체 하단 여백 제거 */
+    text-align: center;
+    z-index: 5;
+}
+
+.section-title h2 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--accent-gold);
+    letter-spacing: -0.03em;
+    margin-bottom: 0.2rem; /* 내부 글자 여백도 최소화 */
+    font-weight: 700;
+}
+
+.section-title p {
+    font-size: 1.2rem;
+    opacity: 0.4;
+    font-weight: 200;
+    letter-spacing: 0.1em;
+}
+
+/* 피날레 로고 섹션 */
+.finale-section {
+    background: radial-gradient(circle at center, #1a1e1a 0%, var(--bg-dark) 100%);
+}
+
+.logo-reveal {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+section.active .logo-reveal {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 네비게이션 하단 프로그레스 */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--accent-gold));
+    width: 0%;
+    z-index: 100;
+    transition: width 0.3s ease;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    section { padding: 40px 20px; }
+    .image-stage { aspect-ratio: 4 / 3; }
+    .hotspot-content { width: calc(100vw - 80px); max-width: 250px; }
+}
