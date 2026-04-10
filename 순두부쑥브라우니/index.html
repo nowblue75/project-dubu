@@ -143,6 +143,29 @@
 
         sections.forEach(section => observer.observe(section));
 
+        // 핫스팟 클릭 토글 로직 (모바일 대응)
+        const hotspots = document.querySelectorAll('.hotspot');
+        hotspots.forEach(hotspot => {
+            hotspot.addEventListener('click', (e) => {
+                e.stopPropagation(); // 부모 섹션이나 윈도우로 이벤트 전파 방지
+                
+                const isActive = hotspot.classList.contains('active');
+                
+                // 다른 모든 핫스팟 닫기
+                hotspots.forEach(h => h.classList.remove('active'));
+                
+                // 현재 핫스팟 상태 토글
+                if (!isActive) {
+                    hotspot.classList.add('active');
+                }
+            });
+        });
+
+        // 외부 클릭 시 모든 핫스팟 닫기
+        window.addEventListener('click', () => {
+            hotspots.forEach(h => h.classList.remove('active'));
+        });
+
         window.addEventListener('contextmenu', e => e.preventDefault());
         document.querySelectorAll('img').forEach(img => {
             img.addEventListener('dragstart', e => e.preventDefault());

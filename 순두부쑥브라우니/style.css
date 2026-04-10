@@ -106,15 +106,17 @@ section.active .image-stage img {
 
 @keyframes pulse {
     0% { transform: scale(1); opacity: 0.6; }
-    100% { transform: scale(3.5); opacity: 0; }
+    100% { transform: scale(2.8); opacity: 0; }
 }
 
-.hotspot:hover {
+.hotspot:hover,
+.hotspot.active {
     transform: scale(1.1);
     background: #ffffff;
 }
 
-.hotspot:hover::before {
+.hotspot:hover::before,
+.hotspot.active::before {
     color: var(--accent-gold);
 }
 
@@ -140,9 +142,11 @@ section.active .image-stage img {
     z-index: 100;
 }
 
-.hotspot:hover .hotspot-content {
+.hotspot:hover .hotspot-content,
+.hotspot.active .hotspot-content {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
 }
 
 .hotspot-content p.title {
@@ -158,6 +162,48 @@ section.active .image-stage img {
     line-height: 1.6;
     opacity: 0.85;
     font-weight: 300;
+}
+
+/* 재료 리스트 오버레이 디자인 */
+.ingredient-list {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    text-align: right;
+    z-index: 5;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.5s;
+}
+
+section.active .ingredient-list {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.ingredient-list ul {
+    list-style: none;
+}
+
+.ingredient-list li {
+    font-size: clamp(14px, 2vw, 18px);
+    margin-bottom: 8px;
+    color: var(--text-ivory);
+    font-weight: 300;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.ingredient-list li b {
+    color: var(--accent-gold);
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.ingredient-list li:hover {
+    opacity: 1;
+    transform: translateX(-5px);
 }
 
 /* 타이포그래피 */
@@ -215,4 +261,5 @@ section.active .logo-reveal {
     section { padding: 40px 20px; }
     .image-stage { aspect-ratio: 4 / 3; }
     .hotspot-content { width: calc(100vw - 80px); max-width: 250px; }
+    .ingredient-list { right: 8%; bottom: 8%; }
 }
