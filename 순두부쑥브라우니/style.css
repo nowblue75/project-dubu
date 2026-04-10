@@ -109,15 +109,36 @@ section.active .image-stage img {
     100% { transform: scale(2.8); opacity: 0; }
 }
 
-.hotspot:hover,
+/* 데스크탑 호버 효과: 호버 가능한 기기에서만 적용 */
+@media (hover: hover) {
+    .hotspot:hover {
+        transform: scale(1.1);
+        background: #ffffff;
+    }
+    .hotspot:hover::before {
+        color: var(--accent-gold);
+    }
+    .hotspot:hover .hotspot-content {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+    }
+}
+
+/* 클릭/터치 활성화 상태 (전 기기 공통) */
 .hotspot.active {
     transform: scale(1.1);
     background: #ffffff;
 }
 
-.hotspot:hover::before,
 .hotspot.active::before {
     color: var(--accent-gold);
+}
+
+.hotspot.active .hotspot-content {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
 }
 
 .hotspot-content {
@@ -142,12 +163,7 @@ section.active .image-stage img {
     z-index: 100;
 }
 
-.hotspot:hover .hotspot-content,
-.hotspot.active .hotspot-content {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    pointer-events: auto;
-}
+/* .hotspot.active .hotspot-content 등은 위에서 통합 관리됨 */
 
 .hotspot-content p.title {
     color: var(--accent-gold);
