@@ -6,83 +6,19 @@
     <title>화이트데이 스페셜: 순두부 레몬마들렌</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style_lookbook.css">
     <style>
         :root {
-            --wd-accent: #64B5F6;
-            --wd-dark: #2D3748;
-            --wd-bg: #F8FDFF;
+            --val-accent: #64B5F6;
+            --val-dark: #2D3748;
+            --val-bg: #F8FDFF;
             --text-main: #2D3748;
             --text-sub: #4A5568;
+            --content-bg: rgba(255, 255, 255, 0.85);
+            --content-text: #4A5568;
         }
-        body { background-color: var(--wd-bg); color: var(--text-main); transition: all 0.5s ease; overflow-x: hidden; }
-        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--wd-accent); z-index: 1000; transition: width 0.3s ease; }
-        
-        section { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; scroll-snap-align: start; }
-        main { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
-
-        .image-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .image-stage img { 
-            max-height: 85vh; 
-            max-width: 85vw; 
-            object-fit: contain; 
-            box-shadow: 0 30px 80px rgba(100,181,246,0.1); 
-            border-radius: 4px; 
-            border: 1px solid rgba(100,181,246,0.1);
-        }
-
-        .serif { font-family: 'Noto Serif KR', serif; }
-
-        /* Navigation */
-        .nav-item { color: var(--wd-accent); opacity: 0.6; transition: opacity 0.3s; }
-        .nav-item:hover { opacity: 1; }
-        .back-btn { border: 1px solid rgba(100, 181, 246, 0.4); border-radius: 25px; transition: all 0.3s; color: var(--wd-accent); background: white; }
-        .back-btn:hover { background: var(--wd-accent); color: white; border-color: var(--wd-accent); }
-        .blog-btn { border: 1px solid var(--wd-accent); border-radius: 25px; transition: all 0.3s; color: white; background: var(--wd-accent); text-decoration: none; }
-        .blog-btn:hover { background: transparent; color: var(--wd-accent); }
-        .footer-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
-
-        /* Content Boxes - 가독성 강화 (White Glass) */
-        .content-box {
-            position: absolute;
-            z-index: 20;
-            padding: 35px 45px;
-            max-width: 480px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1) 0.5s;
-            
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(100, 181, 246, 0.08);
-        }
-        .active .content-box { opacity: 1; transform: translateY(0); }
-        
-        .side-left { left: 8vw; top: 35%; text-align: left; }
-        .side-right { right: 8vw; bottom: 35%; text-align: right; }
-        
-        .content-box h2 {
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            position: relative;
-            color: var(--wd-dark);
-            line-height: 1.3;
-        }
-
-        .content-box p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: var(--text-sub);
-            font-weight: 450;
-            word-break: keep-all;
-            overflow-wrap: break-word;
-        }
-
-        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
+</head>
 </head>
 <body class="antialiased selection:bg-blue-100">
 
