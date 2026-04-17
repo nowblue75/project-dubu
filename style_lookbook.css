@@ -144,6 +144,39 @@ main {
 .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
+/* --- Lookbook Page Standard (v5.2) --- */
+/* PC/Desktop Base */
+.lookbook-page .content-box {
+    position: fixed !important;
+    bottom: 50px !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(30px) !important;
+    max-width: 600px !important;
+    width: 90% !important;
+    padding: 30px 40px !important;
+    text-align: center !important;
+    z-index: 100 !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 20px !important;
+}
+
+.lookbook-page .active .content-box {
+    opacity: 1 !important;
+    transform: translateX(-50%) translateY(0) !important;
+}
+
+.lookbook-page .content-box h2 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: center !important;
+}
+
+.lookbook-page .content-box h2::before,
+.lookbook-page .content-box h2::after {
+    display: none !important; /* 사이드바 제거 */
+}
+
+
 /* --- Responsive Design (Universal Mobile Optimized) --- */
 @media (max-width: 768px) {
     .lookbook-page section { 
