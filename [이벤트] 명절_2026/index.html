@@ -49,11 +49,12 @@
             font-family: 'Noto Serif KR', serif;
         }
 
+        /* 화보가 가려지지 않도록 그리드 배치 최적화 */
         .featured-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            margin-top: 10px;
+            margin-top: 10px; /* 배너와의 간격 재조정 */
         }
 
         .lookbook-card {
