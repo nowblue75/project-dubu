@@ -10,9 +10,9 @@ html {
     scroll-behavior: smooth;
 }
 
-/* 포털 페이지 전용 스냅 스크롤링 활성화 */
+/* 포털 페이지는 일반 스크롤로 복원 (스냅 제거) */
 html:has(.portal-page) {
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: none;
 }
 
 body {
@@ -82,19 +82,18 @@ header {
     padding: 0 20px;
 }
 
-/* 포털 페이지 전용 섹션 스타일 (전체화면, 중앙정렬, 스냅) */
+/* 포털 페이지 전용 섹션 스타일 (유연한 높이, 스냅 제거) */
 .portal-page section {
     min-height: 100vh;
+    height: auto; /* 내용 길이에 맞춰 유연하게 조절 */
     width: 100%;
     position: relative;
     box-sizing: border-box;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    scroll-margin-top: 80px; /* 헤더 높이만큼 여백 확보 */
+    scroll-margin-top: 80px; 
     padding: 100px 0 40px 0; 
 }
 
