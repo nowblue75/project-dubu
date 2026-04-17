@@ -6,86 +6,17 @@
     <title>수능 스페셜: Sweet Courage</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style_lookbook.css?v=5.1">
     <style>
         :root {
-            --dubu-accent: #7F8C8D;
-            --dubu-dark: #2C3E50;
-            --dubu-bg: #F9FAF8;
-            --text-main: #2C3E50;
-            --text-sub: #5F6A6A;
+            --val-accent: #7F8C8D;
+            --val-bg: #F9FAF8;
+            --content-bg: rgba(255, 255, 255, 0.9);
+            --content-text: #2C3E50;
         }
-        body { background-color: var(--dubu-bg); color: var(--text-main); transition: all 0.5s ease; overflow-x: hidden; }
-        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--dubu-accent); z-index: 1000; transition: width 0.3s ease; }
-        
-        section { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; scroll-snap-align: start; }
-        main { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
-
-        .image-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-        .image-stage img { 
-            max-height: 85vh; 
-            max-width: 85vw; 
-            object-fit: contain; 
-            box-shadow: 0 30px 80px rgba(44,62,80,0.1); 
-            border-radius: 4px; 
-            border: 1px solid rgba(127,140,141,0.1);
-        }
-
-        .serif { font-family: 'Noto Serif KR', serif; }
-
-        /* Navigation */
-        .nav-item { color: var(--dubu-dark); opacity: 0.6; transition: opacity 0.3s; }
-        .nav-item:hover { opacity: 1; }
-        .back-btn { border: 1px solid rgba(127,140,141,0.4); border-radius: 25px; transition: all 0.3s; color: var(--dubu-accent); background: white; }
-        .back-btn:hover { background: var(--dubu-dark); color: white; border-color: var(--dubu-dark); }
-        .blog-btn { border: 1px solid var(--dubu-dark); border-radius: 25px; transition: all 0.3s; color: white; background: var(--dubu-dark); text-decoration: none; }
-        .blog-btn:hover { background: transparent; color: var(--dubu-dark); }
-        .footer-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
-
-        /* Content Boxes - Glassmorphism */
-        .content-box {
-            position: absolute;
-            z-index: 20;
-            padding: 35px 45px;
-            max-width: 480px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1) 0.5s;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(44, 62, 80, 0.05);
-        }
-        .active .content-box { opacity: 1; transform: translateY(0); }
-        
-        .side-left { left: 8vw; top: 35%; text-align: left; }
-        .side-right { right: 8vw; bottom: 35%; text-align: right; }
-        .centered { left: 50%; top: 50%; transform: translate(-50%, calc(-50% + 30px)); text-align: center; }
-        .active .centered { transform: translate(-50%, -50%); }
-
-        .content-box h2 {
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            position: relative;
-            color: var(--dubu-dark);
-            line-height: 1.3;
-        }
-
-        .content-box p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            color: var(--text-sub);
-            font-weight: 450;
-            word-break: keep-all;
-            overflow-wrap: break-word;
-        }
-
-        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="antialiased selection:bg-green-100">
+<body class="lookbook-page antialiased selection:bg-green-100">
 
     <div class="progress-bar"></div>
 
