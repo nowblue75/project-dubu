@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 두부: 발렌타인 스페셜 컬렉션</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style_portal.css">
+    <style>
+        :root {
+            --dubu-bg: #1A0F0A; /* 짙은 초콜릿 배경 */
+            --dubu-accent: #BC8A5F;
+            --dubu-gray: #D1C7BC;
+            --dubu-black: #FDF8F3; /* 텍스트는 밝게 */
+            --dubu-border: rgba(188, 138, 95, 0.2);
+        }
+
+        body {
+            background-color: var(--dubu-bg);
+            color: var(--dubu-black);
+            padding-top: 80px; /* 상단 여백 복원 */
+        }
+
+        /* 제목 영역 가로 폭 축소: 내용물 너비만큼만 차지하여 버튼 영역 침범 방지 */
+        .hub-hero {
+            display: table; 
+            margin: 0 auto 20px auto; /* 조화로운 하단 여백 확보 */
+            padding: 0;
+            text-align: center;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            z-index: 10;
+        }
+
+        .hub-title {
+            font-size: 3rem;
+            letter-spacing: -0.01em;
+            color: #FDF8F3; 
+            font-weight: 700;
+            margin-bottom: 0;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .section-tag {
+            color: #D4AF37 !important; 
+            letter-spacing: 0.4em;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+        }
+
+        /* 메인 포털의 section 패딩 100px 강제 제거하여 여백 정밀 제어 */
+        .featured {
+            padding: 0 !important; 
+            margin-top: 0 !important;
+        }
+
+        /* 화보가 가려지지 않도록 그리드 배치 최적화 */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 10px; /* 배너와의 간격 재조정 */
+        }
+
+        .lookbook-card {
+            background: #2D1B14; /* 카드 배경도 딥 브라운 */
+            border: 1px solid var(--dubu-border);
+            color: #FDF8F3;
+        }
+
+        .card-body {
+            background: #2D1B14;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 100;
+        }
+
+        .back-nav a {
+            background: rgba(45, 27, 20, 0.4); /* 버튼 배경 추가 */
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(188, 138, 95, 0.3);
+            color: #FDF8F3;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-nav a:hover {
+            background: var(--dubu-accent);
+            border-color: var(--dubu-accent);
+            opacity: 1;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        footer {
+            padding: 100px 0;
+            text-align: center;
+            opacity: 0.4;
+        }
+        .footer-logo { font-size: 1.2rem; letter-spacing: 0.5rem; margin-bottom: 10px; font-family: 'Noto Serif KR', serif; }
+        .copy { font-size: 0.7rem; }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#BC8A5F]/30">
+
+    <nav class="back-nav">
+        <a href="../index.html#events" class="serif text-xs tracking-widest opacity-60 hover:opacity-100 transition-opacity">← BACK TO PORTAL</a>
+    </nav>
+
+    <div class="container mx-auto px-8 relative">
+        <div class="hub-hero fade-in-up">
+            <div class="section-tag serif mb-1">VALENTINE SELECTION</div>
+            <h1 class="serif hub-title italic">발렌타인데이 에디션</h1>
+        </div>
+
+        <!-- 39, 40번 인터랙티브 화보북과 동일한 카드 레이아웃 -->
+        <section class="featured mb-24">
+            <div class="featured-grid">
+                <!-- Vol. 33 Card -->
+                <a href="../[이벤트] 발렌타인_초코케익/index.html?from=valentine" class="lookbook-card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="card-img">
+                        <img src="../33. 순두부 미니초코케익_완/0.jpg" alt="발렌타인 초코케익">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag serif">VOL. 33</div>
+                        <h3 class="serif text-2xl mb-4 font-bold">순두부 미니 초코케익</h3>
+                        <p class="text-sm opacity-60 leading-relaxed font-light">가장 깊은 카카오의 풍미와 순두부의 담백함이 만나 특별한 발렌타인 선물을 완성합니다.</p>
+                    </div>
+                </a>
+
+                <!-- Vol. 35 Card -->
+                <a href="../[이벤트] 발렌타인_마들렌/index.html?from=valentine" class="lookbook-card fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="card-img">
+                        <img src="../35. 순두부초코마들렌_완/0.jpg" alt="발렌타인 초코마들렌">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag serif">VOL. 35</div>
+                        <h3 class="serif text-2xl mb-4 font-bold">순두부 초코 마들렌</h3>
+                        <p class="text-sm opacity-60 leading-relaxed font-light">조개껍데기 속에 담긴 우아한 위로. 버터를 줄이고 고소함을 채운 프리미엄 마들렌 에디션.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-logo">PROJECT DUBU</div>
+        <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

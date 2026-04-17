@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성탄절 스페셜: Christmas Selection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dubu-bg: #1B4332; /* 성탄절 딥 그린 */
+            --dubu-accent: #C21807; /* 레드 액센트 */
+            --dubu-gold: #D4AF37;
+            --dubu-black: #0D2B1F;
+            --text-main: #FFFFFF;
+            --text-sub: rgba(255, 255, 255, 0.7);
+        }
+        body { background-color: var(--dubu-bg); color: var(--text-main); transition: all 0.5s ease; overflow-x: hidden; font-family: 'Noto Sans KR', sans-serif; }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--dubu-gold); z-index: 1000; transition: width 0.3s ease; }
+        
+        section { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; scroll-snap-align: start; }
+        main { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+        .image-stage { 
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 2px;
+            padding: 2px;
+            background: #000;
+        }
+        .image-stage img { 
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            transition: transform 0.8s ease;
+            cursor: pointer;
+        }
+        .image-stage img:hover { transform: scale(1.02); z-index: 10; }
+        
+        /* 갤러리 내 특정 이미지 크기 조절 (강조용) */
+        .img-main { grid-row: span 2; } 
+        
+        .serif { font-family: 'Noto Serif KR', serif; }
+
+        /* Navigation */
+        .nav-item { color: #FFFFFF; opacity: 0.8; transition: opacity 0.3s; text-decoration: none; }
+        .nav-item:hover { opacity: 1; }
+
+        /* Content Boxes - Glassmorphism */
+        .content-box {
+            position: absolute;
+            z-index: 20;
+            padding: 40px 50px;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1) 0.5s;
+            background: rgba(13, 43, 31, 0.9); /* 가독성을 위해 불투명도 상향 */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 0px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .active .content-box { opacity: 1; transform: translateY(0); }
+        
+        .side-left { left: 10vw; top: 30%; text-align: left; }
+        .side-right { right: 10vw; bottom: 30%; text-align: right; }
+        .centered { left: 50%; top: 50%; transform: translate(-50%, calc(-50% + 30px)); text-align: center; }
+        .active .centered { transform: translate(-50%, -50%); }
+
+        .content-box h2 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--dubu-gold);
+            line-height: 1.3;
+        }
+
+        .content-box p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #FFFFFF; /* 가시성 확보를 위해 흰색으로 변경 */
+            font-weight: 300;
+            word-break: keep-all;
+        }
+
+        .vol-tag {
+            color: var(--dubu-gold);
+            font-size: 0.8rem;
+            letter-spacing: 0.5em;
+            margin-bottom: 10px;
+            display: block;
+            opacity: 0.8;
+        }
+
+        .back-btn { 
+            border: 1px solid var(--dubu-gold); 
+            border-radius: 0px; 
+            transition: all 0.3s; 
+            color: var(--dubu-gold); 
+            background: transparent; 
+            font-family: 'Noto Serif KR', serif;
+        }
+        .back-btn:hover { background: var(--dubu-gold); color: var(--dubu-black); }
+        .blog-btn { border: 1px solid var(--dubu-gold); border-radius: 0px; transition: all 0.3s; color: var(--dubu-black); background: var(--dubu-gold); text-decoration: none; font-family: 'Noto Serif KR', serif; }
+        .blog-btn:hover { background: transparent; color: var(--dubu-gold); }
+        .footer-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 2rem; }
+
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased selection:bg-red-900 selection:text-white">
+
+    <div class="progress-bar"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-10 flex justify-between items-center pointer-events-none">
+        <a href="../크리스마스 팝시클/index.html" class="nav-item pointer-events-auto serif text-[10px] tracking-widest transition-opacity">← BACK TO Hub</a>
+    </nav>
+
+    <main id="main-content">
+        <!-- 01. Vol 27 - 눈꽃컵케이크 (최신순) -->
+        <section id="vol27" class="active">
+            <div class="image-stage">
+                <img src="../27. 순두부 눈꽃컵케이크_완/0.jpg" alt="눈꽃컵케이크" class="img-main">
+                <img src="../27. 순두부 눈꽃컵케이크_완/1.jpg" alt="눈꽃컵케이크 상세1">
+                <img src="../27. 순두부 눈꽃컵케이크_완/2.jpg" alt="눈꽃컵케이크 상세2">
+                <img src="../27. 순두부 눈꽃컵케이크_완/3.jpg" alt="눈꽃컵케이크 상세3">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl">반죽 속에 담긴<br>정직한 촉촉함</h2>
+                    <p>순두부를 넣어 구워낸 컵케이크 베이스와 산뜻한 크림치즈 프로스팅의 조화.<br>반죽 속에 담아낸 영양과 소복이 내려앉은 눈꽃 장식으로 성탄의 미학을 완성했습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. Vol 26 - 3종케익 -->
+        <section id="vol26">
+            <div class="image-stage">
+                <img src="../26. 순두부 3종케익_완/0.jpg" alt="3종케익" class="img-main">
+                <img src="../26. 순두부 3종케익_완/1.jpg" alt="3종케익 상세1">
+                <img src="../26. 순두부 3종케익_완/2.jpg" alt="3종케익 상세2">
+                <img src="../26. 순두부 3종케익_완/3.jpg" alt="3종케익 상세3">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl">세 가지 기쁨<br>성탄의 선물</h2>
+                    <p>취향에 따라 골라 즐기는 세 가지 조각의 기록.<br>각기 다른 맛 속에 프로젝트 두부만의 고소함을 정성껏 담아냈습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. Vol 25 - 초코번트케익 -->
+        <section id="vol25">
+            <div class="image-stage">
+                <img src="../25. 순두부초코번트케익_완/0.jpg" alt="초코번트케익" class="img-main">
+                <img src="../25. 순두부초코번트케익_완/1.jpg" alt="초코번트케익 상세1">
+                <img src="../25. 순두부초코번트케익_완/2.jpg" alt="초코번트케익 상세2">
+                <img src="../25. 순두부초코번트케익_완/3.jpg" alt="초코번트케익 상세3">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl">진한 깊이 속에<br>숨겨진 촉촉함</h2>
+                    <p>초콜릿의 묵직함과 순두부의 촉촉함이 만든 하모니.<br>번트 케익 특유의 고전적인 실루엣 위로 성탄의 설렘을 얹었습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Vol 24 - 레몬번트케익 -->
+        <section id="vol24">
+            <div class="image-stage">
+                <img src="../24. 순두부레몬번트케익_완/0.jpg" alt="레몬번트케익" class="img-main">
+                <img src="../24. 순두부레몬번트케익_완/1.jpg" alt="레몬번트케익 상세1">
+                <img src="../24. 순두부레몬번트케익_완/2.jpg" alt="레몬번트케익 상세2">
+                <img src="../24. 순두부레몬번트케익_완/3.jpg" alt="레몬번트케익 상세3">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl">산뜻하게 깨어나는<br>겨울의 감각</h2>
+                    <p>레몬의 청량함과 순두부 베이스의 부드러운 만남.<br>반복되는 일상에 새로운 생동감을 불어넣는 상큼한 겨울 자작입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. Vol 23 - 블랙포레스트 컵케익 -->
+        <section id="vol23">
+            <div class="image-stage">
+                <img src="../23. 순두부블랙포레스트 컵케익_완/0.jpg" alt="블랙포레스트 컵케익" class="img-main">
+                <img src="../23. 순두부블랙포레스트 컵케익_완/KakaoTalk_20251118_160003343.jpg" alt="블랙포레스트 상세1">
+                <img src="../23. 순두부블랙포레스트 컵케익_완/KakaoTalk_20251119_182329961_01.jpg" alt="블랙포레스트 상세2">
+                <img src="../23. 순두부블랙포레스트 컵케익_완/KakaoTalk_20251120_165803876.jpg" alt="블랙포레스트 상세3">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl">클래식의 재해석<br>블랙포레스트</h2>
+                    <p>체리와 초코, 순두부 크림이 만드는 짙은 풍미.<br>한 입의 컵케익 속에 성탄의 화려함과 깊은 맛을 압축해 담았습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06. Vol 22 - 부쉬드노엘 -->
+        <section id="vol22">
+            <div class="image-stage">
+                <img src="../22. 순두부 부쉬드노엘_완/0.jpg" alt="부쉬드노엘" class="img-main">
+                <img src="../22. 순두부 부쉬드노엘_완/KakaoTalk_20251119_182329961_02.jpg" alt="부쉬드노엘 상세1">
+                <img src="../22. 순두부 부쉬드노엘_완/KakaoTalk_20251119_182329961_05.jpg" alt="부쉬드노엘 상세2">
+                <img src="../22. 순두부 부쉬드노엘_완/KakaoTalk_20251119_182329961_11.jpg" alt="부쉬드노엘 상세3">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl">성탄 장작 속에<br>피어난 고소함</h2>
+                    <p>순두부 시트로 말아 올린 가볍고 정교한 질감.<br>장작의 투박한 외형 뒤로 숨겨진 극강의 부드러움을 기록합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 07. Vol 21 - 슈톨렌 -->
+        <section id="vol21">
+            <div class="image-stage">
+                <img src="../21. 순두부슈톨렌_완/0.jpg" alt="슈톨렌" class="img-main">
+                <img src="../21. 순두부슈톨렌_완/KakaoTalk_20251117_204301264_01.jpg" alt="슈톨렌 상세1">
+                <img src="../21. 순두부슈톨렌_완/KakaoTalk_20251117_204301264_04.jpg" alt="슈톨렌 상세2">
+                <img src="../21. 순두부슈톨렌_완/KakaoTalk_20251118_155920121.jpg" alt="슈톨렌 상세3">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl">시간을 버텨온<br>촉촉한 숙성</h2>
+                    <p>긴 겨울을 기다려온 슈톨렌의 깊고 진한 배합.<br>정성껏 숙성한 건과일의 풍미가 순두부 반죽 속에 고스란히 저장되었습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Navigation -->
+        <section>
+            <div class="image-stage" style="background: rgba(13, 43, 31, 1);">
+                <div class="content-box centered">
+                    <h2 class="serif text-5xl mb-12">당신의 성탄이<br>조금 더 특별해지기를</h2>
+                    <div class="footer-buttons">
+                        <a href="../%ED%81%AC%EB%A6%AC%EC%8A%A4%EB%A7%88%EC%8A%A4%20%ED%8C%9D%EC%8B%9C%ED%81%B4/index.html" class="back-btn serif px-14 py-5 transition-all tracking-[0.3em] text-sm inline-block">GO TO HUB</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const progressBar = document.querySelector('.progress-bar');
+        const mainContent = document.querySelector('#main-content');
+
+        const observerOptions = {
+            root: mainContent,
+            threshold: 0.6
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sections.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+                    
+                    const index = Array.from(sections).indexOf(entry.target);
+                    const progress = ((index + 1) / sections.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        window.addEventListener('contextmenu', e => e.preventDefault());
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', e => e.preventDefault());
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 두부: 가정의 달 스페셜 컬렉션</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style_portal.css">
+    <style>
+        :root {
+            --dubu-bg: #FDF8F3; /* 따뜻하고 화사한 베이지 */
+            --dubu-accent: #E91E63; /* 가정의 달을 상징하는 카네이션 핑크 */
+            --dubu-gold: #D4AF37;
+            --dubu-black: #2C1810;
+            --dubu-border: rgba(233, 30, 99, 0.1);
+            --dubu-card-bg: #FFFFFF;
+        }
+
+        body {
+            background-color: var(--dubu-bg);
+            color: var(--dubu-black);
+            padding-top: 80px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .hub-hero {
+            display: table; 
+            margin: 0 auto 60px auto;
+            text-align: center;
+        }
+
+        .hub-title {
+            font-size: 3rem;
+            letter-spacing: -0.01em;
+            color: var(--dubu-black); 
+            font-weight: 700;
+            margin-bottom: 0;
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .section-tag {
+            color: var(--dubu-accent) !important; 
+            letter-spacing: 0.4em;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+            display: block;
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 10px;
+        }
+
+        .lookbook-card {
+            background: var(--dubu-card-bg);
+            border: 1px solid var(--dubu-border);
+            color: var(--dubu-black);
+            display: block;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .lookbook-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(233, 30, 99, 0.08);
+            border-color: var(--dubu-accent);
+        }
+
+        .card-img {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            border-bottom: 1px solid var(--dubu-border);
+        }
+
+        .card-body {
+            padding: 40px;
+        }
+
+        .card-vol {
+            color: var(--dubu-accent);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            margin-bottom: 12px;
+            font-weight: 700;
+            display: block;
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .card-title {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #5D4037;
+            font-weight: 400;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 100;
+        }
+
+        .back-nav a {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid var(--dubu-border);
+            color: var(--dubu-black);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+
+        .back-nav a:hover {
+            background: var(--dubu-accent);
+            border-color: var(--dubu-accent);
+            color: white;
+        }
+
+        footer {
+            padding: 100px 0;
+            text-align: center;
+            opacity: 0.4;
+        }
+        .footer-logo { font-size: 1.2rem; letter-spacing: 0.5rem; margin-bottom: 10px; font-family: 'Noto Serif KR', serif; }
+        .copy { font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="back-nav">
+        <a href="../index.html#events">← BACK TO PORTAL</a>
+    </nav>
+
+    <div class="hub-hero">
+        <span class="section-tag">FAMILY MONTH SELECTION</span>
+        <h1 class="hub-title italic">가정의 달 에디션</h1>
+    </div>
+
+    <section class="featured">
+        <div class="container mx-auto px-10 max-w-7xl">
+            <div class="featured-grid">
+                <!-- Vol. 39 -->
+                <a href="../39. 순두부 쑥 찰떡브라우니_화보북 여기서부터/index.html?from=family" class="lookbook-card">
+                    <img src="../39. 순두부 쑥 찰떡브라우니_화보북 여기서부터/assets/7.jpg" alt="쑥브라우니" class="card-img">
+                    <div class="card-body">
+                        <span class="card-vol">VOL. 39</span>
+                        <h2 class="card-title">순두부 쑥 찰떡브라우니</h2>
+                        <p class="card-desc">가장 미학적인 쉼표. 쑥의 진한 풍미와 순두부의 찰기가 만나 완성된 꾸덕함은 부모님께 드리는 최고의 건강 선물이 됩니다.</p>
+                    </div>
+                </a>
+
+                <!-- Vol. 31 -->
+                <a href="../31. 순두부 티라미수푸딩_완/index.html?from=family" class="lookbook-card">
+                    <img src="../31. 순두부 티라미수푸딩_완/0.jpg" alt="티라미수푸딩" class="card-img">
+                    <div class="card-body">
+                        <span class="card-vol">VOL. 31</span>
+                        <h2 class="card-title">순두부 티라미수 푸딩</h2>
+                        <p class="card-desc">입안 가득 소복이 쌓이는 다정함. 순두부의 고소함과 마스카포네의 깊은 맛이 어우러진, 모두가 사랑할 수밖에 없는 부드러운 기록입니다.</p>
+                    </div>
+                </a>
+
+                <!-- Vol. 29 -->
+                <a href="../29. 순두부 르뱅쿠키_완/index.html?from=family" class="lookbook-card">
+                    <img src="../29. 순두부 르뱅쿠키_완/0.jpg" alt="르뱅쿠키" class="card-img">
+                    <div class="card-body">
+                        <span class="card-vol">VOL. 29</span>
+                        <h2 class="card-title">순두부 르뱅쿠키</h2>
+                        <p class="card-desc">겉바속쫀의 정석. 큼지막한 견과류와 초콜릿 칩, 그리고 순두부가 완성한 밀도 높은 르뱅쿠키로 감사의 마음을 묵직하게 전하세요.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">PROJECT DUBU</div>
+        <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>할로윈 에디션: 순두부 단호박 바스크</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --halloween-orange: #FF6D00;
+            --halloween-black: #0A0A0A;
+            --text-silver: #E0E0E0;
+        }
+        body { background-color: var(--halloween-black); color: var(--text-silver); transition: all 0.5s ease; overflow-x: hidden; }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--halloween-orange); z-index: 1000; transition: width 0.3s ease; }
+        
+        section { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; scroll-snap-align: start; }
+        main { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+        /* Golden Standard Layout */
+        .image-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .image-stage img { 
+            max-height: 85vh; 
+            max-width: 85vw; 
+            object-fit: contain; 
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8); 
+            border-radius: 4px; 
+            border: 1px solid rgba(255,109,0,0.1);
+        }
+
+        .hero-content { position: absolute; z-index: 10; width: 100%; text-align: center; }
+        .serif { font-family: 'Noto Serif KR', serif; }
+
+        /* Navigation */
+        .nav-item { color: white; opacity: 0.6; transition: opacity 0.3s; }
+        .nav-item:hover { opacity: 1; }
+        .back-btn { border: 1px solid rgba(255, 109, 0, 0.2); border-radius: 25px; transition: all 0.3s; color: var(--halloween-orange); }
+        .back-btn:hover { background: var(--halloween-orange); color: white; border-color: var(--halloween-orange); }
+        .blog-btn { border: 1px solid var(--halloween-orange); border-radius: 25px; transition: all 0.3s; color: white; background: var(--halloween-orange); text-decoration: none; }
+        .blog-btn:hover { background: transparent; color: var(--halloween-orange); }
+        .footer-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+
+        /* Content Boxes (Legibility Standard) */
+        .content-box {
+            position: absolute;
+            z-index: 20;
+            padding: 40px;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1) 0.5s;
+        }
+        .active .content-box { opacity: 1; transform: translateY(0); }
+        
+        .side-left { left: 8vw; top: 40%; text-align: left; }
+        .side-right { right: 8vw; bottom: 40%; text-align: right; }
+        
+        .content-box h2 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 20px;
+            color: white;
+        }
+        .side-left h2::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--halloween-orange);
+            border-radius: 2px;
+        }
+        .side-right h2 { padding-left: 0; padding-right: 20px; }
+        .side-right h2::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--halloween-orange);
+            border-radius: 2px;
+        }
+
+        .content-box p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #BBBBBB;
+            font-weight: 450;
+        }
+
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased selection:bg-orange-500/30">
+
+    <div class="progress-bar"></div>
+    <div id="event-description-container" style="display: none;">
+        <h1 class="serif text-3xl md:text-5xl mb-8 leading-snug tracking-tight text-white">어둠이 깊어지는 할로윈 밤,<br><span class="text-orange-500">단호박의 달콤함으로 빚어낸 황금빛 위로</span></h1>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
+        <a href="../index.html" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity" id="back-link">← PORTAL</a>
+        <div class="nav-item serif text-sm tracking-[0.4em] font-bold text-orange-500">HALLOWEEN EDITION VOL. 16</div>
+    </nav>
+
+    <main id="main-content">
+        <!-- 01. Hero -->
+        <section class="active">
+            <div class="image-stage">
+                <img src="KakaoTalk_20251002_082631387_17.jpg" alt="단호박 바스크 메인" class="fade-in-up">
+                <div class="hero-content">
+                    <span class="serif text-xs tracking-[0.4em] text-orange-400 mb-4 block">Seasonal Selection 2025</span>
+                    <h1 class="serif text-6xl md:text-8xl mb-8 tracking-tight text-white" id="hero-title">순두부<br><span class="text-orange-500">단호박 바스크</span></h1>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. Texture -->
+        <section>
+            <div class="image-stage">
+                <img src="KakaoTalk_20251002_082631387_08.jpg" alt="질감 샷">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl mb-6">농도 짙은<br>가을의 맛</h2>
+                    <p>단호박의 원물을 그대로 담아낸<br>진득하고 부드러운 할로윈의 텍스처.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. Mood -->
+        <section>
+            <div class="image-stage">
+                <img src="KakaoTalk_20251002_082631387_02.jpg" alt="무드 샷">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl mb-6">황금빛<br>기다림</h2>
+                    <p>오랜 오븐의 열기 속에 완성된<br>순두부와 치즈의 가장 고요한 조화.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Outro -->
+        <section>
+            <div class="image-stage">
+                <img src="KakaoTalk_20251002_082631387_18.jpg" alt="최종 샷">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl mb-6">달콤한<br>축제</h2>
+                    <p>당신의 할로윈이 가장 건강하고<br>아름다운 맛으로 기억되길 바랍니다.</p>
+                </div>
+                <!-- 하단 브랜딩 요소 -->
+                <div class="content-box centered text-center" style="top: auto; bottom: 10%; transform: translateX(-50%);">
+                    <div class="footer-buttons">
+                        <a href="../[이벤트] 할로윈_20251029/index.html" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block" id="footer-back-link">← BACK TO EVENT</a>
+                        <a href="https://blog.naver.com/project_dubu/224029278133" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const progressBar = document.querySelector('.progress-bar');
+        const main = document.querySelector('main');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sections.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+                    
+                    const index = Array.from(sections).indexOf(entry.target);
+                    const progress = ((index + 1) / sections.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+            });
+        }, { threshold: 0.6 });
+
+        sections.forEach(section => observer.observe(section));
+
+        // [Dynamic Logic] Event Entry Check
+        if (window.location.hash === '#skip-intro') {
+            const heroTitle = document.getElementById('hero-title');
+            const newDesc = document.getElementById('event-description-container').innerHTML;
+            if (heroTitle) heroTitle.outerHTML = newDesc;
+
+            sections[0].style.display = 'none';
+            if (sections[1]) sections[1].scrollIntoView();
+
+            const backLinks = [document.getElementById('back-link'), document.getElementById('footer-back-link')];
+            backLinks.forEach(link => {
+                if (link) {
+                    link.innerText = '← BACK TO EVENT';
+                    link.href = '../[이벤트] 할로윈_20251029/index.html';
+                }
+            });
+        }
+
+        window.addEventListener('contextmenu', e => e.preventDefault());
+    </script>
+</body>
+</html>

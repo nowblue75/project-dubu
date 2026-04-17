@@ -1,0 +1,212 @@
+:root {
+    --dubu-gold: #C5A17A;
+    --dubu-green: #4A5D45;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow-x: hidden;
+}
+
+.serif {
+    font-family: 'Noto Serif KR', serif;
+}
+
+/* Progress Bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--dubu-gold);
+    z-index: 1000;
+    transition: width 0.3s ease;
+}
+
+/* Page Layout */
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    scroll-snap-align: start;
+}
+
+main {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none; /* Firefox */
+}
+
+main::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
+/* Section Title */
+.section-title {
+    position: absolute;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+section.active .section-title {
+    opacity: 1;
+    top: 12vh;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Image Stage */
+.image-stage {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-stage img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    transition: transform 1.5s ease;
+}
+
+section.active .image-stage img {
+    transform: scale(1.03);
+}
+
+/* Hotspots */
+.hotspot {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(197, 161, 122, 0.4);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.4s;
+}
+
+.hotspot::before {
+    content: '+';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 200;
+}
+
+.hotspot::after {
+    content: '';
+    position: absolute;
+    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+.hotspot:hover, .hotspot.active {
+    background: var(--dubu-gold);
+    transform: scale(1.2);
+}
+
+/* Hotspot Content */
+.hotspot-content {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 24px;
+    border-radius: 4px;
+    color: #1a1a1a;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+    z-index: 100;
+    border-left: 4px solid var(--dubu-gold);
+}
+
+.hotspot.active .hotspot-content {
+    opacity: 1;
+    visibility: visible;
+    bottom: 45px;
+}
+
+.hotspot-content .title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--dubu-green);
+}
+
+.hotspot-content .desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    font-weight: 300;
+    color: #555;
+    word-break: keep-all;
+}
+
+/* Finale Section */
+.finale-section {
+    background-color: #fff;
+    color: #000;
+}
+
+.logo-reveal {
+    animation: fadeInUp 1.5s ease;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .section-title h2 { font-size: 1.8rem; }
+    .image-stage { height: 50vh; width: 95%; }
+    .hotspot-content { width: 240px; }
+}

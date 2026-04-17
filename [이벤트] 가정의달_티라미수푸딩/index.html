@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가정의 달 에디션: 순두부 티라미수 푸딩</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --val-accent: #E91E63;
+            --val-dark: #2C1810;
+            --val-bg: #FDF8F3;
+            --text-main: #2C1810;
+            --text-sub: rgba(44, 24, 16, 0.75);
+        }
+        body { background-color: var(--val-bg); color: var(--text-main); transition: all 0.5s ease; overflow-x: hidden; font-family: 'Noto Sans KR', sans-serif; }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--val-accent); z-index: 1000; transition: width 0.3s ease; }
+        
+        section { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; scroll-snap-align: start; }
+        main { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+        .image-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .image-stage img { 
+            max-height: 85vh; 
+            max-width: 85vw; 
+            object-fit: contain; 
+            box-shadow: 0 30px 80px rgba(233, 30, 99, 0.1); 
+            border-radius: 4px; 
+            border: 1px solid rgba(233, 30, 99, 0.1);
+        }
+
+        .serif { font-family: 'Noto Serif KR', serif; }
+
+        .nav-item { color: var(--val-accent); opacity: 0.6; transition: opacity 0.3s; }
+        .nav-item:hover { opacity: 1; }
+        .back-btn { border: 1px solid rgba(233, 30, 99, 0.4); border-radius: 25px; transition: all 0.3s; color: var(--val-accent); background: rgba(255,255,255,0.2); }
+        .back-btn:hover { background: var(--val-accent); color: white; border-color: var(--val-accent); }
+        .blog-btn { border: 1px solid var(--val-accent); border-radius: 25px; transition: all 0.3s; color: white; background: var(--val-accent); text-decoration: none; }
+        .blog-btn:hover { background: transparent; color: var(--val-accent); }
+        .footer-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+
+        .content-box {
+            position: absolute;
+            z-index: 20;
+            padding: 35px 45px;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1) 0.5s;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(233, 30, 99, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.05);
+        }
+        .active .content-box { opacity: 1; transform: translateY(0); }
+        
+        .side-left { left: 8vw; top: 40%; text-align: left; }
+        .side-right { right: 8vw; bottom: 40%; text-align: right; }
+        
+        .content-box h2 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 20px;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+        .side-left h2::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--val-accent);
+            border-radius: 2px;
+        }
+        .side-right h2 { padding-left: 0; padding-right: 20px; }
+        .side-right h2::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--val-accent);
+            border-radius: 2px;
+        }
+
+        .content-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-sub);
+            font-weight: 450;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#E91E63]/30">
+
+    <div class="progress-bar"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
+        <a href="../[이벤트] 가정의달_2026/index.html" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity">← BACK TO Hub</a>
+        <div class="nav-item serif text-sm tracking-[0.4em] font-bold text-[#E91E63]">FAMILY MONTH SPECIAL VOL. 31</div>
+    </nav>
+
+    <main id="main-content">
+        <!-- 01. Intro -->
+        <section class="active">
+            <div class="image-stage">
+                <img src="../31. 순두부 티라미수푸딩_완/0.jpg" alt="티라미수푸딩 메인" class="fade-in-up">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl mb-6">입안 가득 소복이<br>쌓이는 다정함</h2>
+                    <p>부드러운 마스카포네와 정직한 순두부 크림의 만남.<br>티라미수의 깊은 풍미를 더욱 담백하고 건강하게 재해석했습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. Detail -->
+        <section>
+            <div class="image-stage">
+                <img src="../31. 순두부 티라미수푸딩_완/0-0.jpg" alt="티라미수 상세">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl mb-6">위로가 되는<br>겹겹의 미학</h2>
+                    <p>층층이 쌓인 크림과 시트 사이로 스며든 커피의 향.<br>나른한 5월의 오후, 온 가족에게 선사하는 가장 순한 달콤함입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. Process -->
+        <section>
+            <div class="image-stage">
+                <img src="../31. 순두부 티라미수푸딩_완/KakaoTalk_20260121_124640928_02.jpg" alt="크림 제조">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl mb-6">순두부가 빚은<br>부드러운 구름</h2>
+                    <p>순두부 특유의 고소한 풍미가 크림의 느끼함을 잡고<br>구름처럼 가볍고 몽글몽글한 질감을 완성합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Final Aesthetic -->
+        <section>
+            <div class="image-stage">
+                <img src="../31. 순두부 티라미수푸딩_완/KakaoTalk_20260121_124640928_19.jpg" alt="최종 완성">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl mb-6">함께 나누는<br>오늘의 기록</h2>
+                    <p>화려함보다 본질인 맛과 건강에 집중했습니다.<br>당신의 식탁 위, 가장 다정한 주인공이 될 프로젝트 두부의 선물입니다.</p>
+                </div>
+                <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
+                    <div class="footer-buttons">
+                        <a href="../[이벤트] 가정의달_2026/index.html" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block">← BACK TO HUB</a>
+                        <a href="https://blog.naver.com/project_dubu/224164987367" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const progressBar = document.querySelector('.progress-bar');
+        const observerOptions = { threshold: 0.6 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sections.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+                    const index = Array.from(sections).indexOf(entry.target);
+                    const progress = ((index + 1) / sections.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+            });
+        }, observerOptions);
+        sections.forEach(section => observer.observe(section));
+        window.addEventListener('contextmenu', e => e.preventDefault());
+        document.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
+    </script>
+</body>
+</html>

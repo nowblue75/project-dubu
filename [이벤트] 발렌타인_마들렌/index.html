@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>발렌타인 에디션: 순두부 초코마들렌</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --val-accent: #BC8A5F;
+            --val-dark: #1A0F0A;
+            --val-bg: #1A0F0A;
+            --text-main: #FDF8F3;
+            --text-sub: #D7CCC8;
+        }
+        body { background-color: var(--val-bg); color: var(--text-main); transition: all 0.5s ease; overflow-x: hidden; }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--val-accent); z-index: 1000; transition: width 0.3s ease; }
+        
+        section { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; scroll-snap-align: start; }
+        main { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+        .image-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .image-stage img { 
+            max-height: 85vh; 
+            max-width: 85vw; 
+            object-fit: contain; 
+            box-shadow: 0 30px 80px rgba(0,0,0,0.8); 
+            border-radius: 4px; 
+            border: 1px solid rgba(188,138,95,0.2);
+        }
+
+        .serif { font-family: 'Noto Serif KR', serif; }
+
+        /* Navigation */
+        .nav-item { color: var(--val-accent); opacity: 0.6; transition: opacity 0.3s; }
+        .nav-item:hover { opacity: 1; }
+        .back-btn { border: 1px solid rgba(188, 138, 95, 0.4); border-radius: 25px; transition: all 0.3s; color: var(--val-accent); background: rgba(255,255,255,0.05); }
+        .back-btn:hover { background: var(--val-accent); color: white; border-color: var(--val-accent); }
+        .blog-btn { border: 1px solid var(--val-accent); border-radius: 25px; transition: all 0.3s; color: white; background: var(--val-accent); text-decoration: none; }
+        .blog-btn:hover { background: transparent; color: var(--val-accent); }
+        .footer-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+
+        /* Content Boxes - 표준 가독성 (Dark Glass) */
+        .content-box {
+            position: absolute;
+            z-index: 20;
+            padding: 35px 45px;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1) 0.5s;
+
+            background: rgba(26, 15, 10, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(188, 138, 95, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+        .active .content-box { opacity: 1; transform: translateY(0); }
+        
+        .side-left { left: 8vw; top: 40%; text-align: left; }
+        .side-right { right: 8vw; bottom: 40%; text-align: right; }
+        
+        .content-box h2 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 20px;
+            color: white;
+            line-height: 1.3;
+        }
+        .side-left h2::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--val-accent);
+            border-radius: 2px;
+        }
+        .side-right h2 { padding-left: 0; padding-right: 20px; }
+        .side-right h2::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--val-accent);
+            border-radius: 2px;
+        }
+
+        .content-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-sub);
+            font-weight: 450;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#BC8A5F]/30">
+
+    <div class="progress-bar"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
+        <a id="back-link-top" href="../index.html#latest" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity">← BACK TO PORTAL</a>
+        <div class="nav-item serif text-sm tracking-[0.4em] font-bold text-[#BC8A5F]">VALENTINE SPECIAL VOL. 35</div>
+    </nav>
+
+    <main id="main-content">
+        <!-- 01. Cinematic Introduction -->
+        <section class="active">
+            <div class="image-stage">
+                <img src="../35. 순두부초코마들렌_완/0.jpg" alt="발렌타인 초코마들렌 메인" class="fade-in-up">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl mb-6">우아한<br>위로의 곡선</h2>
+                    <p>조개껍데기 속에 담긴 부드러운 고백.<br>진한 초콜릿과 순두부가 만나 특별한 마들렌이 되었습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. Aesthetic Set -->
+        <section>
+            <div class="image-stage">
+                <img src="../35. 순두부초코마들렌_완/1.jpg" alt="마들렌 세트">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl mb-6">정성으로<br>채운 공간</h2>
+                    <p>버터를 줄여 담백함은 살리고,<br>초콜릿의 풍미는 더욱 깊게 채워 넣었습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. Close-up Detail -->
+        <section>
+            <div class="image-stage">
+                <img src="../35. 순두부초코마들렌_완/4.jpg" alt="마들렌 디테일">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl mb-6">섬세한<br>질감의 기록</h2>
+                    <p>입안 가득 퍼지는 촉촉하고 매끄러운 텍스처.<br>프로젝트 두부만의 정교한 배합이 돋보이는 순간입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Final Aesthetic -->
+        <section>
+            <div class="image-stage">
+                <img src="../35. 순두부초코마들렌_완/KakaoTalk_20260224_170652865_14.jpg" alt="최종 연중">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl mb-6">마음을<br>전하는 무게</h2>
+                    <p>작지만 묵직한 진심이 담긴 마들렌 세트.<br>가장 소중한 사람에게 전하는 다정한 선물입니다.</p>
+                </div>
+                <!-- 하단 브랜딩 요소 -->
+                <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
+                    <div class="footer-buttons">
+                        <a id="back-link-bottom" href="../index.html#latest" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block">← BACK TO PORTAL</a>
+                        <a href="https://blog.naver.com/project_dubu/224203525984" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const from = params.get('from');
+        const backLinks = [document.getElementById('back-link-top'), document.getElementById('back-link-bottom')];
+        
+        const hubMap = {
+            'holiday': '../[이벤트] 명절_2026/index.html',
+            'family': '../[이벤트] 가정의달_2026/index.html',
+            'valentine': '../[이벤트] 발렌타인_2026/index.html',
+            'whiteday': '../[이벤트] 화이트데이_2026/index.html'
+        };
+
+        if (from && hubMap[from]) {
+            backLinks.forEach(link => {
+                link.href = hubMap[from];
+                link.innerText = '← BACK TO HUB';
+            });
+        }
+
+        const sections = document.querySelectorAll('section');
+        const progressBar = document.querySelector('.progress-bar');
+
+        const observerOptions = { threshold: 0.6 };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sections.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+                    const index = Array.from(sections).indexOf(entry.target);
+                    const progress = ((index + 1) / sections.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+        window.addEventListener('contextmenu', e => e.preventDefault());
+        document.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
+    </script>
+</body>
+</html>

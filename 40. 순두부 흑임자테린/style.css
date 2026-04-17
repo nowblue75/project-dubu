@@ -1,0 +1,268 @@
+:root {
+    --dubu-black: #1F1A17;      /* 따뜻한 다크 브라운 블랙 */
+    --dubu-gray: #4A4038;
+    --dubu-cream: #FAF8F3;      /* 워ーム 크림 */
+    --dubu-accent: #3F2A1D;     /* 흑임자 고소함 포인트 */
+    --dubu-border: #EDE6D9;
+}
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--dubu-cream);
+    color: var(--dubu-black);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* [NEW] 스크롤 스냅 레이아웃 */
+html {
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 80px; /* 네비게이션 높이만큼 오프셋 추가 */
+}
+section {
+    scroll-snap-align: start;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8vh 24px 2vh 24px; /* 네비게이션 공간 고려 */
+}
+
+.serif { font-family: 'Noto Serif KR', serif; }
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tab-btn {
+    border-bottom: 2px solid transparent;
+    color: #A89B90;
+    transition: all 0.3s ease;
+}
+.tab-btn.active {
+    border-bottom: 2px solid var(--dubu-black);
+    color: var(--dubu-black);
+    font-weight: 700;
+}
+
+/* 프로세스 섹션 전용 스타일 */
+.step-btn {
+    background-color: white;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.step-btn.active {
+    background-color: var(--dubu-black);
+    color: white;
+    transform: translateX(10px);
+}
+.step-btn.active p {
+    color: rgba(255,255,255,0.7);
+}
+.step-btn.active span {
+    color: white;
+}
+
+/* [NEW] 통일된 섹션 타이틀 크기 */
+.section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 3rem;
+    line-height: 1.2;
+    color: var(--dubu-black);
+    margin-bottom: 2rem;
+}
+@media (min-width: 768px) {
+    .section-title { font-size: 5rem; }
+}
+
+/* 이미지 원본 비율 존중 슬롯 */
+.lookbook-img-slot {
+    width: 100%;
+    height: auto;
+    min-height: 420px;
+    background-color: #f5f2eb;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(31,26,23,0.06);
+}
+.lookbook-img-slot img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;           /* 원본 비율 존중 */
+    transition: opacity 0.4s ease;
+}
+
+.reference-guide {
+    font-size: 10px;
+    color: #8C7A6B;
+    text-align: center;
+    margin-top: 8px;
+    line-height: 1.4;
+}
+
+/* Hotspot System */
+.hotspot-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.hotspot {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.hotspot::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: white;
+    opacity: 0.6;
+    animation: pulse 2s infinite;
+}
+.hero-v2-container {
+    position: relative;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.hero-v2-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 틀이 잘리지 않도록 비례 유지 */
+    opacity: 0.8;
+}
+.hotspot svg {
+    width: 16px;
+    height: 16px;
+    color: white;
+    z-index: 11;
+}
+.hotspot:hover {
+    transform: scale(1.2);
+    background: white;
+}
+.hotspot:hover svg { color: var(--dubu-black); }
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* Tooltip Style */
+.tooltip-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 360px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    padding: 32px;
+    border-radius: 2px;
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.tooltip-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+/* Section Layout Enhancements - Strict 100vh Fit */
+.title-area {
+    height: 12vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2vh;
+}
+.visual-area-wrapper {
+    height: 60vh;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.fullscreen-visual {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+.bottom-area {
+    height: 18vh;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+}
+.impact-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(2.5rem, 6vh, 5rem);
+    color: var(--dubu-black);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-align: center;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--dubu-cream); }
+::-webkit-scrollbar-thumb { background: #D1C7BC; border-radius: 10px; }

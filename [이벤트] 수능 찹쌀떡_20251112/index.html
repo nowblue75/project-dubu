@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 두부: 수능 응원 에디션</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style_portal.css">
+    <style>
+        :root {
+            --dubu-bg: #F9FAF8; /* 안정감을 주는 밝은 그린베이지 */
+            --dubu-accent: #7F8C8D; /* 신뢰감 있는 차분한 그레이 */
+            --dubu-gray: #BDC3C7;
+            --dubu-black: #2C3E50;
+            --dubu-border: #E5EADF;
+        }
+
+        body {
+            background-color: var(--dubu-bg);
+            color: var(--dubu-black);
+            padding-top: 80px;
+        }
+
+        .hub-hero {
+            display: table; 
+            margin: 0 auto 20px auto;
+            text-align: center;
+        }
+
+        .hub-title {
+            font-size: 3rem;
+            letter-spacing: -0.01em;
+            color: var(--dubu-black); 
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        .section-tag {
+            color: var(--dubu-accent) !important; 
+            letter-spacing: 0.4em;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+        }
+
+        /* 전역 section 패딩(100px) 제거하여 타이틀과의 간격 정밀 제어 */
+        .featured {
+            padding: 0 !important; 
+            margin-top: 0 !important;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 10px;
+        }
+
+        .lookbook-card {
+            background: white;
+            border: 1px solid var(--dubu-border);
+            color: var(--dubu-black);
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .lookbook-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(44, 62, 80, 0.05);
+        }
+
+        .card-body {
+            padding: 40px;
+        }
+
+        .card-tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: var(--dubu-accent);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card-img {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .lookbook-card:hover .card-img img {
+            transform: scale(1.05);
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 100;
+        }
+
+        .back-nav a {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid var(--dubu-border);
+            color: var(--dubu-accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-nav a:hover {
+            background: var(--dubu-black);
+            color: white;
+            border-color: var(--dubu-black);
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            padding: 100px 0;
+            text-align: center;
+            opacity: 0.4;
+        }
+        .footer-logo { font-size: 1.2rem; letter-spacing: 0.5rem; margin-bottom: 10px; font-family: 'Noto Serif KR', serif; }
+        .copy { font-size: 0.7rem; }
+    </style>
+</head>
+<body class="antialiased selection:bg-green-100">
+
+    <nav class="back-nav">
+        <a href="../index.html#events" class="serif text-xs tracking-widest transition-opacity">← BACK TO PORTAL</a>
+    </nav>
+
+    <div class="container mx-auto px-8 relative">
+        <div class="hub-hero fade-in-up">
+            <div class="section-tag serif mb-1">SOONEUNG SELECTION 2025</div>
+            <h1 class="serif hub-title italic">수능 응원 에디션</h1>
+        </div>
+
+        <section class="featured mb-24">
+            <div class="featured-grid">
+                <!-- Vol. S1 Card (Main Content) -->
+                <a href="../[이벤트] 수능_스페셜_화보북/index.html" class="lookbook-card fade-in-up">
+                    <div class="card-img">
+                        <img src="KakaoTalk_20251111_172210801_00.jpg" alt="수능 응원 찹쌀떡">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag serif">SPECIAL VOL. S1</div>
+                        <h3 class="serif text-2xl mb-4 font-bold">순두부 찹쌀떡</h3>
+                        <p class="text-sm opacity-60 leading-relaxed font-light">고운 순두부 베이스의 담백함과 국내산 찹쌀의 쫀독함이 조화를 이루는 특별한 응원. 긴장된 수험생의 마음을 부드럽게 감싸줄 정성의 기록입니다.</p>
+                    </div>
+                </a>
+
+                <!-- Placeholder Card -->
+                <div class="lookbook-card opacity-50 cursor-default fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="card-img bg-gray-100 flex items-center justify-center">
+                        <span class="serif text-gray-400 tracking-widest">COMING SOON</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag serif">SPECIAL VOL. S2</div>
+                        <h3 class="serif text-2xl mb-4 font-bold">Archive Selection</h3>
+                        <p class="text-sm opacity-40 leading-relaxed font-light">프로젝트 두부의 다음 시즌 에카이브를 준비 중입니다. 잠시만 기다려 주세요.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-logo">PROJECT DUBU</div>
+        <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('contextmenu', e => e.preventDefault());
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', e => e.preventDefault());
+        });
+    </script>
+</body>
+</html>

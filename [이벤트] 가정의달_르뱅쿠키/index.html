@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가정의 달 에디션: 순두부 르뱅쿠키</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --val-accent: #E91E63;
+            --val-dark: #2C1810;
+            --val-bg: #FDF8F3;
+            --text-main: #2C1810;
+            --text-sub: rgba(44, 24, 16, 0.75);
+        }
+        body { background-color: var(--val-bg); color: var(--text-main); transition: all 0.5s ease; overflow-x: hidden; font-family: 'Noto Sans KR', sans-serif; }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--val-accent); z-index: 1000; transition: width 0.3s ease; }
+        
+        section { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; scroll-snap-align: start; }
+        main { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+        .image-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .image-stage img { 
+            max-height: 85vh; 
+            max-width: 85vw; 
+            object-fit: contain; 
+            box-shadow: 0 30px 80px rgba(233, 30, 99, 0.1); 
+            border-radius: 4px; 
+            border: 1px solid rgba(233, 30, 99, 0.1);
+        }
+
+        .serif { font-family: 'Noto Serif KR', serif; }
+
+        .nav-item { color: var(--val-accent); opacity: 0.6; transition: opacity 0.3s; }
+        .nav-item:hover { opacity: 1; }
+        .back-btn { border: 1px solid rgba(233, 30, 99, 0.4); border-radius: 25px; transition: all 0.3s; color: var(--val-accent); background: rgba(255,255,255,0.2); }
+        .back-btn:hover { background: var(--val-accent); color: white; border-color: var(--val-accent); }
+        .blog-btn { border: 1px solid var(--val-accent); border-radius: 25px; transition: all 0.3s; color: white; background: var(--val-accent); text-decoration: none; }
+        .blog-btn:hover { background: transparent; color: var(--val-accent); }
+        .footer-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+
+        .content-box {
+            position: absolute;
+            z-index: 20;
+            padding: 35px 45px;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1) 0.5s;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(233, 30, 99, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.05);
+        }
+        .active .content-box { opacity: 1; transform: translateY(0); }
+        
+        .side-left { left: 8vw; top: 40%; text-align: left; }
+        .side-right { right: 8vw; bottom: 40%; text-align: right; }
+        
+        .content-box h2 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 20px;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+        .side-left h2::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--val-accent);
+            border-radius: 2px;
+        }
+        .side-right h2 { padding-left: 0; padding-right: 20px; }
+        .side-right h2::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--val-accent);
+            border-radius: 2px;
+        }
+
+        .content-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-sub);
+            font-weight: 450;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#E91E63]/30">
+
+    <div class="progress-bar"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
+        <a href="../[이벤트] 가정의달_2026/index.html" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity">← BACK TO Hub</a>
+        <div class="nav-item serif text-sm tracking-[0.4em] font-bold text-[#E91E63]">FAMILY MONTH SPECIAL VOL. 29</div>
+    </nav>
+
+    <main id="main-content">
+        <!-- 01. Intro -->
+        <section class="active">
+            <div class="image-stage">
+                <img src="../29. 순두부 르뱅쿠키_완/0.jpg" alt="르뱅쿠키 메인" class="fade-in-up">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl mb-6">묵직하게 전하는<br>달콤한 진심</h2>
+                    <p>뉴욕의 활기가 느껴지는 거친 텍스처 속에<br>순두부의 담백함과 견과의 고소함을 압도적인 밀도로 담아냈습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. Texture -->
+        <section>
+            <div class="image-stage">
+                <img src="../29. 순두부 르뱅쿠키_완/1.jpg" alt="텍스처 상세">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl mb-6">겉바속쫀의<br>완벽한 정석</h2>
+                    <p>한 입 베어 무는 순간 느껴지는 바삭한 겉면과<br>순두부가 빚어낸 촉촉하고 쫀득한 속살의 반전 매력입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. Process -->
+        <section>
+            <div class="image-stage">
+                <img src="../29. 순두부 르뱅쿠키_완/KakaoTalk_20260114_214332166_04.jpg" alt="제조 과정">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl mb-6">정성이 빚은<br>밀도 높은 기록</h2>
+                    <p>풍부한 견과류와 초콜릿, 그리고 차가운 버터 큐브에 설탕과 가루류를 넣어 반죽을 만드는 공정을 통해 르뱅쿠키 특유의 묵직한 밀도를 완성합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Final Aesthetic -->
+        <section>
+            <div class="image-stage">
+                <img src="../29. 순두부 르뱅쿠키_완/KakaoTalk_20260114_214733916_01.jpg" alt="최종 완성">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl mb-6">가족과 나누는<br>든든한 행복</h2>
+                    <p>화려함보다 본질인 맛과 건강에 집중했습니다.<br>소중한 분들께 전하는 가장 묵직하고 따뜻한 선물입니다.</p>
+                </div>
+                <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
+                    <div class="footer-buttons">
+                        <a href="../[이벤트] 가정의달_2026/index.html" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block">← BACK TO HUB</a>
+                        <a href="https://blog.naver.com/project_dubu/224148501012" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const progressBar = document.querySelector('.progress-bar');
+        const observerOptions = { threshold: 0.6 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sections.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+                    const index = Array.from(sections).indexOf(entry.target);
+                    const progress = ((index + 1) / sections.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+            });
+        }, observerOptions);
+        sections.forEach(section => observer.observe(section));
+        window.addEventListener('contextmenu', e => e.preventDefault());
+        document.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
+    </script>
+</body>
+</html>

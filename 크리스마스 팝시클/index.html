@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 두부: 성탄절 스페셜 컬렉션</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style_portal.css">
+    <style>
+        :root {
+            --dubu-bg: #1B4332; /* 성탄절 딥 그린 */
+            --dubu-accent: #C21807; /* 크리스마스 레드 */
+            --dubu-gold: #D4AF37;
+            --dubu-black: #FFFFFF;
+            --dubu-border: rgba(212, 175, 55, 0.2);
+            --dubu-card-bg: #0D2B1F; /* 카드 딥 다크 그린 */
+        }
+
+        body {
+            background-color: var(--dubu-bg);
+            color: var(--dubu-black);
+            padding-top: 80px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .hub-hero {
+            display: table; 
+            margin: 0 auto 60px auto;
+            text-align: center;
+        }
+
+        .hub-title {
+            font-size: 3rem;
+            letter-spacing: -0.01em;
+            color: #FFFFFF; 
+            font-weight: 700;
+            margin-bottom: 0;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .section-tag {
+            color: var(--dubu-gold) !important; 
+            letter-spacing: 0.4em;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+            display: block;
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .featured {
+            padding: 0 !important; 
+            margin-top: 0 !important;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 10px;
+        }
+
+        .lookbook-card {
+            background: var(--dubu-card-bg);
+            border: 1px solid var(--dubu-border);
+            color: #FFFFFF;
+            display: block;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .lookbook-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--dubu-gold);
+        }
+
+        .card-img {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 40px;
+        }
+
+        .card-vol {
+            color: var(--dubu-gold);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            margin-bottom: 12px;
+            font-weight: 400;
+            display: block;
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        .card-title {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #FFFFFF;
+            opacity: 1;
+            font-weight: 400;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 100;
+        }
+
+        .back-nav a {
+            background: rgba(27, 67, 50, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid var(--dubu-border);
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+
+        .back-nav a:hover {
+            background: var(--dubu-accent);
+            border-color: var(--dubu-accent);
+        }
+
+        footer {
+            padding: 100px 0;
+            text-align: center;
+            opacity: 0.4;
+        }
+        .footer-logo { font-size: 1.2rem; letter-spacing: 0.5rem; margin-bottom: 10px; font-family: 'Noto Serif KR', serif; }
+        .copy { font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="back-nav">
+        <a href="../index.html#events">← BACK TO PORTAL</a>
+    </nav>
+
+    <div class="hub-hero">
+        <h1 class="hub-title">성탄절 에디션</h1>
+    </div>
+
+    <section class="featured">
+        <div class="container mx-auto px-10 max-w-7xl">
+            <div class="featured-grid">
+                <!-- Vol. 27 -->
+                <a href="../[이벤트] 성탄절_눈꽃컵케이크/index.html" class="lookbook-card">
+                    <img src="../27. 순두부 눈꽃컵케이크_완/0.jpg" alt="눈꽃컵케이크" class="card-img">
+                    <div class="card-body">
+                        <span class="card-vol">VOL. 27</span>
+                        <h2 class="card-title">순두부 눈꽃컵케이크</h2>
+                        <p class="card-desc">순두부를 넣어 구워낸 촉촉하고 담백한 컵케이크 베이스와 산뜻한 크림치즈 프로스팅의 조화. 반죽 속에 정직하게 담아낸 영양과 소복이 내려앉은 눈꽃 장식이 성탄의 미학을 완성합니다.</p>
+                    </div>
+                </a>
+
+                <!-- Vol. 26 -->
+                <a href="../[이벤트] 성탄절_3종케익/index.html" class="lookbook-card">
+                    <img src="../26. 순두부 3종케익_완/0.jpg" alt="3종케익" class="card-img">
+                    <div class="card-body">
+                        <span class="card-vol">VOL. 26</span>
+                        <h2 class="card-title">순두부 3종케익</h2>
+                        <p class="card-desc">세 가지 매력을 담아낸 성탄의 선물. 녹차, 초코, 그리고 순두부가 어우러져 취향에 따라 즐길 수 있는 다채로운 조각들의 기록입니다.</p>
+                    </div>
+                </a>
+
+                <!-- Vol. 25 -->
+                <a href="../[이벤트] 성탄절_초코번트케익/index.html" class="lookbook-card">
+                    <img src="../25. 순두부초코번트케익_완/0.jpg" alt="초코번트케익" class="card-img">
+                    <div class="card-body">
+                        <span class="card-vol">VOL. 25</span>
+                        <h2 class="card-title">순두부 초코번트케익</h2>
+                        <p class="card-desc">진한 초코와 부드러운 순두부가 만나 깊은 풍미를 완성했습니다. 번트 케익 특유의 묵직한 질감 속에 숨겨진 촉촉한 배합의 묘미입니다.</p>
+                    </div>
+                </a>
+
+                <!-- Vol. 24 -->
+                <a href="../[이벤트] 성탄절_레몬번트케익/index.html" class="lookbook-card">
+                    <img src="../24. 순두부레몬번트케익_완/0.jpg" alt="레몬번트케익" class="card-img">
+                    <div class="card-body">
+                        <span class="card-vol">VOL. 24</span>
+                        <h2 class="card-title">순두부 레몬번트케익</h2>
+                        <p class="card-desc">겨울의 분위기를 일깨우는 산뜻한 레몬의 향. 순두부를 더해 더욱 부드러워진 베이스가 입안 가득 청량한 산미를 전합니다.</p>
+                    </div>
+                </a>
+
+                <!-- Vol. 23 -->
+                <a href="../[이벤트] 성탄절_블랙포레스트/index.html" class="lookbook-card">
+                    <img src="../23. 순두부블랙포레스트 컵케익_완/0.jpg" alt="블랙포레스트 컵케익" class="card-img">
+                    <div class="card-body">
+                        <span class="card-vol">VOL. 23</span>
+                        <h2 class="card-title">순두부 블랙포레스트 컵케익</h2>
+                        <p class="card-desc">체리의 산미와 짙은 초콜릿, 그리고 순두부 생크림의 조화. 클래식한 블랙포레스트를 프로젝트 두부만의 방식으로 재해석했습니다.</p>
+                    </div>
+                </a>
+
+                <!-- Vol. 22 -->
+                <a href="../[이벤트] 성탄절_부쉬드노엘/index.html" class="lookbook-card">
+                    <img src="../22. 순두부 부쉬드노엘_완/0.jpg" alt="부쉬드노엘" class="card-img">
+                    <div class="card-body">
+                        <span class="card-vol">VOL. 22</span>
+                        <h2 class="card-title">순두부 부쉬드노엘</h2>
+                        <p class="card-desc">성탄절의 장작을 형상화한 전통적 디저트. 순두부 시트로 완성한 가볍고 촉촉한 롤케익에 성탄의 온기를 듬뿍 담아냈습니다.</p>
+                    </div>
+                </a>
+
+                <!-- Vol. 21 -->
+                <a href="../[이벤트] 성탄절_슈톨렌/index.html" class="lookbook-card">
+                    <img src="../21. 순두부슈톨렌_완/0.jpg" alt="슈톨렌" class="card-img">
+                    <div class="card-body">
+                        <span class="card-vol">VOL. 21</span>
+                        <h2 class="card-title">순두부 슈톨렌</h2>
+                        <p class="card-desc">순두부로 빚은 촉촉한 반죽 안에 정성껏 숙성한 건과일의 풍미를 담았습니다. 긴 겨울을 기다려온 깊고 진한 배합의 기록입니다.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">PROJECT DUBU</div>
+        <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

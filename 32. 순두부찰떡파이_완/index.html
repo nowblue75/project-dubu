@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 두부: 발렌타인 에디션</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .blog-btn { border: 1px solid #D4A373; border-radius: 25px; transition: all 0.3s; color: white; background: #D4A373; text-decoration: none; display: inline-block; }
+        .blog-btn:hover { background: transparent; color: #D4A373; }
+        .footer-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+    </style>
+</head>
+<body class="bg-[#FDF8F3] text-[#4B2412] selection:bg-pink-100">
+
+    <div class="progress-bar"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
+        <a href="../index.html" class="nav-item pointer-events-auto serif text-xs tracking-widest opacity-60 hover:opacity-100 transition-opacity">← PORTAL</a>
+        <div class="nav-item serif text-sm tracking-[0.4em] font-bold text-[#D4A373]">VALENTINE EDITION 2026</div>
+        <div class="nav-item text-[10px] tracking-widest opacity-40">VOL. 32</div>
+    </nav>
+
+    <main id="main-content">
+        <!-- 01. Hero Section -->
+        <section class="page active" id="page-1">
+            <div class="image-stage">
+                <img src="KakaoTalk_20260205_080828387_03.jpg" alt="발렌타인 메인">
+                <div class="overlay-soft"></div>
+                <div class="content-box text-center">
+                    <span class="edition-tag serif fade-in-up">Valentine Selection</span>
+                    <h1 class="serif text-6xl md:text-8xl mb-6 fade-in-up delay-100">Sweet<br><span class="text-[#BC8A5F]">Tofu Pie</span></h1>
+                    <p class="text-lg opacity-60 tracking-widest fade-in-up delay-200">순두부로 빚어낸 가장 부드러운 고백</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. Aesthetic Page -->
+        <section class="page" id="page-2">
+            <div class="image-stage">
+                <img src="KakaoTalk_20260205_080828387_01.jpg" alt="디테일 1">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl mb-6 underline decoration-[#D4A373]/30 underline-offset-8">쫀득함의<br>미학</h2>
+                    <p class="opacity-70 leading-relaxed font-light">찹쌀의 찰기와 순두부의 담백함이 만나,<br>그 어떤 초콜릿보다 깊은 여운을 남깁니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. Detail Page -->
+        <section class="page" id="page-3">
+            <div class="image-stage">
+                <img src="KakaoTalk_20260205_080828387_04.jpg" alt="디테일 2">
+                <div class="content-box side-right text-right">
+                    <h2 class="serif text-4xl mb-6">달콤한<br>위로</h2>
+                    <p class="opacity-70 leading-relaxed font-light">지나치게 달지 않아 더 따뜻한,<br>소중한 사람을 위한 가장 정직한 선물입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Mood Page -->
+        <section class="page" id="page-4">
+            <div class="image-stage">
+                <img src="KakaoTalk_20260205_080828387_11.jpg" alt="무드">
+                <div class="content-box centered">
+                    <div class="quote-mark serif text-5xl mb-4 text-[#D4A373]/50">"</div>
+                    <p class="serif text-2xl italic leading-relaxed text-[#4B2412]/80">"가장 순수한 재료로 만드는,<br>세상에서 가장 다정한 화보집."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05. Process Page -->
+        <section class="page" id="page-5">
+            <div class="image-stage">
+                <img src="KakaoTalk_20260205_080828387_02.jpg" alt="프로세스">
+                <div class="content-box side-left border-l border-[#D4A373]/30 pl-10">
+                    <span class="serif text-[#BC8A5F] text-xs tracking-[0.3em] mb-4 block">RECIPE ARCHIVE VOL. 32</span>
+                    <h2 class="serif text-4xl mb-6">순두부 찰떡파이</h2>
+                    <p class="opacity-70 font-light mb-8">오븐에서 갓 구워낸 찰떡파이의 향기는<br>추운 겨울 연인들의 마음을 녹여줍니다.</p>
+                    <a href="../index.html#archive" class="text-xs tracking-widest border-b border-[#4B2412]/20 pb-1 hover:text-[#BC8A5F] transition-colors">VIEW RECIPE DETAILS →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06. Conclusion -->
+        <section class="page" id="page-6">
+            <div class="image-stage">
+                <img src="KakaoTalk_20260205_080932140_04.jpg" alt="최종 컷">
+                <div class="overlay-light"></div>
+                <div class="content-box centered text-center">
+                    <h2 class="serif text-5xl md:text-7xl mb-12 tracking-wider text-[#4B2412]">PROJECT DUBU</h2>
+                    <p class="opacity-40 mb-10 tracking-[0.5em] text-xs uppercase font-bold text-[#D4A373]">Valentine's Special 2026</p>
+                    <div class="footer-buttons">
+                        <a href="../index.html#events" class="back-btn serif border border-[#4B2412]/20 px-10 py-4 hover:bg-[#4B2412] hover:text-white transition-all tracking-widest text-sm inline-block">← BACK TO PORTAL</a>
+                        <a href="https://blog.naver.com/project_dubu/224173603637" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm">상세한 레시피는 블로그로 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll('.page');
+        const progressBar = document.querySelector('.progress-bar');
+        const main = document.getElementById('main-content');
+
+        const observerOptions = {
+            threshold: 0.6
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sections.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+                    
+                    const index = Array.from(sections).indexOf(entry.target);
+                    const progress = ((index + 1) / sections.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        // Disable Context Menu
+        window.addEventListener('contextmenu', e => e.preventDefault());
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', e => e.preventDefault());
+        });
+    </script>
+</body>
+</html>

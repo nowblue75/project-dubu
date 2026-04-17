@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>명절 에디션: 코코넛 단팥 찹쌀구움바</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --val-accent: #C5A17A;
+            --val-dark: #2A1B13;
+            --val-bg: #FDF8F3;
+            --text-main: #2A1B13;
+            --text-sub: rgba(42, 27, 19, 0.7);
+        }
+        body { background-color: var(--val-bg); color: var(--text-main); transition: all 0.5s ease; overflow-x: hidden; font-family: 'Noto Sans KR', sans-serif; }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--val-accent); z-index: 1000; transition: width 0.3s ease; }
+        
+        section { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; scroll-snap-align: start; }
+        main { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+        .image-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .image-stage img { 
+            max-height: 85vh; 
+            max-width: 85vw; 
+            object-fit: contain; 
+            box-shadow: 0 40px 100px rgba(42, 27, 19, 0.1); 
+            border-radius: 4px; 
+            border: 1px solid rgba(197, 161, 122, 0.2);
+        }
+
+        .serif { font-family: 'Noto Serif KR', serif; }
+
+        .nav-item { color: var(--val-accent); opacity: 0.6; transition: opacity 0.3s; }
+        .nav-item:hover { opacity: 1; }
+        .back-btn { border: 1px solid rgba(197, 161, 122, 0.4); border-radius: 25px; transition: all 0.3s; color: var(--val-accent); background: rgba(255,255,255,0.2); }
+        .back-btn:hover { background: var(--val-accent); color: white; border-color: var(--val-accent); }
+        .blog-btn { border: 1px solid var(--val-accent); border-radius: 25px; transition: all 0.3s; color: white; background: var(--val-accent); text-decoration: none; }
+        .blog-btn:hover { background: transparent; color: var(--val-accent); }
+        .footer-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+
+        .content-box {
+            position: absolute;
+            z-index: 20;
+            padding: 40px 50px;
+            max-width: 520px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1) 0.5s;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 161, 122, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+        }
+        .active .content-box { opacity: 1; transform: translateY(0); }
+        
+        .side-left { left: 8vw; top: 40%; text-align: left; }
+        .side-right { right: 8vw; bottom: 40%; text-align: right; }
+        
+        .content-box h2 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 20px;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+        .side-left h2::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--val-accent);
+        }
+        .side-right h2 { padding-left: 0; padding-right: 20px; }
+        .side-right h2::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--val-accent);
+        }
+
+        .content-box p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--text-sub);
+            font-weight: 400;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#C5A17A]/30">
+
+    <div class="progress-bar"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
+        <a id="back-link-top" href="../index.html#latest" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity">← BACK TO PORTAL</a>
+        <div class="nav-item serif text-sm tracking-[0.4em] font-bold text-[#C5A17A]">HOLIDAY SPECIAL VOL. 18</div>
+    </nav>
+
+    <main id="main-content">
+        <!-- 01. Intro -->
+        <section class="active">
+            <div class="image-stage">
+                <img src="KakaoTalk_20251002_083305924.jpg" alt="구움바 메인" class="fade-in-up">
+                <div class="content-box side-right">
+                    <h2 class="serif text-5xl mb-6">달콤한 전통,<br>찰진 위로</h2>
+                    <p>전통 단팥의 묵직한 달콤함과 찹쌀의 쫄깃함.<br>코코넛의 이국적인 향기가 더해진 프리미엄 찹쌀구움바입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. Detail -->
+        <section>
+            <div class="image-stage">
+                <img src="KakaoTalk_20251002_083305924_02.jpg" alt="구움바 상세">
+                <div class="content-box side-left">
+                    <h2 class="serif text-5xl mb-6">정성으로 가득 채운<br>단면의 미학</h2>
+                    <p>빈틈없이 꽉 찬 단팥의 밀도와 찹쌀의 찰기.<br>하나만으로도 든든한 명절의 가장 정직한 선물입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. Texture -->
+        <section>
+            <div class="image-stage">
+                <img src="KakaoTalk_20251002_083305924_04.jpg" alt="식감">
+                <div class="content-box side-right">
+                    <h2 class="serif text-5xl mb-6">코코넛이 빚은<br>우아한 고소함</h2>
+                    <p>찹쌀의 쫀득함 끝에 남는 코코넛의 고소한 여운.<br>시간이 지나도 변치 않는 풍미를 위해 정성껏 구워냈습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Finale -->
+        <section>
+            <div class="image-stage">
+                <img src="KakaoTalk_20251002_083305924_06.jpg" alt="최종 확인">
+                <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
+                    <div class="footer-buttons">
+                        <a id="back-link-bottom" href="../index.html#latest" class="back-btn serif px-12 py-5 transition-all tracking-widest text-sm inline-block">← BACK TO PORTAL</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const from = params.get('from');
+        const backLinks = [document.getElementById('back-link-top'), document.getElementById('back-link-bottom')];
+        
+        const hubMap = {
+            'holiday': '../[이벤트] 명절_2026/index.html',
+            'family': '../[이벤트] 가정의달_2026/index.html',
+            'valentine': '../[이벤트] 발렌타인_2026/index.html',
+            'whiteday': '../[이벤트] 화이트데이_2026/index.html'
+        };
+
+        if (from && hubMap[from]) {
+            backLinks.forEach(link => {
+                link.href = hubMap[from];
+                link.innerText = '← BACK TO HUB';
+            });
+        }
+
+        const sections = document.querySelectorAll('section');
+        const progressBar = document.querySelector('.progress-bar');
+        const observerOptions = { threshold: 0.6 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sections.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+                    const index = Array.from(sections).indexOf(entry.target);
+                    const progress = ((index + 1) / sections.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+            });
+        }, observerOptions);
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 두부: 할로윈 스페셜 컬렉션</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style_portal.css">
+    <style>
+        :root {
+            --dubu-bg: #0A0A0A; /* 할로윈 딥 블랙 배경 */
+            --dubu-accent: #EA580C; /* 호박 오렌지 포인트 */
+            --dubu-gray: #4B2412;
+            --dubu-black: #FFFFFF; /* 텍스트는 밝게 */
+            --dubu-border: rgba(234, 88, 12, 0.2);
+        }
+
+        body {
+            background-color: var(--dubu-bg);
+            color: var(--dubu-black);
+            padding-top: 80px;
+        }
+
+        .hub-hero {
+            display: table; 
+            margin: 0 auto 20px auto;
+            padding: 0;
+            text-align: center;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            z-index: 10;
+        }
+
+        .hub-title {
+            font-size: 3rem;
+            letter-spacing: -0.01em;
+            color: #FFFFFF; 
+            font-weight: 700;
+            margin-bottom: 0;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+
+        .section-tag {
+            color: var(--dubu-accent) !important; 
+            letter-spacing: 0.4em;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+        }
+
+        .featured {
+            padding: 0 !important; 
+            margin-top: 0 !important;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 10px;
+        }
+
+        .lookbook-card {
+            background: #1A1A1A; /* 카드 배경 */
+            border: 1px solid var(--dubu-border);
+            color: #FFFFFF;
+        }
+
+        .card-body {
+            background: #1A1A1A;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 100;
+        }
+
+        .back-nav a {
+            background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(234, 88, 12, 0.3);
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-nav a:hover {
+            background: var(--dubu-accent);
+            border-color: var(--dubu-accent);
+            opacity: 1;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            padding: 100px 0;
+            text-align: center;
+            opacity: 0.4;
+        }
+        .footer-logo { font-size: 1.2rem; letter-spacing: 0.5rem; margin-bottom: 10px; font-family: 'Noto Serif KR', serif; }
+        .copy { font-size: 0.7rem; }
+    </style>
+</head>
+<body class="antialiased selection:bg-orange-500/30">
+
+    <nav class="back-nav">
+        <a href="../index.html#events" class="serif text-xs tracking-widest opacity-60 hover:opacity-100 transition-opacity">← BACK TO PORTAL</a>
+    </nav>
+
+    <div class="container mx-auto px-8 relative">
+        <div class="hub-hero fade-in-up">
+            <div class="section-tag serif mb-1">HALLOWEEN SELECTION</div>
+            <h1 class="serif hub-title italic">할로윈 스페셜 에디션</h1>
+        </div>
+
+        <section class="featured mb-24">
+            <div class="featured-grid">
+                <!-- Vol. H1 Card (Mummy Brownie) -->
+                <a href="../[이벤트] 할로윈_스페셜_화보북/index.html" class="lookbook-card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="card-img">
+                        <img src="KakaoTalk_20251029_091834561_02.jpg" alt="할로윈 스페셜">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag serif">SPECIAL VOL. H1</div>
+                        <h3 class="serif text-2xl mb-4 font-bold">순두부 미이라 브라우니</h3>
+                        <p class="text-sm opacity-60 leading-relaxed font-light">어둠 속에 숨겨진 가장 매혹적인 조각. 순두부의 반전이 선사하는 기묘하고 아름다운 할로윈의 미학.</p>
+                    </div>
+                </a>
+
+                <!-- Empty Slot for consistency as per user instruction -->
+                <div class="hidden md:block"></div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-logo">PROJECT DUBU</div>
+        <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

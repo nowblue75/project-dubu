@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 두부: 화이트데이 스페셜 컬렉션</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style_portal.css">
+    <style>
+        :root {
+            --dubu-bg: #F8FDFF; /* 맑은 하늘색 무드의 화이트 배경 */
+            --dubu-accent: #64B5F6; /* 화이트데이 블루 포인트 */
+            --dubu-gray: #E2E8F0;
+            --dubu-black: #2D3748; /* 가독성 좋은 다크 슬레이트 */
+            --dubu-border: rgba(100, 181, 246, 0.2);
+        }
+
+        body {
+            background-color: var(--dubu-bg);
+            color: var(--dubu-black);
+            padding-top: 80px; /* 발너타인 표준 여백 준수 */
+        }
+
+        /* [표준] 제목 영역 가로 폭 축소: 왼쪽 버튼 영역 완전 독점 보장 */
+        .hub-hero {
+            display: table; 
+            margin: 0 auto 20px auto; /* 조화로운 하단 여백 확보 */
+            padding: 0;
+            text-align: center;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            z-index: 10;
+        }
+
+        .hub-title {
+            font-size: 3rem;
+            letter-spacing: -0.01em;
+            color: var(--dubu-black);
+            font-weight: 700;
+            margin-bottom: 0;
+            text-shadow: 0 4px 10px rgba(100, 181, 246, 0.1);
+        }
+
+        .section-tag {
+            color: var(--dubu-accent) !important; 
+            letter-spacing: 0.4em;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+        }
+
+        /* 메인 포털의 section 패딩 100px 강제 제거하여 여백 정밀 제어 */
+        .featured {
+            padding: 0 !important; 
+            margin-top: 0 !important;
+        }
+
+        /* 화보가 가려지지 않도록 그리드 배치 최적화 */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 10px; 
+        }
+
+        .lookbook-card {
+            background: #FFFFFF; /* 화사한 카드 배경 */
+            border: 1px solid var(--dubu-border);
+            color: var(--dubu-black);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+            text-decoration: none;
+        }
+
+        .lookbook-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(100, 181, 246, 0.1);
+            border-color: var(--dubu-accent);
+        }
+
+        .card-img {
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .lookbook-card:hover .card-img img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 30px;
+            background: #FFFFFF;
+        }
+
+        .card-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            color: var(--dubu-accent);
+            margin-bottom: 12px;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 100;
+        }
+
+        .back-nav a {
+            background: rgba(255, 255, 255, 0.6); /* 버튼 배경 추가 */
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(100, 181, 246, 0.2);
+            color: var(--dubu-black);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-nav a:hover {
+            background: var(--dubu-accent);
+            border-color: var(--dubu-accent);
+            color: white;
+            opacity: 1;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hub-title { font-size: 2.2rem; }
+            .back-nav { top: 20px; left: 20px; }
+            .featured-grid { grid-template-columns: 1fr; gap: 20px; }
+        }
+
+        footer {
+            padding: 100px 0;
+            text-align: center;
+            opacity: 0.4;
+        }
+        .footer-logo { font-size: 1.2rem; letter-spacing: 0.5rem; margin-bottom: 10px; font-family: 'Noto Serif KR', serif; }
+        .copy { font-size: 0.7rem; }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-100">
+
+    <nav class="back-nav">
+        <a href="../index.html#events" class="serif text-xs tracking-widest opacity-60 hover:opacity-100 transition-opacity">← BACK TO PORTAL</a>
+    </nav>
+
+    <div class="container mx-auto px-8 relative">
+        <div class="hub-hero fade-in-up">
+            <div class="section-tag serif mb-1">WHITE SELECTION 2026</div>
+            <h1 class="serif hub-title italic">화이트데이 에디션</h1>
+        </div>
+
+        <!-- 화이트데이 에디션 화보 그리드 -->
+        <section class="featured mb-24">
+            <div class="featured-grid">
+                <!-- Vol. 36 Card -->
+                <a href="../36. 순두부화이트바크초콜릿_완/index.html?from=whiteday" class="lookbook-card fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="card-img">
+                        <img src="../36. 순두부화이트바크초콜릿_완/0.jpg" alt="순두부 화이트바크">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag serif">VOL. 36</div>
+                        <h3 class="serif text-2xl mb-4 font-bold">순두부 화이트바크 초콜릿</h3>
+                        <p class="text-sm opacity-60 leading-relaxed font-light">정형화되지 않은 조각들이 모여 완성되는 화사한 텍스처. 깨끗한 화이트 초콜릿 속 순두부의 맑은 고백을 만나보세요.</p>
+                    </div>
+                </a>
+
+                <!-- Vol. 34 Card -->
+                <a href="../34. 순두부레몬마들렌_완/index.html?from=whiteday" class="lookbook-card fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="card-img">
+                        <img src="../34. 순두부레몬마들렌_완/0.jpg" alt="순두부 레몬마들렌">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag serif">VOL. 34</div>
+                        <h3 class="serif text-2xl mb-4 font-bold">순두부 레몬 마들렌</h3>
+                        <p class="text-sm opacity-60 leading-relaxed font-light">상큼한 레몬 제스트와 담백한 순두부의 조화로운 만남. 화이트데이의 아침을 깨우는 산뜻한 구움과자입니다.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-logo">PROJECT DUBU</div>
+        <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Disable Context Menu to protect images
+        window.addEventListener('contextmenu', e => e.preventDefault());
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', e => e.preventDefault());
+        });
+    </script>
+</body>
+</html>

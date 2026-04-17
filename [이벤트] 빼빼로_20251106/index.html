@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 두부: 순두부 팝시클빼빼로</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style_portal.css">
+    <style>
+        :root {
+            --dubu-bg: #FAF9F6;
+            --dubu-accent: #8D6E63;
+            --dubu-gray: #D7CCC8;
+            --dubu-black: #3E2723;
+            --dubu-border: #EFEBE9;
+        }
+
+        body {
+            background-color: var(--dubu-bg);
+            color: var(--dubu-black);
+            padding-top: 80px;
+        }
+
+        .hub-hero {
+            display: table; 
+            margin: 0 auto 20px auto;
+            text-align: center;
+        }
+
+        .hub-title {
+            font-size: 3rem;
+            letter-spacing: -0.01em;
+            color: var(--dubu-black); 
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        .section-tag {
+            color: var(--dubu-accent) !important; 
+            letter-spacing: 0.4em;
+            font-size: 0.75rem;
+            margin-bottom: 12px;
+        }
+
+        /* 전역 section 패딩(100px) 제거하여 타이틀과의 간격 정밀 제어 */
+        .featured {
+            padding: 0 !important; 
+            margin-top: 0 !important;
+        }
+
+        /* 표준 골격: 2컬럼 그리드 유지 */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            margin-top: 10px;
+        }
+
+        .lookbook-card {
+            background: white;
+            border: 1px solid var(--dubu-border);
+            color: var(--dubu-black);
+            display: block;
+            transition: all 0.3s ease;
+        }
+        .lookbook-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(62, 39, 35, 0.05);
+        }
+
+        /* 플레이스홀더 카드 스타일 */
+        .card-placeholder {
+            border: 1px dashed var(--dubu-gray);
+            background: rgba(255, 255, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            text-align: center;
+            opacity: 0.6;
+            border-radius: 4px;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 100;
+        }
+
+        .back-nav a {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid var(--dubu-border);
+            color: var(--dubu-accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-nav a:hover {
+            background: var(--dubu-accent);
+            color: white;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid var(--dubu-border);
+            margin-top: 100px;
+        }
+        
+        .footer-logo { font-size: 1.5rem; letter-spacing: 0.5rem; margin-bottom: 20px; color: var(--dubu-gray); }
+        .copy { font-size: 0.8rem; opacity: 0.4; }
+    </style>
+</head>
+<body class="antialiased selection:bg-orange-100">
+
+    <nav class="back-nav">
+        <a href="../index.html#events" class="serif text-xs tracking-widest transition-opacity">← BACK TO PORTAL</a>
+    </nav>
+
+    <div class="container mx-auto px-8 relative">
+        <div class="hub-hero fade-in-up">
+            <div class="section-tag serif mb-1">PEPERO SELECTION 2025</div>
+            <h1 class="serif hub-title italic">빼빼로데이 에디션</h1>
+        </div>
+
+        <section class="featured mb-24">
+            <div class="featured-grid">
+                <!-- Vol. P1 Card (Main Content) -->
+                <a href="../[이벤트] 빼빼로_스페셜_화보북/index.html" class="lookbook-card fade-in-up">
+                    <div class="card-img">
+                        <img src="KakaoTalk_20251104_151146469_19.jpg" alt="빼빼로 트레이">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag serif">SPECIAL VOL. P1</div>
+                        <h3 class="serif text-2xl mb-4 font-bold">순두부 팝시클빼빼로</h3>
+                        <p class="text-sm opacity-60 leading-relaxed font-light">촉촉한 순두부 베이스의 밀도 높은 식감과 진한 초콜릿 코팅이 선사하는 조화로운 밸런스. 손끝의 섬세함이 담긴 드리즐로 완성한 프리미엄 팝시클 에디션입니다.</p>
+                    </div>
+                </a>
+
+                <!-- Standard Skeleton Placeholder (2nd Column) -->
+                <div class="lookbook-card fade-in-up card-placeholder" style="animation-delay: 0.2s;">
+                    <div class="p-12">
+                        <div class="card-tag serif mb-4">COMING SOON</div>
+                        <h3 class="serif text-2xl mb-4 font-bold opacity-30">Archive Selection</h3>
+                        <p class="text-sm opacity-40 leading-relaxed font-light">두 번째 에디션이 곧 공개됩니다.<br>프로젝트 두부의 시즌 아카이브를 기대해주세요.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-logo serif">PROJECT DUBU</div>
+        <div class="copy">© 2026 Pepero Special. All rights reserved.</div>
+    </footer>
+
+</body>
+</html>

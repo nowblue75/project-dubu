@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>빼빼로 스페셜: Chocolate Linear</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pepero-accent: #8D6E63;
+            --pepero-dark: #3E2723;
+            --pepero-bg: #FAF9F6;
+            --text-main: #3E2723;
+            --text-sub: #5D4037;
+        }
+        body { background-color: var(--pepero-bg); color: var(--text-main); transition: all 0.5s ease; overflow-x: hidden; }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--pepero-accent); z-index: 1000; transition: width 0.3s ease; }
+        
+        section { height: 100vh; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; scroll-snap-align: start; }
+        main { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+
+        .image-stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        .image-stage img { 
+            max-height: 85vh; 
+            max-width: 85vw; 
+            object-fit: contain; 
+            box-shadow: 0 30px 80px rgba(62,39,35,0.15); 
+            border-radius: 4px; 
+            border: 1px solid rgba(141,110,99,0.1);
+        }
+
+        .serif { font-family: 'Noto Serif KR', serif; }
+
+        /* Navigation */
+        .nav-item { color: var(--pepero-dark); opacity: 0.6; transition: opacity 0.3s; }
+        .nav-item:hover { opacity: 1; }
+        .back-btn { border: 1px solid rgba(141, 110, 99, 0.4); border-radius: 25px; transition: all 0.3s; color: var(--pepero-accent); background: white; }
+        .back-btn:hover { background: var(--pepero-accent); color: white; border-color: var(--pepero-accent); }
+        .blog-btn { border: 1px solid var(--pepero-accent); border-radius: 25px; transition: all 0.3s; color: white; background: var(--pepero-accent); text-decoration: none; }
+        .blog-btn:hover { background: transparent; color: var(--pepero-accent); }
+        .footer-buttons { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+
+        /* Content Boxes - 가독성 강화 (Glassmorphism) */
+        .content-box {
+            position: absolute;
+            z-index: 20;
+            padding: 35px 45px;
+            max-width: 480px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.2, 1, 0.3, 1) 0.5s;
+            
+            /* 핵심 가독성 보정: 반투명 보드 및 블러 */
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(62, 39, 35, 0.08);
+        }
+        .active .content-box { opacity: 1; transform: translateY(0); }
+        
+        .side-left { left: 8vw; top: 35%; text-align: left; }
+        .side-right { right: 8vw; bottom: 35%; text-align: right; }
+        
+        .content-box h2 {
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            position: relative;
+            color: var(--pepero-dark);
+            line-height: 1.3;
+        }
+
+        .content-box p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-sub);
+            font-weight: 450;
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="antialiased selection:bg-orange-100">
+
+    <div class="progress-bar"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
+        <a href="../[이벤트] 빼빼로_20251106/index.html" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity" id="back-link">← BACK TO EVENT</a>
+        <div class="nav-item serif text-sm tracking-[0.4em] font-bold text-[#8D6E63]">PEPERO EDITION SPECIAL</div>
+    </nav>
+
+    <main id="main-content">
+        <!-- 01. Luxury Tray Mood -->
+        <section class="active">
+            <div class="image-stage">
+                <img src="../[이벤트] 빼빼로_20251106/KakaoTalk_20251104_151146469_19.jpg" alt="빼빼로 트레이 무드" class="fade-in-up">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl">다정한<br>시선의 직선</h2>
+                    <p>고소한 순두부의 풍미를 묵직하게 채운 팝시클 베이스.<br>짙은 초콜릿 코팅과 나무 스틱이 만나 익숙한 듯 낯선 미학적 조화를 완성합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. Texture Balance -->
+        <section>
+            <div class="image-stage">
+                <img src="../[이벤트] 빼빼로_20251106/KakaoTalk_20251104_151146469_11.jpg" alt="빼빼로 내부 식감">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl">정성의<br>공간과 조화</h2>
+                    <p>가볍지 않은 묵직한 질감의 베이스를 위해 순두부의 수분을 정밀하게 조정한 과정.<br>한 입 베어 물었을 때 전해지는 촉촉한 밀도감을 경험해 보세요.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. Delicate Texture Detail -->
+        <section>
+            <div class="image-stage">
+                <img src="../[이벤트] 빼빼로_20251106/KakaoTalk_20251104_151146469_13.jpg" alt="빼빼로 드리즐 디테일">
+                <div class="content-box side-right">
+                    <h2 class="serif text-4xl">달콤한<br>텍스처의 화음</h2>
+                    <p>매끄럽게 템퍼링된 초콜릿 코팅과 그 위를 리드미컬하게 지나는 섬세한 드리즐.<br>묵직하고 촉촉한 순두부 베이스가 입안에서 부드럽게 풀리며 전해지는 정교한 맛의 여운입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Final Package Aesthetic -->
+        <section>
+            <div class="image-stage">
+                <img src="../[이벤트] 빼빼로_20251106/KakaoTalk_20251106_150259315_03.jpg" alt="빼빼로 최종 패키지">
+                <div class="content-box side-left">
+                    <h2 class="serif text-4xl">완성된<br>선물의 가치</h2>
+                    <p>정갈한 개별 포장으로 완성도를 높인 마지막 공정. 팝시클 고유의 형태를 유지하면서 선물로서의 가치를 더한, 가장 다정한 마무리입니다.</p>
+                </div>
+                <!-- 하단 브랜딩 요소 -->
+                <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
+                    <div class="footer-buttons">
+                        <a href="../[이벤트] 빼빼로_20251106/index.html" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block" id="footer-back-link">← BACK TO EVENT</a>
+                        <a href="https://blog.naver.com/project_dubu/224067692065" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const progressBar = document.querySelector('.progress-bar');
+        const main = document.getElementById('main-content');
+
+        const observerOptions = {
+            threshold: 0.6
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sections.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+                    
+                    const index = Array.from(sections).indexOf(entry.target);
+                    const progress = ((index + 1) / sections.length) * 100;
+                    progressBar.style.width = `${progress}%`;
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        // Disable right click and drag
+        window.addEventListener('contextmenu', e => e.preventDefault());
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('dragstart', e => e.preventDefault());
+        });
+    </script>
+</body>
+</html>
