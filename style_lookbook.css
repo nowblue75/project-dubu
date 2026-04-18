@@ -122,7 +122,7 @@ section {
         max-height: 72vh !important; max-width: 90vw !important; margin-bottom: 12vh !important;
     }
 
-    /* 모바일에서는 모든 위치 클래스를 무시하고 하단 중앙에 강제 배치 */
+    /* 모바일에서는 모든 위치 클래스를 무시하고 하단 중앙에 강제 배치 (v11.0 Slim) */
     .lookbook-page .content-box.side-left,
     .lookbook-page .content-box.side-right,
     .lookbook-page .content-box.centered,
@@ -130,19 +130,31 @@ section {
         left: 50% !important;
         right: auto !important;
         top: auto !important;
-        bottom: 30px !important;
+        bottom: 25px !important;
         transform: translate(-50%, 0) !important;
-        width: 90% !important;
+        width: 88% !important;
         max-width: none !important;
-        padding: 24px 30px !important;
+        padding: 18px 25px !important; /* 슬림한 여백 */
         text-align: center !important;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important;
+    }
+
+    .lookbook-page .content-box h2 {
+        font-size: 1.5rem !important; /* 타이틀 제목 크기 축소 */
+        line-height: 1.4 !important;
+        margin-bottom: 12px !important;
+        word-break: keep-all !important;
+    }
+
+    .lookbook-page .content-box p {
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
     }
 
     .lookbook-page .active .content-box { 
-        transform: translate(-50%, 0) !important; /* 모바일은 translateY 애니메이션 최소화 */
+        transform: translate(-50%, 0) !important; 
     }
 
-    .lookbook-footer-container { bottom: 40px !important; }
-    .footer-buttons { width: 85%; flex-direction: column; padding: 25px; gap: 12px; }
+    .lookbook-footer-container { bottom: 35px !important; }
+    .footer-buttons { width: 90%; flex-direction: column; padding: 20px; gap: 10px; }
 }
