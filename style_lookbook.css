@@ -27,9 +27,9 @@ body {
     background: var(--val-accent); z-index: 2000; transition: width 0.3s ease; 
 }
 
-/* --- Navigation & Control (v8.0 Smart Visibility) --- */
+/* --- Navigation & Control (v9.0 Smart Visibility) --- */
 nav.fixed { 
-    transition: opacity 0.5s ease-in-out, visibility 0.5s !important;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
     z-index: 1000 !important;
 }
 
@@ -37,6 +37,7 @@ nav.fixed {
 nav.nav-hidden { 
     opacity: 0 !important; 
     visibility: hidden !important; 
+    transform: translateY(-20px) !important;
     pointer-events: none !important; 
 }
 
