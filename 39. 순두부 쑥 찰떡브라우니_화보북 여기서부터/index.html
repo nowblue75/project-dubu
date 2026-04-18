@@ -111,15 +111,26 @@
 
         const sections = document.querySelectorAll('section');
         const progressBar = document.querySelector('.progress-bar');
+        const topNav = document.querySelector('nav.fixed');
         const observerOptions = { threshold: 0.6 };
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     sections.forEach(s => s.classList.remove('active'));
                     entry.target.classList.add('active');
+                    
                     const index = Array.from(sections).indexOf(entry.target);
                     const progress = ((index + 1) / sections.length) * 100;
                     progressBar.style.width = `${progress}%`;
+
+                    // [V8.0 추가] 스마트 내비게이션 노출 제어
+                    // 첫 페이지(0)와 마지막 페이지(length-1)에서만 보이게 함
+                    if (index === 0 || index === sections.length - 1) {
+                        topNav.classList.remove('nav-hidden');
+                    } else {
+                        topNav.classList.add('nav-hidden');
+                    }
                 }
             });
         }, observerOptions);

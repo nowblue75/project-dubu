@@ -9,7 +9,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=7.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=8.0">
 </head>
 
 <body class="lookbook-page antialiased selection:bg-[#E91E63]/30">
@@ -76,18 +76,27 @@
         </section>
     </main>
 
-    <script>
         const sections = document.querySelectorAll('section');
         const progressBar = document.querySelector('.progress-bar');
+        const topNav = document.querySelector('nav.fixed');
         const observerOptions = { threshold: 0.6 };
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     sections.forEach(s => s.classList.remove('active'));
                     entry.target.classList.add('active');
+                    
                     const index = Array.from(sections).indexOf(entry.target);
                     const progress = ((index + 1) / sections.length) * 100;
                     progressBar.style.width = `${progress}%`;
+
+                    // [V8.0] 스마트 내비게이션 노출 제어
+                    if (index === 0 || index === sections.length - 1) {
+                        if(topNav) topNav.classList.remove('nav-hidden');
+                    } else {
+                        if(topNav) topNav.classList.add('nav-hidden');
+                    }
                 }
             });
         }, observerOptions);

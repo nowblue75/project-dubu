@@ -6,20 +6,21 @@
     <title>프로젝트 두부: 발렌타인 에디션</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=7.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=8.0">
 </head>
 <body class="lookbook-page antialiased selection:bg-[#E91E63]/30">
 
     <div class="progress-bar"></div>
 
-    <!-- Navigation -->
+    <!-- Navigation (Discrete v8.0) -->
     <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
-        <a href="../index.html" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity">← BACK TO PORTAL</a>
+        <a href="../index.html" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity hover:opacity-70">← BACK TO PORTAL</a>
         <div class="nav-item serif text-sm tracking-[0.4em] font-bold text-[#D4A373]">VALENTINE EDITION VOL. 32</div>
     </nav>
 
 
     <main id="main-content">
+        <!-- (내용 동일) -->
         <!-- 01. Hero Section -->
         <section class="page active" id="page-1">
             <div class="image-stage">
@@ -98,12 +99,9 @@
     <script>
         const sections = document.querySelectorAll('.page');
         const progressBar = document.querySelector('.progress-bar');
-        const main = document.getElementById('main-content');
-
-        const observerOptions = {
-            threshold: 0.6
-        };
-
+        const topNav = document.querySelector('nav.fixed');
+        const observerOptions = { threshold: 0.6 };
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -113,17 +111,20 @@
                     const index = Array.from(sections).indexOf(entry.target);
                     const progress = ((index + 1) / sections.length) * 100;
                     progressBar.style.width = `${progress}%`;
+
+                    // [V8.0] 스마트 내비게이션 노출 제어
+                    if (index === 0 || index === sections.length - 1) {
+                        if(topNav) topNav.classList.remove('nav-hidden');
+                    } else {
+                        if(topNav) topNav.classList.add('nav-hidden');
+                    }
                 }
             });
         }, observerOptions);
-
         sections.forEach(section => observer.observe(section));
 
-        // Disable Context Menu
         window.addEventListener('contextmenu', e => e.preventDefault());
-        document.querySelectorAll('img').forEach(img => {
-            img.addEventListener('dragstart', e => e.preventDefault());
-        });
+        document.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
     </script>
 </body>
 </html>

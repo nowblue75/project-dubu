@@ -6,7 +6,7 @@
     <title>명절 에디션: 순두부 흑임자 테린</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=7.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=8.0">
     <style>
         :root {
             --val-accent: #C5A17A;
@@ -98,12 +98,14 @@
         <section>
             <div class="image-stage">
                 <img src="assets/08.png" alt="최종 완성">
-                <div class="content-box centered text-center" style="top: auto; bottom: 12%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 600px; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
+                <div class="content-box centered">
                     <h3 class="serif text-3xl mb-4 text-[#C5A17A]">반전의 찰기, 미학의 완성</h3>
                     <p class="text-[#EAE2D5] text-lg font-light leading-relaxed mb-12">빵보다 쫀득하고 푸딩보다 묵직한 오감의 기록.<br>순두부와 흑임자가 빚어낸 가장 정갈한 한 조각입니다.</p>
                     
-                    <div class="footer-buttons">
-                        <a id="back-link-bottom" href="../index.html#latest" class="back-btn serif px-12 py-5 transition-all tracking-widest text-sm inline-block">← BACK TO PORTAL</a>
+                    <div class="lookbook-footer-container">
+                        <div class="footer-buttons">
+                            <a id="back-link-bottom" href="../index.html#latest" class="back-btn serif">← BACK TO PORTAL</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,7 +113,6 @@
     </main>
 
     <script>
-        // 스마트 내비게이션 로직
         const params = new URLSearchParams(window.location.search);
         const from = params.get('from');
         const backLinks = [document.getElementById('back-link-top'), document.getElementById('back-link-bottom')];
@@ -125,13 +126,16 @@
 
         if (from && hubPaths[from]) {
             backLinks.forEach(link => {
-                link.href = hubPaths[from];
-                link.innerText = '← BACK TO HUB';
+                if(link) {
+                    link.href = hubPaths[from];
+                    link.innerText = '← BACK TO HUB';
+                }
             });
         }
 
         const sections = document.querySelectorAll('section');
         const progressBar = document.querySelector('.progress-bar');
+        const topNav = document.querySelector('nav.fixed');
         const observerOptions = { threshold: 0.6 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -141,6 +145,13 @@
                     const index = Array.from(sections).indexOf(entry.target);
                     const progress = ((index + 1) / sections.length) * 100;
                     progressBar.style.width = `${progress}%`;
+
+                    // [V8.0] 스마트 내비게이션 노출 제어
+                    if (index === 0 || index === sections.length - 1) {
+                        if(topNav) topNav.classList.remove('nav-hidden');
+                    } else {
+                        if(topNav) topNav.classList.add('nav-hidden');
+                    }
                 }
             });
         }, observerOptions);
