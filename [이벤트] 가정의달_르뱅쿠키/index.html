@@ -73,6 +73,21 @@
         const sections = document.querySelectorAll('section');
         const progressBar = document.querySelector('.progress-bar');
         const topNav = document.querySelector('nav.fixed');
+        
+        // [V10.0] 초정밀 내비게이션 제어 (Scroll Listener)
+        window.addEventListener('scroll', () => {
+            const isTop = window.scrollY < 100;
+            const isBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 100);
+            
+            if (topNav) {
+                if (isTop || isBottom) {
+                    topNav.classList.remove('nav-hidden');
+                } else {
+                    topNav.classList.add('nav-hidden');
+                }
+            }
+        });
+
         const observerOptions = { threshold: [0, 0.1, 0.6, 0.9] };
         
         const observer = new IntersectionObserver((entries) => {
@@ -84,15 +99,6 @@
                     const index = Array.from(sections).indexOf(entry.target);
                     const progress = ((index + 1) / sections.length) * 100;
                     progressBar.style.width = `${progress}%`;
-
-                    // [V9.0] 스마트 내비게이션 노출 제어
-                    if (topNav) {
-                        if (index === 0 || index === sections.length - 1) {
-                            topNav.classList.remove('nav-hidden');
-                        } else {
-                            topNav.classList.add('nav-hidden');
-                        }
-                    }
                 }
             });
         }, observerOptions);

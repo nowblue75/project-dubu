@@ -6,14 +6,14 @@
     <title>프로젝트 두부: 발렌타인 에디션</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=9.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=10.0">
 </head>
 <body class="lookbook-page antialiased selection:bg-[#E91E63]/30">
 
     <div class="progress-bar"></div>
 
-    <!-- Navigation (Discrete v9.0) -->
-    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
+    <!-- Navigation (Discrete v10.0) -->
+    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none transition-all duration-500">
         <a href="../index.html" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity hover:opacity-70">← BACK TO PORTAL</a>
         <div class="nav-item serif text-sm tracking-[0.4em] font-bold text-[#D4A373]">VALENTINE EDITION VOL. 32</div>
     </nav>
@@ -100,26 +100,30 @@
         const sections = document.querySelectorAll('.page');
         const progressBar = document.querySelector('.progress-bar');
         const topNav = document.querySelector('nav.fixed');
-        const observerOptions = { threshold: [0, 0.1, 0.6, 0.9] };
+
+        // [V10.0] 초정밀 내비게이션 제어 (Scroll Listener)
+        window.addEventListener('scroll', () => {
+            const isTop = window.scrollY < 100;
+            const isBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 100);
+            
+            if (topNav) {
+                if (isTop || isBottom) {
+                    topNav.classList.remove('nav-hidden');
+                } else {
+                    topNav.classList.add('nav-hidden');
+                }
+            }
+        });
         
+        const observerOptions = { threshold: [0, 0.1, 0.6, 0.9] };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
                     sections.forEach(s => s.classList.remove('active'));
                     entry.target.classList.add('active');
-                    
                     const index = Array.from(sections).indexOf(entry.target);
                     const progress = ((index + 1) / sections.length) * 100;
                     progressBar.style.width = `${progress}%`;
-
-                    // [V9.0] 스마트 내비게이션 노출 제어
-                    if (topNav) {
-                        if (index === 0 || index === sections.length - 1) {
-                            topNav.classList.remove('nav-hidden');
-                        } else {
-                            topNav.classList.add('nav-hidden');
-                        }
-                    }
                 }
             });
         }, observerOptions);

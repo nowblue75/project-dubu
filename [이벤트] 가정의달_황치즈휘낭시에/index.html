@@ -6,15 +6,15 @@
     <title>가정의 달 에디션: 순두부 황치즈 휘낭시에</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=9.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=10.0">
 </head>
 <body class="lookbook-page antialiased selection:bg-[#E91E63]/30">
 
     <div class="progress-bar"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
-        <a href="../[이벤트] 가정의달_2026/index.html" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity">← BACK TO Hub</a>
+    <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none transition-all duration-500">
+        <a href="../[이벤트] 가정의달_2026/index.html" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity hover:opacity-70">← BACK TO Hub</a>
         <div class="nav-item serif text-sm tracking-[0.4em] font-bold text-[#E91E63]">FAMILY MONTH SPECIAL VOL. 5</div>
     </nav>
 
@@ -86,6 +86,21 @@
         const sections = document.querySelectorAll('section');
         const progressBar = document.querySelector('.progress-bar');
         const topNav = document.querySelector('nav.fixed');
+        
+        // [V10.0] 초정밀 내비게이션 제어 (Scroll Listener)
+        window.addEventListener('scroll', () => {
+            const isTop = window.scrollY < 100;
+            const isBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 100);
+            
+            if (topNav) {
+                if (isTop || isBottom) {
+                    topNav.classList.remove('nav-hidden');
+                } else {
+                    topNav.classList.add('nav-hidden');
+                }
+            }
+        });
+
         const observerOptions = { threshold: [0, 0.1, 0.6, 0.9] };
         
         const observer = new IntersectionObserver((entries) => {
@@ -97,15 +112,6 @@
                     const index = Array.from(sections).indexOf(entry.target);
                     const progress = ((index + 1) / sections.length) * 100;
                     progressBar.style.width = `${progress}%`;
-
-                    // [V9.0] 스마트 내비게이션 노출 제어
-                    if (topNav) {
-                        if (index === 0 || index === sections.length - 1) {
-                            topNav.classList.remove('nav-hidden');
-                        } else {
-                            topNav.classList.add('nav-hidden');
-                        }
-                    }
                 }
             });
         }, observerOptions);

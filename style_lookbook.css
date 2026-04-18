@@ -27,17 +27,18 @@ body {
     background: var(--val-accent); z-index: 2000; transition: width 0.3s ease; 
 }
 
-/* --- Navigation & Control (v9.0 Smart Visibility) --- */
+/* --- Navigation & Control (v10.0 Ghost Visibility) --- */
 nav.fixed { 
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
     z-index: 1000 !important;
+    transform: translateY(0);
 }
 
-/* JS에서 첫/끝 슬라이드가 아닐 때 부여할 클래스 */
+/* 상단/하단이 아닐 때 강제 숨김 */
 nav.nav-hidden { 
     opacity: 0 !important; 
     visibility: hidden !important; 
-    transform: translateY(-20px) !important;
+    transform: translateY(-30px) !important;
     pointer-events: none !important; 
 }
 
