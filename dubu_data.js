@@ -396,7 +396,7 @@ const THEMES = [
         "id": "romantic",
         "title": "발렌타인데이",
         "engTitle": "Romantic Holiday",
-        "desc": "",
+        "desc": "초콜릿과 부드러운 크림이 사르르 녹아내리는 핑크빛 로맨스 테마.",
         "icon": "💝",
         "bgClass": "theme-romantic-bg",
         "img": "36. 순두부화이트바크초콜릿_완/0.jpg",
@@ -409,7 +409,7 @@ const THEMES = [
                 "noFlour": true,
                 "noButter": true,
                 "oneBowl": true,
-                "vol": "VOL. 36",
+                "vol": "VOL. 37",
                 "img": "36. 순두부화이트바크초콜릿_완/0.jpg",
                 "path": "36. 순두부화이트바크초콜릿_완/index.html",
                 "desc": "수분을 완전히 날린 바삭한 순두부 시트와 화이트 초콜릿의 만남",
@@ -422,7 +422,7 @@ const THEMES = [
                 "noFlour": true,
                 "noButter": false,
                 "oneBowl": true,
-                "vol": "VOL. 33",
+                "vol": "VOL. 30",
                 "img": "33. 순두부 미니초코케익_완/0.jpg",
                 "path": "33. 순두부 미니초코케익_완/index.html",
                 "desc": "속은 촉촉하고 겉은 부드러운 순두부 초콜릿 미니 케이크"
@@ -434,7 +434,7 @@ const THEMES = [
                 "noFlour": false,
                 "noButter": false,
                 "oneBowl": true,
-                "vol": "VOL. 34",
+                "vol": "VOL. 31",
                 "img": "34. 순두부레몬마들렌_완/0.jpg",
                 "path": "34. 순두부레몬마들렌_완/index.html",
                 "desc": "상큼한 레몬 글레이즈와 촉촉한 순두부 반죽의 조화"
@@ -446,7 +446,7 @@ const THEMES = [
                 "noFlour": false,
                 "noButter": false,
                 "oneBowl": true,
-                "vol": "VOL. 35",
+                "vol": "VOL. 32",
                 "img": "35. 순두부초코마들렌_완/0.jpg",
                 "path": "35. 순두부초코마들렌_완/index.html",
                 "desc": "달콤하고 쌉싸름한 카카오와 부드러운 순두부의 하모니"
@@ -457,7 +457,7 @@ const THEMES = [
         "id": "traditional",
         "title": "설날-추석",
         "engTitle": "Korean Traditional & Hearts",
-        "desc": "",
+        "desc": "정겨운 전통 식감과 고소함이 깃든 명절 테마.",
         "icon": "🧧",
         "bgClass": "theme-traditional-bg",
         "img": "40. 순두부 흑임자테린_완/assets/01.png",
@@ -470,7 +470,7 @@ const THEMES = [
                 "noFlour": true,
                 "noButter": true,
                 "oneBowl": true,
-                "vol": "VOL. 40",
+                "vol": "VOL. 39",
                 "img": "40. 순두부 흑임자테린_완/assets/01.png",
                 "path": "40. 순두부 흑임자테린_완/index.html",
                 "desc": "오븐 중탕 공법으로 완성하는 극강의 고소하고 꾸덕한 흑임자 테린",
@@ -483,14 +483,14 @@ const THEMES = [
                 "noFlour": false,
                 "noButter": true,
                 "oneBowl": true,
-                "vol": "VOL. 39",
-                "img": "39. 순두부 쑥 찰떡브라우니_완/assets/7.jpg",
+                "vol": "VOL. 38",
+                "img": "39. 순두부 쑥 찰떡브라우니_완/0.jpg",
                 "path": "39. 순두부 쑥 찰떡브라우니_완/index.html",
                 "desc": "밀가루 없이 완성한 쫀득한 쑥 반죽과 콩가루의 고소한 동행",
                 "blogUrl": "https://blog.naver.com/project_dubu/224247304779"
             },
             {
-                "id": 16,
+                "id": 17,
                 "title": "순두부 밤파운드케이크",
                 "noOven": false,
                 "noFlour": false,
@@ -508,7 +508,7 @@ const THEMES = [
                 "noFlour": false,
                 "noButter": false,
                 "oneBowl": true,
-                "vol": "VOL. 37",
+                "vol": "VOL. 33",
                 "img": "37. 순두부녹차요거트파운드케익_완/0.jpg",
                 "path": "37. 순두부녹차요거트파운드케익_완/index.html",
                 "desc": "쌉싸름한 녹차와 산뜻한 요거트가 빚어내는 싱그러운 구움과자"
@@ -519,7 +519,7 @@ const THEMES = [
         "id": "halloween",
         "title": "할로윈",
         "engTitle": "Halloween Special",
-        "desc": "",
+        "desc": "형광등이 깜빡이다 꺼진 밤, 신비로운 손전등 조명으로 탐색하는 스릴.",
         "icon": "🎃",
         "bgClass": "theme-halloween-bg",
         "img": "[이벤트] 할로윈_20251029/KakaoTalk_20251029_091834561_01.jpg",
@@ -538,7 +538,7 @@ const THEMES = [
                 "desc": "진하고 묵직한 다크 초콜릿의 풍미를 담은 웰빙 퍼지 브라우니"
             },
             {
-                "id": 15,
+                "id": 16,
                 "title": "순두부 단호박바스크치즈케이크",
                 "noOven": false,
                 "noFlour": true,
@@ -550,7 +550,7 @@ const THEMES = [
                 "desc": "단호박의 달콤함와 바스크 치즈케이크의 부드러움이 공존하는 테이스트"
             },
             {
-                "id": 18,
+                "id": 19,
                 "title": "순두부 단호박 찹쌀빵",
                 "noOven": false,
                 "noFlour": true,
@@ -562,7 +562,7 @@ const THEMES = [
                 "desc": "겉은 바삭하고 속은 쫄깃한 황금빛 단호박 슬라이스 브레드"
             },
             {
-                "id": 9,
+                "id": 10,
                 "title": "순두부 브라우니쿠키",
                 "noOven": false,
                 "noFlour": false,
@@ -579,14 +579,14 @@ const THEMES = [
         "id": "christmas",
         "title": "크리스마스",
         "engTitle": "Winter Wonderland",
-        "desc": "",
+        "desc": "소복소복 쌓이는 하얀 눈송이와 화려한 축제의 겨울 감성 테마.",
         "icon": "🎄",
         "bgClass": "theme-christmas-bg",
         "img": "24. 순두부레몬번트케익_완/0.jpg",
         "tag": "X-mas Magic",
         "recipes": [
             {
-                "id": 23,
+                "id": 24,
                 "title": "순두부 레몬번트케익",
                 "noOven": false,
                 "noFlour": false,
@@ -598,7 +598,7 @@ const THEMES = [
                 "desc": "눈 쌓인 산자락을 닮은 화이트 글레이즈와 상큼한 레몬 번트케이크"
             },
             {
-                "id": 24,
+                "id": 25,
                 "title": "순두부 초코번트케익",
                 "noOven": false,
                 "noFlour": false,
@@ -610,7 +610,7 @@ const THEMES = [
                 "desc": "달콤하고 묵직한 초콜릿 글레이즈를 듬뿍 얹은 크리스마스 특선 번트케이크"
             },
             {
-                "id": 20,
+                "id": 21,
                 "title": "순두부 슈톨렌",
                 "noOven": false,
                 "noFlour": false,
@@ -622,7 +622,7 @@ const THEMES = [
                 "desc": "크리스마스를 기다리며 얇게 썰어 먹는 독일 전통 겨울철 웰빙 슈톨렌"
             },
             {
-                "id": 21,
+                "id": 22,
                 "title": "순두부 부쉬드노엘",
                 "noOven": false,
                 "noFlour": false,
@@ -634,7 +634,7 @@ const THEMES = [
                 "desc": "통나무 모양의 크리스마스 전통 케이크를 건강한 순두부 시트로 오마주"
             },
             {
-                "id": 22,
+                "id": 23,
                 "title": "순두부 블랙포레스트 컵케익",
                 "noOven": false,
                 "noFlour": false,
@@ -646,7 +646,7 @@ const THEMES = [
                 "desc": "짙은 카카오 숲 속에 숨겨진 가장 매혹적이고 비밀스러운 유혹"
             },
             {
-                "id": 25,
+                "id": 26,
                 "title": "순두부 3종케익",
                 "noOven": false,
                 "noFlour": false,
@@ -658,7 +658,7 @@ const THEMES = [
                 "desc": "크리스마스 시즌을 화려하게 수놓는 매혹적인 비주얼의 순두부 파운드 3종"
             },
             {
-                "id": 26,
+                "id": 27,
                 "title": "순두부 눈꽃컵케이크",
                 "noOven": false,
                 "noFlour": false,
@@ -673,7 +673,6 @@ const THEMES = [
     }
 ];
 
-// 3. 각 레시피별 표준 성분 비율 (계산기 연동용)
 const INGREDIENT_DICT = {
     "1": [
         {

@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
         renderAccordionArtbook();
     }
 
+    // 3단계: 3D 책장 렌더링 (PROJECTS 데이터 사용)
+    if (typeof PROJECTS !== 'undefined') {
+        renderBookshelf();
+    }
+
     // Smooth Scroll 바인딩
     document.querySelectorAll('.nav-links .nav-btn').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -113,15 +118,27 @@ function renderDashboard() {
         </a>
     `).join('');
 
-    // Events 렌더링
-    eventsContainer.innerHTML = EVENTS.map((e, index) => `
-        <${e.isReady ? `a href="${e.path}"` : 'div'} class="event-card group ${!e.isReady ? 'locked' : ''} fade-in-up" style="animation-delay: ${0.2 + (index * 0.1)}s">
-            <div class="event-month">${e.month}</div>
-            <div class="event-icon">${e.icon}</div>
-            <div class="event-title serif">${e.title}</div>
-            <div class="event-status">${e.isReady ? 'VIEW' : 'COMING SOON'}</div>
-        </${e.isReady ? 'a' : 'div'}>
-    `).join('');
+    // Events 렌더링 (THEMES 데이터와 연결하여 openTheme 호출)
+    const themeIds = ['romantic', 'traditional', 'halloween', 'christmas'];
+    const themeEventMap = {
+        romantic:    { month: 'FEB', icon: '💝', title: '발렌타인데이',  tag: 'Valentine', bg: '#FFF0F2', color: '#6c1524' },
+        traditional: { month: 'SEP', icon: '🧧', title: '설날 · 추석',  tag: 'Harvest',   bg: '#FAF5EE', color: '#614023' },
+        halloween:   { month: 'OCT', icon: '🎃', title: '할로윈',      tag: 'Halloween', bg: '#1A1A1A', color: '#ffd700' },
+        christmas:   { month: 'DEC', icon: '🎄', title: '크리스마스',   tag: 'X-mas',     bg: '#0F172A', color: '#e5a93b' }
+    };
+
+    eventsContainer.innerHTML = themeIds.map((tid, index) => {
+        const ev = themeEventMap[tid];
+        return `
+            <div class="event-card group theme-event-card fade-in-up" 
+                 style="animation-delay: ${0.2 + index * 0.1}s; cursor:pointer;"
+                 onclick="openTheme('${tid}')">
+                <div class="event-month">${ev.month}</div>
+                <div class="event-icon">${ev.icon}</div>
+                <div class="event-title serif">${ev.title}</div>
+                <div class="event-status">VIEW COLLECTION</div>
+            </div>`;
+    }).join('');
 
     // Archive 렌더링
     archiveContainer.innerHTML = archive.map((p, index) => `
@@ -1139,6 +1156,477 @@ function handleSliceClick(event, projectId) {
         });
         slice.style.flex = '5.4';
         slice.classList.add('active-expanded');
+    }
+}
+
+// ==========================================================================
+// 15. 시즌 이벤트 테마 모달 (2단계)
+// ==========================================================================
+function openTheme(themeId) {
+    if (typeof THEMES === 'undefined') return;
+    const theme = THEMES.find(t => t.id === themeId);
+    if (!theme) return;
+
+    const old = document.getElementById('theme-modal-overlay');
+    if (old) old.remove();
+
+    const palettes = {
+        romantic:    { bg: '#FFF0F2', text: '#4a0e1c', subtext: '#9a4d5f', accent: '#c2315a', cardBg: 'rgba(255,255,255,0.85)' },
+        traditional: { bg: '#F5EBE0', text: '#3b2208', subtext: '#7a5a3a', accent: '#a0713b', cardBg: 'rgba(255,255,255,0.85)' },
+        halloween:   { bg: '#121212', text: '#ffd700', subtext: '#e0a020', accent: '#ff7b00', cardBg: 'rgba(30,20,0,0.75)'   },
+        christmas:   { bg: '#0F172A', text: '#e5d8b0', subtext: '#8fa8c0', accent: '#e5a93b', cardBg: 'rgba(15,25,50,0.75)' }
+    };
+    const pal = palettes[themeId] || palettes.romantic;
+
+    const overlay = document.createElement('div');
+    overlay.id = 'theme-modal-overlay';
+    overlay.className = 'theme-modal-overlay';
+    overlay.style.cssText = `background: ${pal.bg}; color: ${pal.text};`;
+    overlay.onclick = (e) => { if (e.target === overlay) closeThemeModal(); };
+
+    const recipesHtml = (theme.recipes || []).map(recipe => {
+        const imgSrc = recipe.img || '';
+        const displayTitle = recipe.title.replace('순두부 ', '');
+        return `
+            <div class="theme-recipe-card" onclick="closeThemeModal(); setTimeout(()=>openFocusStage(${recipe.id}),250);">
+                <div class="theme-recipe-card-img-wrapper">
+                    <img src="${imgSrc}" alt="${recipe.title}" loading="lazy" onerror="this.parentNode.style.background='#f0f0f0'">
+                    <div class="theme-recipe-card-vol" style="color:${pal.text};">${recipe.vol}</div>
+                </div>
+                <div class="theme-recipe-card-info" style="background:${pal.cardBg};">
+                    <p class="theme-recipe-card-title" style="color:${pal.text};">${displayTitle}</p>
+                    <span class="theme-recipe-card-icon" style="color:${pal.accent};"><i class="fa-solid fa-chevron-right"></i></span>
+                </div>
+            </div>`;
+    }).join('');
+
+    overlay.innerHTML = `
+        <button class="theme-modal-close-btn" onclick="closeThemeModal()" style="color:${pal.subtext};">&times;</button>
+        <div class="theme-modal-header">
+            <div class="theme-modal-tag" style="color:${pal.subtext};">${theme.icon} ${theme.tag}</div>
+            <h2 class="theme-modal-title serif" style="color:${pal.text};">${theme.title}</h2>
+            <p class="theme-modal-desc" style="color:${pal.subtext};">${theme.desc}</p>
+        </div>
+        <div class="theme-modal-cards-container">
+            ${recipesHtml}
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => overlay.classList.add('active'), 30);
+}
+
+function closeThemeModal() {
+    const overlay = document.getElementById('theme-modal-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => overlay.remove(), 400);
+}
+
+// ==========================================================================
+// 16. 3D 마법책 책장 렌더링 엔진 (3단계)
+// ==========================================================================
+function renderBookshelf() {
+    const section = document.getElementById('archive');
+    if (!section) return;
+
+    // Vol 순서대로 정렬 (1→41)
+    const sorted = [...PROJECTS].sort((a, b) => a.id - b.id);
+    const perRow = 10;
+    const rows = [];
+    for (let i = 0; i < sorted.length; i += perRow) {
+        rows.push(sorted.slice(i, i + perRow));
+    }
+
+    section.innerHTML = `
+        <div style="width:100%; max-width:1200px; margin:0 auto; padding: 0 20px 60px; box-sizing:border-box;">
+            <div style="text-align:center; margin-bottom:40px;">
+                <div style="font-size:0.72rem; letter-spacing:3px; color:#8C7A6B; font-weight:600; text-transform:uppercase; margin-bottom:12px; font-family:'Noto Serif KR',serif;">RECIPE ARCHIVE</div>
+                <h2 class="serif" style="font-size:2.2rem; margin:0 0 12px 0; color:#1F1A17;">실패없는 베이킹노트</h2>
+                <p style="color:#8C7A6B; font-size:0.88rem; margin:0;">🖱 마우스 드래그나 마우스 휠로 서가를 둘러보세요</p>
+            </div>
+
+            <div class="bookshelf-stage" id="bookshelf-stage" style="
+                width:100%; overflow-x:auto; overflow-y:hidden;
+                cursor:grab; user-select:none;
+                padding:20px 0 40px 0; box-sizing:border-box;">
+                <div id="bookshelf-frame" style="
+                    display:inline-flex; flex-direction:column;
+                    gap:0; min-width:max-content;
+                    background: linear-gradient(160deg,#1a0e08 0%,#0d0700 100%);
+                    border-radius:18px; padding:20px 30px 0 30px;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 0 60px rgba(139,76,26,0.08);
+                    border:2px solid #3a1d11;
+                    position:relative; overflow:hidden;">
+
+                    <!-- 별빛 장식 -->
+                    <div style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;">
+                        <div style="position:absolute;top:12%;left:8%;width:2px;height:2px;background:#e5d8b0;border-radius:50%;box-shadow:0 0 4px 2px #e5d8b0;opacity:0.4;"></div>
+                        <div style="position:absolute;top:25%;left:45%;width:1.5px;height:1.5px;background:#c5a059;border-radius:50%;box-shadow:0 0 3px 1.5px #c5a059;opacity:0.5;"></div>
+                        <div style="position:absolute;top:60%;left:75%;width:2px;height:2px;background:#e5d8b0;border-radius:50%;box-shadow:0 0 4px 2px #e5d8b0;opacity:0.35;"></div>
+                        <div style="position:absolute;top:80%;left:20%;width:1.5px;height:1.5px;background:#c5a059;border-radius:50%;box-shadow:0 0 3px 2px #c5a059;opacity:0.4;"></div>
+                    </div>
+
+                    ${rows.map((rowBooks) => {
+                        const booksHtml = rowBooks.map(p => {
+                            const colors = getBookSpineColors(p);
+                            const shortTitle = p.title.replace('순두부 ','').replace('순두부','');
+                            return `
+                                <div class="magic-book" onclick="openBookModal(${p.id})" title="VOL.${p.id} ${p.title}"
+                                     style="--spine1:${colors.spine1};--spine2:${colors.spine2};--book-text:${colors.textColor};--book-accent:${colors.accent};">
+                                    <div class="book-spine">
+                                        <div class="book-vol">VOL.${p.id}</div>
+                                        <div class="book-title-spine">${shortTitle}</div>
+                                        <div class="book-deco">✦</div>
+                                    </div>
+                                    <div class="book-cover">
+                                        <div class="book-cover-inner">
+                                            <div class="book-cover-vol">Vol.${p.id}</div>
+                                            <div class="book-cover-title">${shortTitle}</div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                        }).join('');
+
+                        return `
+                            <div style="display:flex; flex-direction:column; margin-bottom:0;">
+                                <div style="display:flex; align-items:flex-end; gap:6px; padding:20px 0 0 0; min-height:220px;">
+                                    ${booksHtml}
+                                </div>
+                                <div style="
+                                    height:24px; background:linear-gradient(180deg,#5c3a1e 0%,#3a1d0e 100%);
+                                    border-radius:4px; margin-top:0;
+                                    box-shadow:0 8px 16px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.06);
+                                    border-top:1px solid rgba(255,255,255,0.08);
+                                    position:relative;">
+                                    <div style="position:absolute;top:3px;left:0;right:0;height:1px;background:rgba(255,255,255,0.06);"></div>
+                                </div>
+                            </div>`;
+                    }).join('')}
+
+                    <!-- 책장 바닥 -->
+                    <div style="height:18px; background:linear-gradient(180deg,#3a1d0e,#1a0d06);
+                        border-radius:0 0 14px 14px; margin:0 -30px -0px -30px;
+                        box-shadow:inset 0 3px 8px rgba(0,0,0,0.4);"></div>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:20px;">
+                <p style="color:#B0A090; font-size:0.75rem; letter-spacing:1px;">총 ${sorted.length}권 · PROJECT DUBU ARCHIVE</p>
+            </div>
+
+            <footer style="margin-top:40px; text-align:center; opacity:0.4;">
+                <div class="footer-logo serif">PROJECT DUBU</div>
+                <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
+            </footer>
+        </div>
+    `;
+
+    initBookshelfDrag();
+}
+
+function getBookSpineColors(recipe) {
+    const theme = getRecipeTheme(recipe);
+    return {
+        spine1: theme.spineColor1,
+        spine2: theme.spineColor2,
+        textColor: theme.spineTextColor,
+        accent: theme.accentColor
+    };
+}
+
+function initBookshelfDrag() {
+    const stage = document.getElementById('bookshelf-stage');
+    if (!stage) return;
+    let isDown = false;
+    let startX, scrollLeft;
+    stage.addEventListener('mousedown', (e) => {
+        isDown = true;
+        stage.style.cursor = 'grabbing';
+        startX = e.pageX - stage.offsetLeft;
+        scrollLeft = stage.scrollLeft;
+    });
+    stage.addEventListener('mouseleave', () => { isDown = false; stage.style.cursor = 'grab'; });
+    stage.addEventListener('mouseup', () => { isDown = false; stage.style.cursor = 'grab'; });
+    stage.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - stage.offsetLeft;
+        stage.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+    // 마우스 휠로 가로 스크롤
+    stage.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        stage.scrollLeft += e.deltaY * 1.2;
+    }, { passive: false });
+}
+
+function openBookModal(recipeId) {
+    recipeId = Number(recipeId);
+    const recipe = PROJECTS.find(p => p.id === recipeId);
+    if (!recipe) return;
+
+    const old = document.getElementById('book-modal-overlay');
+    if (old) old.remove();
+
+    const theme = getRecipeTheme(recipe);
+    const ingredients = INGREDIENT_DICT ? (INGREDIENT_DICT[recipeId] || []) : [];
+    const steps = typeof RECIPE_STEPS_DB !== 'undefined' ? (RECIPE_STEPS_DB[recipeId] || []) : [];
+    const meta = getRecipeMetadata(recipeId);
+
+    // 재료 목록 HTML
+    const ingredientsHtml = ingredients.length > 0
+        ? `<div style="font-size:0.7rem;color:#999;margin-bottom:8px;letter-spacing:0.5px;">기준 재료 (변동 시 자동계산)</div>` +
+          ingredients.map((ing, idx) => idx === 0
+            ? `<div style="background:#fff;border:2px solid ${theme.themeColor};border-radius:10px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;box-shadow:0 4px 12px rgba(0,0,0,0.04);">
+                   <span style="font-size:0.88rem;font-weight:700;color:#3b281f;flex:1;">${ing.name}</span>
+                   <div style="display:flex;align-items:center;gap:4px;">
+                       <input type="number" id="bm-anchor-${recipeId}" value="${ing.base}" data-base="${ing.base}"
+                              oninput="onBookModalAnchorChange(${recipeId})"
+                              style="width:70px;border:1.5px solid ${theme.themeColor};border-radius:8px;padding:4px 8px;text-align:right;font-weight:700;color:${theme.themeColor};background:#fff;outline:none;font-size:0.9rem;">
+                       <span style="color:#999;font-size:0.82rem;">g</span>
+                   </div>
+               </div>`
+            : `<div style="background:#fff;border:1px solid #e5d8bf;border-radius:10px;padding:9px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                   <span style="font-size:0.85rem;font-weight:500;color:#3b281f;flex:1;">${ing.name}</span>
+                   <div style="display:flex;align-items:center;gap:4px;">
+                       <input type="number" class="bm-sub-input" data-base="${ing.base}" value="${ing.base}" readonly
+                              style="width:60px;border:1px solid #e0d8cc;border-radius:6px;padding:3px 6px;text-align:right;color:#3b281f;background:#fdfbf7;outline:none;font-size:0.88rem;">
+                       <span style="color:#999;font-size:0.82rem;">g</span>
+                   </div>
+               </div>`
+        ).join('')
+        : `<p style="color:#aaa;font-size:0.85rem;text-align:center;padding:20px 0;">재료 데이터 준비 중입니다.</p>`;
+
+    // 베이킹 순서 HTML
+    const stepsHtml = steps.length > 0
+        ? steps.map((s, i) => `
+            <div style="display:flex;gap:12px;background:#fff;border:1px solid #e5d8bf;border-radius:10px;padding:12px 14px;margin-bottom:8px;">
+                <div style="width:24px;height:24px;background:${theme.themeColor};color:${theme.accentColor};border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;flex-shrink:0;">${i+1}</div>
+                <div>
+                    <div style="font-weight:700;font-size:0.85rem;color:${theme.themeColor};">${s.title} <span style="font-size:0.7rem;color:#aaa;margin-left:5px;">⏱ ${s.time}</span></div>
+                    <div style="font-size:0.8rem;color:#555;margin-top:3px;line-height:1.4;">${s.desc}</div>
+                </div>
+            </div>`).join('')
+        : `<p style="color:#aaa;font-size:0.85rem;text-align:center;padding:20px 0;">베이킹 순서 데이터 준비 중입니다.</p>`;
+
+    // 실패 대처법 HTML
+    let troubleHtml = '';
+    if (recipe.troubleShoot && recipe.troubleShoot.includes('Q.')) {
+        const parts = recipe.troubleShoot.split('<br>');
+        const q = (parts[0] || '').replace('Q.', '').trim();
+        const a = (parts[1] || '').replace('A.', '').trim();
+        troubleHtml = `
+            <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:14px;">
+                <span style="background:#E53935;color:#fff;padding:2px 8px;border-radius:4px;font-size:0.68rem;font-weight:900;flex-shrink:0;margin-top:2px;">Q</span>
+                <p style="font-size:0.85rem;color:#c62828;font-weight:600;margin:0;line-height:1.5;">${q}</p>
+            </div>
+            <div style="background:#fff;border:1px solid rgba(58,105,88,0.12);border-radius:10px;padding:14px;display:flex;gap:8px;align-items:flex-start;">
+                <span style="background:${theme.themeColor};color:#fff;padding:2px 8px;border-radius:4px;font-size:0.68rem;font-weight:900;flex-shrink:0;margin-top:2px;">A</span>
+                <p style="font-size:0.82rem;color:#2C3E50;margin:0;line-height:1.6;">${a}</p>
+            </div>`;
+    } else {
+        troubleHtml = `<div style="text-align:center;color:#7f8c8d;font-size:0.85rem;padding:30px 0;"><i class="fa-solid fa-circle-check" style="font-size:1.8rem;color:#3a6958;display:block;margin-bottom:10px;"></i>특별한 실패 유의사항이 없습니다.<br>기본 계량과 온도를 지켜주시면 성공입니다!</div>`;
+    }
+
+    const overlay = document.createElement('div');
+    overlay.id = 'book-modal-overlay';
+    overlay.onclick = (e) => { if (e.target === overlay) closeBookModal(); };
+    overlay.style.cssText = `
+        position:fixed; top:0; left:0; width:100%; height:100%;
+        background:rgba(20,12,6,0.72); backdrop-filter:blur(14px);
+        display:flex; align-items:center; justify-content:center;
+        z-index:10500; opacity:0; transition:opacity 0.35s ease;
+        padding:20px; box-sizing:border-box;`;
+
+    overlay.innerHTML = `
+        <div id="book-modal-board" style="
+            background:#FDFBF4; border:3px solid #e5d8bf;
+            border-radius:24px; width:100%; max-width:900px;
+            height:90vh; max-height:640px;
+            display:flex; overflow:hidden;
+            box-shadow:0 30px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(197,160,89,0.2);
+            transform:scale(0.9) rotateX(10deg);
+            transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+            position:relative;">
+
+            <!-- 왼쪽: 이미지 패널 (어두운 배경) -->
+            <div style="
+                flex:1.05; background:#18110b; padding:28px;
+                display:flex; flex-direction:column; justify-content:space-between;
+                border-right:1px solid rgba(255,255,255,0.07);">
+                <div style="font-size:0.68rem;letter-spacing:2px;color:#a08070;font-weight:600;">프로젝트 두부</div>
+                <div style="flex:1;margin:14px 0;border-radius:14px;overflow:hidden;
+                    box-shadow:0 8px 24px rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.07);background:#111;">
+                    <img src="${recipe.img}" alt="${recipe.title}"
+                         style="width:100%;height:100%;object-fit:cover;"
+                         onerror="this.style.display='none'">
+                </div>
+                <div style="border-left:3px solid ${theme.accentColor};padding:10px 14px;
+                    background:rgba(255,255,255,0.03);border-radius:0 10px 10px 0;">
+                    <p style="color:#e5dcd3;font-size:0.76rem;line-height:1.5;margin:0;font-style:italic;">${meta.cheers}</p>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 탭 패널 -->
+            <div style="flex:1.35;display:flex;flex-direction:column;background:#faf8f5;padding:30px 34px;overflow:hidden;position:relative;">
+                <!-- 닫기 -->
+                <button onclick="closeBookModal()" style="
+                    position:absolute;top:20px;right:26px;
+                    background:none;border:none;font-size:1.9rem;color:#887a6d;cursor:pointer;outline:none;
+                    transition:color 0.2s;" onmouseover="this.style.color='#3a1d11'" onmouseout="this.style.color='#887a6d'">&times;</button>
+
+                <!-- 제목 -->
+                <div style="margin-bottom:18px;padding-right:28px;">
+                    <h2 class="serif" style="font-size:1.5rem;font-weight:700;color:${theme.themeColor};margin:0 0 8px 0;">${recipe.title}</h2>
+                    <span style="display:inline-block;padding:4px 14px;border:1.5px solid ${theme.themeColor};
+                        border-radius:20px;background:rgba(0,0,0,0.04);
+                        font-size:0.7rem;font-weight:700;color:${theme.themeColor};">
+                        <i class="fa-solid fa-box-open"></i> 분량: ${meta.difficulty}
+                    </span>
+                </div>
+
+                <!-- 탭 메뉴 -->
+                <div style="display:flex;gap:4px;border-bottom:2px solid #e5d8bf;margin-bottom:14px;">
+                    <button id="bm-tab-btn-calc" onclick="switchBookTab('calc',${recipeId})" style="
+                        background:none;border:none;padding:8px 12px;font-size:0.78rem;font-weight:700;
+                        color:${theme.themeColor};border-bottom:3px solid ${theme.themeColor};
+                        margin-bottom:-2px;cursor:pointer;outline:none;font-family:inherit;">
+                        <i class="fa-solid fa-scale-balanced"></i> 재료 계산기
+                    </button>
+                    <button id="bm-tab-btn-steps" onclick="switchBookTab('steps',${recipeId})" style="
+                        background:none;border:none;padding:8px 12px;font-size:0.78rem;font-weight:700;
+                        color:#887a6d;border-bottom:3px solid transparent;
+                        margin-bottom:-2px;cursor:pointer;outline:none;font-family:inherit;">
+                        <i class="fa-solid fa-list-ol"></i> 베이킹순서
+                    </button>
+                    <button id="bm-tab-btn-trouble" onclick="switchBookTab('trouble',${recipeId})" style="
+                        background:none;border:none;padding:8px 12px;font-size:0.78rem;font-weight:700;
+                        color:#887a6d;border-bottom:3px solid transparent;
+                        margin-bottom:-2px;cursor:pointer;outline:none;font-family:inherit;">
+                        <i class="fa-solid fa-circle-question"></i> 실패대처법
+                    </button>
+                </div>
+
+                <!-- 탭 콘텐츠 -->
+                <div style="flex:1;overflow-y:auto;padding-right:4px;">
+                    <div id="bm-content-calc">${ingredientsHtml}</div>
+                    <div id="bm-content-steps" style="display:none;">${stepsHtml}</div>
+                    <div id="bm-content-trouble" style="display:none;">${troubleHtml}</div>
+                </div>
+
+                <!-- 하단 버튼 3개 -->
+                <div style="display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #e5d8bf;">
+                    <button onclick="issueRecipeCardFromBook(${recipeId})" style="
+                        flex:1;background:${theme.themeColor};color:${theme.accentColor};
+                        border:none;border-radius:10px;padding:11px 6px;
+                        font-size:0.76rem;font-weight:700;cursor:pointer;outline:none;
+                        font-family:inherit;transition:opacity 0.2s;"
+                        onmouseover="this.style.opacity='0.82'" onmouseout="this.style.opacity='1'">
+                        <i class="fa-solid fa-download"></i> 레시피소장하기
+                    </button>
+                    ${ recipe.blogUrl
+                        ? `<a href="${recipe.blogUrl}" target="_blank" style="
+                            flex:1;background:#eee6d8;color:#3b281f;
+                            border:none;border-radius:10px;padding:11px 6px;
+                            font-size:0.76rem;font-weight:700;cursor:pointer;outline:none;
+                            text-decoration:none;display:flex;align-items:center;justify-content:center;gap:4px;
+                            transition:background 0.2s;font-family:inherit;"
+                            onmouseover="this.style.background='#e2d7c5'" onmouseout="this.style.background='#eee6d8'">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> 블로그가기
+                           </a>`
+                        : `<button disabled style="flex:1;background:#f0ece5;color:#ccc;border:none;border-radius:10px;padding:11px 6px;font-size:0.76rem;cursor:default;outline:none;font-family:inherit;">블로그준비중</button>` }
+                    <button onclick="openLookbook(${recipeId})" style="
+                        flex:1;background:#3a6958;color:#fff;
+                        border:none;border-radius:10px;padding:11px 6px;
+                        font-size:0.76rem;font-weight:700;cursor:pointer;outline:none;
+                        font-family:inherit;transition:background 0.2s;"
+                        onmouseover="this.style.background='#2b5042'" onmouseout="this.style.background='#3a6958'">
+                        <i class="fa-solid fa-book-open"></i> 룩북보기
+                    </button>
+                </div>
+            </div>
+        </div>`;
+
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+        overlay.style.opacity = '1';
+        const board = document.getElementById('book-modal-board');
+        if (board) board.style.transform = 'scale(1) rotateX(0)';
+    }, 30);
+}
+
+function closeBookModal() {
+    const overlay = document.getElementById('book-modal-overlay');
+    if (!overlay) return;
+    overlay.style.opacity = '0';
+    const board = document.getElementById('book-modal-board');
+    if (board) board.style.transform = 'scale(0.9) rotateX(10deg)';
+    document.body.style.overflow = '';
+    setTimeout(() => overlay.remove(), 400);
+}
+
+function switchBookTab(tabId, recipeId) {
+    const recipe = PROJECTS.find(p => p.id === Number(recipeId));
+    const theme = getRecipeTheme(recipe);
+    ['calc','steps','trouble'].forEach(t => {
+        const btn = document.getElementById(`bm-tab-btn-${t}`);
+        const content = document.getElementById(`bm-content-${t}`);
+        if (btn) { btn.style.color = '#887a6d'; btn.style.borderBottom = '3px solid transparent'; }
+        if (content) content.style.display = 'none';
+    });
+    const activeBtn = document.getElementById(`bm-tab-btn-${tabId}`);
+    const activeContent = document.getElementById(`bm-content-${tabId}`);
+    if (activeBtn) { activeBtn.style.color = theme.themeColor; activeBtn.style.borderBottom = `3px solid ${theme.themeColor}`; }
+    if (activeContent) activeContent.style.display = 'block';
+}
+
+function onBookModalAnchorChange(recipeId) {
+    const anchorInput = document.getElementById(`bm-anchor-${recipeId}`);
+    if (!anchorInput) return;
+    const val = parseFloat(anchorInput.value) || 0;
+    const base = parseFloat(anchorInput.getAttribute('data-base')) || 1;
+    const scale = val / base;
+    const subInputs = document.querySelectorAll('#book-modal-board .bm-sub-input');
+    subInputs.forEach(inp => {
+        inp.value = Math.round(parseFloat(inp.getAttribute('data-base')) * scale);
+    });
+}
+
+function issueRecipeCardFromBook(recipeId) {
+    recipeId = Number(recipeId);
+    const recipe = PROJECTS.find(p => p.id === recipeId);
+    if (!recipe) return;
+    const meta = getRecipeMetadata(recipeId);
+    const ingredients = INGREDIENT_DICT ? (INGREDIENT_DICT[recipeId] || []) : [];
+    const anchorInput = document.getElementById(`bm-anchor-${recipeId}`);
+    const anchorVal = anchorInput ? parseFloat(anchorInput.value) || 0 : (ingredients[0] ? ingredients[0].base : 100);
+    const anchorBase = ingredients[0] ? ingredients[0].base : 1;
+    const scale = anchorBase === 0 ? 1 : anchorVal / anchorBase;
+
+    let ingredientsSummary = '';
+    ingredients.forEach((ing, idx) => {
+        const displayVal = idx === 0 ? anchorVal : Math.round(ing.base * scale);
+        ingredientsSummary += `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed rgba(58,105,88,0.1);font-size:0.9rem;">
+            <span style="color:#4E342E;font-weight:500;">${ing.name}</span>
+            <strong style="color:var(--dubu-mint-accent);">${displayVal}g</strong>
+        </div>`;
+    });
+
+    openUnifiedRecipeCardModal(recipeId, recipe.title, recipe.img, getDynamicYieldText(recipeId, scale), meta.bakingTip, meta.cheers, ingredientsSummary);
+}
+
+function openLookbook(recipeId) {
+    recipeId = Number(recipeId);
+    const recipe = PROJECTS.find(p => p.id === recipeId);
+    if (!recipe) return;
+    if (recipe.path) {
+        window.open(recipe.path, '_blank');
+    } else {
+        alert('룩북 페이지 준비 중입니다.');
     }
 }
 
