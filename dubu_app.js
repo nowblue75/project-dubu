@@ -87,74 +87,50 @@ function rotateHeroSlide() {
 }
 
 // ==========================================================================
-// 3. 포털 대시보드 렌더링
+// 3. 포털 대시보드 렌더링 (시즌 이벤트 이미지 카드)
 // ==========================================================================
 function renderDashboard() {
-    const featuredContainer = document.getElementById('featured-container');
-    const archiveContainer = document.getElementById('archive-container');
     const eventsContainer = document.getElementById('events-container');
+    if (!eventsContainer) return;
 
-    if (!featuredContainer || !archiveContainer || !eventsContainer) return;
+    // THEMES 데이터가 있으면 사용, 없으면 기본 매핑
+    const themeList = (typeof THEMES !== 'undefined') ? THEMES : [];
 
-    // ID 역순 정렬 (높은 숫자가 최신)
-    const sortedProjects = [...PROJECTS].sort((a, b) => b.id - a.id);
+    if (themeList.length === 0) {
+        eventsContainer.innerHTML = '<p style="color:#aaa;text-align:center;">이벤트 데이터 로딩 중...</p>';
+        return;
+    }
 
-    // 최신 2개는 Featured
-    const featured = sortedProjects.slice(0, 2);
-    // 나머지는 Archive
-    const archive = sortedProjects.slice(2);
-
-    // Featured 렌더링
-    featuredContainer.innerHTML = featured.map((p, index) => `
-        <a href="${p.isInteractive ? `javascript:openFocusStage(${p.id})` : p.path}" class="lookbook-card group fade-in-up" style="animation-delay: ${index * 0.2}s">
-            <div class="card-img">
-                <img src="${p.img}" alt="${p.title}">
-            </div>
-            <div class="card-body">
-                <div class="card-tag">Vol. ${p.id}</div>
-                <h2 class="card-title serif">${p.title}</h2>
-                <p class="card-desc">${p.desc}</p>
-            </div>
-        </a>
-    `).join('');
-
-    // Events 렌더링 (THEMES 데이터와 연결하여 openTheme 호출)
-    const themeIds = ['romantic', 'traditional', 'halloween', 'christmas'];
-    const themeEventMap = {
-        romantic:    { month: 'FEB', icon: '💝', title: '발렌타인데이',  tag: 'Valentine', bg: '#FFF0F2', color: '#6c1524' },
-        traditional: { month: 'SEP', icon: '🧧', title: '설날 · 추석',  tag: 'Harvest',   bg: '#FAF5EE', color: '#614023' },
-        halloween:   { month: 'OCT', icon: '🎃', title: '할로윈',      tag: 'Halloween', bg: '#1A1A1A', color: '#ffd700' },
-        christmas:   { month: 'DEC', icon: '🎄', title: '크리스마스',   tag: 'X-mas',     bg: '#0F172A', color: '#e5a93b' }
+    // 태그 배지 색상 매핑
+    const tagColors = {
+        romantic:    { badge: '#e91e63', badgeBg: 'rgba(233,30,99,0.9)'   },
+        traditional: { badge: '#8d5524', badgeBg: 'rgba(141,85,36,0.9)'   },
+        halloween:   { badge: '#e65100', badgeBg: 'rgba(50,20,0,0.88)'    },
+        christmas:   { badge: '#1b5e20', badgeBg: 'rgba(15,60,20,0.9)'    }
     };
 
-    eventsContainer.innerHTML = themeIds.map((tid, index) => {
-        const ev = themeEventMap[tid];
+    eventsContainer.innerHTML = themeList.map((theme, index) => {
+        const tc = tagColors[theme.id] || { badge: '#333', badgeBg: 'rgba(30,30,30,0.85)' };
         return `
-            <div class="event-card group theme-event-card fade-in-up" 
-                 style="animation-delay: ${0.2 + index * 0.1}s; cursor:pointer;"
-                 onclick="openTheme('${tid}')">
-                <div class="event-month">${ev.month}</div>
-                <div class="event-icon">${ev.icon}</div>
-                <div class="event-title serif">${ev.title}</div>
-                <div class="event-status">VIEW COLLECTION</div>
+            <div class="season-event-card fade-in-up"
+                 style="animation-delay:${index * 0.12}s"
+                 onclick="openTheme('${theme.id}')">
+                <div class="season-card-img-wrap">
+                    <img src="${theme.img}" alt="${theme.title}" loading="lazy"
+                         onerror="this.parentNode.style.background='#f0ece5'">
+                    <span class="season-card-badge" style="background:${tc.badgeBg};">${theme.tag}</span>
+                </div>
+                <div class="season-card-footer">
+                    <div class="season-card-info">
+                        <span class="season-card-icon">${theme.icon}</span>
+                        <span class="season-card-title">${theme.engTitle}</span>
+                    </div>
+                    <span class="season-card-arrow">→</span>
+                </div>
             </div>`;
     }).join('');
-
-    // Archive 렌더링
-    archiveContainer.innerHTML = archive.map((p, index) => `
-        <div class="archive-item fade-in-up" style="animation-delay: ${0.4 + (index * 0.05)}s">
-            ${p.id}. 
-            ${p.isInteractive
-                ? `<a href="javascript:openFocusStage(${p.id})" class="hover:underline decoration-dotted font-semibold text-chocolate">${p.title} <span style="font-size: 0.7rem; color: var(--dubu-mint-accent);">[자동계산기]</span></a>`
-                : p.blogUrl
-                    ? `<a href="${p.blogUrl}" target="_blank" class="hover:underline decoration-dotted">${p.title}</a>`
-                    : p.title
-            }
-            ${p.isInteractive && p.blogUrl ? `<a href="${p.blogUrl}" target="_blank" class="ml-2 text-[8px] uppercase tracking-widest text-[#D1C7BC] hover:text-[#1F1A17] transition-colors underline decoration-dotted">Blog</a>` : ''}
-            ${p.calcPath ? `<a href="${p.calcPath}" class="ml-2 text-[10px] px-2 py-0.5 border border-[#D1C7BC] rounded-full hover:bg-[#1F1A17] hover:text-white transition-colors">자동계산기</a>` : ''}
-        </div>
-    `).join('');
 }
+
 
 // ==========================================================================
 // 4. Atelier Focus Stage (몰입형 3D 계산기 및 3대 감성 탭)
@@ -1234,98 +1210,151 @@ function renderBookshelf() {
 
     // Vol 순서대로 정렬 (1→41)
     const sorted = [...PROJECTS].sort((a, b) => a.id - b.id);
-    const perRow = 10;
-    const rows = [];
-    for (let i = 0; i < sorted.length; i += perRow) {
-        rows.push(sorted.slice(i, i + perRow));
-    }
+
+    // 한 페이지 = 2행 × 10권 = 20권
+    const booksPerPage = 20;
+    const booksPerRow  = 10;
+    const totalPages = Math.ceil(sorted.length / booksPerPage);
+    let currentPage = 0;
 
     section.innerHTML = `
-        <div style="width:100%; max-width:1200px; margin:0 auto; padding: 0 20px 60px; box-sizing:border-box;">
-            <div style="text-align:center; margin-bottom:40px;">
-                <div style="font-size:0.72rem; letter-spacing:3px; color:#8C7A6B; font-weight:600; text-transform:uppercase; margin-bottom:12px; font-family:'Noto Serif KR',serif;">RECIPE ARCHIVE</div>
-                <h2 class="serif" style="font-size:2.2rem; margin:0 0 12px 0; color:#1F1A17;">실패없는 베이킹노트</h2>
-                <p style="color:#8C7A6B; font-size:0.88rem; margin:0;">🖱 마우스 드래그나 마우스 휠로 서가를 둘러보세요</p>
+        <div class="bookshelf-wrapper">
+            <!-- 헤더 -->
+            <div class="bookshelf-header">
+                <div class="bookshelf-tag">RECIPE ARCHIVE</div>
+                <h2 class="serif bookshelf-title">실패없는 베이킹노트</h2>
+                <p class="bookshelf-hint">🖱 마우스 드래그나 마우스 휠로 서가를 둘러보세요</p>
             </div>
 
-            <div class="bookshelf-stage" id="bookshelf-stage" style="
-                width:100%; overflow-x:auto; overflow-y:hidden;
-                cursor:grab; user-select:none;
-                padding:20px 0 40px 0; box-sizing:border-box;">
-                <div id="bookshelf-frame" style="
-                    display:inline-flex; flex-direction:column;
-                    gap:0; min-width:max-content;
-                    background: linear-gradient(160deg,#1a0e08 0%,#0d0700 100%);
-                    border-radius:18px; padding:20px 30px 0 30px;
-                    box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 0 60px rgba(139,76,26,0.08);
-                    border:2px solid #3a1d11;
-                    position:relative; overflow:hidden;">
+            <!-- 책장 무대 -->
+            <div class="bookshelf-scene">
+                <!-- 왼쪽 화살표 -->
+                <button class="shelf-nav-btn shelf-nav-left" id="shelf-btn-prev" onclick="shiftShelfPage(-1)" style="display:none;">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
 
-                    <!-- 별빛 장식 -->
-                    <div style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;">
-                        <div style="position:absolute;top:12%;left:8%;width:2px;height:2px;background:#e5d8b0;border-radius:50%;box-shadow:0 0 4px 2px #e5d8b0;opacity:0.4;"></div>
-                        <div style="position:absolute;top:25%;left:45%;width:1.5px;height:1.5px;background:#c5a059;border-radius:50%;box-shadow:0 0 3px 1.5px #c5a059;opacity:0.5;"></div>
-                        <div style="position:absolute;top:60%;left:75%;width:2px;height:2px;background:#e5d8b0;border-radius:50%;box-shadow:0 0 4px 2px #e5d8b0;opacity:0.35;"></div>
-                        <div style="position:absolute;top:80%;left:20%;width:1.5px;height:1.5px;background:#c5a059;border-radius:50%;box-shadow:0 0 3px 2px #c5a059;opacity:0.4;"></div>
+                <!-- 책장 프레임 -->
+                <div class="bookshelf-frame" id="bookshelf-frame">
+                    <!-- 별빛 -->
+                    <div class="shelf-stars">
+                        <div class="star" style="top:8%;left:12%;width:2px;height:2px;animation-delay:0s;"></div>
+                        <div class="star" style="top:18%;left:55%;width:1.5px;height:1.5px;animation-delay:0.8s;"></div>
+                        <div class="star" style="top:55%;left:82%;width:2px;height:2px;animation-delay:0.4s;"></div>
+                        <div class="star" style="top:75%;left:28%;width:1.5px;height:1.5px;animation-delay:1.2s;"></div>
+                        <div class="star" style="top:40%;left:68%;width:1px;height:1px;animation-delay:0.6s;"></div>
                     </div>
 
-                    ${rows.map((rowBooks) => {
-                        const booksHtml = rowBooks.map(p => {
-                            const colors = getBookSpineColors(p);
-                            const shortTitle = p.title.replace('순두부 ','').replace('순두부','');
-                            return `
-                                <div class="magic-book" onclick="openBookModal(${p.id})" title="VOL.${p.id} ${p.title}"
-                                     style="--spine1:${colors.spine1};--spine2:${colors.spine2};--book-text:${colors.textColor};--book-accent:${colors.accent};">
-                                    <div class="book-spine">
-                                        <div class="book-vol">VOL.${p.id}</div>
-                                        <div class="book-title-spine">${shortTitle}</div>
-                                        <div class="book-deco">✦</div>
-                                    </div>
-                                    <div class="book-cover">
-                                        <div class="book-cover-inner">
-                                            <div class="book-cover-vol">Vol.${p.id}</div>
-                                            <div class="book-cover-title">${shortTitle}</div>
-                                        </div>
-                                    </div>
-                                </div>`;
-                        }).join('');
-
-                        return `
-                            <div style="display:flex; flex-direction:column; margin-bottom:0;">
-                                <div style="display:flex; align-items:flex-end; gap:6px; padding:20px 0 0 0; min-height:220px;">
-                                    ${booksHtml}
-                                </div>
-                                <div style="
-                                    height:24px; background:linear-gradient(180deg,#5c3a1e 0%,#3a1d0e 100%);
-                                    border-radius:4px; margin-top:0;
-                                    box-shadow:0 8px 16px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.06);
-                                    border-top:1px solid rgba(255,255,255,0.08);
-                                    position:relative;">
-                                    <div style="position:absolute;top:3px;left:0;right:0;height:1px;background:rgba(255,255,255,0.06);"></div>
-                                </div>
-                            </div>`;
-                    }).join('')}
+                    <!-- 선반 2개 -->
+                    <div class="shelf-row" id="shelf-row-0">
+                        <div class="shelf-books" id="shelf-books-0"></div>
+                        <div class="shelf-plank"></div>
+                    </div>
+                    <div class="shelf-row" id="shelf-row-1">
+                        <div class="shelf-books" id="shelf-books-1"></div>
+                        <div class="shelf-plank"></div>
+                    </div>
 
                     <!-- 책장 바닥 -->
-                    <div style="height:18px; background:linear-gradient(180deg,#3a1d0e,#1a0d06);
-                        border-radius:0 0 14px 14px; margin:0 -30px -0px -30px;
-                        box-shadow:inset 0 3px 8px rgba(0,0,0,0.4);"></div>
+                    <div class="shelf-floor"></div>
                 </div>
+
+                <!-- 오른쪽 화살표 -->
+                <button class="shelf-nav-btn shelf-nav-right" id="shelf-btn-next" onclick="shiftShelfPage(1)">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
             </div>
 
-            <div style="text-align:center; margin-top:20px;">
-                <p style="color:#B0A090; font-size:0.75rem; letter-spacing:1px;">총 ${sorted.length}권 · PROJECT DUBU ARCHIVE</p>
-            </div>
+            <!-- 페이지 인디케이터 -->
+            <div class="shelf-page-info" id="shelf-page-info"></div>
 
-            <footer style="margin-top:40px; text-align:center; opacity:0.4;">
+            <!-- 푸터 -->
+            <footer style="margin-top:30px; text-align:center; opacity:0.4;">
                 <div class="footer-logo serif">PROJECT DUBU</div>
                 <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
             </footer>
         </div>
     `;
 
+    // 책 렌더링 함수
+    function renderPage(page) {
+        currentPage = page;
+        const start = page * booksPerPage;
+        const pageBooks = sorted.slice(start, start + booksPerPage);
+
+        const row0Books = pageBooks.slice(0, booksPerRow);
+        const row1Books = pageBooks.slice(booksPerRow, booksPerPage);
+
+        function buildBookHtml(p) {
+            const colors = getBookSpineColors(p);
+            const shortTitle = p.title.replace('순두부 ','').replace('순두부','');
+            return `
+                <div class="magic-book" onclick="openBookModal(${p.id})" title="VOL.${p.id} ${p.title}"
+                     style="--spine1:${colors.spine1};--spine2:${colors.spine2};--book-text:${colors.textColor};--book-accent:${colors.accent};">
+                    <div class="book-spine">
+                        <div class="book-vol">VOL.${p.id}</div>
+                        <div class="book-title-spine">${shortTitle}</div>
+                        <div class="book-deco">✦</div>
+                    </div>
+                    <div class="book-cover">
+                        <div class="book-cover-inner">
+                            <div class="book-cover-vol">Vol.${p.id}</div>
+                            <div class="book-cover-title">${shortTitle}</div>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        const books0 = document.getElementById('shelf-books-0');
+        const books1 = document.getElementById('shelf-books-1');
+        if (books0) books0.innerHTML = row0Books.map(buildBookHtml).join('');
+        if (books1) books1.innerHTML = row1Books.map(buildBookHtml).join('');
+
+        // 화살표 표시/숨김
+        const prevBtn = document.getElementById('shelf-btn-prev');
+        const nextBtn = document.getElementById('shelf-btn-next');
+        if (prevBtn) prevBtn.style.display = page <= 0 ? 'none' : 'flex';
+        if (nextBtn) nextBtn.style.display = page >= totalPages - 1 ? 'none' : 'flex';
+
+        // 페이지 인디케이터
+        const pageInfo = document.getElementById('shelf-page-info');
+        if (pageInfo) {
+            const startVol = sorted[start]?.id || 1;
+            const endVol = sorted[Math.min(start + booksPerPage - 1, sorted.length - 1)]?.id || sorted.length;
+            pageInfo.innerHTML = `Vol.${startVol} ~ Vol.${endVol} &nbsp;·&nbsp; ${page + 1} / ${totalPages} 페이지 &nbsp;·&nbsp; 총 ${sorted.length}권`;
+        }
+    }
+
+    // 전역 페이지 이동 함수
+    window.shiftShelfPage = function(dir) {
+        const next = currentPage + dir;
+        if (next < 0 || next >= totalPages) return;
+        const frame = document.getElementById('bookshelf-frame');
+        if (frame) {
+            frame.style.opacity = '0';
+            frame.style.transform = `translateX(${dir * -30}px)`;
+            setTimeout(() => {
+                renderPage(next);
+                frame.style.transition = 'none';
+                frame.style.transform = `translateX(${dir * 30}px)`;
+                frame.style.opacity = '0';
+                setTimeout(() => {
+                    frame.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                    frame.style.transform = 'translateX(0)';
+                    frame.style.opacity = '1';
+                }, 30);
+            }, 220);
+        } else {
+            renderPage(next);
+        }
+    };
+
+    const frame = document.getElementById('bookshelf-frame');
+    if (frame) frame.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+
+    renderPage(0);
     initBookshelfDrag();
 }
+
 
 function getBookSpineColors(recipe) {
     const theme = getRecipeTheme(recipe);

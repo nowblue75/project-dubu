@@ -252,14 +252,136 @@ header {
 .archive-item:hover { color: var(--dubu-black); }
 
 
-/* Event Cards Style */
+/* ==========================================================
+   시즌 이벤트 섹션 스타일 (스크린샷 기준 이미지 카드형)
+   ========================================================== */
+
+/* 섹션 타이틀 정렬 */
+.events-section {
+    background: #ffffff;
+    padding: 80px 0 60px 0;
+}
+.events-section .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+.events-section .section-tag { display: none; }
+.events-section .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #1F1A17;
+    font-family: 'Noto Serif KR', serif;
+}
+
+/* 4열 그리드 */
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
     width: 100%;
 }
 
+/* 이미지 카드 */
+.season-event-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+    cursor: pointer;
+    transition: transform 0.38s cubic-bezier(0.2, 1, 0.3, 1),
+                box-shadow 0.38s ease;
+    display: flex;
+    flex-direction: column;
+}
+.season-event-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.13);
+}
+
+/* 이미지 영역 */
+.season-card-img-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: #f0ece5;
+    flex-shrink: 0;
+}
+.season-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+}
+.season-event-card:hover .season-card-img-wrap img {
+    transform: scale(1.05);
+}
+
+/* 상단 배지 */
+.season-card-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 하단 정보 바 */
+.season-card-footer {
+    padding: 14px 18px 16px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    flex: 1;
+}
+.season-card-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.season-card-icon {
+    font-size: 1.15rem;
+    line-height: 1;
+}
+.season-card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1F1A17;
+    font-family: 'Noto Serif KR', serif;
+}
+.season-card-arrow {
+    font-size: 1.1rem;
+    color: #8C7A6B;
+    transition: transform 0.25s ease, color 0.2s;
+    flex-shrink: 0;
+}
+.season-event-card:hover .season-card-arrow {
+    transform: translateX(4px);
+    color: #1F1A17;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+    .events-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+@media (max-width: 500px) {
+    .events-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .season-card-title { font-size: 0.82rem; }
+    .season-card-footer { padding: 10px 12px 12px 12px; }
+}
+
+/* 기존 event-card (하위호환) */
 .event-card {
     background: white;
     padding: 24px 12px;
@@ -275,71 +397,6 @@ header {
     justify-content: center;
 }
 
-.event-card:not(.locked):hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-    border-color: var(--dubu-black);
-}
-
-.event-month {
-    font-size: 8px;
-    font-weight: 700;
-    color: var(--dubu-accent);
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-}
-
-.event-icon {
-    font-size: 32px;
-    margin-bottom: 8px;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
-}
-
-.event-title {
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-}
-
-.event-vol-tag {
-    font-size: 9px;
-    font-weight: 400;
-    font-family: 'Noto Sans KR', sans-serif;
-    color: var(--dubu-accent);
-    background: var(--dubu-border);
-    padding: 1px 6px;
-    border-radius: 10px;
-}
-
-.event-status {
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #ccc;
-    padding-top: 12px;
-    border-top: 1px solid #f5f5f5;
-    width: 100%;
-}
-
-.event-card:not(.locked):hover .event-status {
-    color: var(--dubu-black);
-    border-top-color: var(--dubu-black);
-}
-
-.event-card.locked {
-    opacity: 0.6;
-    background: #fafafa;
-    cursor: default;
-}
-
-.event-card.locked .event-icon {
-    filter: grayscale(1) opacity(0.3);
-}
 
 /* Footer & Other */
 footer {
@@ -1483,4 +1540,179 @@ footer {
 .bookshelf-stage::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; }
 .bookshelf-stage::-webkit-scrollbar-thumb { background: rgba(139,76,26,0.25); border-radius: 10px; }
 .bookshelf-stage::-webkit-scrollbar-thumb:hover { background: rgba(139,76,26,0.45); }
+
+/* ==========================================================================
+   책장 섹션 전체 레이아웃 (3단계)
+   ========================================================================== */
+
+/* 책장 섹션 */
+.archive-section {
+    background: #FAF8F3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0 40px 0;
+}
+
+/* 책장 래퍼 (전체 너비 제한) */
+.bookshelf-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 20px;
+    box-sizing: border-box;
+}
+
+/* 헤더 */
+.bookshelf-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+.bookshelf-tag {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: #8C7A6B;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: 'Noto Serif KR', serif;
+}
+.bookshelf-title {
+    font-size: 2.1rem;
+    margin: 0 0 10px 0;
+    color: #1F1A17;
+}
+.bookshelf-hint {
+    color: #8C7A6B;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* 책장 무대 (좌우 화살표 + 책장 프레임) */
+.bookshelf-scene {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+}
+
+/* 책장 프레임 (어두운 배경 프레임) */
+.bookshelf-frame {
+    flex: 1;
+    background: linear-gradient(160deg, #1a0e08 0%, #0d0700 100%);
+    border-radius: 20px;
+    border: 2px solid #3a1d11;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 0 60px rgba(139,76,26,0.08);
+    padding: 0 28px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* 별빛 파티클 */
+.shelf-stars {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+.star {
+    position: absolute;
+    background: #e5d8b0;
+    border-radius: 50%;
+    box-shadow: 0 0 4px 1.5px #e5d8b0;
+    opacity: 0.4;
+    animation: starTwinkle 3s infinite ease-in-out;
+}
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.4); }
+}
+
+/* 선반 행 */
+.shelf-row {
+    display: flex;
+    flex-direction: column;
+}
+.shelf-books {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    padding: 22px 0 0 0;
+    min-height: 210px;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+/* 선반 판 */
+.shelf-plank {
+    height: 22px;
+    background: linear-gradient(180deg, #5c3a1e 0%, #3a1d0e 100%);
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.06);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    margin-bottom: 0;
+}
+.shelf-plank::before {
+    content: '';
+    position: absolute;
+    top: 3px; left: 0; right: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+}
+
+/* 책장 바닥 */
+.shelf-floor {
+    height: 16px;
+    background: linear-gradient(180deg, #3a1d0e, #1a0d06);
+    border-radius: 0 0 16px 16px;
+    box-shadow: inset 0 3px 8px rgba(0,0,0,0.4);
+    margin: 0 -28px;
+}
+
+/* 좌우 화살표 버튼 */
+.shelf-nav-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.92);
+    border: none;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #3a1d11;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+.shelf-nav-btn:hover {
+    background: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+}
+
+/* 페이지 인디케이터 */
+.shelf-page-info {
+    text-align: center;
+    margin-top: 18px;
+    color: #B0A090;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .bookshelf-wrapper { padding: 0 16px 20px; }
+    .bookshelf-scene { gap: 10px; }
+    .shelf-nav-btn { width: 38px; height: 38px; font-size: 0.9rem; }
+    .bookshelf-frame { padding: 0 14px; }
+    .shelf-books { min-height: 160px; gap: 4px; }
+    .bookshelf-title { font-size: 1.6rem; }
+}
 
