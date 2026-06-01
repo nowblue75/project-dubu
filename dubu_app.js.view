@@ -30,9 +30,15 @@ document.addEventListener('mousemove', (e) => {
 function rotateHeroSlide() {
     const slides = document.querySelectorAll('.visual-slide');
     if (slides.length === 0) return;
+    
+    slides.forEach(slide => slide.cla
+00%; height: 100%;
 
-    slides.forEach(slide => slide.classList.remove('active'));
 
+
+
+
+    
     slides[heroSlideIndex].classList.add('active');
 }
 
@@ -288,7 +294,7 @@ function openFocusStage(recipeId) {
     let bakingTip = "오븐 예열 170℃ / 25분";
     let cheers = "오늘 내 손끝으로 빚는 건강한 두부 베이킹, 설레는 시작입니다! ✨";
     let isYield = false;
-
+    
     if (recipe.id === 40) {
         difficulty = "오란다 대 3개 분량 🍞";
         bakingTip = "180°C 예열 → 170°C / 40분 (콩물 마무리 + 하루 숙성 권장)";
@@ -338,7 +344,7 @@ function toggleIngCheck(circleEl) {
         const parts = rawTrouble.split("<br>");
         const qText = parts[0].replace("Q.", "").trim();
         const aText = parts[1] ? parts[1].replace("A.", "").trim() : "";
-
+        
         troubleHTML = `
             <div class="trouble-qa-card" style="display: flex; flex-direction: column; gap: 10px;">
                 <div class="trouble-question" style="font-weight: 700; color: #D32F2F; margin-bottom: 4px; font-size: 0.88rem; display: flex; align-items: flex-start; gap: 8px;">
@@ -352,7 +358,7 @@ function toggleIngCheck(circleEl) {
 function updateTimelineProgress(timelineContainer, totalSteps) {
     const completedCount = timelineContainer.querySelectorAll('.timeline-step-item.completed').length;
     const percent = Math.round((completedCount / totalSteps) * 100);
-
+    
     const textEl = document.getElementById('focus-progress-text');
     const barEl = document.getElementById('focus-progress-bar');
     if (textEl && barEl) {
@@ -409,7 +415,7 @@ function closeFocusStage() {
 
     const anchorIngredient = ingredients[0];
     document.getElementById('focus-anchor-label').innerText = anchorIngredient.name;
-
+    
     const anchorInput = document.getElementById('focus-anchor-input');
     anchorInput.value = anchorIngredient.base;
     anchorInput.setAttribute('data-base', anchorIngredient.base);
@@ -474,7 +480,7 @@ function closeFocusStage() {
     document.getElementById('focus-btn-download').onclick = () => {
         issueRecipeCardFromFocus(recipeId, recipe.title, recipe.img, difficulty, bakingTip, cheers);
     };
-
+    
     // 블로그 버튼: 레시피 blogUrl 연동
     const blogBtn = document.getElementById('focus-btn-blog');
     if (blogBtn) {
@@ -489,20 +495,20 @@ function closeFocusStage() {
             blogBtn.style.pointerEvents = 'none';
         }
     }
-
+    
     // 룩북 버튼: 레시피 path 연동
     const lookbookBtn = document.getElementById('focus-btn-lookbook');
     if (lookbookBtn) {
         const id = Number(recipe.id);
         const isChristmas = [20, 21, 22, 23, 24, 25, 26].includes(id);
         const isHalloween = [4, 9, 15, 18].includes(id);
-
+        
         if (recipe.path || isChristmas || isHalloween) {
             // 버튼 활성화 스타일 복원
             lookbookBtn.style.opacity = '1';
             lookbookBtn.style.pointerEvents = 'auto';
             lookbookBtn.onclick = () => { closeFocusStage(); };
-
+            
             // 크리스마스 및 할로윈 레시피에 대해 이전에 만들어 둔 룩북(스페셜 화보북) 화면으로 연동
             if (isChristmas) {
                 // Vol 번호는 id + 1 매핑
@@ -534,7 +540,7 @@ function closeFocusStage() {
         // 기존 인라인 높이 초기화
         leftCard.style.height = '';
         rightCard.style.height = '';
-
+        
         // 렌더링이 완료된 후 높이를 정확히 측정하기 위해 짧은 타임아웃 실행
         setTimeout(() => {
             if (window.innerWidth > 900) { // 데스크톱 모드에서만 높이 동일화 적용
@@ -561,16 +567,17 @@ function switchFocusTab(tabId) {
     const tabStepsBtn = document.getElementById('btn-tab-steps');
     const tabTroubleBtn = document.getElementById('btn-tab-trouble');
 
+    
     const contentCalc = document.getElementById('focus-tab-calc-content');
     const contentSteps = document.getElementById('focus-tab-steps-content');
     const contentTrouble = document.getElementById('focus-tab-trouble-content');
-
+    
     if (!tabCalcBtn || !tabStepsBtn || !tabTroubleBtn || !contentCalc || !contentSteps || !contentTrouble) return;
 
     tabCalcBtn.classList.remove('active');
     tabStepsBtn.classList.remove('active');
     tabTroubleBtn.classList.remove('active');
-
+    
     contentCalc.style.display = 'none';
     contentSteps.style.display = 'none';
     contentTrouble.style.display = 'none';
@@ -597,7 +604,7 @@ function toggleTimelineStepComplete(itemEl, totalSteps) {
     itemEl.classList.toggle('completed');
     const checkIcon = itemEl.querySelector('.step-check-icon');
     const numText = itemEl.querySelector('.step-num-text');
-
+    
     if (itemEl.classList.contains('completed')) {
         if (checkIcon) checkIcon.style.display = 'block';
         if (numText) numText.style.display = 'none';
@@ -605,7 +612,7 @@ function toggleTimelineStepComplete(itemEl, totalSteps) {
         if (checkIcon) checkIcon.style.display = 'none';
         if (numText) numText.style.display = 'block';
     }
-
+    
     updateTimelineProgress(itemEl.parentNode, totalSteps);
 }
 
@@ -622,7 +629,7 @@ function updateTimelineProgress(timelineContainer, totalSteps) {
     const completedCount = timelineContainer.querySelectorAll('.timeline-step-item.completed').length;
 
     const percent = Math.round((completedCount / totalSteps) * 100);
-
+    
     const textEl = document.getElementById('focus-progress-text');
     const barEl = document.getElementById('focus-progress-bar');
     if (textEl && barEl) {
@@ -636,7 +643,7 @@ function closeFocusStage() {
     if (overlay) {
         overlay.classList.remove('active');
         document.body.style.overflow = '';
-
+        
         // 마법책 테마 클래스 제거 및 리셋
         const board = overlay.querySelector('.atelier-focus-board');
         if (board) {
@@ -677,15 +684,16 @@ function updateDynamicBakingTip(recipeId, scale) {
         baseCheers = "코코넛의 바삭함 and 단팥의 든든함! 가벼운 등산이나 소풍 가기 전 최고의 영양 간식입니다. 🥥";
     }
 
+
     const cardBack = document.querySelector(`#card-${id} .card-back`);
     if (!cardBack) return;
-
+    
     const inputs = cardBack.querySelectorAll('.ing-input');
     const anchorInput = inputs[0];
     const anchorBase = parseFloat(anchorInput.getAttribute('data-base')) || 1;
     const anchorVal = parseFloat(anchorInput.value) || 0;
     if (!cardBack) return;
-
+    
     const inputs = cardBack.querySelectorAll('.ing-input');
     const anchorInput = inputs[0];
     const anchorBase = parseFloat(anchorInput.getAttribute('data-base')) || 1;
@@ -753,6 +761,7 @@ function triggerPageConfetti() {
     `;
     document.body.appendChild(canvas);
 
+
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
@@ -810,7 +819,7 @@ function triggerPageConfetti() {
     }
 
     render();
-
+    
     setTimeout(() => {
         particles.forEach(p => p.speed = p.speed * 1.5);
     }, 4000);
@@ -821,17 +830,17 @@ function shareRecipe(event, title) {
         event.preventDefault();
         event.stopPropagation();
     }
-
+    
     // 1. 현재 화면에 표시된 재료 명칭과 계산된 계량값 수집
     const anchorLabel = document.getElementById('focus-anchor-label')?.innerText || '';
     const anchorInput = document.getElementById('focus-anchor-input');
     const anchorValue = anchorInput ? anchorInput.value : '';
-
+    
     let ingredientText = '';
     if (anchorLabel && anchorValue) {
         ingredientText += `- ${anchorLabel}: ${anchorValue}g\n`;
     }
-
+    
     const rows = document.querySelectorAll('.focus-ingredient-calc-row');
     rows.forEach(row => {
         const nameEl = row.querySelector('.focus-ing-name');
@@ -854,7 +863,7 @@ function shareRecipe(event, title) {
     } else {
         yieldText = yieldText.replace('분량:', '').trim();
     }
-
+    
     // 3. 복사할 텍스트 템플릿 구성
     let copyText = `[프로젝트 두부] ${title} 레시피 💌\n\n`;
     if (yieldText) {
@@ -863,7 +872,7 @@ function shareRecipe(event, title) {
     if (ingredientText) {
         copyText += `■ 맞춤 계량 재료:\n${ingredientText}\n`;
     }
-
+    
     const shareUrl = window.location.origin + window.location.pathname;
     copyText += `■ 레시피 상세 및 계산기 보러가기:\n${shareUrl}`;
 
@@ -907,13 +916,13 @@ function toggleUnwrap(event, id) {
     }
     const cards = document.querySelectorAll('.showcase-card');
     const targetCard = document.getElementById('card-' + id);
-
+    
     cards.forEach(card => {
         if (card !== targetCard) {
             card.classList.remove('unwrapped');
         }
     });
-
+    
     if (targetCard) {
         targetCard.classList.toggle('unwrapped');
         if (targetCard.classList.contains('unwrapped')) {
@@ -946,7 +955,7 @@ let bookshelfState = {
 function renderArchive(projects) {
     const container = document.getElementById('bookshelf-3d');
     if (!container) return;
-
+    
     // 마법서 강제 닫기
     closeMagicBook();
 
@@ -957,18 +966,19 @@ function renderArchive(projects) {
         container.innerHTML = `<div class="no-results" style="color: #f6df9a; font-family: 'Noto Serif KR', serif; text-align: center; padding: 50px 0; font-size: 1.1rem; width: 100%;">검색 결과에 맞는 레시피가 없습니다.</div>`;
         return;
     }
-
+    
     // 책이 늘어나도 서가가 세로로 길어지지 않게 2개 층(2 Rows)으로 책을 나눕니다.
     const half = Math.ceil(projects.length / 2);
     const shelf1Projects = projects.slice(0, half);
     const shelf2Projects = projects.slice(half);
-
+    
     const renderShelf = (shelfProjects, shelfNum) => {
 
         let booksHtml = '';
         for (let i = 0; i < shelfProjects.length; i++) {
             const p = shelfProjects[i];
             const seed = p.id;
+
 
             // 책등 테마 색상 정하기 (가죽 텍스처와 더 매칭되도록 앤틱 조율)
             let themeClass = 'spine-theme-plum';
@@ -996,7 +1006,7 @@ function renderArchive(projects) {
 function renderArchive(projects) {
     const container = document.getElementById('bookshelf-3d');
     if (!container) return;
-
+    
     // 마법서 강제 닫기
     closeMagicBook();
 
@@ -1007,12 +1017,12 @@ function renderArchive(projects) {
         container.innerHTML = `<div class="no-results" style="color: #f6df9a; font-family: 'Noto Serif KR', serif; text-align: center; padding: 50px 0; font-size: 1.1rem; width: 100%;">검색 결과에 맞는 레시피가 없습니다.</div>`;
         return;
     }
-
+    
     // 책이 늘어나도 서가가 세로로 길어지지 않게 2개 층(2 Rows)으로 책을 나눕니다.
     const half = Math.ceil(projects.length / 2);
     const shelf1Projects = projects.slice(0, half);
     const shelf2Projects = projects.slice(half);
-
+    
     const renderShelf = (shelfProjects, shelfNum) => {
         let booksHtml = '';
         for (let i = 0; i < shelfProjects.length; i++) {
@@ -1058,7 +1068,7 @@ function renderArchive(projects) {
                 16: "순두부 밤<br>파운드케이크",
 
     render();
-
+    
     setTimeout(() => {
         particles.forEach(p => p.speed = p.speed * 1.5);
     }, 4000);
@@ -1069,17 +1079,17 @@ function shareRecipe(event, title) {
         event.preventDefault();
         event.stopPropagation();
     }
-
+    
     // 1. 현재 화면에 표시된 재료 명칭과 계산된 계량값 수집
     const anchorLabel = document.getElementById('focus-anchor-label')?.innerText || '';
     const anchorInput = document.getElementById('focus-anchor-input');
     const anchorValue = anchorInput ? anchorInput.value : '';
-
+    
     let ingredientText = '';
     if (anchorLabel && anchorValue) {
         ingredientText += `- ${anchorLabel}: ${anchorValue}g\n`;
     }
-
+    
     const rows = document.querySelectorAll('.focus-ingredient-calc-row');
     rows.forEach(row => {
         const nameEl = row.querySelector('.focus-ing-name');
@@ -1116,6 +1126,7 @@ ent.createElement("textarea");
 nst duration = (Math.random() * 3 + 2.5).toFixed(2);
     bookshelfState.targetX = Math.max(bookshelfState.minX, Math.min(newX, bookshelfState.maxX));
 }
+
 
     const handleDragMove = (e) => {
         if (!bookshelfState.isDragging) return;
@@ -1156,13 +1167,13 @@ function toggleUnwrap(event, id) {
     }
     const cards = document.querySelectorAll('.showcase-card');
     const targetCard = document.getElementById('card-' + id);
-
+    
     cards.forEach(card => {
         if (card !== targetCard) {
             card.classList.remove('unwrapped');
         }
     });
-
+    
     if (targetCard) {
 
         targetCard.classList.toggle('unwrapped');
@@ -1196,7 +1207,7 @@ let bookshelfState = {
 function renderArchive(projects) {
     const container = document.getElementById('bookshelf-3d');
     if (!container) return;
-
+    
     // 마법서 강제 닫기
     closeMagicBook();
 
@@ -1207,12 +1218,12 @@ function renderArchive(projects) {
         container.innerHTML = `<div class="no-results" style="color: #f6df9a; font-family: 'Noto Serif KR', serif; text-align: center; padding: 50px 0; font-size: 1.1rem; width: 100%;">검색 결과에 맞는 레시피가 없습니다.</div>`;
         return;
     }
-
+    
     // 책이 늘어나도 서가가 세로로 길어지지 않게 2개 층(2 Rows)으로 책을 나눕니다.
     const half = Math.ceil(projects.length / 2);
     const shelf1Projects = projects.slice(0, half);
     const shelf2Projects = projects.slice(half);
-
+    
     const renderShelf = (shelfProjects, shelfNum) => {
         let booksHtml = '';
         for (let i = 0; i < shelfProjects.length; i++) {
@@ -1331,19 +1342,19 @@ enderShelf(shelf2Projects, 2);
             const star = document.createElement('span');
             star.className = 'star-sparkle';
             if (Math.random() < 0.25) star.classList.add('star-large');
-
+            
             const top = (Math.random() * 96 + 2).toFixed(2);
             const left = (Math.random() * 96 + 2).toFixed(2);
             const scale = (Math.random() * 0.8 + 0.6).toFixed(2);
             const delay = (Math.random() * 5).toFixed(2);
             const duration = (Math.random() * 3 + 2.5).toFixed(2);
-
+            
             star.style.top = `${top}%`;
             star.style.left = `${left}%`;
             star.style.transform = `scale(${scale})`;
             star.style.animationDelay = `${delay}s`;
             star.style.animationDuration = `${duration}s`;
-
+            
             sparklesContainer.appendChild(star);
         }
         wrapper.insertBefore(sparklesContainer, wrapper.firstChild);
@@ -1366,7 +1377,7 @@ function recalculateBookshelfBounds() {
 
         event.stopPropagation();
     }
-
+    
     const viewport = document.querySelector('.magic-book-viewport');
     const overlay = document.getElementById('magic-book-overlay');
     if (!viewport || !overlay) return;
@@ -1447,7 +1458,7 @@ rem; line-height: 1.6; word-break: keep-all; display: flex; flex-direction: colu
                         <div class="magic-quote">
                             <i class="fa-solid fa-quote-left text-xs opacity-60 mr-1"></i>
                             ${emotionalQuote}
-
+                            
 iv class="magic-page-right">
         chefTipHtml = `
             <div style="font-weight: 800; font-size: 0.82rem; color: #8c6426; margin-bottom: 6px;">👨‍🍳 글로벌 비건 셰프 가이드</div>
@@ -1471,7 +1482,7 @@ iv class="magic-page-right">
     const handleDragEnd = () => {
         if (!bookshelfState.isDragging) return;
         bookshelfState.isDragging = false;
-
+        
         // 최종적으로 정해진 스크롤 범위를 벗어나지 않도록 복원
         bookshelfState.targetX = Math.max(bookshelfState.minX, Math.min(bookshelfState.targetX, bookshelfState.maxX));
     };
@@ -1490,10 +1501,10 @@ iv class="magic-page-right">
     wrapper.addEventListener('wheel', (e) => {
         // 브라우저 기본 세로 스크롤 방지
         e.preventDefault();
-
+        
         const delta = e.deltaY || e.deltaX;
         let newX = bookshelfState.targetX - delta * 1.5; // 휠 속도 감도 조절
-
+        
         // 범위를 벗어나지 않게 clamping
         bookshelfState.targetX = Math.max(bookshelfState.minX, Math.min(newX, bookshelfState.maxX));
     }, { passive: false });
@@ -1505,7 +1516,7 @@ iv class="magic-page-right">
 
         const row1 = document.getElementById('shelf-row-1');
         const row2 = document.getElementById('shelf-row-2');
-
+        
         let wrapperWidth = wrapper.offsetWidth;
         if (wrapperWidth <= 0) {
 
@@ -1517,7 +1528,7 @@ iv class="magic-page-right">
                     <div class="magic-page-right" style="display: flex; flex-direction: column;">
                         <div class="magic-meta-vol">PREMIUM ARCHIVE VOL.${p.id}</div>
                         <h3 class="magic-meta-title" style="margin-bottom: 8px;">${p.title}</h3>
-
+                        
                         <!-- 3대 탭 메뉴 -->
                         <div class="magic-book-tabs" style="display: flex; gap: 16px; margin-bottom: 16px; border-bottom: 1px solid rgba(88,65,46,0.15); padding-bottom: 8px; font-size: 0.85rem; font-weight: 800;">
                             <button class="magic-tab-btn active" id="magic-tab-btn-calc" onclick="switchMagicBookTab('calc')" style="background:none; border:none; padding: 2px 4px; font-family:'Noto Serif KR', serif; font-weight:800; color:#3A6958; cursor:pointer; border-bottom: 2px solid #3A6958; transition: all 0.2s; outline:none;">⚖️ 계량 계산</button>
@@ -1526,7 +1537,7 @@ iv class="magic-page-right">
                         </div>
 
                         <!-- 탭 콘텐츠 영역 -->
-                        <div class="magic-tab-contents-wrapper" style="flex: 1; display: flex; flex-direction: column; overflow-y: auto; max-height: 580px; padding-right: 4px; margin-bottom: 20px;">
+                        <div class="magic-tab-cont
 
     renderArchive(filtered);
 }
@@ -1536,7 +1547,7 @@ function searchRecipes() {
     if (!input) return;
     const rawQuery = input.value.trim();
     const query = rawQuery.toLowerCase();
-
+    
                                         ${subIngredientsHtml}
                                     </div>
                                     <input type="range" class="magic-range-slider" min="${Math.round(mainIng.base * 0.3)}" max="${Math.round(mainIng.base * 3)}" value="${mainIng.base}" oninput="document.getElementById('magic-main-input-${p.id}').value = this.value; onMagicBookAnchorChange(${p.id}, ${mainIng.base}, this.value)">
@@ -1574,6 +1585,7 @@ function searchRecipes() {
 
     // 마법 소환 시각 효과 큐 실행
     overlay.classList.add('active');
+    
 
     const spellbook = document.getElementById('magic-spellbook');
     // 1단계: 책 소환 (비행 및 페이드인)
@@ -1593,12 +1605,13 @@ function searchRecipes() {
 function closeMagicBook() {
     const spellbook = document.getElementById('magic-spellbook');
     const overlay = document.getElementById('magic-book-overlay');
-
+    
     if (spellbook) {
         spellbook.classList.remove('open');
         spellbook.classList.remove('summoned');
     }
 
+    
     // 리사이즈 시 범위를 다시 재정렬
     window.addEventListener('resize', recalculateBookshelfBounds);
 
@@ -1609,7 +1622,7 @@ function openMagicBook(event, id) {
     if (event) {
         event.stopPropagation();
     }
-
+    
     const viewport = document.querySelector('.magic-book-viewport');
     const overlay = document.getElementById('magic-book-overlay');
     if (!viewport || !overlay) return;
@@ -1643,11 +1656,11 @@ function onMagicBookAnchorChange(id, baseValue, currentValue) {
 function issueRecipeCardFromMagicBook(id, title, img) {
     const mainInput = document.getElementById(`magic-main-input-${id}`);
     if (!mainInput) return;
-
+    
     const mainRow = mainInput.closest('.magic-calc-row-main');
     const anchorName = mainRow.querySelector('.magic-ing-name').innerText.replace(' (기준)', '');
     const anchorVal = parseFloat(mainInput.value) || 0;
-
+    
     const p = PROJECTS.find(item => item.id === id);
     if (!p) return;
     const ingredients = INGREDIENT_DICT[id] || [];
@@ -1701,6 +1714,7 @@ function issueRecipeCardFromMagicBook(id, title, img) {
         `;
     }
 
+
     const troubleHtml = `
         <div style="font-size: 0.85rem; line-height: 1.7; word-break: keep-all; display: flex; flex-direction: column; gap: 15px;">
             <div>
@@ -1717,11 +1731,11 @@ function issueRecipeCardFromMagicBook(id, title, img) {
 
     // 하단 이동 버튼군 3개 세트 정의
     const downloadBtn = `<button class="btn-magic-action download" onclick="issueRecipeCardFromMagicBook(${p.id}, '${p.title.replace(/'/g, "\\'")}', '${p.img}')"><i class="fa-solid fa-download"></i> 레시피 카드로 소장하기</button>`;
-
+    
     const blogBtn = p.blogUrl
         ? `<a href="${p.blogUrl}" class="btn-magic-action blog" target="_blank"><i class="fa-solid fa-book-open"></i> 블로그 가기 📖</a>`
         : `<button class="btn-magic-action blog" onclick="alert('공식 블로그 가이드가 준비 중입니다.')">가이드 준비 중 🔒</button>`;
-
+        
     const lookbookBtn = `<a href="${p.path}" class="btn-magic-action look
 k) {
 
@@ -1735,7 +1749,7 @@ k) {
                 <!-- 빈티지 양필지 속지 (Parchment Pages) -->
                 <div class="magic-pages-container">
                     <button class="btn-magic-close" onclick="closeMagicBook()">&times;</button>
-
+                    
                     <!-- 좌측 페이지: 화보 -->
                     <div class="magic-page-left">
                         <div class="magic-page-book-title" style="font-family:'Noto Serif KR', serif; font-size: 0.8rem; color: #3A6958; font-weight:700; letter-spacing: 2px; margin-bottom: 12px; text-align: left;">프로젝트 두부</div>
@@ -1743,6 +1757,7 @@ k) {
                             <img src="${bookImg}" alt="${p.title}" onerror="this.style.display='none'; document.getElementById('magic-photo-fallback-${p.id}').style.display='flex';">
                             <div class="magic-photo-fallback" id="magic-photo-fallback-${p.id}" style="display:none; width:100%; height:100%; align-items:center; justify-content:center; flex-direction:column; background: linear-gradient(135deg, #e4d7bd, #cbbca0); color: #5c4538; padding: 20px; box-sizing: border-box; text-align: center;">
 
+ 
                         <!-- Spec Grid -->
                         <div class="hud-spec-grid font-serif">
                             <div class="spec-row">
@@ -1758,7 +1773,7 @@ k) {
                                 <span class="spec-value">${specs.method}</span>
                             </div>
                         </div>
-
+ 
                         <!-- Footer Overlay Block -->
                         <div class="hud-footer">
 
@@ -1807,7 +1822,7 @@ function renderSeasonalEvents() {
                         <div class="hud-title-block">
                             ${titleHtml}
                         </div>
-
+ 
                         <!-- Spec Grid -->
                         <div class="hud-spec-grid font-serif">
                             <div class="spec-row">
@@ -1838,7 +1853,7 @@ function renderSeasonalEvents() {
 function closeMagicBook() {
     const spellbook = document.getElementById('magic-spellbook');
     const overlay = document.getElementById('magic-book-overlay');
-
+    
     if (spellbook) {
         spellbook.classList.remove('open');
         spellbook.classList.remove('summoned');
@@ -1911,7 +1926,7 @@ function switchMagicBookTab(tabId) {
                         <div class="page-peel-hint" onclick="openFocusStage(${p.id})"></div>
                         <div class="showcase-img" onclick="openFocusStage(${p.id})">
                             <img src="${p.img}" alt="${p.title}">
-
+       
                <h3 class="serif showcase-title">${p.title}</h3>
 let currentThemeId = '';
 let mousePos = { x: 0, y: 0 };
@@ -1919,7 +1934,7 @@ let particles = [];
 let transitionProgress = 0;
                             <p class="showcase-desc">${p.desc}</p>
                             ${p.emotionalQuote ? `<p class="showcase-quote" style="font-family: var(--font-playfair), serif; font-style: italic; font-size: 0.73rem; color: #8D6E63; margin-top: 10px; margin-bottom: 5px; word-break: keep-all; line-height: 1.4;"><i class="fa-solid fa-quote-left" style="font-size: 0.55rem; color: var(--dubu-mint-accent); margin-right: 5px; opacity: 0.7;"></i>${p.emotionalQuote}<i class="fa-solid fa-quote-right" style="font-size: 0.55rem; color: var(--dubu-mint-accent); margin-left: 5px; opacity: 0.7;"></i></p>` : ''}
-
+                            
                             <div class="card-action-bar">
                                 <button class="flip-btn" onclick="openFocusStage(${p.id})">
                                     <i class="fa-solid fa-gift"></i> 맞춤 분량 계산 🧮
@@ -1930,7 +1945,7 @@ let transitionProgress = 0;
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="card-back">
                         <div class="card-back-header">
                             <div class="back-vol">Atelier Scale</div>
@@ -1957,7 +1972,7 @@ let transitionProgress = 0;
     draw(ctx) {
         ctx.save();
         ctx.globalAlpha = Math.max(0, this.opacity);
-
+        
         if (this.type === 'heart') {
             ctx.fillStyle = `rgba(214, 51, 132, ${this.opacity})`;
             ctx.translate(this.x, this.y);
@@ -1990,7 +2005,7 @@ let transitionProgress = 0;
                         ${sub.vols ? `<span class="flip-card-vols">VOL. ${sub.vols}</span>` : ''}
                     </div>
         }
-
+        
         ctx.restore();
     }
 }
@@ -2007,14 +2022,14 @@ function initCinematicCanvas() {
     cinematicCanvas = document.getElementById('cinematic-canvas');
     if (!cinematicCanvas) return;
     cinematicCtx = cinematicCanvas.getContext('2d');
-
+    
     window.addEventListener('resize', resizeCinematicCanvas);
     resizeCinematicCanvas();
-
+    
     document.addEventListener('mousemove', (e) => {
         mousePos.x = e.clientX;
         mousePos.y = e.clientY;
-
+        
         // 파티클 스폰 로직 (로맨틱 하트 효과 비활성화)
         if (currentThemeId === 'traditional' && Math.random() < 0.35) {
             particles.push(new Particle(mousePos.x, mousePos.y, 'ink'));
@@ -2025,26 +2040,26 @@ function initCinematicCanvas() {
 // 트랜지션 애니메이션 연출 루프
 function animateCinematic() {
     if (!cinematicCtx) return;
-
+    
     const width = cinematicCanvas.width;
     const height = cinematicCanvas.height;
-
+    
     cinematicCtx.clearRect(0, 0, width, height);
-
+    
     // 1. 오프닝 트랜지션 연출
     if (isTransitioning) {
         transitionProgress += 0.02;
         if (transitionProgress >= 1) {
             isTransitioning = false;
         }
-
+        
         if (currentThemeId === 'romantic') {
             // Melting Cream 연출: 위에서 핑크색 크림이 웨이브를 치며 흘러내려 화면을 덮음
             cinematicCtx.fillStyle = '#FFCCD5';
             cinematicCtx.beginPath();
             cinematicCtx.moveTo(0, 0);
             cinematicCtx.lineTo(width, 0);
-
+            
             // 웨이브 형상
             const waveHeight = 40;
             const progressHeight = height * 
@@ -2100,19 +2115,19 @@ function animateCinematic() {
             gradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
             gradient.addColorStop(0.5, 'rgba(0, 0, 0, 0.8)');
             gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
+            
             cinematicCtx.fillStyle = gradient;
             cinematicCtx.beginPath();
 
             gradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
             gradient.addColorStop(0.5, 'rgba(0, 0, 0, 0.8)');
             gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
+            
             cinematicCtx.fillStyle = gradient;
             cinematicCtx.beginPath();
             cinematicCtx.arc(mousePos.x, mousePos.y, 160, 0, Math.PI * 2);
             cinematicCtx.fill();
-
+            
             cinematicCtx.restore();
         } 
         else if (currentThemeId === 'christmas') {
@@ -2122,7 +2137,7 @@ function animateCinematic() {
             }
         }
     }
-
+    
     // 3. 파티클 업데이트 및 드로우
     for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
@@ -2136,11 +2151,11 @@ function openTheme(themeId) {
     if (!theme) return;
 
     currentThemeId = themeId;
-
+    
     if (!cinematicCanvas) {
         initCinematicCanvas();
     }
-
+    
     const stage = document.getElementById('cinematic-stage');
     if (!stage) return;
             div.innerHTML = `<img src="${encodeURI(node.img)}" alt="${node.title}">`;
@@ -2161,11 +2176,11 @@ function openTheme(themeId) {
                             <h4 class="serif back-title">${p.title}</h4>
                             <p class="back-subtitle">어떤 숫자를 바꾸든 비례 계산됩니다</p>
                         </div>
-
+                        
                         <div class="calculator-inputs-area">
                             ${ingredientsInputHtml}
                         </div>
-
+                        
                         <div class="practical-guide-board">
                             <div class="guide-pills-row">
                                 <span class="guide-pill difficulty">
@@ -2175,7 +2190,7 @@ function openTheme(themeId) {
                             </div>
                             <p class="guide-cheers">"${cheers}"</p>
                         </div>
-
+                        
                         <div class="card-back-action-bar">
                             <button class="btn-issue-card" onclick="issueRecipeCard(${p.id}, '${p.title.replace(/'/g, "\\'")}', '${p.img}')">
                                 <i class="fa-solid fa-receipt"></i> 레시피 발행 📄
@@ -2198,7 +2213,7 @@ function openTheme(themeId) {
             `;
         }).join('');
     }
-
+    
     document.body.style.overflow = 'hidden';
     animateCinematic();
 }
@@ -2206,7 +2221,7 @@ function openTheme(themeId) {
 function closeCinematicStage() {
     const stage = document.getElementById('cinematic-stage');
     if (!stage) return;
-
+    
     stage.style.opacity = '0';
     setTimeout(() => {
         stage.style.display = 'none';
@@ -2297,6 +2312,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateActiveNavLink(); // 페이지 로드 후 즉시 초기화
 });
 
+
             if (href && href.startsWith('#')) {
                 link.classList.remove('active');
                 if (href === `#${activeSectionId}`) {
@@ -2327,6 +2343,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateActiveNavLink(); // 페이지 로드 후 즉시 초기화
 });
 
+
+
     // 메뉴 클릭 시 즉시 active 클래스를 부여하고 스크롤 감지를 일시 잠금
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -2347,6 +2365,53 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', updateActiveNavLink);
     updateActiveNavLink(); // 페이지 로드 후 즉시 초기화
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
@@ -2394,6 +2459,20 @@ function renderSeasonalEvents() {
         </div>
     `).join('');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }
@@ -2502,6 +2581,14 @@ function renderAccordionArtbook() {
             ? `<div class="coming-soon-glowing-core" sty
 if">${p.title}${p.isNew ? ` <span style="display: inline-block; background: #FF3D71; color: white; font-family: var(--font-playfair), serif; font-weight: 700; font-size: 0.65rem; padding: 2px 8px; border-radius: 20px; vertical-align: middle; margin-left: 10px; box-shadow: 0 0 10px rgba(255, 61, 113, 0.4); text-transform: uppercase; letter-spacing: 0.5px;">NEW</span>` : ''}</h3>`;
 
+
+
+
+
+
+
+
+
         const metaText = p.isComingSoon ? "RECIPE FILE // COMING SOON" : `RECIPE FILE // Vol.${p.id}`;
         const actionBtnText = p.isComingSoon ? `공개 예정 <i class="fa-solid fa-lock" style="margin-left: 5px;"></i>` : `상세보기 <i class="fa-solid fa-chevron-right"></i>`;
 
@@ -2512,15 +2599,24 @@ if">${p.title}${p.isNew ? ` <span style="display: inline-block; background: #FF3
                     <div class="slice-bg" style="${bgStyle}">
                         ${comingSoonOverlay}
                     </div>
-
+                    
                     <!-- Collapsed vertical/horizontal title view -->
                     <div class="slice-collapsed-overlay">
                         <span class="collapsed-title font-serif">${shortTitle}</span>
                         <span class="collapsed-badge" style="background-color: ${p.themeColor};"></span>
                     </div>
-
+ 
                     <!-- Active Tactical HUD overlay content -->
                     <div class="slice-active-hud">
+
+
+
+
+
+
+
+
+
 
 }
 
@@ -2545,7 +2641,7 @@ function handleSliceClick(event, projectId) {
                                 <span class="spec-value">${specs.method}</span>
                             </div>
                         </div>
-
+ 
                         <!-- Footer Overlay Block -->
                         <div class="hud-footer">
                             <div class="hud-essence">
@@ -2582,7 +2678,7 @@ function handleSliceClick(event, projectId) {
             p.draw(cinematicCtx);
         }
     }
-
+    
 // ==========================================================================
 // 14. Sensory Accordion Artbook - 더 아이보리 캔버스 동적 렌더링 엔진
 // ==========================================================================
@@ -2667,6 +2763,7 @@ class Particle {
         comingSoonItem.title = `Vol.${comingSoonVol} Coming Soon`;
     }
 
+
     const specsData = {
         40: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 구움" },
         39: { texture: "꾸덕함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
@@ -2747,7 +2844,7 @@ class Particle {
                                 <span class="spec-value">${specs.method}</span>
                             </div>
                         </div>
-
+ 
                         <!-- Footer Overlay Block -->
                         <div class="hud-footer">
                             <div class="hud-essence">
@@ -2794,6 +2891,7 @@ function renderSeasonalEvents() {
     const container = document.getElementById('events-container');
     if (!container) return;
 
+
     container.innerHTML = THEMES.map(theme => `
         <div class="film-strip-card theme-card-${theme.id}" onclick="openTheme('${theme.id}')">
             <div class="film-strip-img-wrapper">
@@ -2815,6 +2913,12 @@ function renderSeasonalEvents() {
 // ==========================================================================
 // 🎬 [신설] 극장식 인터랙티브 갤러리 애니메이션 엔진 (Cinematic Engine)
 // ==============================
+  
+
+
+
+
+
 
 let transitionProgress = 0;
 let isTransitioning = false;
@@ -2856,7 +2960,7 @@ class Particle {
     draw(ctx) {
         ctx.save();
         ctx.globalAlpha = Math.max(0, this.opacity);
-
+        
         if (this.type === 'heart') {
             ctx.fillStyle = `rgba(214, 51, 132, ${this.opacity})`;
             ctx.translate(this.x, this.y);
@@ -2889,7 +2993,7 @@ class Particle {
             `;
         }).join('');
     }
-
+    
     document.body.style.overflow = 'hidden';
     animateCinematic();
 }
@@ -2897,7 +3001,7 @@ class Particle {
 function closeCinematicStage() {
 
     if (!stage) return;
-
+    
     stage.style.opacity = '0';
     setTimeout(() => {
         stage.style.display = 'none';
@@ -2942,7 +3046,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cinematicCtx.beginPath();
             cinematicCtx.moveTo(0, 0);
             cinematicCtx.lineTo(width, 0);
-
+            
             // 웨이브 형상
             const waveHeight = 40;
             const progressHeight = height * transitionProgress;
@@ -2958,7 +3062,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cinematicCtx.fillStyle = '#E8DCC4';
             const progressHeight = (height / 2) * (1 - transitionProgress);
             const progressWidth = (width / 2) * (1 - transitionProgress);
-
+            
             cinematicCtx.fillRect(0, 0, width, progressHeight); // Top
             cinematicCtx.fillRect(0, height - progressHeight, width, progressHeight); // Bottom
             cinematicCtx.fillRect(0, 0, progressWidth, height); // Left
@@ -2967,6 +3071,55 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (currentThemeId === 'halloween') {
             // 번쩍임 플래시 대신 고급스럽고 부드러운 암전(Fade-to-Black) 연출
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         p.update();
         if (p.opacity <= 0 || p.y > height + 20) {
             particles.splice(i, 1);
@@ -2974,7 +3127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             p.draw(cinematicCtx);
         }
     }
-
+    
     cinematicAnimId = requestAnimationFrame(animateCinematic);
 }
 
@@ -2983,36 +3136,45 @@ function openTheme(themeId) {
     if (!theme) return;
 
     currentThemeId = themeId;
-
+    
     if (!cinematicCanvas) {
         initCinematicCanvas();
     }
-
+    
     const stage = document.getElementById('cinematic-stage');
     if (!stage) return;
-
+    
     if (cinematicAnimId) {
         cancelAnimationFrame(cinematicAnimId);
     }
     particles = [];
     isTransitioning = true;
     transitionProgress = 0;
-
+    
     stage.className = `cinematic-stage theme-${themeId}-active`;
     stage.style.display = 'flex';
     stage.style.opacity = '0';
     setTimeout(() => {
         stage.style.opacity = '1';
     }, 10);
-
+    
     const tagEl = document.getElementById('cinematic-tag');
     const titleEl = document.getElementById('cinematic-title');
     const descEl = document.getElementById('cinematic-desc');
     const subGridEl = document.getElementById('cinematic-sub-grid');
-
+    
     if (tagEl) tagEl.textContent = theme.tag || 'SEASONAL';
 
 ubGridEl.innerHTML = theme.recipes.map(recipe => {
+
+
+
+
+
+
+
+
+
 
         }
     }
@@ -3031,7 +3193,7 @@ ubGridEl.innerHTML = theme.recipes.map(recipe => {
             `;
         }).join('');
     }
-
+    
     document.body.style.overflow = 'hidden';
     animateCinematic();
 }
@@ -3039,7 +3201,7 @@ ubGridEl.innerHTML = theme.recipes.map(recipe => {
 function closeCinematicStage() {
     const stage = document.getElementById('cinematic-stage');
     if (!stage) return;
-
+    
     stage.style.opacity = '0';
     setTimeout(() => {
         stage.style.display = 'none';
@@ -3143,4 +3305,567 @@ document.addEventListener('DOMContentLoaded', () => {
     updateActiveNavLink(); // 페이지 로드 후 즉시 초기화
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 "// 지능형 테마 생성기: 레시피의 ID, 카테고리, 경로, 제목을 분석하여 다채로운 시즌/테마별 가죽 표지 및 책등 색상을 반환합니다.\nfunction getRecipeTheme(recipe) {\n    if (!recipe) {\n        return {\n            themeColor: '#3a1d11', // 가죽 표지 기본색 (딥 앤틱 브라운)\n            themeGlow: 'rgba(197, 160, 89, 0.15)',\n            accentColor: '#c5a059',\n            spineColor1: '#251109', // 책등 외곽 그라디언트 1\n            spineColor2: '#3a1d11', // 책등 가죽 메인 2\n            spineTextColor: '#ebd090'\n        };\n    }\n\n    const id = Number(recipe.id);\n    const path = recipe.path || '';\n    const categories = recipe.categories || [];\n    const title = recipe.title || '';\n\n    // 1. 크리스마스 / 성탄절 (Christmas / Winter Wonderland)\n    const isChristmas = \n        path.includes('성탄절') || \n        path.includes('크리스마스') || \n        title.includes('슈톨렌') || \n        title.includes('부쉬드노엘') || \n        title.includes('블랙포레스트') || \n        title.includes('눈꽃') || \n        [20, 21, 22, 23, 24, 25, 26].includes(id);\n\n    if (isChristmas) {\n        // 크리스마스는 홀수/짝수 ID에 따라 트리 그린과 성탄 레드를 교차 적용하여 시각적 다양성 극대화\n        if (id % 2 === 0) {\n            // 딥 크리스마스 그린 테마\n            return {\n                themeColor: '#12301c',\n                themeGlow: 'rgba(46, 117, 72, 0.25)',\n                accentColor: '#e5a93b', // 화려한 골드 악센트\n                spineColor1: '#0a1d11',\n                spineColor2: '#12301c',\n                spineTextColor: '#ffd79e'\n            };\n        } else {\n            // 딥 크리스마스 레드 테마\n            return {\n                themeColor: '#7a1921',\n                themeGlow: 'rgba(191, 54, 66, 0.25)',\n                accentColor: '#ebd090', // 부드러운 황동 악센트\n                spin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

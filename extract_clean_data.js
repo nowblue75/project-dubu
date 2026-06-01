@@ -2,9 +2,16 @@ const fs = require('fs');
 const path = require('path');
 
 const brainDirs = [
-    '606129b3-ef74-4f61-b166-9901f38f3b49',
+    'e5eec926-7fec-4ca8-93a2-119ff04bc302',
+    '9b48c1a4-cd5c-40db-8d58-872f65caa33f',
+    'ac23fb61-c55d-4de3-a56e-fa0ff0b0801b',
+    '6e088353-7f9c-4c27-8f69-f6a552f98d8f',
+    'a8fc305f-0184-4d04-8007-ba57fe73ad17',
+    '48e4b924-3036-4882-954e-eb5eed9b607d',
     'c75feb6e-aded-4304-970d-a9831cf6b917',
-    '48e4b924-3036-4882-954e-eb5eed9b607d'
+    '606129b3-ef74-4f61-b166-9901f38f3b49',
+    '5a18828b-4933-4ed1-8fcf-f9217d64c13d',
+    'fe3ba6c6-dfb9-48ac-bf2c-e5807e93ce07'
 ];
 
 console.log('Searching for clean data and scripts in logs...');
