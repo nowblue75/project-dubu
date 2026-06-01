@@ -1,0 +1,15 @@
+{
+  "type": "TOOL_CALL_MULTI_REPLACE_FILE_CONTENT",
+  "stepIndex": 785,
+  "createdAt": "2026-05-31T00:20:13Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+  "content": "",
+  "args": {
+    "Description": "\"CSS/JS 캐시 무효화를 위한 버전 번호 업데이트\"",
+    "Instruction": "\"index.html에서 CSS와 JS 버전을 32.0으로 업데이트\"",
+    "ReplacementChunks": "[{\"AllowMultiple\":false,\"EndLine\":14,\"ReplacementContent\":\"    <link rel=\\\"stylesheet\\\" href=\\\"style_portal.css?v=32.0\\\">\",\"StartLine\":14,\"TargetContent\":\"    <link rel=\\\"stylesheet\\\" href=\\\"style_portal.css?v=31.0\\\">\"},{\"AllowMultiple\":false,\"EndLine\":326,\"ReplacementContent\":\"    <script src=\\\"dubu_data.js?v=32.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=32.0\\\"></script>\",\"StartLine\":325,\"TargetContent\":\"    <script src=\\\"dubu_data.js?v=31.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=31.0\\\"></script>\"}]",
+    "TargetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+    "toolAction": "\"버전 번호 업데이트\"",
+    "toolSummary": "\"캐시 무효화 버전 업데이트\""
+  }
+}

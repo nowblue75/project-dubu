@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 953,
+  "createdAt": "2026-05-30T01:29:13Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+    "EndLine": "1000",
+    "StartLine": "920",
+    "toolAction": "\"Viewing renderArchive function code\"",
+    "toolSummary": "\"View JS file content\""
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2262,
+  "createdAt": "2026-05-31T21:58:55Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "EndLine": "250",
+    "StartLine": "170",
+    "toolAction": "\"View focus stage in index.html\"",
+    "toolSummary": "\"Read focus stage markup in index.html\""
+  }
+}

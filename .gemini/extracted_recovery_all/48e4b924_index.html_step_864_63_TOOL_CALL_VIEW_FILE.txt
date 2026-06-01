@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 864,
+  "createdAt": "2026-05-30T01:18:00Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "EndLine": "103",
+    "StartLine": "76",
+    "toolAction": "\"index.html의 필터 버튼 영역 확인\"",
+    "toolSummary": "\"View index.html lines 76 to 103\""
+  }
+}

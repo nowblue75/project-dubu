@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 830,
+  "createdAt": "2026-05-30T22:18:51Z",
+  "filePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "I will update the resource loading queries in `index.html` from `v=30.0` to `v=31.0` using `multi_replace_file_content` to force browsers to load the updated database containing the deletion of \"순두부 녹차팥푸딩\"."
+}

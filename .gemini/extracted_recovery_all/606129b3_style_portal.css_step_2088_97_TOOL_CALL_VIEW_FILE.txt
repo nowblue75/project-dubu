@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2088,
+  "createdAt": "2026-05-31T21:37:49Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+    "EndLine": "1460",
+    "StartLine": "1430",
+    "toolAction": "\"Viewing style_portal.css focus-stage-left styling\"",
+    "toolSummary": "\"View style_portal.css L1430-1460\""
+  }
+}

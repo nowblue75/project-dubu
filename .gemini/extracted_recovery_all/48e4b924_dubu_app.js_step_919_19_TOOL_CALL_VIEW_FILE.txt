@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 919,
+  "createdAt": "2026-05-30T01:23:41Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+    "EndLine": "1050",
+    "StartLine": "950",
+    "toolAction": "\"Viewing book card rendering javascript code\"",
+    "toolSummary": "\"View JS file content\""
+  }
+}

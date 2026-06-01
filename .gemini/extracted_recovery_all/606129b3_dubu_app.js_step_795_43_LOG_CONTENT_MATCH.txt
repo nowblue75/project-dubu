@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 795,
+  "createdAt": "2026-05-31T00:21:47Z",
+  "filePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "아코디언 메인 화면에서 `openFocusStage`가 여전히 호출되고 있습니다. 이것이 바로 지금 해결해야 하는 핵심 작업입니다. 아코디언에서의 이미지 클릭, 상세 버튼 등이 여전히 기존 모달(`openFocusStage`)을 호출하고 있습니다.\n\n우선 1번 레시피 예시를 먼저 작업하고 검증하는 방식으로 진행합니다. 아코디언의 1번 레시피 진입 시에 `openFocusStage` 대신 `openMagicBook`을 호출하도록 변경합니다.\n\n먼저 해당 코드를 확인하겠습니다."
+}

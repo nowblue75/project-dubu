@@ -6,7 +6,7 @@
     <title>명절 에디션: 코코넛 단팥 찹쌀구움바</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=5.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
     <style>
         :root {
             --val-accent: #C5A17A;
@@ -17,7 +17,7 @@
         }
     </style>
 </head>
-<body class="lookbook-page antialiased selection:bg-[#C5A17A]/30">
+<body class="lookbook-page antialiased selection:bg-[#C5A17A]/30 theme-holiday">
 
     <div class="progress-bar"></div>
 
@@ -29,11 +29,15 @@
     <main id="main-content">
         <!-- 01. Intro -->
         <section class="active">
-            <div class="image-stage">
-                <img src="KakaoTalk_20251002_083305924.jpg" alt="구움바 메인" class="fade-in-up">
-                <div class="content-box side-right">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="KakaoTalk_20251002_083305924.jpg" alt="구움바 메인" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box side-right">
                     <h2 class="serif text-5xl mb-6">달콤한 전통,<br>찰진 위로</h2>
                     <p>전통 단팥의 묵직한 달콤함과 찹쌀의 쫄깃함.<br>코코넛의 이국적인 향기가 더해진 프리미엄 찹쌀구움바입니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -65,9 +69,14 @@
             <div class="image-stage">
                 <img src="KakaoTalk_20251002_083305924_06.jpg" alt="최종 확인">
                 <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
-                    <div class="footer-buttons">
-                        <a id="back-link-bottom" href="../index.html#latest" class="back-btn serif px-12 py-5 transition-all tracking-widest text-sm inline-block">← BACK TO PORTAL</a>
+                    
+                <div class="lookbook-footer-container">
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

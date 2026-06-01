@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2522,
+  "createdAt": "2026-06-01T00:40:27Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/36. 순두부화이트바크초콜릿_완/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/36. 순두부화이트바크초콜릿_완/index.html\"",
+    "EndLine": "60",
+    "StartLine": "1",
+    "toolAction": "\"View clean White Bark index.html top lines\"",
+    "toolSummary": "\"Read head of recipe 36 lookbook index.html\""
+  }
+}

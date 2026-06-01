@@ -6,7 +6,7 @@
     <title>할로윈 에디션: 순두부 블랙포레스트</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=5.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
     <style>
         :root {
             --val-accent: #9C27B0; /* halloween-purple */
@@ -20,7 +20,7 @@
     </style>
 </head>
 </head>
-<body class="lookbook-page antialiased selection:bg-purple-500/30">
+<body class="lookbook-page antialiased selection:bg-purple-500/30 theme-halloween">
 
     <div class="progress-bar"></div>
     <div id="event-description-container" style="display: none;">
@@ -36,11 +36,15 @@
     <main id="main-content">
         <!-- 01. Hero -->
         <section class="active">
-            <div class="image-stage">
-                <img src="0.jpg" alt="블랙포레스트 메인" class="fade-in-up">
-                <div class="hero-content">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="0.jpg" alt="블랙포레스트 메인" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box">
                     <span class="serif text-xs tracking-[0.4em] text-purple-400 mb-4 block">Seasonal Selection 2025</span>
                     <h1 class="serif text-6xl md:text-8xl mb-8 tracking-tight text-white" id="hero-title">순두부<br><span class="text-purple-500">블랙포레스트</span></h1>
+                </div>
                 </div>
             </div>
         </section>
@@ -77,10 +81,14 @@
                 </div>
                 <!-- 하단 브랜딩 요소 -->
                 <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
-                    <div class="footer-buttons">
-                        <a href="../[이벤트] 할로윈_20251029/index.html" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block" id="footer-back-link">← BACK TO EVENT</a>
-                        <a href="https://blog.naver.com/project_dubu/224089622187" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    
+                <div class="lookbook-footer-container">
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
+                </div>
                 </div>
             </div>
         </section>
@@ -115,7 +123,7 @@
             sections[0].style.display = 'none';
             if (sections[1]) sections[1].scrollIntoView();
 
-            const backLinks = [document.getElementById('back-link'), document.getElementById('footer-back-link')];
+            const backLinks = [document.getElementById('back-link'), document.getElementById('back-link-bottom')];
             backLinks.forEach(link => {
                 if (link) {
                     link.innerText = '← BACK TO EVENT';

@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 741,
+  "createdAt": "2026-05-31T00:17:21Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+    "EndLine": "2650",
+    "StartLine": "2606",
+    "toolAction": "\"RECIPE_STEPS_DB 1번 확인\"",
+    "toolSummary": "\"1번 레시피 스텝 확인\""
+  }
+}

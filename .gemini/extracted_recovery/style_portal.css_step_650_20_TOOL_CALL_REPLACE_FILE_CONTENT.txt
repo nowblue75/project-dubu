@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 650,
+  "createdAt": "2026-05-30T23:47:14Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+  "content": "\".magic-page-left .magic-photo-frame {\\n    width: 100%;\\n    height: 490px; /* 화보 액자 높이를 세로 비율에 맞게 대폭 확대 */\\n    border-radius: 12px;\\n    overflow: hidden;\\n    border: none; /* 둥근 모던 화보 톤을 위해 테두리 제거 */\\n    box-shadow: \\n        0 12px 36px rgba(0,0,0,0.12);\\n    background: #FAF8F5;\\n    z-index: 4;\\n}\\n\\n.magic-page-left .magic-photo-frame img {\\n    width: 100%;\\n    height: 100%;\\n    object-fit: cover;\\n    filter: none; /* 원본 이미지의 생생한 색감을 위해 세피아 필터 제거 */\\n    transition: transform 0.5s ease;\\n}\\n.magic-page-left .magic-photo-frame:hover img {\\n    transform: scale(1.03);\\n}\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"대표 화보 이미지의 테두리를 둥글게(12px) 마감하고 세피아 빈티지 필터를 제거하여, 스크린샷처럼 선명하고 고급스러운 모던 룩앤필로 연출함.\"",
+    "EndLine": "1526",
+    "Instruction": "\"좌측 대표 이미지의 프레임 테두리 두께 및 그림자, 필터 속성을 세련되게 수정합니다.\"",
+    "ReplacementContent": "\".magic-page-left .magic-photo-frame {\\n    width: 100%;\\n    height: 490px; /* 화보 액자 높이를 세로 비율에 맞게 대폭 확대 */\\n    border-radius: 12px;\\n    overflow: hidden;\\n    border: none; /* 둥근 모던 화보 톤을 위해 테두리 제거 */\\n    box-shadow: \\n        0 12px 36px rgba(0,0,0,0.12);\\n    background: #FAF8F5;\\n    z-index: 4;\\n}\\n\\n.magic-page-left .magic-photo-frame img {\\n    width: 100%;\\n    height: 100%;\\n    object-fit: cover;\\n    filter: none; /* 원본 이미지의 생생한 색감을 위해 세피아 필터 제거 */\\n    transition: transform 0.5s ease;\\n}\\n.magic-page-left .magic-photo-frame:hover img {\\n    transform: scale(1.03);\\n}\"",
+    "StartLine": "1504",
+    "TargetContent": "\".magic-page-left .magic-photo-frame {\\n    width: 100%;\\n    height: 490px; /* 화보 액자 높이를 세로 비율에 맞게 대폭 확대 */\\n    border-radius: 6px;\\n    overflow: hidden;\\n    border: 8px solid #FAF6EB; /* 두꺼운 수제 양필지 종이 프레임 */\\n    box-shadow: \\n        0 8px 24px rgba(45,30,20,0.25), \\n        inset 0 0 15px rgba(0,0,0,0.2);\\n    background: #dfcfac;\\n    z-index: 4;\\n}\\n\\n.magic-page-left .magic-photo-frame img {\\n    width: 100%;\\n    height: 100%;\\n    object-fit: cover;\\n    filter: sepia(15%) contrast(102%) brightness(96%); /* 고품격 빈티지 필터 */\\n    transition: transform 0.5s ease;\\n}\\n.magic-page-left .magic-photo-frame:hover img {\\n    transform: scale(1.05);\\n}\"",
+    "TargetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+    "toolAction": "\"style_portal.css 화보 액자 프레임 및 필터 변경\"",
+    "toolSummary": "\"style_portal.css 화보 액자 프레임 및 필터 변경\""
+  }
+}

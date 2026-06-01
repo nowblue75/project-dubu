@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2246,
+  "createdAt": "2026-05-31T21:56:36Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "EndLine": "25",
+    "StartLine": "1",
+    "toolAction": "\"View index.html header lines\"",
+    "toolSummary": "\"Read header lines of index.html\""
+  }
+}

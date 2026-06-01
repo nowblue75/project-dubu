@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 529,
+  "createdAt": "2026-05-30T07:46:51Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+  "content": "\".book-front-title {\\n    font-family: 'Noto Serif KR', serif;\\n    font-size: 0.82rem;\\n    font-weight: 700; /* 너무 두껍지 않아 선명한 굵기 */\\n    color: #fff3d1 !important; /* 따뜻하고 밝은 앤틱 골드 크림 */\\n    text-align: center;\\n    line-height: 1.45;\\n    word-break: keep-all;\\n    /* 얇은 정교한 외각 획과 소프트 쉐도우로 가독성 보장 */\\n    text-shadow: \\n        -0.5px -0.5px 0 rgba(0,0,0,0.95),  \\n         0.5px -0.5px 0 rgba(0,0,0,0.95),\\n        -0.5px  0.5px 0 rgba(0,0,0,0.95),\\n         0.5px  0.5px 0 rgba(0,0,0,0.95),\\n         0 3px 6px rgba(0,0,0,0.95),\\n         0 0 10px rgba(246, 223, 154, 0.15); /* 부드러운 골드 네온 */\\n    z-index: 2;\\n    margin: 8px 0;\\n    letter-spacing: 0.5px;\\n}\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"책 전면 표지 제목 가독성 고도화 및 얇은 고대비 엠보싱 섀도우 적용\"",
+    "EndLine": "1908",
+    "Instruction": "\"book-front-title의 font-weight와 text-shadow를 선명한 엠보싱 서체 스타일로 교체합니다.\"",
+    "ReplacementContent": "\".book-front-title {\\n    font-family: 'Noto Serif KR', serif;\\n    font-size: 0.82rem;\\n    font-weight: 700; /* 너무 두껍지 않아 선명한 굵기 */\\n    color: #fff3d1 !important; /* 따뜻하고 밝은 앤틱 골드 크림 */\\n    text-align: center;\\n    line-height: 1.45;\\n    word-break: keep-all;\\n    /* 얇은 정교한 외각 획과 소프트 쉐도우로 가독성 보장 */\\n    text-shadow: \\n        -0.5px -0.5px 0 rgba(0,0,0,0.95),  \\n         0.5px -0.5px 0 rgba(0,0,0,0.95),\\n        -0.5px  0.5px 0 rgba(0,0,0,0.95),\\n         0.5px  0.5px 0 rgba(0,0,0,0.95),\\n         0 3px 6px rgba(0,0,0,0.95),\\n         0 0 10px rgba(246, 223, 154, 0.15); /* 부드러운 골드 네온 */\\n    z-index: 2;\\n    margin: 8px 0;\\n    letter-spacing: 0.5px;\\n}\"",
+    "StartLine": "1889",
+    "TargetContent": "\".book-front-title {\\n    font-family: 'Noto Serif KR', serif;\\n    font-size: 0.82rem;\\n    font-weight: 900; /* 고가독성 굵기 */\\n    color: #fff4d4 !important; /* 고대비 밝은 골드 크림 */\\n    text-align: center;\\n    line-height: 1.4;\\n    word-break: keep-all;\\n    /* 사방 4방향 고대비 검은색 테두리 + 은은한 황금 별빛 네온 섀도우 융합 */\\n    text-shadow: \\n        -2px -2px 0 #000,  \\n         2px -2px 0 #000,\\n        -2px  2px 0 #000,\\n         2px  2px 0 #000,\\n         0 0 8px rgba(255, 223, 128, 0.7), /* 별빛 네온 글로우 */\\n         0 4px 8px rgba(0,0,0,1);\\n    z-index: 2;\\n    margin: 8px 0;\\n}\"",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+    "toolAction": "\"책 전면 제목 스타일 수정\"",
+    "toolSummary": "\"style_portal.css 수정\""
+  }
+}

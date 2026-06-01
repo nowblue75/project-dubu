@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 612,
+  "createdAt": "2026-05-30T21:52:59Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "EndLine": "368",
+    "StartLine": "280",
+    "toolAction": "\"index.html 하단 영역 스크립트 로드 확인\"",
+    "toolSummary": "\"index.html 하단 스크립트 확인\""
+  }
+}

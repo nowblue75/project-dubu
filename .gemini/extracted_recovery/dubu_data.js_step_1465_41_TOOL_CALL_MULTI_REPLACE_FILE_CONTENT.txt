@@ -1,0 +1,15 @@
+{
+  "type": "TOOL_CALL_MULTI_REPLACE_FILE_CONTENT",
+  "stepIndex": 1465,
+  "createdAt": "2026-05-31T09:26:50Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+  "content": "",
+  "args": {
+    "Description": "\"Add path and img properties to projects with IDs 22, 18, and 15 in dubu_data.js.\"",
+    "Instruction": "\"Add path and img values to ID 22, 18, and 15 objects inside PROJECTS database.\"",
+    "ReplacementChunks": "[{\"AllowMultiple\":false,\"EndLine\":371,\"ReplacementContent\":\"    {\\n        \\\"id\\\": 22,\\n        \\\"title\\\": \\\"순두부 블랙포레스트 컵케익\\\",\\n        \\\"noOven\\\": false,\\n        \\\"noFlour\\\": false,\\n        \\\"noButter\\\": false,\\n        \\\"oneBowl\\\": true,\\n        \\\"isInteractive\\\": true,\\n        \\\"path\\\": \\\"23. 순두부블랙포레스트 컵케익_완/index.html\\\",\\n        \\\"img\\\": \\\"23. 순두부블랙포레스트 컵케익_완/0.jpg\\\",\\n        \\\"blogUrl\\\": \\\"https://blog.naver.com/project_dubu/224089622187\\\",\\n        \\\"categories\\\": [\\n            \\\"gift\\\",\\n            \\\"teatime\\\",\\n            \\\"cloud\\\"\\n        ],\\n        \\\"time\\\": \\\"35분\\\"\\n    },\",\"StartLine\":356,\"TargetContent\":\"    {\\n        \\\"id\\\": 22,\\n        \\\"title\\\": \\\"순두부 블랙포레스트 컵케익\\\",\\n        \\\"noOven\\\": false,\\n        \\\"noFlour\\\": false,\\n        \\\"noButter\\\": false,\\n        \\\"oneBowl\\\": true,\\n        \\\"isInteractive\\\": true,\\n        \\\"blogUrl\\\": \\\"https://blog.naver.com/project_dubu/224089622187\\\",\\n        \\\"categories\\\": [\\n            \\\"gift\\\",\\n            \\\"teatime\\\",\\n            \\\"cloud\\\"\\n        ],\\n        \\\"time\\\": \\\"35분\\\"\\n    },\"},{\"AllowMultiple\":false,\"EndLine\":437,\"ReplacementContent\":\"    {\\n        \\\"id\\\": 18,\\n        \\\"title\\\": \\\"순두부 단호박 찹쌀빵\\\",\\n        \\\"noOven\\\": false,\\n        \\\"noFlour\\\": true,\\n        \\\"noButter\\\": true,\\n        \\\"oneBowl\\\": true,\\n        \\\"isInteractive\\\": true,\\n        \\\"path\\\": \\\"19. 순두부 단호박 찹쌀빵_완/index.html\\\",\\n        \\\"img\\\": \\\"19. 순두부 단호박 찹쌀빵_완/KakaoTalk_20251002_083711682.jpg\\\",\\n        \\\"blogUrl\\\": \\\"https://blog.naver.com/project_dubu/224044280791\\\",\\n        \\\"categories\\\": [\\n            \\\"nostalgia\\\",\\n            \\\"fudgy\\\"\\n        ],\\n        \\\"time\\\": \\\"30분\\\"\\n    },\",\"StartLine\":423,\"TargetContent\":\"    {\\n        \\\"id\\\": 18,\\n        \\\"title\\\": \\\"순두부 단호박 찹쌀빵\\\",\\n        \\\"noOven\\\": false,\\n        \\\"noFlour\\\": true,\\n        \\\"noButter\\\": true,\\n        \n<truncated 1490 bytes>",
+    "TargetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+    "toolAction": "\"Editing dubu_data.js file\"",
+    "toolSummary": "\"Multi replace file content\""
+  }
+}

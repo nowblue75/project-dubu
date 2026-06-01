@@ -1,0 +1,12 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 560,
+  "createdAt": "2026-05-29T07:28:00Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\[이벤트] 성탄절_눈꽃컵케이크\\\\index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\[이벤트] 성탄절_눈꽃컵케이크\\\\index.html\"",
+    "toolAction": "\"이벤트 눈꽃컵케이크 index.html 확인\"",
+    "toolSummary": "\"View file\""
+  }
+}

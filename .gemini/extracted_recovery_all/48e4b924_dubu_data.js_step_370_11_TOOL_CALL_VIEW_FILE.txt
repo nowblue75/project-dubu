@@ -1,0 +1,15 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 370,
+  "createdAt": "2026-05-28T22:10:43Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+    "EndLine": "395",
+    "IsSkillFile": "false",
+    "StartLine": "340",
+    "toolAction": "\"View RECIPE_STEPS_DB end\"",
+    "toolSummary": "\"Read dubu_data.js segment\""
+  }
+}

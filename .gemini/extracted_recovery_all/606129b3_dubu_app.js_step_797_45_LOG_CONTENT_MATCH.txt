@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 797,
+  "createdAt": "2026-05-31T00:21:54Z",
+  "filePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "아코디언 카드에서 `openFocusStage`를 `openMagicBook`으로 전부 교체합니다. 이것이 핵심 변경입니다."
+}

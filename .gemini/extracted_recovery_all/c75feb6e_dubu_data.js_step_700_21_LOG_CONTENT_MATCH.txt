@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 700,
+  "createdAt": "2026-05-30T22:09:16Z",
+  "filePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+  "content": "I will check another `noOven: true` project by reading lines 240-270 in `dubu_data.js`."
+}

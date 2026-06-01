@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 828,
+  "createdAt": "2026-05-30T22:18:48Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+  "content": "\"\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"Remove \\\"순두부 녹차팥푸딩\\\" (ID: 13) from the PROJECTS database in dubu_data.js.\"",
+    "EndLine": "257",
+    "Instruction": "\"Delete ID 13 recipe block from dubu_data.js.\"",
+    "ReplacementContent": "\"\"",
+    "StartLine": "253",
+    "TargetContent": "\"    { id: 13, title: \\\"순두부 녹차팥푸딩\\\",\\n        noOven: true,\\n        noFlour: true,\\n        noButter: true,\\n        oneBowl: true, isInteractive: true, categories: [\\\"nostalgia\\\", \\\"teatime\\\", \\\"creamy\\\"], time: \\\"15분\\\" , blogUrl: \\\"\\\"},\"",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+    "toolAction": "\"Deleting ID 13 recipe from dubu_data.js\"",
+    "toolSummary": "\"dubu_data.js modification\""
+  }
+}

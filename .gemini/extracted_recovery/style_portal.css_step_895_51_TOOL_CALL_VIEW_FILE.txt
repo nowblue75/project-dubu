@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 895,
+  "createdAt": "2026-05-31T05:28:57Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+    "EndLine": "4750",
+    "StartLine": "4551",
+    "toolAction": "\"Viewing focus stage buttons and tab bar styles\"",
+    "toolSummary": "\"View style_portal.css\""
+  }
+}

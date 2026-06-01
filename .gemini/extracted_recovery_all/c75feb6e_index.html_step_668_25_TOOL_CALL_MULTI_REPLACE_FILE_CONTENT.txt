@@ -1,0 +1,15 @@
+{
+  "type": "TOOL_CALL_MULTI_REPLACE_FILE_CONTENT",
+  "stepIndex": 668,
+  "createdAt": "2026-05-30T22:08:21Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "",
+  "args": {
+    "Description": "\"dubu_data.js 및 dubu_app.js 캐싱 갱신을 위해 index.html 내 버전 스트링을 v28.0으로 업데이트\"",
+    "Instruction": "\"CSS 및 JS 파일 버전 파라미터를 v28.0으로 올립니다.\"",
+    "ReplacementChunks": "[{\"AllowMultiple\":false,\"EndLine\":15,\"ReplacementContent\":\"    <link rel=\\\"stylesheet\\\" href=\\\"style_portal.css?v=28.0\\\">\",\"StartLine\":13,\"TargetContent\":\"    <link rel=\\\"stylesheet\\\" href=\\\"style_portal.css?v=27.0\\\">\"},{\"AllowMultiple\":false,\"EndLine\":327,\"ReplacementContent\":\"    <script src=\\\"dubu_data.js?v=28.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=28.0\\\"></script>\",\"StartLine\":324,\"TargetContent\":\"    <script src=\\\"dubu_data.js?v=27.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=27.0\\\"></script>\"}]",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "toolAction": "\"리소스 버전 쿼리스트링 수정\"",
+    "toolSummary": "\"index.html 수정\""
+  }
+}

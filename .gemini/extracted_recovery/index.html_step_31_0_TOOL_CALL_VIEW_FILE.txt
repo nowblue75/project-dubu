@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 31,
+  "createdAt": "2026-05-30T22:39:33Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\2. 순두부크림치즈티라미수_완\\\\index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\2. 순두부크림치즈티라미수_완\\\\index.html\"",
+    "EndLine": "150",
+    "StartLine": "1",
+    "toolAction": "\"순두부크림치즈티라미수 index.html 소스 확인\"",
+    "toolSummary": "\"index.html 읽기\""
+  }
+}

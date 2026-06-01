@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 1325,
+  "createdAt": "2026-05-31T07:43:45Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+    "EndLine": "640",
+    "StartLine": "620",
+    "toolAction": "\"Viewing BASE_YIELDS in dubu_app.js\"",
+    "toolSummary": "\"Viewing dubu_app.js around line 630\""
+  }
+}

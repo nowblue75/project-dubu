@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 824,
+  "createdAt": "2026-05-30T01:12:25Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "\"    <div class=\\\"magic-book-overlay\\\" id=\\\"magic-book-overlay\\\" onclick=\\\"closeMagicBook()\\\">\\n        <!-- 신비로운 마법진 및 입자 광채 효과 -->\\n        <div class=\\\"magic-spell-particles\\\"></div>\\n        <div class=\\\"magic-summoning-circle\\\">\\n            <div class=\\\"rune-ring ring-outer\\\"></div>\\n            <div class=\\\"rune-ring ring-inner\\\"></div>\\n            <div class=\\\"rune-glow\\\"></div>\\n        </div>\\n        \\n        <div class=\\\"magic-book-viewport\\\" onclick=\\\"event.stopPropagation()\\\">\\n            <!-- JS에 의해 펼쳐질 3D 마법 소환서가 실시간 렌더링됨 -->\\n        </div>\\n    </div>\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"index.html에 황금빛 마법진 및 파티클 입자 레이어 추가\"",
+    "EndLine": "308",
+    "Instruction": "\"index.html의 magic-book-overlay 내부에 마법진 및 파티클 마크업 보강\"",
+    "ReplacementContent": "\"    <div class=\\\"magic-book-overlay\\\" id=\\\"magic-book-overlay\\\" onclick=\\\"closeMagicBook()\\\">\\n        <!-- 신비로운 마법진 및 입자 광채 효과 -->\\n        <div class=\\\"magic-spell-particles\\\"></div>\\n        <div class=\\\"magic-summoning-circle\\\">\\n            <div class=\\\"rune-ring ring-outer\\\"></div>\\n            <div class=\\\"rune-ring ring-inner\\\"></div>\\n            <div class=\\\"rune-glow\\\"></div>\\n        </div>\\n        \\n        <div class=\\\"magic-book-viewport\\\" onclick=\\\"event.stopPropagation()\\\">\\n            <!-- JS에 의해 펼쳐질 3D 마법 소환서가 실시간 렌더링됨 -->\\n        </div>\\n    </div>\"",
+    "StartLine": "304",
+    "TargetContent": "\"    <div class=\\\"magic-book-overlay\\\" id=\\\"magic-book-overlay\\\" onclick=\\\"closeMagicBook()\\\">\\n        <div class=\\\"magic-book-viewport\\\" onclick=\\\"event.stopPropagation()\\\">\\n            <!-- JS에 의해 펼쳐질 3D 마법 소환서가 실시간 렌더링됨 -->\\n        </div>\\n    </div>\"",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "toolAction": "\"index.html 마법진 레이어 추가\"",
+    "toolSummary": "\"Edit index.html for summon layout\""
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2000,
+  "createdAt": "2026-05-31T21:33:18Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+    "EndLine": "230",
+    "StartLine": "201",
+    "toolAction": "\"Viewing dubu_app.js getRecipeTheme categories part\"",
+    "toolSummary": "\"View dubu_app.js L201-230\""
+  }
+}

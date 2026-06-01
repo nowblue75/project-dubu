@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 860,
+  "createdAt": "2026-05-31T00:40:07Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\41. 순두부콩물 파운드케익_완\\\\index.html\"",
+  "content": "\"                        <a href=\\\"https://blog.naver.com/project_dubu/224291999885\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\" class=\\\"blog-btn serif text-[#7B6F55]\\\">상세한 레시피는 블로그로 →</a>\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"하단 블로그 버튼 href를 실제 41번 블로그 URL로 업데이트합니다.\"",
+    "EndLine": "166",
+    "Instruction": "\"블로그 버튼 href를 실제 41번 블로그 URL로 수정\"",
+    "ReplacementContent": "\"                        <a href=\\\"https://blog.naver.com/project_dubu/224291999885\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\" class=\\\"blog-btn serif text-[#7B6F55]\\\">상세한 레시피는 블로그로 →</a>\"",
+    "StartLine": "166",
+    "TargetContent": "\"                        <a href=\\\"https://blog.naver.com/project_dubu\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\" class=\\\"blog-btn serif text-[#7B6F55]\\\">상세한 레시피는 블로그로 →</a>\"",
+    "TargetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\41. 순두부콩물 파운드케익_완\\\\index.html\"",
+    "toolAction": "\"블로그 URL 정확하게 수정\"",
+    "toolSummary": "\"41번 블로그 링크 수정\""
+  }
+}

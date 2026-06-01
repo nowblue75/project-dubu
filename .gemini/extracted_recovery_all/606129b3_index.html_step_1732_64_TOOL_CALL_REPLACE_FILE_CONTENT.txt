@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 1732,
+  "createdAt": "2026-05-31T10:22:55Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+  "content": "\"    <script src=\\\"dubu_data.js?v=50.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=50.0\\\"></script>\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"dubu_data.js와 dubu_app.js 파일의 캐시를 확실히 초기화하기 위해 버전을 v=50.0으로 상향 조정합니다.\"",
+    "EndLine": "331",
+    "Instruction": "\"dubu_data.js?v=47.3과 dubu_app.js?v=47.3을 v=50.0으로 상향합니다.\"",
+    "ReplacementContent": "\"    <script src=\\\"dubu_data.js?v=50.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=50.0\\\"></script>\"",
+    "StartLine": "327",
+    "TargetContent": "\"    <script src=\\\"dubu_data.js?v=47.3\\\"></script>\\n    <script src=\\\"dubu_app.js?v=47.3\\\"></script>\"",
+    "TargetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+    "toolAction": "\"Updating script cachebuster versions\"",
+    "toolSummary": "\"Update js cachebuster\""
+  }
+}

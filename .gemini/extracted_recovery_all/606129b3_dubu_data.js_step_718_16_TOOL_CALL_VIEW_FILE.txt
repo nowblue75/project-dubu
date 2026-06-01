@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 718,
+  "createdAt": "2026-05-30T23:54:34Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+    "EndLine": "285",
+    "StartLine": "145",
+    "toolAction": "\"dubu_app.js PROJECTS 145-285 조회\"",
+    "toolSummary": "\"dubu_app.js PROJECTS 145-285 조회\""
+  }
+}

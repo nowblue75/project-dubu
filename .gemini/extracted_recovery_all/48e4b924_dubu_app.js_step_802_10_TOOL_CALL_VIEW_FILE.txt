@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 802,
+  "createdAt": "2026-05-30T01:09:53Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+    "EndLine": "1150",
+    "StartLine": "1101",
+    "toolAction": "\"dubu_app.js의 closeMagicBook 함수 확인\"",
+    "toolSummary": "\"View dubu_app.js lines 1101 to 1150\""
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "TOOL_CALL_MULTI_REPLACE_FILE_CONTENT",
+  "stepIndex": 766,
+  "createdAt": "2026-05-31T00:18:55Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+  "content": "",
+  "args": {
+    "Description": "\"마법서를 더 크고 웅장하게, 좌측 이미지를 더 크게, 우측 페이지 타이틀을 더 임팩트 있게 개선합니다.\"",
+    "Instruction": "\"magic-book-viewport 1200x960, magic-spellbook 1160x900으로 확대, 좌측 photo-frame 더 크게, 우측 페이지 타이틀 폰트 크기 강화\"",
+    "ReplacementChunks": "[{\"AllowMultiple\":false,\"EndLine\":1280,\"ReplacementContent\":\"/* 3D 소환 원근 뷰포트 (화면 최대 활용, 책처럼 크고 웅장하게) */\\n.magic-book-viewport {\\n    perspective: 2500px;\\n    width: 1180px;\\n    height: 940px;\\n    display: flex;\\n    align-items: center;\\n    justify-content: center;\\n    box-sizing: border-box;\\n    z-index: 10;\\n}\",\"StartLine\":1270,\"TargetContent\":\"/* 3D 소환 원근 뷰포트 (세로 양장본 비율로 재조정: 세로를 대폭 늘림) */\\n.magic-book-viewport {\\n    perspective: 2000px;\\n    width: 1100px;\\n    height: 900px;\\n    display: flex;\\n    align-items: center;\\n    justify-content: center;\\n    box-sizing: border-box;\\n    z-index: 10;\\n}\"},{\"AllowMultiple\":false,\"EndLine\":1286,\"ReplacementContent\":\"/* 3D 마법 소환서 본체 (책처럼 크고 웅장한 비율: 1140px * 880px) */\\n.magic-spellbook {\\n    width: 1140px;\\n    height: 880px;\",\"StartLine\":1282,\"TargetContent\":\"/* 3D 마법 소환서 본체 (세로로 긴 황금 비율 책 구조화: 1060px * 840px) */\\n.magic-spellbook {\\n    width: 1060px;\\n    height: 840px;\"},{\"AllowMultiple\":false,\"EndLine\":1508,\"ReplacementContent\":\".magic-page-left .magic-photo-frame {\\n    width: 100%;\\n    height: 530px; /* 책 왼쪽 페이지 핵심: 화보를 크고 임팩트 있게 */\\n    border-radius: 14px;\",\"StartLine\":1504,\"TargetContent\":\".magic-page-left .magic-photo-frame {\\n    width: 100%;\\n    height: 490px; /* 화보 액자 높이를 세로 비율에 맞게 대폭 확대 */\\n    border-radius: 12px;\"},{\"AllowMultiple\":false,\"EndLine\":1540,\"ReplacementContent\":\".magic-page-left .magic-quote {\\n    font-family: 'Noto Serif KR', serif;\\n    font-size: 0.95rem;\\n    font-weight: 700;\\n    color: #4a3427;\\n    line-height: 1.75;\\n    text-align: center;\\n    margin-top: 16px;\\n    font-style: italic;\\n    word-break: keep-all;\\n    text-shadow: 0 1px 0 rgba(255,255,255,0.4);\\n    z-index: 4;\\n}\",\"StartLine\":1535,\"TargetContent\":\".magic-page-left .magic-quote {\\n    font-family: 'Noto Serif KR', ser\n<truncated 2466 bytes>",
+    "TargetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+    "toolAction": "\"마법서 CSS 대형화 업데이트\"",
+    "toolSummary": "\"마법서 크기 및 임팩트 강화\""
+  }
+}

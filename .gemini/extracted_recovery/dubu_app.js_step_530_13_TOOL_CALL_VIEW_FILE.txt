@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 530,
+  "createdAt": "2026-05-30T23:29:36Z",
+  "targetFile": "\"C:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"C:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+    "EndLine": "1445",
+    "StartLine": "1300",
+    "toolAction": "\"openMagicBook 함수 상세 조회\"",
+    "toolSummary": "\"dubu_app.js의 1300~1445라인을 조회하여 openMagicBook 함수의 상세 흐름과 마크업 생성 방식을 확인합니다.\""
+  }
+}

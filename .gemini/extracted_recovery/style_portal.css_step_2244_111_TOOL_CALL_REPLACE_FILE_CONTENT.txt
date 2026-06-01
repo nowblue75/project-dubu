@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 2244,
+  "createdAt": "2026-05-31T21:56:33Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+  "content": "\".focus-stage-right {\\n    flex: 50 0 50%;\\n    padding: 40px 45px 40px 40px; /* 우측 탭갈피 오버랩 및 넓어진 공간 확보 */\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"상세보기 화면 우측 카드 flex 비율을 50%로 지정하고 내부 가로폭 확보를 위해 패딩을 조율함.\"",
+    "EndLine": "1550",
+    "Instruction": "\"Change flex basis to 50% and decrease padding slightly to prevent layout squeeze in .focus-stage-right.\"",
+    "ReplacementContent": "\".focus-stage-right {\\n    flex: 50 0 50%;\\n    padding: 40px 45px 40px 40px; /* 우측 탭갈피 오버랩 및 넓어진 공간 확보 */\"",
+    "StartLine": "1543",
+    "TargetContent": "\".focus-stage-right {\\n    flex: 13 0 55%;\\n    padding: 50px 60px 50px 50px; /* 우측 탭갈피 오버랩 공간 확보 */\"",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+    "toolAction": "\"Update right stage flex and padding\"",
+    "toolSummary": "\"Modify right stage flex and padding in style_portal.css\""
+  }
+}

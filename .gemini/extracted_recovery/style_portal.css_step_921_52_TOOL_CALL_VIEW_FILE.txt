@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 921,
+  "createdAt": "2026-05-31T06:36:11Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+    "EndLine": "4747",
+    "StartLine": "4700",
+    "toolAction": "\"Viewing target location in style_portal.css\"",
+    "toolSummary": "\"View style_portal.css\""
+  }
+}

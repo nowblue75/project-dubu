@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 1970,
+  "createdAt": "2026-05-31T21:28:45Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+    "EndLine": "1168",
+    "StartLine": "1155",
+    "toolAction": "\"Viewing tail of style_portal.css\"",
+    "toolSummary": "\"Check last lines of style_portal.css\""
+  }
+}

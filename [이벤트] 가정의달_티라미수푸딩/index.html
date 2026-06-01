@@ -6,9 +6,9 @@
     <title>가정의 달 에디션: 순두부 티라미수 푸딩</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=11.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
 </head>
-<body class="lookbook-page antialiased selection:bg-[#E91E63]/30">
+<body class="lookbook-page antialiased selection:bg-[#E91E63]/30 theme-default">
 
     <div class="progress-bar"></div>
 
@@ -20,11 +20,15 @@
     <main id="main-content">
         <!-- 01. Intro -->
         <section class="active">
-            <div class="image-stage">
-                <img src="../31. 순두부 티라미수푸딩_완/0.jpg" alt="티라미수푸딩 메인" class="fade-in-up">
-                <div class="content-box">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="../31. 순두부 티라미수푸딩_완/0.jpg" alt="티라미수푸딩 메인" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box">
                     <h2 class="serif text-4xl mb-6">입안 가득 소복이<br>쌓이는 다정함</h2>
                     <p>부드러운 마스카포네와 정직한 순두부 크림의 만남.<br>티라미수의 깊은 풍미를 더욱 담백하고 건강하게 재해석했습니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -59,10 +63,12 @@
                     <h2 class="serif text-4xl mb-6">함께 나누는<br>오늘의 기록</h2>
                     <p>화려함보다 본질인 맛과 건강에 집중했습니다.<br>당신의 식탁 위, 가장 다정한 주인공이 될 프로젝트 두부의 선물입니다.</p>
                 </div>
+                
                 <div class="lookbook-footer-container">
-                    <div class="footer-buttons">
-                        <a href="../[이벤트] 가정의달_2026/index.html" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block">← BACK TO HUB</a>
-                        <a href="https://blog.naver.com/project_dubu/224164987367" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
                 </div>
             </div>

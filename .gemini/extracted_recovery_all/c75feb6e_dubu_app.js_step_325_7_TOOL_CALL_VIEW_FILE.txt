@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 325,
+  "createdAt": "2026-05-30T07:23:55Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+    "EndLine": "1320",
+    "StartLine": "1220",
+    "toolAction": "\"Viewing openMagicBook function\"",
+    "toolSummary": "\"dubu_app.js snippet\""
+  }
+}

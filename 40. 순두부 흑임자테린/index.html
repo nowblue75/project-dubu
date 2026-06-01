@@ -6,7 +6,7 @@
     <title>명절 에디션: 순두부 흑임자 테린</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=11.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
     <style>
         :root {
             --val-accent: #C5A17A;
@@ -18,7 +18,7 @@
         }
     </style>
 </head>
-<body class="lookbook-page antialiased selection:bg-[#C5A17A]/30 text-[#EAE2D5]">
+<body class="lookbook-page antialiased selection:bg-[#C5A17A]/30 text-[#EAE2D5] theme-holiday">
 
     <div class="progress-bar"></div>
 
@@ -30,11 +30,15 @@
     <main id="main-content">
         <!-- 01. Intro -->
         <section class="active">
-            <div class="image-stage">
-                <img src="assets/01.png" alt="흑임자테린 메인" class="fade-in-up">
-                <div class="content-box side-right">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="assets/01.png" alt="흑임자테린 메인" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box side-right">
                     <h2 class="serif text-5xl mb-6">반전의 찰기,<br>검은 미학</h2>
                     <p>빵보다 쫀득하고 푸딩보다 묵직한 반전의 식감.<br>순두부 한 봉의 수분을 그대로 머금은 고소한 기록입니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -102,11 +106,14 @@
                     <h3 class="serif text-3xl mb-4 text-[#C5A17A]">반전의 찰기, 미학의 완성</h3>
                     <p class="text-[#EAE2D5] text-lg font-light leading-relaxed mb-12">빵보다 쫀득하고 푸딩보다 묵직한 오감의 기록.<br>순두부와 흑임자가 빚어낸 가장 정갈한 한 조각입니다.</p>
                     
-                    <div class="lookbook-footer-container">
-                        <div class="footer-buttons">
-                            <a id="back-link-bottom" href="../index.html#latest" class="back-btn serif">← BACK TO PORTAL</a>
-                        </div>
+                    
+                <div class="lookbook-footer-container">
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

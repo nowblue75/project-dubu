@@ -1,0 +1,13 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 487,
+  "createdAt": "2026-05-30T07:41:13Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+    "StartLine": "1",
+    "toolAction": "\"dubu_data.js의 레시피 및 재료 딕셔너리 구조 확인\"",
+    "toolSummary": "\"dubu_data.js 구조 확인\""
+  }
+}

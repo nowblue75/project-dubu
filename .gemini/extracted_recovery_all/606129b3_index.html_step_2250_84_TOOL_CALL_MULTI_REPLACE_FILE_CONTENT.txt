@@ -1,0 +1,15 @@
+{
+  "type": "TOOL_CALL_MULTI_REPLACE_FILE_CONTENT",
+  "stepIndex": 2250,
+  "createdAt": "2026-05-31T21:56:44Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "",
+  "args": {
+    "Description": "\"index.html에서 캐시 무효화를 위해 스타일시트 및 자바스크립트 버전을 v=54.0으로 변경함.\"",
+    "Instruction": "\"Bump query string versions to v=54.0 in index.html to force browser cache invalidation.\"",
+    "ReplacementChunks": "[{\"AllowMultiple\":false,\"EndLine\":15,\"ReplacementContent\":\"    <link rel=\\\"stylesheet\\\" href=\\\"style_portal.css?v=54.0\\\">\",\"StartLine\":13,\"TargetContent\":\"    <link rel=\\\"stylesheet\\\" href=\\\"style_portal.css?v=53.0\\\">\"},{\"AllowMultiple\":false,\"EndLine\":326,\"ReplacementContent\":\"    <script src=\\\"dubu_data.js?v=54.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=54.0\\\"></script>\",\"StartLine\":323,\"TargetContent\":\"    <script src=\\\"dubu_data.js?v=53.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=53.0\\\"></script>\"}]",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "toolAction": "\"Update asset query string versions\"",
+    "toolSummary": "\"Bump versions to v=54.0 in index.html\""
+  }
+}

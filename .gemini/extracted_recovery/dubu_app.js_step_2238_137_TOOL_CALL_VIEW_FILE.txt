@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2238,
+  "createdAt": "2026-05-31T21:56:21Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+    "EndLine": "560",
+    "StartLine": "520",
+    "toolAction": "\"View dubu_app.js lines 520-560\"",
+    "toolSummary": "\"Read lines 520-560 in dubu_app.js\""
+  }
+}

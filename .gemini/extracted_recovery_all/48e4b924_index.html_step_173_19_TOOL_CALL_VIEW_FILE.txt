@@ -1,0 +1,12 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 173,
+  "createdAt": "2026-05-28T20:56:28Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\26. 순두부 3종케익_완\\\\index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\26. 순두부 3종케익_완\\\\index.html\"",
+    "toolAction": "\"Viewing index.html of 3종케익\"",
+    "toolSummary": "\"View 3종케익 index.html\""
+  }
+}

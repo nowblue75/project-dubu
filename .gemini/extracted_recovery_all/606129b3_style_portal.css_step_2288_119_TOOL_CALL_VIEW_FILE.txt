@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2288,
+  "createdAt": "2026-05-31T21:59:49Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+    "EndLine": "1555",
+    "StartLine": "1542",
+    "toolAction": "\"View focus stage right css lines\"",
+    "toolSummary": "\"Read lines 1542-1555 in style_portal.css\""
+  }
+}

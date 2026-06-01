@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 799,
+  "createdAt": "2026-05-31T00:22:12Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+    "EndLine": "2590",
+    "StartLine": "2560",
+    "toolAction": "\"openFocusStage 2573 라인 확인\"",
+    "toolSummary": "\"또 다른 진입점 확인\""
+  }
+}

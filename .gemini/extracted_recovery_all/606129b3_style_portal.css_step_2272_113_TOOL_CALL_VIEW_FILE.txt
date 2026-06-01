@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2272,
+  "createdAt": "2026-05-31T21:59:13Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+    "EndLine": "1740",
+    "StartLine": "1690",
+    "toolAction": "\"View focus card body CSS in style_portal.css\"",
+    "toolSummary": "\"Read lines 1690-1740 in style_portal.css\""
+  }
+}

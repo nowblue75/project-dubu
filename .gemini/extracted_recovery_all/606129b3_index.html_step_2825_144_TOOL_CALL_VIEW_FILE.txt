@@ -1,0 +1,12 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2825,
+  "createdAt": "2026-06-01T01:00:19Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+    "toolAction": "\"Viewing main index.html\"",
+    "toolSummary": "\"메인 인덱스 파일 확인\""
+  }
+}

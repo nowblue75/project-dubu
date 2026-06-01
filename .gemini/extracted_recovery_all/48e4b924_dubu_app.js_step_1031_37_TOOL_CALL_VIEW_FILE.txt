@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 1031,
+  "createdAt": "2026-05-30T05:28:08Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+    "EndLine": "1130",
+    "StartLine": "1065",
+    "toolAction": "\"Viewing book card and potion rendering block in dubu_app.js\"",
+    "toolSummary": "\"View JS file content\""
+  }
+}

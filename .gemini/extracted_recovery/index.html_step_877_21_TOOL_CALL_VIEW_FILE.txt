@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 877,
+  "createdAt": "2026-05-31T05:28:31Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "EndLine": "280",
+    "StartLine": "170",
+    "toolAction": "\"Viewing focus overlay html section\"",
+    "toolSummary": "\"View index.html\""
+  }
+}

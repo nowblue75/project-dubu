@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2560,
+  "createdAt": "2026-06-01T00:42:12Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/1. 순두부크림치즈_완/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/1. 순두부크림치즈_완/index.html\"",
+    "EndLine": "60",
+    "StartLine": "1",
+    "toolAction": "\"View clean Cream Cheese index.html top lines\"",
+    "toolSummary": "\"Read top lines of recipe 1 lookbook index.html\""
+  }
+}

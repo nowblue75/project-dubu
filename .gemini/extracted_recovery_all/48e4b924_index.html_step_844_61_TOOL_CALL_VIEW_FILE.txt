@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 844,
+  "createdAt": "2026-05-30T01:17:22Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "EndLine": "110",
+    "StartLine": "80",
+    "toolAction": "\"index.html의 아카이브 헤더 및 필터 영역 확인\"",
+    "toolSummary": "\"View index.html lines 80 to 110\""
+  }
+}

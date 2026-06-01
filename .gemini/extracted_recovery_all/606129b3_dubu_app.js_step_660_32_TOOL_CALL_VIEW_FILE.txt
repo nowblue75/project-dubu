@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 660,
+  "createdAt": "2026-05-30T23:47:33Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+    "EndLine": "1625",
+    "StartLine": "1580",
+    "toolAction": "\"dubu_app.js switchMagicBookTab 및 onMagicBookAnchorChange 조회\"",
+    "toolSummary": "\"dubu_app.js switchMagicBookTab 및 onMagicBookAnchorChange 조회\""
+  }
+}

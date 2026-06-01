@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 779,
+  "createdAt": "2026-05-31T00:19:44Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+    "EndLine": "2310",
+    "StartLine": "2225",
+    "toolAction": "\"반응형 CSS 확인\"",
+    "toolSummary": "\"미디어 쿼리 전체 확인\""
+  }
+}

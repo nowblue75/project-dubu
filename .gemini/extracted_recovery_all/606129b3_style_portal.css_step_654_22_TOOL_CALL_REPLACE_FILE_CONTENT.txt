@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 654,
+  "createdAt": "2026-05-30T23:47:21Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+  "content": "\"/* 마법 연산판 백그라운드 (스크롤 억제용 컴팩트 조율) */\\n.magic-calc-panel {\\n    background: #FFFFFF;\\n    border: 1px solid rgba(58, 105, 88, 0.12);\\n    border-radius: 10px;\\n    padding: 14px;\\n    margin-bottom: 12px;\\n    box-shadow: \\n        0 6px 18px rgba(58, 105, 88, 0.04);\\n}\\n\\n.magic-calc-row-main {\\n    display: flex;\\n    justify-content: space-between;\\n    align-items: center;\\n    background: rgba(58, 105, 88, 0.04); /* 민트 톤 가이드 강화 */\\n    padding: 10px 14px;\\n    border-radius: 8px;\\n    border: 1px solid rgba(58, 105, 88, 0.15);\\n    margin-bottom: 12px;\\n}\\n\\n.magic-calc-row {\\n    display: flex;\\n    justify-content: space-between;\\n    align-items: center;\\n    padding: 8px 8px; /* 패딩을 더 압축하여 다량의 재료를 스크롤 없이 완전 노출 */\\n    border-bottom: 1px dashed rgba(58, 105, 88, 0.1);\\n}\\n\\n.magic-calc-row:last-child {\\n    border-bottom: none;\\n}\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"계산기 패널을 민트 톤 가이드와 화이트 카드 형태로 개편하여 스크린샷과 동일한 모던 아틀리에 레이아웃을 완성함.\"",
+    "EndLine": "1623",
+    "Instruction": "\"연산 패널과 기준 행, 일반 행의 색상 및 보더를 민트/화이트 테마로 수정합니다.\"",
+    "ReplacementContent": "\"/* 마법 연산판 백그라운드 (스크롤 억제용 컴팩트 조율) */\\n.magic-calc-panel {\\n    background: #FFFFFF;\\n    border: 1px solid rgba(58, 105, 88, 0.12);\\n    border-radius: 10px;\\n    padding: 14px;\\n    margin-bottom: 12px;\\n    box-shadow: \\n        0 6px 18px rgba(58, 105, 88, 0.04);\\n}\\n\\n.magic-calc-row-main {\\n    display: flex;\\n    justify-content: space-between;\\n    align-items: center;\\n    background: rgba(58, 105, 88, 0.04); /* 민트 톤 가이드 강화 */\\n    padding: 10px 14px;\\n    border-radius: 8px;\\n    border: 1px solid rgba(58, 105, 88, 0.15);\\n    margin-bottom: 12px;\\n}\\n\\n.magic-calc-row {\\n    display: flex;\\n    justify-content: space-between;\\n    align-items: center;\\n    padding: 8px 8px; /* 패딩을 더 압축하여 다량의 재료를 스크롤 없이 완전 노출 */\\n    border-bottom: 1px dashed rgba(58, 105, 88, 0.1);\\n}\\n\\n.magic-calc-row:last-child {\\n    border-bottom: none;\\n}\"",
+    "StartLine": "1590",
+    "TargetContent": "\"/* 마법 연산판 백그라운드 (스크롤 억제용 컴팩트 조율) */\\n.magic-calc-panel {\\n    background: rgba(255, 255, 255, 0.28);\\n    border: 1px solid rgba(88, 65, 46, 0.22);\\n    border-radius: 8px;\\n    padding: 12px;\\n    margin-bottom: 12px;\\n    box-shadow: \\n        inset 0 0 20px rgba(88, 65, 46, 0.08),\\n        0 4px 10px rgba(0,0,0,0.03);\\n}\\n\\n.magic-calc-row-main {\\n    display: flex;\\n    justify-content: space-between;\\n    align-items: center;\\n    background: rgba(197, 160, 78, 0.2); /* 마법 골드 톤 강화 */\\n    padding: 8px 12px;\\n    border-radius: 6px;\\n    border: 1px solid rgba(197, 160, 78, 0.4);\\n    margin-bottom: 10px;\\n}\\n\\n.magic-calc-row {\\n    display: flex;\\n    justify-content: space-between;\\n    align-items: center;\\n    padding: 6px 8px; /* 패딩을 더 압축하여 다량의 재료를 스크롤 없이 완전 노출 */\\n    border-bottom: 1px dashed rgba(88, 65, 46, 0.18);\\n}\\n\\n.magic-calc-row:last-child {\\n    border-bottom: none;\\n}\"",
+    "TargetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+    "toolAction": "\"style_portal.css 계산 패널 스타일 변경\"",
+    "toolSummary": "\"style_portal.css 계산 패널 스타일 변경\""
+  }
+}

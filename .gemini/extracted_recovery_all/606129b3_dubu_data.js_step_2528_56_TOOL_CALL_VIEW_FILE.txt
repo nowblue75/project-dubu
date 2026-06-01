@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2528,
+  "createdAt": "2026-06-01T00:40:42Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+    "EndLine": "60",
+    "StartLine": "1",
+    "toolAction": "\"View projects definition schemas\"",
+    "toolSummary": "\"Read first 60 lines of dubu_data.js\""
+  }
+}

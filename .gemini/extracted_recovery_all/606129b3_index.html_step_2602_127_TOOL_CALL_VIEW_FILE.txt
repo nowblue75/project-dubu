@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2602,
+  "createdAt": "2026-06-01T00:44:13Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "EndLine": "296",
+    "StartLine": "200",
+    "toolAction": "\"View bottom portion of index.html\"",
+    "toolSummary": "\"Read lines 200-296 of index.html\""
+  }
+}

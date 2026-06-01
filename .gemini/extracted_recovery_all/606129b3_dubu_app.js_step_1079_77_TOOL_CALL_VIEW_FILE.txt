@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 1079,
+  "createdAt": "2026-05-31T07:06:00Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+    "EndLine": "78",
+    "StartLine": "66",
+    "toolAction": "\"Viewing dynamic class addition code in openFocusStage\"",
+    "toolSummary": "\"View dubu_app.js\""
+  }
+}

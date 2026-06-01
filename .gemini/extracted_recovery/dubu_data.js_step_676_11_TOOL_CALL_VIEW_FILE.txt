@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 676,
+  "createdAt": "2026-05-30T23:52:58Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+    "EndLine": "720",
+    "StartLine": "650",
+    "toolAction": "\"dubu_data.js 1번 레시피 상세 조회\"",
+    "toolSummary": "\"dubu_data.js 1번 레시피 상세 조회\""
+  }
+}

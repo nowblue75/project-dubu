@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 1113,
+  "createdAt": "2026-05-30T05:33:44Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "EndLine": "90",
+    "StartLine": "1",
+    "toolAction": "\"index.html의 1~90라인(상단 및 서재 타이틀) 조회\"",
+    "toolSummary": "\"View file\""
+  }
+}

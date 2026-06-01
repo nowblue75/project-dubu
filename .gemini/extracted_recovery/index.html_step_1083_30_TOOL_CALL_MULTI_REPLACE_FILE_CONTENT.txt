@@ -1,0 +1,15 @@
+{
+  "type": "TOOL_CALL_MULTI_REPLACE_FILE_CONTENT",
+  "stepIndex": 1083,
+  "createdAt": "2026-05-31T07:06:10Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "",
+  "args": {
+    "Description": "\"index.html 리소스 버전을 v=40.0으로 상향하여 전체 디저트 마법책 테마 적용 변경 사항이 즉각 갱신 로드되도록 조치했습니다.\"",
+    "Instruction": "\"index.html 리소스 버전 파라미터를 v=40.0으로 업데이트합니다.\"",
+    "ReplacementChunks": "[{\"AllowMultiple\":false,\"EndLine\":15,\"ReplacementContent\":\"    <link rel=\\\"stylesheet\\\" href=\\\"style_portal.css?v=40.0\\\">\",\"StartLine\":13,\"TargetContent\":\"    <link rel=\\\"stylesheet\\\" href=\\\"style_portal.css?v=39.0\\\">\"},{\"AllowMultiple\":false,\"EndLine\":330,\"ReplacementContent\":\"    <script src=\\\"dubu_data.js?v=40.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=40.0\\\"></script>\",\"StartLine\":327,\"TargetContent\":\"    <script src=\\\"dubu_data.js?v=39.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=39.0\\\"></script>\"}]",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "toolAction": "\"Upgrading link versions in index.html to v=40.0\"",
+    "toolSummary": "\"Modify index.html\""
+  }
+}

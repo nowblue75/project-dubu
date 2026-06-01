@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 845,
+  "createdAt": "2026-05-31T00:38:39Z",
+  "filePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\41. 순두부콩물 파운드케익_완\\\\index.html\"",
+  "content": "두 룩북 파일을 비교해보겠습니다."
+}

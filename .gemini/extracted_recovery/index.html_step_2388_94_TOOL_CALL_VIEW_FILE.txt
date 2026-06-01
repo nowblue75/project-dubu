@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2388,
+  "createdAt": "2026-05-31T22:16:02Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/36. 순두부화이트바크초콜릿_완/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/36. 순두부화이트바크초콜릿_완/index.html\"",
+    "EndLine": "25",
+    "StartLine": "1",
+    "toolAction": "\"View top lines of recipe 36 index.html\"",
+    "toolSummary": "\"Read top lines of recipe 36 lookbook index.html\""
+  }
+}

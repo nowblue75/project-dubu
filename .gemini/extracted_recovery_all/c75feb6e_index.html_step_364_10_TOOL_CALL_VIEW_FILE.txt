@@ -1,0 +1,12 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 364,
+  "createdAt": "2026-05-30T07:25:15Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\41. 순두부콩물 파운드케익_완\\\\calculator\\\\index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\41. 순두부콩물 파운드케익_완\\\\calculator\\\\index.html\"",
+    "toolAction": "\"Viewing calculator index.html for 41. 순두부콩물 파운드케익_완\"",
+    "toolSummary": "\"Read HTML file\""
+  }
+}

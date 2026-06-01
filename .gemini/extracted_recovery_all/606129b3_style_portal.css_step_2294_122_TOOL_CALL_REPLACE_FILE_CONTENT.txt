@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 2294,
+  "createdAt": "2026-05-31T22:00:00Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+  "content": "\"/* Tab Body Views */\\n.focus-card-body {\\n    flex: 1;\\n    display: flex;\\n    flex-direction: column;\\n    overflow: hidden;\\n}\\n\\n.focus-tab-view {\\n    display: none;\\n    flex-direction: column;\\n    height: 100%;\\n    overflow-y: auto;\\n    padding-right: 8px;\\n}\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"본문 영역과 탭 내용에 overflow 설정을 주어 데스크톱 팝업 내에서만 개별 스크롤되도록 수정.\"",
+    "EndLine": "1711",
+    "Instruction": "\"Add overflow and padding styles for focus-card-body and focus-tab-view to allow vertical scrolling.\"",
+    "ReplacementContent": "\"/* Tab Body Views */\\n.focus-card-body {\\n    flex: 1;\\n    display: flex;\\n    flex-direction: column;\\n    overflow: hidden;\\n}\\n\\n.focus-tab-view {\\n    display: none;\\n    flex-direction: column;\\n    height: 100%;\\n    overflow-y: auto;\\n    padding-right: 8px;\\n}\"",
+    "StartLine": "1699",
+    "TargetContent": "\"/* Tab Body Views */\\n.focus-card-body {\\n    flex: 1;\\n    display: flex;\\n    flex-direction: column;\\n}\\n\\n.focus-tab-view {\\n    display: none;\\n    flex-direction: column;\\n    height: 100%;\\n}\"",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+    "toolAction": "\"Update body and tab view styles\"",
+    "toolSummary": "\"Add scrolling to focus card body and tab views in style_portal.css\""
+  }
+}

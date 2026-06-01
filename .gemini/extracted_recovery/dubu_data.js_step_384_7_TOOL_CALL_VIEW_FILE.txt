@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 384,
+  "createdAt": "2026-05-30T23:07:21Z",
+  "targetFile": "\"C:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"C:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+    "EndLine": "100",
+    "StartLine": "1",
+    "toolAction": "\"dubu_data.js 파일 조회\"",
+    "toolSummary": "\"dubu_data.js 파일의 상단 100줄을 읽어 데이터 형식을 확인합니다.\""
+  }
+}

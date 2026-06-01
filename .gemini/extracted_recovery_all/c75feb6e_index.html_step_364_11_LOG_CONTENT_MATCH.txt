@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 364,
+  "createdAt": "2026-05-30T07:25:15Z",
+  "filePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\41. 순두부콩물 파운드케익_완\\\\calculator\\\\index.html\"",
+  "content": "I will view `41. 순두부콩물 파운드케익_완/calculator/index.html` to see how the recipe calculator was designed individually and if it contains the ingredients list for that recipe."
+}

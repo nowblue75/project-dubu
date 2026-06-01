@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 522,
+  "createdAt": "2026-05-29T07:23:45Z",
+  "filePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+  "content": "I will view `dubu_data.js` around the recipe section of \"순두부 눈꽃컵케이크\" to see the full list of recipe steps and their descriptions."
+}

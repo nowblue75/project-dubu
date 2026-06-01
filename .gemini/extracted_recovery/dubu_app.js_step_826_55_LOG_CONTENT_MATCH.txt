@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 826,
+  "createdAt": "2026-05-31T00:29:21Z",
+  "filePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "이제 JS에서 `openFocusStage` 함수 내의 버튼 이벤트 바인딩을 업데이트합니다. 소장하기는 유지, 공유버튼 대신 블로그/룩북 버튼을 바인딩합니다."
+}

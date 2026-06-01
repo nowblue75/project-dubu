@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2284,
+  "createdAt": "2026-05-31T21:59:40Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+    "EndLine": "2174",
+    "StartLine": "2145",
+    "toolAction": "\"View scrollbar styles in style_portal.css\"",
+    "toolSummary": "\"Read scrollbar styles at the end of style_portal.css\""
+  }
+}

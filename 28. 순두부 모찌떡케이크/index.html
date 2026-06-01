@@ -6,7 +6,7 @@
     <title>명절 에디션: 순두부 모찌떡케이크</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=5.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
     <style>
         :root {
             --val-accent: #C5A17A;
@@ -17,7 +17,7 @@
         }
     </style>
 </head>
-<body class="lookbook-page antialiased selection:bg-[#C5A17A]/30">
+<body class="lookbook-page antialiased selection:bg-[#C5A17A]/30 theme-holiday">
 
     <div class="progress-bar"></div>
 
@@ -29,11 +29,15 @@
     <main id="main-content">
         <!-- 01. Intro -->
         <section class="active">
-            <div class="image-stage">
-                <img src="../28. 순두부 모찌떡케이크_완/0.jpg" alt="모찌떡케이크 메인" class="fade-in-up">
-                <div class="content-box side-right">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="../28. 순두부 모찌떡케이크_완/0.jpg" alt="모찌떡케이크 메인" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box side-right">
                     <h2 class="serif text-5xl mb-6">시간이 멈춘,<br>말랑한 기록</h2>
                     <p>쌀가루를 전혀 쓰지 않고 순두부와 타피오카, 찹쌀가루를 배합하여 모찌 공법으로 빚어냈습니다.<br>시간이 지나도 굳지 않는 마법 같은 식감으로 명절의 대미를 장식합니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -65,10 +69,14 @@
             <div class="image-stage">
                 <img src="../28. 순두부 모찌떡케이크_완/3.jpg" alt="최종 확인">
                 <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
-                    <div class="footer-buttons">
-                        <a id="back-link-bottom" href="../index.html#latest" class="back-btn serif px-12 py-5 transition-all tracking-widest text-sm inline-block">← BACK TO PORTAL</a>
-                        <a href="https://blog.naver.com/project_dubu/224139999891" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-5 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    
+                <div class="lookbook-footer-container">
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

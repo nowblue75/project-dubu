@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 824,
+  "createdAt": "2026-05-31T00:29:12Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+  "content": "\"                <!-- Bottom Action Buttons -->\\n                <div class=\\\"focus-card-actions\\\">\\n                    <button class=\\\"btn-focus-action download\\\" id=\\\"focus-btn-download\\\">\\n                        <i class=\\\"fa-solid fa-download\\\"></i> 레시피 소장하기\\n                    </button>\\n                    <a class=\\\"btn-focus-action blog\\\" id=\\\"focus-btn-blog\\\" href=\\\"#\\\" target=\\\"_blank\\\">\\n                        <i class=\\\"fa-solid fa-book-open\\\"></i> 블로그 가기\\n                    </a>\\n                    <a class=\\\"btn-focus-action lookbook\\\" id=\\\"focus-btn-lookbook\\\" href=\\\"#\\\">\\n                        <i class=\\\"fa-solid fa-images\\\"></i> 룩북보기\\n                    </a>\\n                </div>\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"FocusStage 하단 버튼을 기존 2개(소장+공유)에서 3개(소장+블로그+룩북)로 교체합니다.\"",
+    "EndLine": "297",
+    "Instruction": "\"하단 버튼 2개를 레시피 소장하기, 블로그 가기, 룩북보기 3개로 교체\"",
+    "ReplacementContent": "\"                <!-- Bottom Action Buttons -->\\n                <div class=\\\"focus-card-actions\\\">\\n                    <button class=\\\"btn-focus-action download\\\" id=\\\"focus-btn-download\\\">\\n                        <i class=\\\"fa-solid fa-download\\\"></i> 레시피 소장하기\\n                    </button>\\n                    <a class=\\\"btn-focus-action blog\\\" id=\\\"focus-btn-blog\\\" href=\\\"#\\\" target=\\\"_blank\\\">\\n                        <i class=\\\"fa-solid fa-book-open\\\"></i> 블로그 가기\\n                    </a>\\n                    <a class=\\\"btn-focus-action lookbook\\\" id=\\\"focus-btn-lookbook\\\" href=\\\"#\\\">\\n                        <i class=\\\"fa-solid fa-images\\\"></i> 룩북보기\\n                    </a>\\n                </div>\"",
+    "StartLine": "289",
+    "TargetContent": "\"                <!-- Bottom Action Buttons -->\\n                <div class=\\\"focus-card-actions\\\">\\n                    <button class=\\\"btn-focus-action download\\\" id=\\\"focus-btn-download\\\">\\n                        레시피 카드로 소장하기\\n                    </button>\\n                    <button class=\\\"btn-focus-action share\\\" id=\\\"focus-btn-share\\\">\\n                        링크 공유하기\\n                    </button>\\n                </div>\"",
+    "TargetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+    "toolAction": "\"버튼 3개로 교체\"",
+    "toolSummary": "\"FocusStage 버튼 HTML 교체\""
+  }
+}

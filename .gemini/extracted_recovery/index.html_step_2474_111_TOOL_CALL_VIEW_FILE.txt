@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2474,
+  "createdAt": "2026-05-31T22:51:03Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/1. 순두부크림치즈_완/index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/1. 순두부크림치즈_완/index.html\"",
+    "EndLine": "25",
+    "StartLine": "1",
+    "toolAction": "\"View Cream Cheese head for style_lookbook.css version check\"",
+    "toolSummary": "\"Read head block of recipe 1 lookbook index.html\""
+  }
+}

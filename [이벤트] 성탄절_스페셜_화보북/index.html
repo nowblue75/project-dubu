@@ -6,7 +6,7 @@
     <title>성탄절 스페셜: Christmas Selection</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=5.1">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
     <style>
         :root {
             --val-bg: #1B4332; /* 성탄절 딥 그린 */
@@ -21,7 +21,7 @@
         }
     </style>
 </head>
-<body class="lookbook-page antialiased selection:bg-red-900 selection:text-white">
+<body class="lookbook-page antialiased selection:bg-red-900 selection:text-white theme-christmas">
 
     <div class="progress-bar"></div>
 
@@ -33,14 +33,15 @@
     <main id="main-content">
         <!-- 01. Vol 27 - 눈꽃컵케이크 (최신순) -->
         <section id="vol27" class="active">
-            <div class="image-stage image-grid">
-                <img src="../27. 순두부 눈꽃컵케이크_완/0.jpg" alt="눈꽃컵케이크" class="img-main">
-                <img src="../27. 순두부 눈꽃컵케이크_완/1.jpg" alt="눈꽃컵케이크 상세1">
-                <img src="../27. 순두부 눈꽃컵케이크_완/2.jpg" alt="눈꽃컵케이크 상세2">
-                <img src="../27. 순두부 눈꽃컵케이크_완/3.jpg" alt="눈꽃컵케이크 상세3">
-                <div class="content-box side-left">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="../27. 순두부 눈꽃컵케이크_완/0.jpg" alt="눈꽃컵케이크" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box side-left">
                     <h2 class="serif text-4xl">반죽 속에 담긴<br>정직한 촉촉함</h2>
                     <p>순두부를 넣어 구워낸 컵케이크 베이스와 산뜻한 크림치즈 프로스팅의 조화.<br>반죽 속에 담아낸 영양과 소복이 내려앉은 눈꽃 장식으로 성탄의 미학을 완성했습니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -134,9 +135,14 @@
             <div class="image-stage" style="background: rgba(13, 43, 31, 1);">
                 <div class="content-box centered">
                     <h2 class="serif text-5xl mb-12">당신의 성탄이<br>조금 더 특별해지기를</h2>
-                    <div class="footer-buttons">
-                        <a href="../%ED%81%AC%EB%A6%AC%EC%8A%A4%EB%A7%88%EC%8A%A4%20%ED%8C%9D%EC%8B%9C%ED%81%B4/index.html" class="back-btn serif px-14 py-5 transition-all tracking-[0.3em] text-sm inline-block">GO TO HUB</a>
+                    
+                <div class="lookbook-footer-container">
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

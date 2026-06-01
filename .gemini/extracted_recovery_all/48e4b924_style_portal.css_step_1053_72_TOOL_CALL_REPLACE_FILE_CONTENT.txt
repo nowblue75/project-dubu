@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 1053,
+  "createdAt": "2026-05-30T05:31:59Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+  "content": "\".book-spine .spine-title {\\n    writing-mode: vertical-rl;\\n    text-orientation: mixed;\\n    font-family: 'Noto Serif KR', serif;\\n    font-size: 0.78rem;\\n    font-weight: 900; /* 고가독성 굵기 */\\n    letter-spacing: 1.8px;\\n    flex-grow: 1;\\n    margin: 15px 0;\\n    white-space: nowrap;\\n    text-align: center;\\n    /* 사방 4방향 고대비 검은색 테두리(Stroke) 및 은은한 황금 별빛 네온 섀도우 융합 */\\n    text-shadow: \\n        -1.5px -1.5px 0 #000,  \\n         1.5px -1.5px 0 #000,\\n        -1.5px  1.5px 0 #000,\\n         1.5px  1.5px 0 #000,\\n         0 0 8px rgba(255, 223, 128, 0.7), /* 별빛 네온 글로우 */\\n         0 3px 8px rgba(0,0,0,0.95);\\n    color: #fff4d4 !important; /* 고대비 밝은 골드 크림 */\\n    z-index: 3;\\n}\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"book-spine의 제목 글자(.spine-title)에 4방향 고대비 테두리와 함께 은은한 황금 별빛 네온 글로우(Glow text-shadow) 효과를 가미했습니다.\"",
+    "EndLine": "1014",
+    "Instruction": "\"spine-title 클래스의 text-shadow를 고대비 검은색 테두리선과 황금빛 별빛 네온 아우라가 결합된 스타일로 수정하고, color를 크림 골드로 보정합니다.\"",
+    "ReplacementContent": "\".book-spine .spine-title {\\n    writing-mode: vertical-rl;\\n    text-orientation: mixed;\\n    font-family: 'Noto Serif KR', serif;\\n    font-size: 0.78rem;\\n    font-weight: 900; /* 고가독성 굵기 */\\n    letter-spacing: 1.8px;\\n    flex-grow: 1;\\n    margin: 15px 0;\\n    white-space: nowrap;\\n    text-align: center;\\n    /* 사방 4방향 고대비 검은색 테두리(Stroke) 및 은은한 황금 별빛 네온 섀도우 융합 */\\n    text-shadow: \\n        -1.5px -1.5px 0 #000,  \\n         1.5px -1.5px 0 #000,\\n        -1.5px  1.5px 0 #000,\\n         1.5px  1.5px 0 #000,\\n         0 0 8px rgba(255, 223, 128, 0.7), /* 별빛 네온 글로우 */\\n         0 3px 8px rgba(0,0,0,0.95);\\n    color: #fff4d4 !important; /* 고대비 밝은 골드 크림 */\\n    z-index: 3;\\n}\"",
+    "StartLine": "993",
+    "TargetContent": "\".book-spine .spine-title {\\n    writing-mode: vertical-rl;\\n    text-orientation: mixed;\\n    font-family: 'Noto Serif KR', serif;\\n    font-size: 0.78rem;\\n    font-weight: 900; /* 고가독성 굵기 */\\n    letter-spacing: 1.8px;\\n    flex-grow: 1;\\n    margin: 15px 0;\\n    white-space: nowrap;\\n    text-align: center;\\n    /* 사방 4방향 고대비 검은색 테두리(Stroke) 및 음각 그림자 효과 */\\n    text-shadow: \\n        -1.5px -1.5px 0 #000,  \\n         1.5px -1.5px 0 #000,\\n        -1.5px  1.5px 0 #000,\\n         1.5px  1.5px 0 #000,\\n         0 3px 6px rgba(0,0,0,0.95);\\n    color: #fff2cc !important; /* 고대비 크림 골드 */\\n    z-index: 3;\\n}\"",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+    "toolAction": "\"Applying starfield glow text shadows to book spine titles\"",
+    "toolSummary": "\"Edit style_portal.css\""
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 755,
+  "createdAt": "2026-05-31T00:17:56Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+    "EndLine": "1285",
+    "StartLine": "1260",
+    "toolAction": "\"magic-book-viewport 크기 확인\"",
+    "toolSummary": "\"viewport 크기 확인\""
+  }
+}

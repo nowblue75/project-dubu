@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 1992,
+  "createdAt": "2026-05-31T21:33:05Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+    "EndLine": "300",
+    "StartLine": "230",
+    "toolAction": "\"Viewing dubu_app.js modal dynamic properties\"",
+    "toolSummary": "\"View dubu_app.js L230-300\""
+  }
+}

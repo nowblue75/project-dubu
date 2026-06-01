@@ -9,10 +9,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=11.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
 </head>
 
-<body class="lookbook-page antialiased selection:bg-[#E91E63]/30">
+<body class="lookbook-page antialiased selection:bg-[#E91E63]/30 theme-default">
 
     <div class="progress-bar"></div>
 
@@ -25,11 +25,15 @@
     <main id="main-content">
         <!-- 01. Intro -->
         <section class="active">
-            <div class="image-stage">
-                <img src="../11. 순두부 레몬케이크_완/1.jpg" alt="레몬케이크 메인" class="fade-in-up">
-                <div class="content-box">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="../11. 순두부 레몬케이크_완/1.jpg" alt="레몬케이크 메인" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box">
                     <h2 class="serif text-4xl mb-6">산뜻한 노란빛<br>봄의 인사</h2>
                     <p>싱그러운 5월의 햇살을 머금은 듯,<br>노란 레몬의 활기가 식탁 위를 화사하게 밝혀줍니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -64,12 +68,12 @@
                     <h2 class="serif text-4xl mb-6">오늘을 더<br>환하게 기억하도록</h2>
                     <p>함께 나누는 한 입의 즐거움.<br>순두부 레몬케이크와 함께 가장 다정한 시간을 기록해 보세요.</p>
                 </div>
+                
                 <div class="lookbook-footer-container">
-                    <div class="footer-buttons">
-                        <a href="../[이벤트] 가정의달_2026/index.html"
-                            class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block">← BACK TO HUB</a>
-                        <a href="https://blog.naver.com/project_dubu/223969919173" target="_blank" rel="noopener noreferrer"
-                            class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
                 </div>
             </div>

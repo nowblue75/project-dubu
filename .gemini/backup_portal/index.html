@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT DUBU Archive</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style_portal.css?v=4.0">
+    <style>
+        .archive-item {
+            position: relative;
+            padding-left: 20px;
+        }
+        .archive-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #D1C7BC;
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased portal-page">
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-text serif">PROJECT DUBU</a>
+            <div class="nav-links">
+                <a href="#latest" class="serif">LATEST</a>
+                <a href="#events" class="serif">EVENTS</a>
+                <a href="#archive" class="serif">ARCHIVE</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container fade-in-down">
+            <img src="로고 가로버전.png" alt="Project Dubu Logo" class="main-logo">
+            <h1 class="serif">평범한 일상을<br>특별한 식감으로</h1>
+            <p>순두부라는 가장 정직한 재료를 통해 완성하는<br>건강하고 꾸덕한 디저트 미학, 프로젝트 두부의 모든 기록입니다.</p>
+        </div>
+    </section>
+
+    <!-- Featured Lookbooks (Dynamic) -->
+    <section id="latest" class="featured">
+        <div class="container">
+            <div class="section-tag serif">SPECIAL SELECTION</div>
+            <h2 class="serif section-title fade-in-up">우리의 최신 디저트</h2>
+            <div class="featured-grid" id="featured-container">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal Events (Dynamic) -->
+    <section id="events" class="events-section">
+        <div class="container">
+            <div class="section-tag serif">ANNUAL TRADITION</div>
+            <h2 class="serif section-title fade-in-up">시즌 및 특별 이벤트</h2>
+            <div id="events-container" class="events-grid">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Archive Section (Dynamic) -->
+    <section id="archive" class="archive-section flex flex-col justify-center">
+        <div class="container flex flex-col h-full">
+            <h2 class="serif section-title fade-in-up">지난 프로젝트의 기록</h2>
+            
+            <div class="archive-container">
+                <div id="archive-container" class="archive-list">
+                    <!-- Dynamic Content -->
+                </div>
+                <p class="text-center text-gray-400 text-xs mt-12 italic">"* 아카이브 항목은 현재 인터랙티브 화보북으로 업데이트 준비 중입니다."</p>
+            </div>
+
+            <footer class="mt-auto">
+                <div class="footer-logo serif">PROJECT DUBU</div>
+                <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
+            </footer>
+        </div>
+    </section>
+
+    <script>
+        // 프로젝트 데이터베이스 (여기에 새 프로젝트를 추가하면 자동으로 업데이트됩니다)
+        const PROJECTS = [
+            {
+                id: 40,
+                title: "순두부 흑임자 테린",
+                desc: "빵보다 쫀득하고 푸딩보다 묵직한 반전의 식감. 블랙과 크림의 조화로운 미학을 담은 인터랙티브 가이드입니다.",
+                path: "40. 순두부 흑임자테린/index.html",
+                img: "40. 순두부 흑임자테린/assets/01.png",
+                isInteractive: true
+            },
+            {
+                id: 39,
+                title: "순두부 쑥 찰떡브라우니",
+                desc: "쑥의 깊은 풍미와 순두부의 찰기가 만나 완성된 압도적인 꾸덕함. 고증된 전문 베이킹 공정으로 빚어낸 프리미엄 디저트입니다.",
+                path: "39. 순두부 쑥 찰떡브라우니_화보북 여기서부터/index.html",
+                img: "39. 순두부 쑥 찰떡브라우니_화보북 여기서부터/assets/7.jpg",
+                isInteractive: true,
+                blogUrl: "https://blog.naver.com/project_dubu/224247304779"
+            },
+            { id: 38, title: "순두부 얼그레이그릭스콘", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224231139066" },
+            { id: 37, title: "순두부 녹차요거트파운드케익", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224223083246" },
+            { id: 36, title: "순두부 화이트바크초콜릿", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224213464375" },
+            { id: 35, title: "순두부 초코마들렌", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224203525984" },
+            { id: 34, title: "순두부 레몬마들렌", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224197631515" },
+            { id: 33, title: "순두부 미니초코케익", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224182208558" },
+            { id: 32, title: "순두부 찰떡파이", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224173603637" },
+            { id: 31, title: "순두부 티라미수푸딩", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224164987367" },
+            { id: 30, title: "순두부 시나몬롤", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224156728237" },
+            { 
+                id: 29, 
+                title: "순두부 르뱅쿠키", 
+                isInteractive: false,
+                blogUrl: "https://blog.naver.com/project_dubu/224148501012",
+                calcPath: "29. 순두부 르뱅쿠키_완/calculator/index.html" 
+            },
+            { 
+                id: 28, 
+                title: "순두부 모찌떡 케이크", 
+                desc: "명절 식탁의 화려한 피날레. 모찌 공법으로 빚어내어 시간이 지나도 굳지 않는 마법 같은 식감의 케이크입니다.",
+                path: "28. 순두부 모찌떡케이크/index.html",
+                img: "28. 순두부 모찌떡케이크_완/0.jpg",
+                isInteractive: true,
+                blogUrl: "https://blog.naver.com/project_dubu/224139999891"
+            },
+            { id: 27, title: "순두부 눈꽃컵케이크", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224127335052" },
+            { id: 26, title: "순두부 3종케익", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224113782805" },
+            { id: 25, title: "순두부 초코번트케익", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224106900867" },
+            { id: 24, title: "순두부 레몬번트케익", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224103127145" },
+            { id: 23, title: "순두부 블랙포레스트 컵케익", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224089622187" },
+            { id: 22, title: "순두부 부쉬드노엘", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224097606202" },
+            { id: 21, title: "순두부 슈톨렌", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224083029266" },
+            { id: 20, title: "투톤 순두부 타르트", isInteractive: false },
+            { id: 19, title: "순두부 단호박 찹쌀빵", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224044280791" },
+            { 
+                id: 18, 
+                title: "순두부 코코넛 단팥찹쌀구움바", 
+                desc: "전통 단팥의 달콤함과 찹쌀의 쫄깃함이 만난 현대적 해석. 명절의 정갈함을 담은 주전부리입니다.",
+                path: "18. 순두부 코코넛 단팥찹쌀구움바/index.html",
+                img: "18. 순두부 코코넛 단팥찹쌀구움바/KakaoTalk_20251002_083305924.jpg",
+                isInteractive: true 
+            },
+            { id: 17, title: "순두부 밤파운드케이크", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224035441110" },
+            { id: 16, title: "순두부 단호박바스크치즈케이크", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224029278133" },
+            { id: 15, title: "순두부 시나몬롤", isInteractive: false },
+            { id: 14, title: "순두부 녹차팥푸딩", isInteractive: false },
+            { id: 13, title: "순두부 크림치즈롤케익", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224012454408" },
+            { id: 12, title: "순두부 치즈스콘", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223977891669" },
+            { id: 11, title: "순두부 레몬케이크", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223969919173" },
+            { id: 10, title: "순두부 브라우니쿠키", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223961946339" },
+            { id: 9, title: "순두부 찹쌀모찌 케이크", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223953399410" },
+            { id: 8, title: "순두부 크림치즈쿠키", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223934000393" },
+            { id: 7, title: "얼그레이 순두부 케이크", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223945052824" },
+            { id: 6, title: "순두부 갈릭포카치아(보류)", isInteractive: false },
+            { id: 5, title: "순두부 황치즈휘낭시에", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223916749341" },
+            { id: 4, title: "순두부 퍼지브라우니", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223925764123" },
+            { id: 3, title: "순두부 바스크치즈케이크", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223909587683" },
+            { id: 2, title: "순두부 크림치즈티라미수", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223901807888" },
+            { id: 1, title: "순두부 크림치즈", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223895335443" }
+        ];
+
+        // 시즌 및 특별 이벤트 데이터
+        const EVENTS = [
+            { id: 'valentine', month: 'FEB', title: '발렌타인데이', icon: '💝', vols: '33, 35', path: "[이벤트] 발렌타인_2026/index.html", isReady: true },
+            { id: 'whiteday', month: 'MAR', title: '화이트데이', icon: '🍭', vols: '36, 34', path: "[이벤트] 화이트데이_2026/index.html", isReady: true },
+            { id: 'family', month: 'MAY', title: '가정의 달', icon: '🌸', vols: '29, 31, 39', path: "[이벤트] 가정의달_2026/index.html", isReady: true },
+            { id: 'holidays', month: 'HOLIDAY', title: '명절 (설/추석)', icon: '🧧', vols: '18, 28, 40', path: "[이벤트] 명절_2026/index.html", isReady: true }, // 설날/추석 통합
+            { id: 'halloween', month: 'OCT', title: '할로윈 데이', icon: '🎃', path: "[이벤트] 할로윈_20251029/index.html", isReady: true },
+            { id: 'pepero', month: 'NOV', title: '빼빼로데이', icon: '🥖', path: "[이벤트] 빼빼로_20251106/index.html", isReady: true },
+            { id: 'sooneung', month: 'NOV', title: '수능 응원', icon: '🎓', path: "[이벤트] 수능 찹쌀떡_20251112/index.html", isReady: true },
+            { id: 'christmas', month: 'DEC', title: '성탄절 시리즈', icon: '🎄', vols: '21-27', path: "크리스마스 팝시클/index.html", isReady: true }
+        ];
+
+        function renderDashboard() {
+            const featuredContainer = document.getElementById('featured-container');
+            const archiveContainer = document.getElementById('archive-container');
+            const eventsContainer = document.getElementById('events-container');
+
+            // ID 역순 정렬 (높은 숫자가 최신)
+            const sortedProjects = [...PROJECTS].sort((a, b) => b.id - a.id);
+
+            // 최신 2개는 Featured
+            const featured = sortedProjects.slice(0, 2);
+            // 나머지는 Archive
+            const archive = sortedProjects.slice(2);
+
+            // Featured 렌더링
+            featuredContainer.innerHTML = featured.map((p, index) => `
+                <a href="${p.path}" class="lookbook-card group fade-in-up" style="animation-delay: ${index * 0.2}s">
+                    <div class="card-img">
+                        <img src="${p.img}" alt="${p.title}">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag">Vol. ${p.id}</div>
+                        <h2 class="card-title serif">${p.title}</h2>
+                        <p class="card-desc">${p.desc}</p>
+                    </div>
+                </a>
+            `).join('');
+
+            // Events 렌더링
+            eventsContainer.innerHTML = EVENTS.map((e, index) => `
+                <${e.isReady ? `a href="${e.path}"` : 'div'} class="event-card group ${!e.isReady ? 'locked' : ''} fade-in-up" style="animation-delay: ${0.2 + (index * 0.1)}s">
+                    <div class="event-month">${e.month}</div>
+                    <div class="event-icon">${e.icon}</div>
+                    <div class="event-title serif">${e.title}</div>
+                    <div class="event-status">${e.isReady ? 'VIEW' : 'COMING SOON'}</div>
+                </${e.isReady ? 'a' : 'div'}>
+            `).join('');
+
+            // Archive 렌더링
+            archiveContainer.innerHTML = archive.map((p, index) => `
+                <div class="archive-item fade-in-up" style="animation-delay: ${0.4 + (index * 0.05)}s">
+                    ${p.id}. 
+                    ${p.isInteractive
+                        ? `<a href="${p.path}" class="hover:underline decoration-dotted">${p.title}</a>`
+                        : p.blogUrl
+                            ? `<a href="${p.blogUrl}" target="_blank" class="hover:underline decoration-dotted">${p.title}</a>`
+                            : p.title
+                    }
+                    ${p.isInteractive && p.blogUrl ? `<a href="${p.blogUrl}" target="_blank" class="ml-2 text-[8px] uppercase tracking-widest text-[#D1C7BC] hover:text-[#1F1A17] transition-colors underline decoration-dotted">Blog</a>` : ''}
+                    ${p.calcPath ? `<a href="${p.calcPath}" class="ml-2 text-[10px] px-2 py-0.5 border border-[#D1C7BC] rounded-full hover:bg-[#1F1A17] hover:text-white transition-colors">자동계산기</a>` : ''}
+                </div>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderDashboard);
+
+        // Smooth Scroll
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navigation Active State on Scroll
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section[id]');
+
+        // 전역 상태로 각 섹션의 노출 비중 저장
+        const sectionRatios = {};
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            // 1. 변경된 항목들의 비중 업데이트
+            entries.forEach(entry => {
+                sectionRatios[entry.target.id] = entry.intersectionRatio;
+            });
+
+            let mostVisibleSection = null;
+            let maxRatio = 0;
+
+            // 2. 최상단(Hero) 체크
+            if (window.scrollY < 100) {
+                mostVisibleSection = 'home';
+            } else {
+                // 3. 전체 섹션 중 가장 높은 비중 찾기
+                for (const id in sectionRatios) {
+                    if (sectionRatios[id] > maxRatio) {
+                        maxRatio = sectionRatios[id];
+                        mostVisibleSection = id;
+                    }
+                }
+            }
+
+            // 4. 네비게이션 하이라이트 업데이트
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (mostVisibleSection !== 'home' && link.getAttribute('href') === `#${mostVisibleSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] });
+
+        sections.forEach(section => scrollObserver.observe(section));
+    </script>
+</body>
+</html>

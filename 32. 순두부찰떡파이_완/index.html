@@ -6,9 +6,9 @@
     <title>프로젝트 두부: 발렌타인 에디션</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=11.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
 </head>
-<body class="lookbook-page antialiased selection:bg-[#E91E63]/30">
+<body class="lookbook-page antialiased selection:bg-[#E91E63]/30 theme-default">
 
     <div class="progress-bar"></div>
 
@@ -23,13 +23,16 @@
         <!-- (내용 동일) -->
         <!-- 01. Hero Section -->
         <section class="page active" id="page-1">
-            <div class="image-stage">
-                <img src="KakaoTalk_20260205_080828387_03.jpg" alt="발렌타인 메인">
-                <div class="overlay-soft"></div>
-                <div class="content-box text-center">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="KakaoTalk_20260205_080828387_03.jpg" alt="발렌타인 메인">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box text-center">
                     <span class="edition-tag serif fade-in-up">Valentine Selection</span>
                     <h1 class="serif text-6xl md:text-8xl mb-6 fade-in-up delay-100">Sweet<br><span class="text-[#BC8A5F]">Tofu Pie</span></h1>
                     <p class="text-lg opacity-60 tracking-widest fade-in-up delay-200">순두부로 빚어낸 가장 부드러운 고백</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -85,10 +88,12 @@
             <div class="image-stage">
                 <img src="KakaoTalk_20260205_080932140_04.jpg" alt="최종 컷">
                 <div class="overlay-light"></div>
+                
                 <div class="lookbook-footer-container">
-                    <div class="footer-buttons">
-                        <a href="../index.html#events" class="back-btn serif border border-[#4B2412]/20 px-10 py-4 hover:bg-[#4B2412] hover:text-white transition-all tracking-widest text-sm inline-block">← BACK TO PORTAL</a>
-                        <a href="https://blog.naver.com/project_dubu/224173603637" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm">상세한 레시피는 블로그로 →</a>
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
                 </div>
 

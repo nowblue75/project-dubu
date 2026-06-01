@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 1057,
+  "createdAt": "2026-05-30T05:32:10Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+    "EndLine": "1900",
+    "StartLine": "1850",
+    "toolAction": "\"Viewing stacked-book-title style declaration\"",
+    "toolSummary": "\"View CSS file content\""
+  }
+}

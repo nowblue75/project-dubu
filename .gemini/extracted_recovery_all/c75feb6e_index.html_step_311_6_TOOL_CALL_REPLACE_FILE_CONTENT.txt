@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 311,
+  "createdAt": "2026-05-30T07:21:31Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+  "content": "\"    <!-- Javascript Modules - Modular Re-architecture for Ultra-efficiency -->\\n    <script src=\\\"dubu_data.js?v=25.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=25.0\\\"></script>\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"dubu_data.js와 dubu_app.js의 캐시 방지 버전을 25.0으로 올림\"",
+    "EndLine": "320",
+    "Instruction": "\"dubu_data.js와 dubu_app.js 스크립트 버전을 25.0으로 업데이트하여 브라우저의 강제 로드를 트리거합니다.\"",
+    "ReplacementContent": "\"    <!-- Javascript Modules - Modular Re-architecture for Ultra-efficiency -->\\n    <script src=\\\"dubu_data.js?v=25.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=25.0\\\"></script>\"",
+    "StartLine": "300",
+    "TargetContent": "\"    <!-- Javascript Modules - Modular Re-architecture for Ultra-efficiency -->\\n    <script src=\\\"dubu_data.js?v=23.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=23.0\\\"></script>\"",
+    "TargetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+    "toolAction": "\"Updating JS cache versions\"",
+    "toolSummary": "\"index.html edits\""
+  }
+}

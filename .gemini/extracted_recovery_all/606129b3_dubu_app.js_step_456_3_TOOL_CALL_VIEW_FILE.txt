@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 456,
+  "createdAt": "2026-05-30T23:17:09Z",
+  "targetFile": "\"C:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"C:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+    "EndLine": "1410",
+    "StartLine": "1360",
+    "toolAction": "\"마크업 렌더링 코드 조회\"",
+    "toolSummary": "\"dubu_app.js에서 magic-action-row 내 버튼들의 바인딩 상태와 HTML 렌더링 구조를 조회합니다.\""
+  }
+}

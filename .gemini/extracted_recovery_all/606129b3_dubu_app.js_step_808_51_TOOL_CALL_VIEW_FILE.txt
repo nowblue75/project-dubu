@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 808,
+  "createdAt": "2026-05-31T00:26:51Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+    "EndLine": "330",
+    "StartLine": "180",
+    "toolAction": "\"openFocusStage 나머지 코드 확인\"",
+    "toolSummary": "\"FocusStage 재료 계산기 코드\""
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 1565,
+  "createdAt": "2026-05-31T10:03:06Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+  "content": "\"    <script src=\\\"dubu_data.js?v=47.3\\\"></script>\\n    <script src=\\\"dubu_app.js?v=47.3\\\"></script>\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"Increment version from 47.2 to 47.3 to force cache reload after restoring original lookbooks and patching styles.\"",
+    "EndLine": "330",
+    "Instruction": "\"Change scripts versions to 47.3 inside index.html.\"",
+    "ReplacementContent": "\"    <script src=\\\"dubu_data.js?v=47.3\\\"></script>\\n    <script src=\\\"dubu_app.js?v=47.3\\\"></script>\"",
+    "StartLine": "327",
+    "TargetContent": "\"    <script src=\\\"dubu_data.js?v=47.2\\\"></script>\\n    <script src=\\\"dubu_app.js?v=47.2\\\"></script>\"",
+    "TargetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+    "toolAction": "\"Editing index.html file\"",
+    "toolSummary": "\"Replace file content\""
+  }
+}

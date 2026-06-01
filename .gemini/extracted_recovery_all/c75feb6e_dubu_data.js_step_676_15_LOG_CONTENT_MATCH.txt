@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 676,
+  "createdAt": "2026-05-30T22:08:40Z",
+  "filePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+  "content": "I will read the initial lines of `dubu_data.js` where the `PROJECTS` list is defined to see the attributes mapping for each recipe."
+}

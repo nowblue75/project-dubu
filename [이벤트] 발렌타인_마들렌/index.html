@@ -101,8 +101,9 @@
         .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
 </head>
-<body class="antialiased selection:bg-[#BC8A5F]/30">
+<body class="antialiased selection:bg-[#BC8A5F]/30 theme-romantic">
 
     <div class="progress-bar"></div>
 
@@ -115,11 +116,15 @@
     <main id="main-content">
         <!-- 01. Cinematic Introduction -->
         <section class="active">
-            <div class="image-stage">
-                <img src="../35. 순두부초코마들렌_완/0.jpg" alt="발렌타인 초코마들렌 메인" class="fade-in-up">
-                <div class="content-box side-right">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="../35. 순두부초코마들렌_완/0.jpg" alt="발렌타인 초코마들렌 메인" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box side-right">
                     <h2 class="serif text-4xl mb-6">우아한<br>위로의 곡선</h2>
                     <p>조개껍데기 속에 담긴 부드러운 고백.<br>진한 초콜릿과 순두부가 만나 특별한 마들렌이 되었습니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -156,10 +161,14 @@
                 </div>
                 <!-- 하단 브랜딩 요소 -->
                 <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
-                    <div class="footer-buttons">
-                        <a id="back-link-bottom" href="../index.html#latest" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block">← BACK TO PORTAL</a>
-                        <a href="https://blog.naver.com/project_dubu/224203525984" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    
+                <div class="lookbook-footer-container">
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

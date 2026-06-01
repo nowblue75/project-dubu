@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 760,
+  "createdAt": "2026-05-30T22:11:16Z",
+  "filePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/1. 순두부크림치즈_완/index.html\"",
+  "content": "I will open the index.html of one of the completed recipes (e.g. `1. 순두부크림치즈_완/index.html`) to see how recipe details like ingredients and instructions are structured. This will guide us in writing an automated parser to extract the correct flags."
+}

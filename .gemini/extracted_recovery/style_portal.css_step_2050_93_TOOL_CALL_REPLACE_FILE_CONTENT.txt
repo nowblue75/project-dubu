@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 2050,
+  "createdAt": "2026-05-31T21:35:38Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+  "content": "\".ing-check-circle.checked {\\n    background-color: var(--magic-book-color, var(--dubu-black));\\n    border-color: var(--magic-book-color, var(--dubu-black));\\n}\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"재료 계산기 체크박스 선택 시 배경색을 테마 마법책 색상과 연동\"",
+    "EndLine": "1676",
+    "Instruction": "\"style_portal.css에서 체크박스의 checked 상태 배경색을 마법책 테마색으로 수정\"",
+    "ReplacementContent": "\".ing-check-circle.checked {\\n    background-color: var(--magic-book-color, var(--dubu-black));\\n    border-color: var(--magic-book-color, var(--dubu-black));\\n}\"",
+    "StartLine": "1671",
+    "TargetContent": "\".ing-check-circle.checked {\\n    background-color: var(--dubu-black);\\n    border-color: var(--dubu-black);\\n}\"",
+    "TargetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+    "toolAction": "\"Replacing checkbox active style in style_portal.css\"",
+    "toolSummary": "\"Update style_portal.css L1671-1676\""
+  }
+}

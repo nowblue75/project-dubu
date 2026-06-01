@@ -1,0 +1,15 @@
+{
+  "type": "TOOL_CALL_MULTI_REPLACE_FILE_CONTENT",
+  "stepIndex": 797,
+  "createdAt": "2026-05-31T00:21:54Z",
+  "targetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "",
+  "args": {
+    "Description": "\"아코디언 카드 앞면에서 상세보기 진입점을 기존 openFocusStage에서 openMagicBook으로 전환합니다. 이미지 클릭, 맞춤 분량 버튼 모두 마법서로 열리게 됩니다.\"",
+    "Instruction": "\"아코디언 카드의 openFocusStage 호출 3곳을 openMagicBook으로 교체\"",
+    "ReplacementChunks": "[{\"AllowMultiple\":false,\"EndLine\":1898,\"ReplacementContent\":\"                        <div class=\\\"page-peel-hint\\\" onclick=\\\"openMagicBook(event, ${p.id})\\\"></div>\\n                        <div class=\\\"showcase-img\\\" onclick=\\\"openMagicBook(event, ${p.id})\\\">\\n                            <img src=\\\"${p.img}\\\" alt=\\\"${p.title}\\\">\\n                            <div class=\\\"badge-container\\\">${badgesHtml}</div>\\n                        </div>\\n                        <div class=\\\"showcase-body\\\">\\n                            <div class=\\\"showcase-vol\\\">Atelier Premium Spec</div>\\n                            <h3 class=\\\"serif showcase-title\\\">${p.title}</h3>\\n                            <p class=\\\"showcase-desc\\\">${p.desc}</p>\\n                            ${p.emotionalQuote ? `<p class=\\\"showcase-quote\\\" style=\\\"font-family: var(--font-playfair), serif; font-style: italic; font-size: 0.73rem; color: #8D6E63; margin-top: 10px; margin-bottom: 5px; word-break: keep-all; line-height: 1.4;\\\"><i class=\\\"fa-solid fa-quote-left\\\" style=\\\"font-size: 0.55rem; color: var(--dubu-mint-accent); margin-right: 5px; opacity: 0.7;\\\"></i>${p.emotionalQuote}<i class=\\\"fa-solid fa-quote-right\\\" style=\\\"font-size: 0.55rem; color: var(--dubu-mint-accent); margin-left: 5px; opacity: 0.7;\\\"></i></p>` : ''}\\n                            \\n                            <div class=\\\"card-action-bar\\\">\\n                                <button class=\\\"flip-btn\\\" onclick=\\\"openMagicBook(event, ${p.id})\\\">\\n                                    <i class=\\\"fa-solid fa-book-open-reader\\\"></i> 레시피 보기 📖\\n                                </button>\",\"StartLine\":1884,\"TargetContent\":\"                        <div class=\\\"page-peel-hint\\\" onclick=\\\"openFocusStage(${p.id})\\\"></div>\\n                        <div class=\\\"showcase-img\\\" onclick=\\\"openFocusStage(${p.id})\\\">\\n                            <img src=\\\"${p.img}\\\" alt=\\\"${p.title}\\\">\\n                            <div class=\\\"badge-container\\\">${badgesHtml}</div>\\n                        </div>\\n \n<truncated 1184 bytes>",
+    "TargetFile": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+    "toolAction": "\"아코디언 진입점 교체\"",
+    "toolSummary": "\"openFocusStage → openMagicBook 교체\""
+  }
+}

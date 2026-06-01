@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 905,
+  "createdAt": "2026-05-31T06:27:50Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+    "EndLine": "40",
+    "StartLine": "1",
+    "toolAction": "\"Viewing dubu_data.js starting lines\"",
+    "toolSummary": "\"View dubu_data.js\""
+  }
+}

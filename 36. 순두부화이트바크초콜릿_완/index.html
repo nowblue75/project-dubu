@@ -6,9 +6,9 @@
     <title>화이트데이 스페셜: 순두부 화이트바크</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=11.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
 </head>
-<body class="lookbook-page antialiased selection:bg-[#64B5F6]/30">
+<body class="lookbook-page antialiased selection:bg-[#64B5F6]/30 theme-romantic">
 
     <div class="progress-bar"></div>
 
@@ -21,11 +21,15 @@
     <main id="main-content">
         <!-- 01. Main Mood -->
         <section class="active">
-            <div class="image-stage">
-                <img src="0.jpg" alt="화이트바크 초콜릿 메인" class="fade-in-up">
-                <div class="content-box side-right">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="0.jpg" alt="화이트바크 초콜릿 메인" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box side-right">
                     <h2 class="serif text-4xl">맑고 순수한<br>고백의 조각</h2>
                     <p>정형화되지 않은 우연의 결과물.<br>깨끗한 화이트 초콜릿 속 순두부의 담백한 기록을 담았습니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -61,10 +65,12 @@
                     <p>깨끗한 화이트 초콜릿 위에 수놓인 벚꽃과 견과류의 조화.<br>흩날리는 꽃잎처럼 섬세하게 표현된 화이트데이를 위한 미학적 풍경입니다.</p>
                 </div>
                 <!-- 하단 브랜딩 요소 -->
+                
                 <div class="lookbook-footer-container">
-                    <div class="footer-buttons">
-                        <a id="back-link-bottom" href="../index.html#latest" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block">← BACK TO PORTAL</a>
-                        <a href="https://blog.naver.com/project_dubu/224213464375" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 800,
+  "createdAt": "2026-05-30T01:09:52Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+    "EndLine": "1100",
+    "StartLine": "900",
+    "toolAction": "\"dubu_app.js의 아카이브 및 소환서 관련 인터랙션 확인\"",
+    "toolSummary": "\"View dubu_app.js lines 900 to 1100\""
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 2290,
+  "createdAt": "2026-05-31T21:59:52Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+  "content": "\"/* Right Half Layout (Book Right Page - 빈티지 양필지 속지) */\\n.focus-stage-right {\\n    flex: 50 0 50%;\\n    height: 100%;\\n    padding: 40px 45px 40px 40px; /* 우측 탭갈피 오버랩 및 넓어진 공간 확보 */\\n    box-sizing: border-box;\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"우측 카드의 높이를 100%로 지정하여 부모 높이에 맞춤.\"",
+    "EndLine": "1550",
+    "Instruction": "\"Add height: 100% to .focus-stage-right in style_portal.css.\"",
+    "ReplacementContent": "\"/* Right Half Layout (Book Right Page - 빈티지 양필지 속지) */\\n.focus-stage-right {\\n    flex: 50 0 50%;\\n    height: 100%;\\n    padding: 40px 45px 40px 40px; /* 우측 탭갈피 오버랩 및 넓어진 공간 확보 */\\n    box-sizing: border-box;\"",
+    "StartLine": "1544",
+    "TargetContent": "\"/* Right Half Layout (Book Right Page - 빈티지 양필지 속지) */\\n.focus-stage-right {\\n    flex: 50 0 50%;\\n    padding: 40px 45px 40px 40px; /* 우측 탭갈피 오버랩 및 넓어진 공간 확보 */\\n    box-sizing: border-box;\"",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/style_portal.css\"",
+    "toolAction": "\"Update right stage height\"",
+    "toolSummary": "\"Set height 100% on right stage in style_portal.css\""
+  }
+}

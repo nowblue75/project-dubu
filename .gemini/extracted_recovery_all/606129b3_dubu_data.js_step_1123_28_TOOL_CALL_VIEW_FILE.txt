@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 1123,
+  "createdAt": "2026-05-31T07:21:30Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+    "EndLine": "150",
+    "StartLine": "10",
+    "toolAction": "\"Viewing PROJECTS definition in dubu_data.js\"",
+    "toolSummary": "\"Viewing PROJECTS in dubu_data.js\""
+  }
+}

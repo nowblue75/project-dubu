@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 378,
+  "createdAt": "2026-05-30T07:25:39Z",
+  "filePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\4. 순두부퍼지브라우니_완\\\\index.html\"",
+  "content": "I will view `4. 순두부퍼지브라우니_완/index.html` to check if its recipe description lists the ingredients."
+}

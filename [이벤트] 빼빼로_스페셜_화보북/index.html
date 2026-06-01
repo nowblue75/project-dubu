@@ -6,7 +6,7 @@
     <title>빼빼로 스페셜: Chocolate Linear</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=5.1">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
     <style>
         :root {
             --val-accent: #8D6E63;
@@ -16,7 +16,7 @@
         }
     </style>
 </head>
-<body class="lookbook-page antialiased selection:bg-orange-100">
+<body class="lookbook-page antialiased selection:bg-orange-100 theme-romantic">
 
     <div class="progress-bar"></div>
 
@@ -29,11 +29,15 @@
     <main id="main-content">
         <!-- 01. Luxury Tray Mood -->
         <section class="active">
-            <div class="image-stage">
-                <img src="../[이벤트] 빼빼로_20251106/KakaoTalk_20251104_151146469_19.jpg" alt="빼빼로 트레이 무드" class="fade-in-up">
-                <div class="content-box side-right">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="../[이벤트] 빼빼로_20251106/KakaoTalk_20251104_151146469_19.jpg" alt="빼빼로 트레이 무드" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box side-right">
                     <h2 class="serif text-4xl">다정한<br>시선의 직선</h2>
                     <p>고소한 순두부의 풍미를 묵직하게 채운 팝시클 베이스.<br>짙은 초콜릿 코팅과 나무 스틱이 만나 익숙한 듯 낯선 미학적 조화를 완성합니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -70,10 +74,14 @@
                 </div>
                 <!-- 하단 브랜딩 요소 -->
                 <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
-                    <div class="footer-buttons">
-                        <a href="../[이벤트] 빼빼로_20251106/index.html" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block" id="footer-back-link">← BACK TO EVENT</a>
-                        <a href="https://blog.naver.com/project_dubu/224067692065" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    
+                <div class="lookbook-footer-container">
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

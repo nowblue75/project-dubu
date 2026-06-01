@@ -6,7 +6,7 @@
     <title>발렌타인 에디션: 순두부 미니초코케익</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=5.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
     <style>
         :root {
             --val-accent: #BC8A5F;
@@ -19,7 +19,7 @@
         }
     </style>
 </head>
-<body class="lookbook-page antialiased selection:bg-[#BC8A5F]/30">
+<body class="lookbook-page antialiased selection:bg-[#BC8A5F]/30 theme-romantic">
 
     <div class="progress-bar"></div>
 
@@ -32,11 +32,15 @@
     <main id="main-content">
         <!-- 01. Cinematic Theme Entry -->
         <section class="active">
-            <div class="image-stage">
-                <img src="../33. 순두부 미니초코케익_완/tofu_chocolate_cake.png" alt="발렌타인 초코케익 메인" class="fade-in-up">
-                <div class="content-box side-right">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="../33. 순두부 미니초코케익_완/tofu_chocolate_cake.png" alt="발렌타인 초코케익 메인" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box side-right">
                     <h2 class="serif text-4xl mb-6">달콤한<br>밀도의 미학</h2>
                     <p>카카오의 깊은 풍미와 순두부의 담백함.<br>입안 가득 퍼지는 정직한 진심을 담은 기록입니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -73,10 +77,14 @@
                 </div>
                 <!-- 하단 브랜딩 요소 -->
                 <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
-                    <div class="footer-buttons">
-                        <a id="back-link-bottom" href="../index.html#latest" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block">← BACK TO PORTAL</a>
-                        <a href="https://blog.naver.com/project_dubu/224182208558" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    
+                <div class="lookbook-footer-container">
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

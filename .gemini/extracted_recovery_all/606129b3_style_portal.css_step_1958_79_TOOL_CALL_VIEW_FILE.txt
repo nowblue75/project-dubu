@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 1958,
+  "createdAt": "2026-05-31T21:27:58Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+    "EndLine": "620",
+    "StartLine": "560",
+    "toolAction": "\"Viewing style_portal.css snippet\"",
+    "toolSummary": "\"Check for mobile overrides of sidebar LNB in style_portal.css\""
+  }
+}

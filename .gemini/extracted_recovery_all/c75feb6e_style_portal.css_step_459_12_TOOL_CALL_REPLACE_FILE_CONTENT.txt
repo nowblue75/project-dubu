@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 459,
+  "createdAt": "2026-05-30T07:30:31Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+  "content": "\"/* 빈티지 마호가니 원목 선반 단 (Row) - 앤틱 몰딩 및 황동 골드 프레임 */\\n.shelf-row.under-flow {\\n    justify-content: center !important;\\n    padding: 0 30px 30px 30px !important;\\n}\\n.shelf-row {\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"shelf-row.under-flow 스타일을 추가하여 책 개수가 적을 때 정중앙 정렬과 패딩 축소 지원\"",
+    "EndLine": "921",
+    "Instruction": "\".shelf-row 정의 위에 .shelf-row.under-flow 스타일을 추가합니다.\"",
+    "ReplacementContent": "\"/* 빈티지 마호가니 원목 선반 단 (Row) - 앤틱 몰딩 및 황동 골드 프레임 */\\n.shelf-row.under-flow {\\n    justify-content: center !important;\\n    padding: 0 30px 30px 30px !important;\\n}\\n.shelf-row {\"",
+    "StartLine": "918",
+    "TargetContent": "\"/* 빈티지 마호가니 원목 선반 단 (Row) - 앤틱 몰딩 및 황동 골드 프레임 */\\n.shelf-row {\"",
+    "TargetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+    "toolAction": "\"Adding under-flow style rules in style_portal.css\"",
+    "toolSummary": "\"Replace file content\""
+  }
+}

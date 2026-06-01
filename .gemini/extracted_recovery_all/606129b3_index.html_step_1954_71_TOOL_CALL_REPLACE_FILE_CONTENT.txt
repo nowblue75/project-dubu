@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 1954,
+  "createdAt": "2026-05-31T21:27:45Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+  "content": "\"    <!-- Top Sticky Editorial Header (Restored Classic Format) -->\\n    <header class=\\\"top-sticky-header\\\">\\n        <div class=\\\"nav-container\\\">\\n            <a href=\\\"#sensory-artbook\\\" class=\\\"logo-text serif\\\">프로젝트 두부</a>\\n            <div class=\\\"nav-links\\\">\\n                <a href=\\\"#sensory-artbook\\\" class=\\\"nav-item active\\\">\\n                    <i class=\\\"fa-solid fa-house mr-1\\\"></i> Home\\n                </a>\\n                <a href=\\\"#events\\\" class=\\\"nav-item\\\">\\n                    <i class=\\\"fa-solid fa-calendar-days mr-1\\\"></i> 시즌 이벤트\\n                </a>\\n                <a href=\\\"#archive\\\" class=\\\"nav-item\\\">\\n                    <i class=\\\"fa-solid fa-book-open mr-1\\\"></i> 실패없는 베이킹노트\\n                </a>\\n            </div>\\n        </div>\\n    </header>\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"Restore top sticky header navigation format in index.html to fix formatting layout\"",
+    "EndLine": "55",
+    "Instruction": "\"index.html 파일의 34행부터 55행까지의 sidebar-lnb 네비게이션 마크업을 상단 가로형 고정 헤더(top-sticky-header)로 복원합니다.\"",
+    "ReplacementContent": "\"    <!-- Top Sticky Editorial Header (Restored Classic Format) -->\\n    <header class=\\\"top-sticky-header\\\">\\n        <div class=\\\"nav-container\\\">\\n            <a href=\\\"#sensory-artbook\\\" class=\\\"logo-text serif\\\">프로젝트 두부</a>\\n            <div class=\\\"nav-links\\\">\\n                <a href=\\\"#sensory-artbook\\\" class=\\\"nav-item active\\\">\\n                    <i class=\\\"fa-solid fa-house mr-1\\\"></i> Home\\n                </a>\\n                <a href=\\\"#events\\\" class=\\\"nav-item\\\">\\n                    <i class=\\\"fa-solid fa-calendar-days mr-1\\\"></i> 시즌 이벤트\\n                </a>\\n                <a href=\\\"#archive\\\" class=\\\"nav-item\\\">\\n                    <i class=\\\"fa-solid fa-book-open mr-1\\\"></i> 실패없는 베이킹노트\\n                </a>\\n            </div>\\n        </div>\\n    </header>\"",
+    "StartLine": "34",
+    "TargetContent": "\"    <!-- Top Sticky Editorial Header (v16.0 Rebranding) -->\\n    <nav class=\\\"sidebar-lnb\\\">\\n        <div class=\\\"logo-area\\\">\\n            <a href=\\\"#sensory-artbook\\\" class=\\\"logo-title serif\\\">프로젝트 두부</a>\\n        </div>\\n        \\n        <div class=\\\"nav-menu\\\">\\n            <a href=\\\"#sensory-artbook\\\" class=\\\"nav-item active\\\">\\n                <i class=\\\"fa-solid fa-house\\\"></i>\\n                <span>Home</span>\\n            </a>\\n            <a href=\\\"#events\\\" class=\\\"nav-item\\\">\\n                <i class=\\\"fa-solid fa-calendar-days\\\"></i>\\n                <span>시즌 이벤트</span>\\n            </a>\\n            <a href=\\\"#archive\\\" class=\\\"nav-item\\\">\\n                <i class=\\\"fa-solid fa-book-open\\\"></i>\\n                <span>실패없는 베이킹노트</span>\\n            </a>\\n        </div>\\n    </nav>\"",
+    "TargetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+    "toolAction": "\"Restoring sticky header markup\"",
+    "toolSummary": "\"Restore top sticky header layout in index.html\""
+  }
+}

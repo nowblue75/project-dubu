@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 449,
+  "createdAt": "2026-05-30T07:29:57Z",
+  "filePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
+  "content": "I will update `dubu_data.js` to insert the authentic recipe ingredients and measurements for all the interactive recipes, ensuring every recipe has custom calculation data instead of the generic fallback values. I will use `replace_file_content` to apply this change."
+}

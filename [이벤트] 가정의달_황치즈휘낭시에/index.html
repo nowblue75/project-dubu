@@ -6,9 +6,9 @@
     <title>가정의 달 에디션: 순두부 황치즈 휘낭시에</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style_lookbook.css?v=11.0">
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
 </head>
-<body class="lookbook-page antialiased selection:bg-[#E91E63]/30">
+<body class="lookbook-page antialiased selection:bg-[#E91E63]/30 theme-default">
 
     <div class="progress-bar"></div>
 
@@ -21,11 +21,15 @@
     <main id="main-content">
         <!-- 01. Intro -->
         <section class="active">
-            <div class="image-stage">
-                <img src="../5. 순두부황치즈휘낭시에_완/KakaoTalk_20250624_145653829.jpg" alt="황치즈휘낭시에 메인" class="fade-in-up">
-                <div class="content-box">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="../5. 순두부황치즈휘낭시에_완/KakaoTalk_20250624_145653829.jpg" alt="황치즈휘낭시에 메인" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box">
                     <h2 class="serif text-4xl mb-6">금빛 진심을<br>전하는 우아함</h2>
                     <p>금괴를 닮은 휘낭시에의 우아한 자태 속에<br>순두부의 쫀득함과 황치즈의 고소함을 가득 채웠습니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -72,10 +76,12 @@
                     <p>화려한 수식어보다 한 조각의 정직한 맛으로.<br>프로젝트 두부가 제안하는 가장 다정한 선물입니다.</p>
                 </div>
                 <!-- 하단 브랜딩 요소 -->
+                
                 <div class="lookbook-footer-container">
-                    <div class="footer-buttons">
-                        <a href="../[이벤트] 가정의달_2026/index.html" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block">← BACK TO HUB</a>
-                        <a href="https://blog.naver.com/project_dubu/223916749341" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
                 </div>
             </div>

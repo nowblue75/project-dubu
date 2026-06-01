@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 2048,
+  "createdAt": "2026-05-31T21:35:36Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\style_portal.css\"",
+    "EndLine": "1685",
+    "StartLine": "1670",
+    "toolAction": "\"Viewing style_portal.css checkbox styling\"",
+    "toolSummary": "\"View style_portal.css L1670-1685\""
+  }
+}

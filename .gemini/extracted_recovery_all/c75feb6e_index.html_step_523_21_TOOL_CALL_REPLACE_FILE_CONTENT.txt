@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 523,
+  "createdAt": "2026-05-30T07:46:36Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+  "content": "\"    <!-- Google Fonts Inter & Playfair Display & Noto Serif KR & Noto Sans KR -->\\n    <link href=\\\"https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700;900&display=swap\\\" rel=\\\"stylesheet\\\">\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"index.html에 Noto Serif KR 명조 서체 구글 폰트 추가 로드\"",
+    "EndLine": "9",
+    "Instruction": "\"Google Fonts URL에 Noto Serif KR 서체 파라미터를 추가합니다.\"",
+    "ReplacementContent": "\"    <!-- Google Fonts Inter & Playfair Display & Noto Serif KR & Noto Sans KR -->\\n    <link href=\\\"https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700;900&display=swap\\\" rel=\\\"stylesheet\\\">\"",
+    "StartLine": "7",
+    "TargetContent": "\"    <!-- Google Fonts Inter & Playfair Display & Noto Serif KR & Noto Sans KR -->\\n    <link href=\\\"https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap\\\" rel=\\\"stylesheet\\\">\"",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
+    "toolAction": "\"구글 폰트 링크 수정\"",
+    "toolSummary": "\"index.html 수정\""
+  }
+}

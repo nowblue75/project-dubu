@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 2214,
+  "createdAt": "2026-05-31T21:46:38Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+  "content": "\"    <script src=\\\"dubu_data.js?v=53.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=53.0\\\"></script>\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"dubu_data.js와 dubu_app.js 버전을 53.0으로 갱신하여 브라우저 캐시 방지\"",
+    "EndLine": "327",
+    "Instruction": "\"index.html에서 dubu_data.js 및 dubu_app.js 버전을 v=53.0으로 수정\"",
+    "ReplacementContent": "\"    <script src=\\\"dubu_data.js?v=53.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=53.0\\\"></script>\"",
+    "StartLine": "323",
+    "TargetContent": "\"    <script src=\\\"dubu_data.js?v=52.0\\\"></script>\\n    <script src=\\\"dubu_app.js?v=52.0\\\"></script>\"",
+    "TargetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
+    "toolAction": "\"Replacing javascript modules version in index.html for original style restore\"",
+    "toolSummary": "\"Update index.html JS version\""
+  }
+}

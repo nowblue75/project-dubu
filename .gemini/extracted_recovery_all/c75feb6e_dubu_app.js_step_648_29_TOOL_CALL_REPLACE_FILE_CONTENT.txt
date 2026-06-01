@@ -1,0 +1,18 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 648,
+  "createdAt": "2026-05-30T22:00:46Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+  "content": "\"    // 통일된 포커스 스테이지 룩북 연동 버튼\\n    const detailsBtn = `<button class=\\\"btn-magic-action details\\\" onclick=\\\"closeMagicBook(); openFocusStage(${p.id});\\\">상세 룩북 감상 👀</button>`;\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"마법책 모달 내 상세 룩북 감상 버튼을 외부 HTML 이동 대신 포털 내 통일된 openFocusStage 모달 팝업 호출로 변경\"",
+    "EndLine": "1360",
+    "ReplacementContent": "\"    // 통일된 포커스 스테이지 룩북 연동 버튼\\n    const detailsBtn = `<button class=\\\"btn-magic-action details\\\" onclick=\\\"closeMagicBook(); openFocusStage(${p.id});\\\">상세 룩북 감상 👀</button>`;\"",
+    "StartLine": "1358",
+    "TargetContent": "\"    // 블로그 및 상세 가이드 이동 버튼 분기\\n    const detailsBtn = p.path && p.path !== '#'\\n        ? `<a href=\\\"${p.path}\\\" class=\\\"btn-magic-action details\\\" target=\\\"_blank\\\">상세 룩북 감상 👀</a>`\\n        : `<button class=\\\"btn-magic-action details\\\" onclick=\\\"alert('곧 공개될 감상 룩북입니다!')\\\">준비 중인 룩북 🔒</button>`;\"",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+    "toolAction": "\"마법책 상세 룩북 버튼 수정\"",
+    "toolSummary": "\"dubu_app.js 수정\""
+  }
+}

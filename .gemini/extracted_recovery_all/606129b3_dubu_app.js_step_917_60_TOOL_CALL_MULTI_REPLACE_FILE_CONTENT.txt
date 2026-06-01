@@ -1,0 +1,15 @@
+{
+  "type": "TOOL_CALL_MULTI_REPLACE_FILE_CONTENT",
+  "stepIndex": 917,
+  "createdAt": "2026-05-31T06:36:02Z",
+  "targetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+  "content": "",
+  "args": {
+    "Description": "\"dubu_app.js 내 openFocusStage 및 closeFocusStage 함수를 수정하여 recipeId === 40(순두부 콩물 파운드케익)인 경우에만 magic-book-theme 클래스를 입히도록 구현했습니다.\"",
+    "Instruction": "\"dubu_app.js의 openFocusStage와 closeFocusStage 함수에 40번 레시피에 대한 magic-book-theme 클래스 적용 및 리셋 로직을 추가합니다.\"",
+    "ReplacementChunks": "[{\"AllowMultiple\":false,\"EndLine\":71,\"ReplacementContent\":\"function openFocusStage(recipeId) {\\n    const recipe = PROJECTS.find(p => p.id === recipeId);\\n    if (!recipe) return;\\n\\n    activeFocusRecipeId = recipeId;\\n    const overlay = document.getElementById('atelier-focus-overlay');\\n    if (!overlay) return;\\n\\n    // 40번 레시피(순두부 콩물 파운드케익)인 경우 마법책 테마 클래스 추가\\n    const board = overlay.querySelector('.atelier-focus-board');\\n    if (board) {\\n        if (recipeId === 40) {\\n            board.classList.add('magic-book-theme');\\n        } else {\\n            board.classList.remove('magic-book-theme');\\n        }\\n    }\\n\\n    // 모달을 열 때 항상 첫 번째 재료 계산기 탭으로 리셋\\n    switchFocusTab('calc');\",\"StartLine\":60,\"TargetContent\":\"function openFocusStage(recipeId) {\\n    const recipe = PROJECTS.find(p => p.id === recipeId);\\n    if (!recipe) return;\\n\\n    activeFocusRecipeId = recipeId;\\n    const overlay = document.getElementById('atelier-focus-overlay');\\n    if (!overlay) return;\\n\\n    // 모달을 열 때 항상 첫 번째 재료 계산기 탭으로 리셋\\n    switchFocusTab('calc');\"},{\"AllowMultiple\":false,\"EndLine\":424,\"ReplacementContent\":\"function closeFocusStage() {\\n    const overlay = document.getElementById('atelier-focus-overlay');\\n    if (overlay) {\\n        overlay.classList.remove('active');\\n        document.body.style.overflow = '';\\n        \\n        // 마법책 테마 클래스 제거 및 리셋\\n        const board = overlay.querySelector('.atelier-focus-board');\\n        if (board) {\\n            board.classList.remove('magic-book-theme');\\n        }\\n    }\\n}\",\"StartLine\":417,\"TargetContent\":\"function closeFocusStage() {\\n    const overlay = document.getElementById('atelier-focus-overlay');\\n    if (overlay) {\\n        overlay.classList.remove('active');\\n        document.body.style.overflow = '';\\n    }\\n}\"}]",
+    "TargetFile": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
+    "toolAction": "\"Adding dynamic class binding for recipe 40 in dubu_app.js\"",
+    "toolSummary": "\"Modify dubu_app.js\""
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "type": "LOG_CONTENT_MATCH",
+  "stepIndex": 776,
+  "createdAt": "2026-05-30T22:11:55Z",
+  "filePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_data.js\"",
+  "content": "I will view lines 150 to 160 of `dubu_data.js` to see the structure of ID 29."
+}

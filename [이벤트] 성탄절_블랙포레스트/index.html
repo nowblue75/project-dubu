@@ -34,8 +34,9 @@
         .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
+    <link rel="stylesheet" href="../style_lookbook.css?v=12.0">
 </head>
-<body class="antialiased selection:bg-[#D4AF37]/30">
+<body class="antialiased selection:bg-[#D4AF37]/30 theme-christmas">
     <div class="progress-bar"></div>
     <nav class="fixed top-0 left-0 w-full z-50 p-8 flex justify-between items-center pointer-events-none">
         <a href="../크리스마스 팝시클/index.html" class="nav-item pointer-events-auto serif text-xs tracking-widest transition-opacity">← BACK TO Hub</a>
@@ -43,11 +44,15 @@
     </nav>
     <main id="main-content">
         <section class="active">
-            <div class="image-stage">
-                <img src="../23. 순두부블랙포레스트 컵케익_완/0.jpg" alt="블랙포레스트 메인" class="fade-in-up">
-                <div class="content-box side-right">
+            <div class="hero-stage">
+                <div class="hero-image-area">
+                    <img src="../23. 순두부블랙포레스트 컵케익_완/0.jpg" alt="블랙포레스트 메인" class="fade-in-up">
+                </div>
+                <div class="hero-content-area">
+                    <div class="content-box side-right">
                     <h2 class="serif text-4xl mb-6">검은 숲의 전설<br>두부로 다시 피어나다</h2>
                     <p>체리의 상큼함과 진한 초코 가나슈, 그리고 순두부 생크림의 조화.<br>클래식한 블랙포레스트의 깊은 맛을 컵케익에 담았습니다.</p>
+                </div>
                 </div>
             </div>
         </section>
@@ -69,10 +74,14 @@
                     <p>전통의 가치를 훼손하지 않으면서도 건강한 대안을 제시합니다.<br>프로젝트 두부만의 블랙포레스트 에디션입니다.</p>
                 </div>
                 <div class="content-box centered text-center" style="top: auto; bottom: 8%; left: 50%; transform: translateX(-50%); text-align: center; max-width: 100%; background: transparent; backdrop-filter: none; border: none; box-shadow: none;">
-                    <div class="footer-buttons">
-                        <a href="../%ED%81%AC%EB%A6%AC%EC%8A%A4%EB%A7%88%EC%8A%A4%20%ED%8C%9D%EC%8B%9C%ED%81%B4/index.html" class="back-btn serif px-10 py-4 transition-all tracking-widest text-sm inline-block" id="footer-back-link">← BACK TO HUB</a>
-                        <a href="https://blog.naver.com/project_dubu/224089622187" target="_blank" rel="noopener noreferrer" class="blog-btn serif px-10 py-4 tracking-widest text-sm inline-block">상세한 레시피는 블로그로 →</a>
+                    
+                <div class="lookbook-footer-container">
+                    <div class="footer-buttons-trio">
+                        <a id="back-link-bottom" href="../index.html" class="back-btn">← 이전화면</a>
+                        <a href="../index.html" class="portal-btn btn-accent">메인으로</a>
+                        <button onclick="window.close()" class="close-btn">닫기</button>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

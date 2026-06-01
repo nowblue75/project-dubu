@@ -1,0 +1,19 @@
+{
+  "type": "TOOL_CALL_REPLACE_FILE_CONTENT",
+  "stepIndex": 1309,
+  "createdAt": "2026-05-31T07:42:59Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+  "content": "\"    const diffPill = document.getElementById('focus-recipe-difficulty');\\n    if (BASE_YIELDS[recipeId]) {\\n        if (diffPill) diffPill.style.display = 'inline-flex';\\n        updateDynamicYieldDisplay(recipeId, 1.0);\\n    } else {\\n        if (diffPill) diffPill.style.display = 'none';\\n    }\"",
+  "args": {
+    "AllowMultiple": "false",
+    "Description": "\"Hide the difficulty pill for recipes that do not have custom yield sizes, fully satisfying the user request to remove difficulty.\"",
+    "EndLine": "330",
+    "Instruction": "\"Update openFocusStage to display the focus-recipe-difficulty pill only when a yield exists in BASE_YIELDS, and hide it otherwise.\"",
+    "ReplacementContent": "\"    const diffPill = document.getElementById('focus-recipe-difficulty');\\n    if (BASE_YIELDS[recipeId]) {\\n        if (diffPill) diffPill.style.display = 'inline-flex';\\n        updateDynamicYieldDisplay(recipeId, 1.0);\\n    } else {\\n        if (diffPill) diffPill.style.display = 'none';\\n    }\"",
+    "StartLine": "326",
+    "TargetContent": "\"    if (BASE_YIELDS[recipeId]) {\\n        updateDynamicYieldDisplay(recipeId, 1.0);\\n    } else {\\n        document.getElementById('focus-recipe-difficulty').innerHTML = `<i class=\\\"fa-solid fa-gauge-simple-high\\\"></i> 난이도: ${difficulty}`;\\n    }\"",
+    "TargetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
+    "toolAction": "\"Hiding difficulty pill in openFocusStage\"",
+    "toolSummary": "\"Updating dubu_app.js difficulty visibility\""
+  }
+}

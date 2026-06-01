@@ -1,0 +1,14 @@
+{
+  "type": "TOOL_CALL_VIEW_FILE",
+  "stepIndex": 1928,
+  "createdAt": "2026-05-31T20:50:25Z",
+  "targetFile": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\28. 순두부 모찌떡케이크\\\\index.html\"",
+  "content": "",
+  "args": {
+    "AbsolutePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\28. 순두부 모찌떡케이크\\\\index.html\"",
+    "EndLine": "100",
+    "StartLine": "1",
+    "toolAction": "\"Viewing Vol 35 index.html\"",
+    "toolSummary": "\"Check 28. 순두부 모찌떡케이크/index.html content\""
+  }
+}
