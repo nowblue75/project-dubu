@@ -942,3 +942,16 @@ const RECIPE_STEPS_DB = {
         }
     ]
 };
+
+// 시즌 및 특별 이벤트 데이터
+const EVENTS = [
+    { id: 'valentine', month: 'FEB', title: '발렌타인데이', icon: '💝', vols: '33, 35', path: "[이벤트] 발렌타인_2026/index.html", isReady: true },
+    { id: 'whiteday', month: 'MAR', title: '화이트데이', icon: '🍭', vols: '36, 34', path: "[이벤트] 화이트데이_2026/index.html", isReady: true },
+    { id: 'family', month: 'MAY', title: '가정의 달', icon: '🌸', vols: '29, 31, 39', path: "[이벤트] 가정의달_2026/index.html", isReady: true },
+    { id: 'holidays', month: 'HOLIDAY', title: '명절 (설/추석)', icon: '🧧', vols: '18, 28, 40', path: "[이벤트] 명절_2026/index.html", isReady: true },
+    { id: 'halloween', month: 'OCT', title: '할로윈 데이', icon: '🎃', path: "[이벤트] 할로윈_20251029/index.html", isReady: true },
+    { id: 'pepero', month: 'NOV', title: '빼빼로데이', icon: '🥖', path: "[이벤트] 빼빼로_20251106/index.html", isReady: true },
+    { id: 'sooneung', month: 'NOV', title: '수능 응원', icon: '🎓', path: "[이벤트] 수능 찹쌀떡_20251112/index.html", isReady: true },
+    { id: 'christmas', month: 'DEC', title: '성탄절 시리즈', icon: '🎄', vols: '21-27', path: "크리스마스 팝시클/index.html", isReady: true }
+];
+

@@ -15,13 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(rotateHeroSlide, 4500);
     }
 
-    // 포털 대시보드 렌더링 (dubu_data.js의 PROJECTS, EVENTS 배열 사용)
+    // 포털 대시보드 및 아코디언 렌더링 (dubu_data.js의 PROJECTS, EVENTS 배열 사용)
     if (typeof PROJECTS !== 'undefined' && typeof EVENTS !== 'undefined') {
         renderDashboard();
+        renderAccordionArtbook();
     }
 
     // Smooth Scroll 바인딩
-    document.querySelectorAll('.nav-links a').forEach(anchor => {
+    document.querySelectorAll('.nav-links .nav-btn').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Navigation Active State on Scroll (ScrollSpy)
-    const navLinks = document.querySelectorAll('.nav-links a');
+    const navLinks = document.querySelectorAll('.nav-links .nav-btn');
     const sections = document.querySelectorAll('section[id]');
     const sectionRatios = {};
 
@@ -944,3 +945,200 @@ function triggerPageConfetti() {
         particles.forEach(p => p.speed = p.speed * 1.5);
     }, 4000);
 }
+
+// ==========================================================================
+// 14. Sensory Accordion Artbook - 아코디언 UI 렌더링 엔진
+// ==========================================================================
+function renderAccordionArtbook() {
+    const container = document.getElementById('accordion-showroom-container');
+    if (!container) return;
+
+    const activeRecipes = [
+        {
+            id: 36,
+            title: "순두부 티라미수푸딩",
+            img: "31. 순두부 티라미수푸딩_완/0.jpg",
+            creatorsNote: "순두부와 마스카포네 크림에 커피 젤리 큐브를 레이어로 쌓아 냉장 굳힌 노오븐 티라미수 푸딩.",
+            pairingGuide: "시나몬 가루를 솔솔 올린 콜드브루 커피와 곁들여 보세요.",
+            themeColor: "#826359",
+            themeGlow: "rgba(130, 99, 89, 0.15)",
+            accentColor: "#FFCCBC"
+        },
+        {
+            id: 37,
+            title: "순두부 화이트바크초콜릿",
+            img: "36. 순두부화이트바크초콜릿_완/0.jpg",
+            creatorsNote: "순두부 시트 위에 녹인 화이트 커버춰를 부어 피스타치오와 스프링클로 장식해 굳히는 바크 초콜릿.",
+            pairingGuide: "산뜻하게 우려낸 홍차나 가벼운 디저트 와인과 최고로 잘 어울립니다.",
+            themeColor: "#C25D7E",
+            themeGlow: "rgba(194, 93, 126, 0.15)",
+            accentColor: "#F48FB1"
+        },
+        {
+            id: 38,
+            title: "순두부 쑥 찰떡브라우니",
+            img: "39. 순두부 쑥 찰떡브라우니_완/0.jpg",
+            creatorsNote: "찹쌀가루 없이 완성한 반전의 찰기! 향긋한 쑥 반죽과 콩고물의 고소한 동행.",
+            pairingGuide: "쌉싸름한 말차 라떼나 드립 커피와 함께 곁들이면 맛의 깊이가 극대화됩니다.",
+            themeColor: "#4E6B56",
+            themeGlow: "rgba(78, 107, 86, 0.15)",
+            accentColor: "#A5D6A7"
+        },
+        {
+            id: 39,
+            title: "순두부 흑임자 테린",
+            img: "40. 순두부 흑임자테린_완/assets/01.png",
+            creatorsNote: "오븐 중탕 공법으로 진하고 크리미하게 구워내 만든 다음날 더 고소하고 꾸덕한 흑임자 테린.",
+            pairingGuide: "따뜻한 아메리카노와 깊은 조화를 이룹니다.",
+            themeColor: "#4A4F54",
+            themeGlow: "rgba(74, 79, 84, 0.15)",
+            accentColor: "#78909C"
+        },
+        {
+            id: 40,
+            title: "순두부 콩물 파운드케익",
+            img: "41. 순두부콩물 파운드케익_완/순두부 콩물 파운드케익 (0).jpg",
+            creatorsNote: "순두부와 콩물을 함께 곱게 갈아 고소하고 촉촉하게 완성한 웰빙 파운드케익입니다.",
+            pairingGuide: "콩물라떼 또는 따뜻한 황차와 부드러운 페어링을 자랑합니다.",
+            themeColor: "#7B6F55",
+            themeGlow: "rgba(123, 111, 85, 0.15)",
+            accentColor: "#F5E6C8",
+            isNew: true
+        },
+        {
+            id: 'coming-soon',
+            title: "Vol.41 Coming Soon",
+            img: "",
+            creatorsNote: "다음 컬렉션이 곧 공개됩니다.",
+            pairingGuide: "새로운 맛의 조화와 비법을 기대해 주세요.",
+            themeColor: "#2C3E50",
+            themeGlow: "rgba(44, 62, 80, 0.2)",
+            accentColor: "#95A5A6",
+            isComingSoon: true
+        }
+    ];
+
+    const maxId = Math.max(...activeRecipes.filter(r => typeof r.id === 'number').map(r => r.id));
+    const comingSoonVol = maxId + 1;
+    const comingSoonItem = activeRecipes.find(r => r.id === 'coming-soon');
+    if (comingSoonItem) {
+        comingSoonItem.title = `Vol.${comingSoonVol} Coming Soon`;
+    }
+
+    const specsData = {
+        40: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 구움" },
+        39: { texture: "꾸덕함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
+        38: { texture: "쫀득함", wellness: "No버터, 비건 지향", method: "160℃ 오븐 구움" },
+        37: { texture: "바삭하고 달콤함", wellness: "No버터, 볶은 순두부", method: "165℃ 오븐 구움" },
+        36: { texture: "부드럽고 촉촉함", wellness: "No오븐, 알룰로스 대체 가능", method: "No오븐 냉장 굳히기" }
+    };
+
+    container.innerHTML = activeRecipes.map((p, idx) => {
+        const shortTitle = p.isComingSoon ? `Vol.${comingSoonVol} 커밍순` : p.title.replace("순두부 ", "").trim();
+        const specs = specsData[p.id] || { texture: "???", wellness: "???", method: "???" };
+
+        const bgStyle = p.isComingSoon 
+            ? `background: linear-gradient(135deg, #1A1C1E 0%, #0D0E10 100%); display: flex; align-items: center; justify-content: center; flex-direction: column;` 
+            : `background-image: url('${p.img}');`;
+
+        const comingSoonOverlay = p.isComingSoon 
+            ? `<div class="coming-soon-glowing-core" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <i class="fa-solid fa-lock" style="font-size: 2.2rem; color: var(--accent-color); filter: drop-shadow(0 0 12px var(--theme-color)); margin-bottom: 12px; opacity: 0.85;"></i>
+                <span class="coming-soon-text-en font-serif" style="color: #95A5A6; font-size: 0.72rem; letter-spacing: 2px; margin-bottom: 4px;">COMING SOON</span>
+                <span class="coming-soon-text-ko" style="color: #7F8C8D; font-size: 0.82rem; font-weight: 700;">비밀의 문이 곧 열립니다</span>
+               </div>`
+            : '';
+
+        const titleHtml = p.isComingSoon 
+            ? `<h3 class="serif showcase-title" style="color: #7f8c8d;">${p.title}</h3>`
+            : `<h3 class="serif showcase-title">${p.title}${p.isNew ? ` <span style="display: inline-block; background: #FF3D71; color: white; font-family: var(--font-playfair), serif; font-weight: 700; font-size: 0.65rem; padding: 2px 8px; border-radius: 20px; vertical-align: middle; margin-left: 10px; box-shadow: 0 0 10px rgba(255, 61, 113, 0.4); text-transform: uppercase; letter-spacing: 0.5px;">NEW</span>` : ''}</h3>`;
+
+        const metaText = p.isComingSoon ? "RECIPE FILE // COMING SOON" : `RECIPE FILE // Vol.${p.id}`;
+        const actionBtnText = p.isComingSoon ? `공개 예정 <i class="fa-solid fa-lock" style="margin-left: 5px;"></i>` : `상세보기 <i class="fa-solid fa-chevron-right" style="margin-left: 5px;"></i>`;
+
+        return `
+            <div class="accordion-slice ${p.isComingSoon ? 'coming-soon-slice' : ''}" 
+                 style="${bgStyle} --theme-color: ${p.themeColor}; --theme-glow: ${p.themeGlow}; --accent-color: ${p.accentColor};" 
+                 onclick="handleSliceClick(event, '${p.id}')"
+                 data-vol="${p.isComingSoon ? comingSoonVol : p.id}">
+                
+                ${comingSoonOverlay}
+                
+                <div class="slice-overlay"></div>
+                <div class="slice-vertical-title serif">${shortTitle}</div>
+                
+                <div class="slice-content-wrapper">
+                    <!-- 헤더 아카이브 볼륨 레이블 -->
+                    <div class="editorial-volume font-serif">${metaText}</div>
+                    
+                    <!-- 디저트 타이틀 블록 -->
+                    <div class="editorial-title-block">
+                        ${titleHtml}
+                        <div class="editorial-essence font-serif">"${p.creatorsNote}"</div>
+                    </div>
+                    
+                    <!-- 물성 스펙 테이블 -->
+                    <div class="editorial-spec-grid font-serif">
+                        <div class="spec-row">
+                            <span class="spec-label">TEXTURE</span>
+                            <span class="spec-value">${specs.texture}</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">WELLNESS SPEC</span>
+                            <span class="spec-value">${specs.wellness}</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">BAKING METHOD</span>
+                            <span class="spec-value">${specs.method}</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 푸터 연동 페어링 가이드 -->
+                    <div class="editorial-footer-essence">
+                        <span class="pairing-label">RECOMMENDED PAIRING</span>
+                        <p class="pairing-desc font-serif">${p.pairingGuide}</p>
+                    </div>
+                    
+                    <!-- 인터랙티브 소환 버튼 -->
+                    <div class="editorial-action-box">
+                        <button class="action-btn font-serif" onclick="event.stopPropagation(); openFocusStage(${p.id});">${actionBtnText}</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    // 페이지 로드 시 첫 번째 슬라이스(Vol.40 콩물 파운드케익)를 기본 활성화(확장) 상태로 세팅
+    setTimeout(() => {
+        const firstSlice = container.querySelector('[data-vol="40"]');
+        if (firstSlice) {
+            firstSlice.style.flex = '5.4';
+            firstSlice.classList.add('active-expanded');
+        }
+    }, 50);
+}
+
+function handleSliceClick(event, projectId) {
+    const slice = event.currentTarget;
+    const isButton = event.target.closest('.editorial-action-box') || event.target.closest('.action-btn');
+    const isHovered = slice.classList.contains('active-expanded');
+
+    if (isButton || isHovered) {
+        if (projectId === 'coming-soon') {
+            const vol = slice.getAttribute('data-vol') || '41';
+            alert(`🔒 Vol.${vol} 레시피는 업데이트 예정입니다.\n\n프로젝트 두부의 새로운 컬렉션 소식을 기대해 주세요! 🖤`);
+            return;
+        }
+        openFocusStage(projectId);
+    } else {
+        document.querySelectorAll('.accordion-slice').forEach(s => {
+            if (s !== slice) {
+                s.style.flex = '1';
+                s.classList.remove('active-expanded');
+            }
+        });
+        slice.style.flex = '5.4';
+        slice.classList.add('active-expanded');
+    }
+}
+

@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT DUBU Archive</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style_portal.css?v=4.0">
+    <style>
+        .archive-item {
+            position: relative;
+            padding-left: 20px;
+        }
+        .archive-item::before {
+            content: '??;
+            position: absolute;
+            left: 0;
+            color: #D1C7BC;
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased portal-page">
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-text serif">PROJECT DUBU</a>
+            <div class="nav-links">
+                <a href="#latest" class="serif">LATEST</a>
+                <a href="#events" class="serif">EVENTS</a>
+                <a href="#archive" class="serif">ARCHIVE</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container fade-in-down">
+            <img src="濡쒓퀬 媛濡쒕쾭??png" alt="Project Dubu Logo" class="main-logo">
+            <h1 class="serif">?됰쾾???쇱긽??br>?밸퀎???앷컧?쇰줈</h1>
+            <p>?쒕몢遺?쇰뒗 媛???뺤쭅???щ즺瑜??듯빐 ?꾩꽦?섎뒗<br>嫄닿컯?섍퀬 袁몃뜒???붿???誘명븰, ?꾨줈?앺듃 ?먮???紐⑤뱺 湲곕줉?낅땲??</p>
+        </div>
+    </section>
+
+    <!-- Featured Lookbooks (Dynamic) -->
+    <section id="latest" class="featured">
+        <div class="container">
+            <div class="section-tag serif">SPECIAL SELECTION</div>
+            <h2 class="serif section-title fade-in-up">?곕━??理쒖떊 ?붿???/h2>
+            <div class="featured-grid" id="featured-container">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal Events (Dynamic) -->
+    <section id="events" class="events-section">
+        <div class="container">
+            <div class="section-tag serif">ANNUAL TRADITION</div>
+            <h2 class="serif section-title fade-in-up">?쒖쫵 諛??밸퀎 ?대깽??/h2>
+            <div id="events-container" class="events-grid">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Archive Section (Dynamic) -->
+    <section id="archive" class="archive-section flex flex-col justify-center">
+        <div class="container flex flex-col h-full">
+            <h2 class="serif section-title fade-in-up">吏???꾨줈?앺듃??湲곕줉</h2>
+            
+            <div class="archive-container">
+                <div id="archive-container" class="archive-list">
+                    <!-- Dynamic Content -->
+                </div>
+                <p class="text-center text-gray-400 text-xs mt-12 italic">"* ?꾩뭅?대툕 ??ぉ? ?꾩옱 ?명꽣?숉떚釉??붾낫遺곸쑝濡??낅뜲?댄듃 以鍮?以묒엯?덈떎."</p>
+            </div>
+
+            <footer class="mt-auto">
+                <div class="footer-logo serif">PROJECT DUBU</div>
+                <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
+            </footer>
+        </div>
+    </section>
+
+    <script>
+        // ?꾨줈?앺듃 ?곗씠?곕쿋?댁뒪 (?ш린?????꾨줈?앺듃瑜?異붽??섎㈃ ?먮룞?쇰줈 ?낅뜲?댄듃?⑸땲??
+        const PROJECTS = [
+            {
+                id: 40,
+                title: "?쒕몢遺 ?묒엫???뚮┛",
+                desc: "鍮듬낫??已?앺븯怨??몃뵫蹂대떎 臾듭쭅??諛섏쟾???앷컧. 釉붾옓怨??щ┝??議고솕濡쒖슫 誘명븰???댁? ?명꽣?숉떚釉?媛?대뱶?낅땲??",
+                path: "40. ?쒕몢遺 ?묒엫?먰뀒由?index.html",
+                img: "40. ?쒕몢遺 ?묒엫?먰뀒由?assets/01.png",
+                isInteractive: true
+            },
+            {
+                id: 39,
+                title: "?쒕몢遺 ??李곕뼞釉뚮씪?곕땲",
+                desc: "?μ쓽 源딆? ?띾?? ?쒕몢遺??李곌린媛 留뚮굹 ?꾩꽦???뺣룄?곸씤 袁몃뜒?? 怨좎쬆???꾨Ц 踰좎씠??怨듭젙?쇰줈 鍮싳뼱???꾨━誘몄뾼 ?붿??몄엯?덈떎.",
+                path: "39. ?쒕몢遺 ??李곕뼞釉뚮씪?곕땲_?붾낫遺??ш린?쒕???index.html",
+                img: "39. ?쒕몢遺 ??李곕뼞釉뚮씪?곕땲_?붾낫遺??ш린?쒕???assets/7.jpg",
+                isInteractive: true,
+                blogUrl: "https://blog.naver.com/project_dubu/224247304779"
+            },
+            { id: 38, title: "?쒕몢遺 ?쇨렇?덉씠洹몃┃?ㅼ퐯", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224231139066" },
+            { id: 37, title: "?쒕몢遺 ?뱀감?붽굅?명뙆?대뱶耳??, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224223083246" },
+            { id: 36, title: "?쒕몢遺 ?붿씠?몃컮?ъ큹肄쒕┸", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224213464375" },
+            { id: 35, title: "?쒕몢遺 珥덉퐫留덈뱾??, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224203525984" },
+            { id: 34, title: "?쒕몢遺 ?덈が留덈뱾??, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224197631515" },
+            { id: 33, title: "?쒕몢遺 誘몃땲珥덉퐫耳??, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224182208558" },
+            { id: 32, title: "?쒕몢遺 李곕뼞?뚯씠", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224173603637" },
+            { id: 31, title: "?쒕몢遺 ?곕씪誘몄닔?몃뵫", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224164987367" },
+            { id: 30, title: "?쒕몢遺 ?쒕굹紐щ·", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224156728237" },
+            { 
+                id: 29, 
+                title: "?쒕몢遺 瑜대콉荑좏궎", 
+                isInteractive: false,
+                blogUrl: "https://blog.naver.com/project_dubu/224148501012",
+                calcPath: "29. ?쒕몢遺 瑜대콉荑좏궎_??calculator/index.html" 
+            },
+            { 
+                id: 28, 
+                title: "?쒕몢遺 紐⑥컡??耳?댄겕", 
+                desc: "紐낆젅 ?앺긽???붾젮???쇰궇?? 紐⑥컡 怨듬쾿?쇰줈 鍮싳뼱?댁뼱 ?쒓컙??吏?섎룄 援녹? ?딅뒗 留덈쾿 媛숈? ?앷컧??耳?댄겕?낅땲??",
+                path: "28. ?쒕몢遺 紐⑥컡?≪??댄겕/index.html",
+                img: "28. ?쒕몢遺 紐⑥컡?≪??댄겕_??0.jpg",
+                isInteractive: true,
+                blogUrl: "https://blog.naver.com/project_dubu/224139999891"
+            },
+            { id: 27, title: "?쒕몢遺 ?덇퐙而듭??댄겕", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224127335052" },
+            { id: 26, title: "?쒕몢遺 3醫낆???, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224113782805" },
+            { id: 25, title: "?쒕몢遺 珥덉퐫踰덊듃耳??, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224106900867" },
+            { id: 24, title: "?쒕몢遺 ?덈が踰덊듃耳??, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224103127145" },
+            { id: 23, title: "?쒕몢遺 釉붾옓?щ젅?ㅽ듃 而듭???, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224089622187" },
+            { id: 22, title: "?쒕몢遺 遺?щ뱶?몄뿕", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224097606202" },
+            { id: 21, title: "?쒕몢遺 ?덊넧??, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224083029266" },
+            { id: 20, title: "?ы넠 ?쒕몢遺 ?瑜댄듃", isInteractive: false },
+            { id: 19, title: "?쒕몢遺 ?⑦샇諛?李뱀?鍮?, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224044280791" },
+            { 
+                id: 18, 
+                title: "?쒕몢遺 肄붿퐫???⑦뙠李뱀?援ъ?諛?, 
+                desc: "?꾪넻 ?⑦뙠???ъ숴?④낵 李뱀???已꾧퉫?⑥씠 留뚮궃 ?꾨????댁꽍. 紐낆젅???뺢컝?⑥쓣 ?댁? 二쇱쟾遺由ъ엯?덈떎.",
+                path: "18. ?쒕몢遺 肄붿퐫???⑦뙠李뱀?援ъ?諛?index.html",
+                img: "18. ?쒕몢遺 肄붿퐫???⑦뙠李뱀?援ъ?諛?KakaoTalk_20251002_083305924.jpg",
+                isInteractive: true 
+            },
+            { id: 17, title: "?쒕몢遺 諛ㅽ뙆?대뱶耳?댄겕", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224035441110" },
+            { id: 16, title: "?쒕몢遺 ?⑦샇諛뺣컮?ㅽ겕移섏쫰耳?댄겕", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224029278133" },
+            { id: 15, title: "?쒕몢遺 ?쒕굹紐щ·", isInteractive: false },
+            { id: 14, title: "?쒕몢遺 ?뱀감?ν뫖??, isInteractive: false },
+            { id: 13, title: "?쒕몢遺 ?щ┝移섏쫰濡ㅼ???, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/224012454408" },
+            { id: 12, title: "?쒕몢遺 移섏쫰?ㅼ퐯", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223977891669" },
+            { id: 11, title: "?쒕몢遺 ?덈が耳?댄겕", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223969919173" },
+            { id: 10, title: "?쒕몢遺 釉뚮씪?곕땲荑좏궎", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223961946339" },
+            { id: 9, title: "?쒕몢遺 李뱀?紐⑥컡 耳?댄겕", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223953399410" },
+            { id: 8, title: "?쒕몢遺 ?щ┝移섏쫰荑좏궎", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223934000393" },
+            { id: 7, title: "?쇨렇?덉씠 ?쒕몢遺 耳?댄겕", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223945052824" },
+            { id: 6, title: "?쒕몢遺 媛덈┃?ъ뭅移섏븘(蹂대쪟)", isInteractive: false },
+            { id: 5, title: "?쒕몢遺 ?⑹튂利덊쐶??떆??, isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223916749341" },
+            { id: 4, title: "?쒕몢遺 ?쇱?釉뚮씪?곕땲", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223925764123" },
+            { id: 3, title: "?쒕몢遺 諛붿뒪?ъ튂利덉??댄겕", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223909587683" },
+            { id: 2, title: "?쒕몢遺 ?щ┝移섏쫰?곕씪誘몄닔", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223901807888" },
+            { id: 1, title: "?쒕몢遺 ?щ┝移섏쫰", isInteractive: false, blogUrl: "https://blog.naver.com/project_dubu/223895335443" }
+        ];
+
+        // ?쒖쫵 諛??밸퀎 ?대깽???곗씠??        const EVENTS = [
+            { id: 'valentine', month: 'FEB', title: '諛쒕젋??몃뜲??, icon: '?뮑', vols: '33, 35', path: "[?대깽?? 諛쒕젋???2026/index.html", isReady: true },
+            { id: 'whiteday', month: 'MAR', title: '?붿씠?몃뜲??, icon: '?뜭', vols: '36, 34', path: "[?대깽?? ?붿씠?몃뜲??2026/index.html", isReady: true },
+            { id: 'family', month: 'MAY', title: '媛?뺤쓽 ??, icon: '?뙵', vols: '29, 31, 39', path: "[?대깽?? 媛?뺤쓽??2026/index.html", isReady: true },
+            { id: 'holidays', month: 'HOLIDAY', title: '紐낆젅 (??異붿꽍)', icon: '?㎣', vols: '18, 28, 40', path: "[?대깽?? 紐낆젅_2026/index.html", isReady: true }, // ?ㅻ궇/異붿꽍 ?듯빀
+            { id: 'halloween', month: 'OCT', title: '?좊줈???곗씠', icon: '?럠', path: "[?대깽?? ?좊줈??20251029/index.html", isReady: true },
+            { id: 'pepero', month: 'NOV', title: '鍮쇰뭡濡쒕뜲??, icon: '?쪝', path: "[?대깽?? 鍮쇰뭡濡?20251106/index.html", isReady: true },
+            { id: 'sooneung', month: 'NOV', title: '?섎뒫 ?묒썝', icon: '?럳', path: "[?대깽?? ?섎뒫 李뱀???20251112/index.html", isReady: true },
+            { id: 'christmas', month: 'DEC', title: '?깊깂???쒕━利?, icon: '?럡', vols: '21-27', path: "?щ━?ㅻ쭏???앹떆??index.html", isReady: true }
+        ];
+
+        function renderDashboard() {
+            const featuredContainer = document.getElementById('featured-container');
+            const archiveContainer = document.getElementById('archive-container');
+            const eventsContainer = document.getElementById('events-container');
+
+            // ID ??닚 ?뺣젹 (?믪? ?レ옄媛 理쒖떊)
+            const sortedProjects = [...PROJECTS].sort((a, b) => b.id - a.id);
+
+            // 理쒖떊 2媛쒕뒗 Featured
+            const featured = sortedProjects.slice(0, 2);
+            // ?섎㉧吏??Archive
+            const archive = sortedProjects.slice(2);
+
+            // Featured ?뚮뜑留?            featuredContainer.innerHTML = featured.map((p, index) => `
+                <a href="${p.path}" class="lookbook-card group fade-in-up" style="animation-delay: ${index * 0.2}s">
+                    <div class="card-img">
+                        <img src="${p.img}" alt="${p.title}">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag">Vol. ${p.id}</div>
+                        <h2 class="card-title serif">${p.title}</h2>
+                        <p class="card-desc">${p.desc}</p>
+                    </div>
+                </a>
+            `).join('');
+
+            // Events ?뚮뜑留?            eventsContainer.innerHTML = EVENTS.map((e, index) => `
+                <${e.isReady ? `a href="${e.path}"` : 'div'} class="event-card group ${!e.isReady ? 'locked' : ''} fade-in-up" style="animation-delay: ${0.2 + (index * 0.1)}s">
+                    <div class="event-month">${e.month}</div>
+                    <div class="event-icon">${e.icon}</div>
+                    <div class="event-title serif">${e.title}</div>
+                    <div class="event-status">${e.isReady ? 'VIEW' : 'COMING SOON'}</div>
+                </${e.isReady ? 'a' : 'div'}>
+            `).join('');
+
+            // Archive ?뚮뜑留?            archiveContainer.innerHTML = archive.map((p, index) => `
+                <div class="archive-item fade-in-up" style="animation-delay: ${0.4 + (index * 0.05)}s">
+                    ${p.id}. 
+                    ${p.isInteractive
+                        ? `<a href="${p.path}" class="hover:underline decoration-dotted">${p.title}</a>`
+                        : p.blogUrl
+                            ? `<a href="${p.blogUrl}" target="_blank" class="hover:underline decoration-dotted">${p.title}</a>`
+                            : p.title
+                    }
+                    ${p.isInteractive && p.blogUrl ? `<a href="${p.blogUrl}" target="_blank" class="ml-2 text-[8px] uppercase tracking-widest text-[#D1C7BC] hover:text-[#1F1A17] transition-colors underline decoration-dotted">Blog</a>` : ''}
+                    ${p.calcPath ? `<a href="${p.calcPath}" class="ml-2 text-[10px] px-2 py-0.5 border border-[#D1C7BC] rounded-full hover:bg-[#1F1A17] hover:text-white transition-colors">?먮룞怨꾩궛湲?/a>` : ''}
+                </div>
+            `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderDashboard);
+
+        // Smooth Scroll
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navigation Active State on Scroll
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section[id]');
+
+        // ?꾩뿭 ?곹깭濡?媛??뱀뀡???몄텧 鍮꾩쨷 ???        const sectionRatios = {};
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            // 1. 蹂寃쎈맂 ??ぉ?ㅼ쓽 鍮꾩쨷 ?낅뜲?댄듃
+            entries.forEach(entry => {
+                sectionRatios[entry.target.id] = entry.intersectionRatio;
+            });
+
+            let mostVisibleSection = null;
+            let maxRatio = 0;
+
+            // 2. 理쒖긽??Hero) 泥댄겕
+            if (window.scrollY < 100) {
+                mostVisibleSection = 'home';
+            } else {
+                // 3. ?꾩껜 ?뱀뀡 以?媛???믪? 鍮꾩쨷 李얘린
+                for (const id in sectionRatios) {
+                    if (sectionRatios[id] > maxRatio) {
+                        maxRatio = sectionRatios[id];
+                        mostVisibleSection = id;
+                    }
+                }
+            }
+
+            // 4. ?ㅻ퉬寃뚯씠???섏씠?쇱씠???낅뜲?댄듃
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (mostVisibleSection !== 'home' && link.getAttribute('href') === `#${mostVisibleSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] });
+
+        sections.forEach(section => scrollObserver.observe(section));
+    </script>
+</body>
+</html>
