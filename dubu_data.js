@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Maison de Dubu (프로젝트 두부)
  * Premium Digital Archive - Static Database Module (v1.0)
  * 
@@ -460,7 +460,7 @@ const THEMES = [
         "desc": "정겨운 전통 식감과 고소함이 깃든 명절 테마.",
         "icon": "🧧",
         "bgClass": "theme-traditional-bg",
-        "img": "40. 순두부 흑임자테린_완/assets/01.png",
+        "img": "40. 순두부 흑임자테린/assets/01.png",
         "tag": "Harvest & Thanks",
         "recipes": [
             {
@@ -471,7 +471,7 @@ const THEMES = [
                 "noButter": true,
                 "oneBowl": true,
                 "vol": "VOL. 39",
-                "img": "40. 순두부 흑임자테린_완/assets/01.png",
+                "img": "40. 순두부 흑임자테린/assets/01.png",
                 "path": "40. 순두부 흑임자테린_완/index.html",
                 "desc": "오븐 중탕 공법으로 완성하는 극강의 고소하고 꾸덕한 흑임자 테린",
                 "blogUrl": "https://blog.naver.com/project_dubu/224277363532"
