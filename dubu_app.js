@@ -1219,6 +1219,159 @@ function closeThemeModal() {
 // ==========================================================================
 // 16. 3D 마법책 책장 렌더링 엔진 (3단계)
 // ==========================================================================
+// 전역 3D 책장 제어 상태 객체
+let bookshelfState = {
+    targetX: 0,
+    currentX: 0,
+    isDragging: false,
+    startX: 0,
+    scrollStartX: 0,
+    minX: -2000,
+    maxX: 0,
+    animationFrameId: null,
+    isEngineInitialized: false
+};
+
+function scrollBookshelf(direction) {
+    const step = 320; // 둥근 화살표 클릭 시 이동할 가로 너비 오프셋
+    let newX = bookshelfState.targetX;
+    if (direction === 'left') {
+        newX += step; // 오른쪽으로 밀어서 이전 책 보기
+    } else if (direction === 'right') {
+        newX -= step; // 왼쪽으로 밀어서 다음 책 보기
+    }
+    bookshelfState.targetX = Math.max(bookshelfState.minX, Math.min(newX, bookshelfState.maxX));
+}
+
+function recalculateBookshelfBounds() {
+    const wrapper = document.querySelector('.bookshelf-wrapper');
+    const row0 = document.getElementById('shelf-books-0');
+    const row1 = document.getElementById('shelf-books-1');
+    if (!wrapper) return;
+
+    if (row0) row0.classList.remove('under-flow');
+    if (row1) row1.classList.remove('under-flow');
+
+    const wrapperWidth = wrapper.offsetWidth;
+    const rowWidth = Math.max(
+        row0 ? row0.scrollWidth : 0,
+        row1 ? row1.scrollWidth : 0
+    );
+
+    if (rowWidth > wrapperWidth - 80) {
+        // 책들이 화면보다 많을 때 (스크롤 활성화)
+        bookshelfState.minX = wrapperWidth - rowWidth - 60;
+    } else {
+        // 책들이 적어서 한눈에 들어올 때 (스크롤 고정 및 정중앙 정렬)
+        bookshelfState.minX = 0;
+        bookshelfState.targetX = 0;
+        bookshelfState.currentX = 0;
+        if (row0) row0.classList.add('under-flow');
+        if (row1) row1.classList.add('under-flow');
+    }
+}
+
+function initBookshelfEngine() {
+    const wrapper = document.querySelector('.bookshelf-wrapper');
+    if (!wrapper) return;
+
+    // 1. 마우스 드래그 및 터치 스와이프 등록
+    const handleDragStart = (e) => {
+        bookshelfState.isDragging = true;
+        let pageX = 0;
+        if (e.touches && e.touches.length > 0) {
+            pageX = e.touches[0].pageX;
+        } else {
+            pageX = e.pageX !== undefined ? e.pageX : 0;
+        }
+        bookshelfState.startX = pageX;
+        bookshelfState.scrollStartX = bookshelfState.targetX;
+        bookshelfState.targetX = bookshelfState.currentX; // 관성 정지 유도
+    };
+
+    const handleDragMove = (e) => {
+        if (!bookshelfState.isDragging) return;
+        let pageX = 0;
+        if (e.touches && e.touches.length > 0) {
+            pageX = e.touches[0].pageX;
+        } else {
+            pageX = e.pageX !== undefined ? e.pageX : 0;
+        }
+        const walk = (pageX - bookshelfState.startX) * 1.2; // 드래그 감도
+        let newX = bookshelfState.scrollStartX + walk;
+
+        // 경계 밖 저항(Rubber-band) 효과
+        if (newX > bookshelfState.maxX) {
+            newX = bookshelfState.maxX + (newX - bookshelfState.maxX) * 0.3;
+        } else if (newX < bookshelfState.minX) {
+            newX = bookshelfState.minX + (newX - bookshelfState.minX) * 0.3;
+        }
+        bookshelfState.targetX = newX;
+    };
+
+    const handleDragEnd = () => {
+        if (!bookshelfState.isDragging) return;
+        bookshelfState.isDragging = false;
+        bookshelfState.targetX = Math.max(bookshelfState.minX, Math.min(bookshelfState.targetX, bookshelfState.maxX));
+    };
+
+    wrapper.addEventListener('mousedown', handleDragStart);
+    window.addEventListener('mousemove', handleDragMove);
+    window.addEventListener('mouseup', handleDragEnd);
+
+    wrapper.addEventListener('touchstart', handleDragStart, { passive: true });
+    window.addEventListener('touchmove', handleDragMove, { passive: true });
+    window.addEventListener('touchend', handleDragEnd);
+
+    // 2. 마우스 휠 스크롤 지원
+    wrapper.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY || e.deltaX;
+        let newX = bookshelfState.targetX - delta * 1.5;
+        bookshelfState.targetX = Math.max(bookshelfState.minX, Math.min(newX, bookshelfState.maxX));
+    }, { passive: false });
+
+    // 3. 실시간 관성 보간 프레임 업데이트 루프 (update3D)
+    const update3D = () => {
+        bookshelfState.currentX += (bookshelfState.targetX - bookshelfState.currentX) * 0.12;
+
+        const row0 = document.getElementById('shelf-books-0');
+        const row1 = document.getElementById('shelf-books-1');
+
+        // 화살표 활성/비활성화 시각화
+        const leftArrow = wrapper.querySelector('.left-arrow');
+        const rightArrow = wrapper.querySelector('.right-arrow');
+        if (leftArrow) {
+            if (bookshelfState.currentX >= bookshelfState.maxX - 5) {
+                leftArrow.classList.add('disabled');
+            } else {
+                leftArrow.classList.remove('disabled');
+            }
+        }
+        if (rightArrow) {
+            if (bookshelfState.currentX <= bookshelfState.minX + 5) {
+                rightArrow.classList.add('disabled');
+            } else {
+                rightArrow.classList.remove('disabled');
+            }
+        }
+
+        // 스무스 관성 트랙 이동 적용
+        if (row0) row0.style.transform = `translate3d(${bookshelfState.currentX}px, 0, 0)`;
+        if (row1) row1.style.transform = `translate3d(${bookshelfState.currentX}px, 0, 0)`;
+
+        bookshelfState.animationFrameId = requestAnimationFrame(update3D);
+    };
+
+    if (bookshelfState.animationFrameId) {
+        cancelAnimationFrame(bookshelfState.animationFrameId);
+    }
+    bookshelfState.animationFrameId = requestAnimationFrame(update3D);
+
+    window.addEventListener('resize', recalculateBookshelfBounds);
+    bookshelfState.isEngineInitialized = true;
+}
+
 function renderBookshelf() {
     const section = document.getElementById('archive');
     if (!section) return;
@@ -1226,11 +1379,32 @@ function renderBookshelf() {
     // Vol 순서대로 정렬 (1→41)
     const sorted = [...PROJECTS].sort((a, b) => a.id - b.id);
 
-    // 한 페이지 = 2행 × 10권 = 20권
-    const booksPerPage = 20;
-    const booksPerRow  = 10;
-    const totalPages = Math.ceil(sorted.length / booksPerPage);
-    let currentPage = 0;
+    // 전체 책을 선반 2개(상/하단)에 절반씩 나누어 담기
+    const half = Math.ceil(sorted.length / 2);
+    // 상단 선반에는 최신 책들(뒤쪽 절반), 하단 선반에는 이전 책들(앞쪽 절반)을 담아서 순서 흐름 보장
+    const row0Books = sorted.slice(half); // 상단 선반
+    const row1Books = sorted.slice(0, half); // 하단 선반
+
+    // 마법 기호 목록
+    const magicSymbols = ['⚜', '✦', '🜚', '🝎', '🜔', '🕮', '🜏', '🝔', '✺', '🜛'];
+
+    function buildBookHtml(p) {
+        const colors = getBookSpineColors(p);
+        const shortTitle = p.title.replace('순두부 ','').replace('순두부','');
+        const magicSymbol = magicSymbols[p.id % magicSymbols.length];
+        return `
+            <div class="magic-book" onclick="openFocusStage(${p.id})" title="VOL.${p.id} ${p.title}"
+                 style="--spine1:${colors.spine1}; --spine2:${colors.spine2}; --book-text:${colors.textColor}; --book-accent:${colors.accentColor};">
+                <div class="book-spine">
+                    <span class="book-vol">VOL.${p.id}</span>
+                    <span class="book-title-spine">${shortTitle}</span>
+                    <span class="book-deco">${magicSymbol}</span>
+                </div>
+            </div>`;
+    }
+
+    const row0Html = row0Books.map(buildBookHtml).join('');
+    const row1Html = row1Books.map(buildBookHtml).join('');
 
     section.innerHTML = `
         <div class="bookshelf-wrapper">
@@ -1244,7 +1418,7 @@ function renderBookshelf() {
             <!-- 책장 무대 -->
             <div class="bookshelf-scene">
                 <!-- 왼쪽 화살표 -->
-                <button class="shelf-nav-btn shelf-nav-left" id="shelf-btn-prev" onclick="shiftShelfPage(-1)" style="display:none;">
+                <button class="shelf-nav-btn shelf-nav-left left-arrow" onclick="scrollBookshelf('left')">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
 
@@ -1260,12 +1434,12 @@ function renderBookshelf() {
                     </div>
 
                     <!-- 선반 2개 -->
-                    <div class="shelf-row" id="shelf-row-0">
-                        <div class="shelf-books" id="shelf-books-0"></div>
+                    <div class="shelf-row" id="shelf-row-1">
+                        <div class="shelf-books" id="shelf-books-0">${row0Html}</div>
                         <div class="shelf-plank"></div>
                     </div>
-                    <div class="shelf-row" id="shelf-row-1">
-                        <div class="shelf-books" id="shelf-books-1"></div>
+                    <div class="shelf-row" id="shelf-row-2">
+                        <div class="shelf-books" id="shelf-books-1">${row1Html}</div>
                         <div class="shelf-plank"></div>
                     </div>
 
@@ -1274,13 +1448,10 @@ function renderBookshelf() {
                 </div>
 
                 <!-- 오른쪽 화살표 -->
-                <button class="shelf-nav-btn shelf-nav-right" id="shelf-btn-next" onclick="shiftShelfPage(1)">
+                <button class="shelf-nav-btn shelf-nav-right right-arrow" onclick="scrollBookshelf('right')">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
             </div>
-
-            <!-- 페이지 인디케이터 -->
-            <div class="shelf-page-info" id="shelf-page-info"></div>
 
             <!-- 푸터 -->
             <footer style="margin-top:30px; text-align:center; opacity:0.4;">
@@ -1290,60 +1461,15 @@ function renderBookshelf() {
         </div>
     `;
 
-    // 책 렌더링 함수
-    function renderPage(page) {
-        currentPage = page;
-        const start = page * booksPerPage;
-        const pageBooks = sorted.slice(start, start + booksPerPage);
+    // 3D 스크롤 범위를 다시 계산
+    setTimeout(() => {
+        recalculateBookshelfBounds();
+    }, 100);
 
-        const row0Books = pageBooks.slice(0, booksPerRow);
-        const row1Books = pageBooks.slice(booksPerRow, booksPerPage);
-
-        function buildBookHtml(p) {
-            const colors = getBookSpineColors(p);
-            const shortTitle = p.title.replace('순두부 ','').replace('순두부','');
-            const magicSymbols = ['⚜', '✦', '🜚', '🝎', '🜔', '🕮', '🜏', '🝔', '✺', '🜛'];
-            const magicSymbol = magicSymbols[p.id % magicSymbols.length];
-            return `
-                <div class="magic-book" onclick="openFocusStage(${p.id})" title="VOL.${p.id} ${p.title}"
-                     style="--spine1:${colors.spine1}; --spine2:${colors.spine2}; --book-text:${colors.textColor}; --book-accent:${colors.accentColor};">
-                    <div class="book-spine">
-                        <span class="book-vol">VOL.${p.id}</span>
-                        <span class="book-title-spine">${shortTitle}</span>
-                        <span class="book-deco">${magicSymbol}</span>
-                    </div>
-                </div>`;
-        }
-
-        const row0Html = row0Books.map(buildBookHtml).join('');
-        const row1Html = row1Books.map(buildBookHtml).join('');
-
-        const shelf0 = document.getElementById('shelf-books-0');
-        const shelf1 = document.getElementById('shelf-books-1');
-        if (shelf0) shelf0.innerHTML = row0Html;
-        if (shelf1) shelf1.innerHTML = row1Html;
-
-        // 네비게이션 버튼 표시 제어
-        const prevBtn = document.getElementById('shelf-btn-prev');
-        const nextBtn = document.getElementById('shelf-btn-next');
-        if (prevBtn) prevBtn.style.display = page === 0 ? 'none' : 'block';
-        if (nextBtn) nextBtn.style.display = page === totalPages - 1 ? 'none' : 'block';
-
-        // 페이지 넘버 인포 업데이트
-        const info = document.getElementById('shelf-page-info');
-        if (info) info.innerText = `${page + 1} / ${totalPages}`;
+    // 인터랙션 엔진이 초기화되지 않았다면 초기화
+    if (!bookshelfState.isEngineInitialized) {
+        initBookshelfEngine();
     }
-
-    // 전역 스코프에 페이지 전환 기능 노출
-    window.shiftShelfPage = function(dir) {
-        const nextPage = currentPage + dir;
-        if (nextPage >= 0 && nextPage < totalPages) {
-            renderPage(nextPage);
-        }
-    };
-
-    // 첫 페이지 로드
-    renderPage(0);
 }
 
 function openLookbook(recipeId) {

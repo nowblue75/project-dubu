@@ -1705,8 +1705,27 @@ footer {
     padding: 22px 0 0 0;
     min-height: 210px;
     flex-wrap: nowrap;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-left: 36px;
+    padding-right: 36px;
     perspective: 800px; /* 3D 입체 효과 원근감 적용 */
+    will-change: transform;
+}
+
+/* 책이 서가 너비보다 적어 스크롤이 필요 없을 때 강제 정중앙 정렬 */
+.shelf-books.under-flow {
+    width: 100% !important;
+    justify-content: center !important;
+    transform: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* 한계 도달 시 좌우 내비게이션 화살표 비활성화 */
+.shelf-nav-btn.disabled {
+    opacity: 0.24 !important;
+    pointer-events: none !important;
+    cursor: default !important;
 }
 
 /* 선반 판 */
