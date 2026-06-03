@@ -581,6 +581,68 @@ footer {
     --theme-accent: var(--magic-book-accent, #c5a059);
 }
 
+/* ==========================================================================
+   📖 Magic Book Theme Style - Custom Limited Edition
+   ========================================================================== */
+
+/* 1. 마법책 보드 전체 프레임 (가죽 겉표지 + 황동 테두리 + 그림자) */
+.atelier-focus-board.magic-book-theme {
+    max-width: 1200px;
+    width: 95%;
+    max-height: 85vh;
+    padding: 24px;
+    /* 테마 가죽 컬러 동적 그라디언트화 (고유 칼라에서 어두운 가죽색으로 스무스하게 연결) */
+    background: linear-gradient(135deg, var(--magic-book-color, #3a1d11) 0%, rgba(20, 10, 5, 0.96) 65%, #050201 100%) !important;
+    border-radius: 24px;
+    border: 6px double var(--magic-book-accent, #c5a059) !important;
+    box-shadow: 
+        0 40px 100px var(--magic-book-glow, rgba(0,0,0,0.3)),
+        0 10px 50px rgba(0,0,0,0.5),
+        inset 0 0 0 2px var(--magic-book-accent, #c5a059);
+    position: relative;
+    z-index: 100;
+    gap: 0;
+    transform: scale(0.85) rotateY(-12deg);
+    transform-style: preserve-3d;
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s;
+}
+
+.atelier-focus-overlay.active .atelier-focus-board.magic-book-theme {
+    transform: scale(1) rotateY(0deg) !important;
+    opacity: 1;
+}
+
+/* 2. 네 모서리 고풍 황동 금속 장식 (CSS 45도 데코 브래킷) */
+.atelier-focus-board.magic-book-theme::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: 105;
+    /* 테마 악센트 메탈 컬러에 따라 코너 금속 반사 톤이 유기적으로 매핑됨 */
+    background: 
+        linear-gradient(135deg, #8a6f27 0%, var(--magic-book-accent, #e5c158) 20%, #bfa043 35%, #8a6f27 50%, transparent 50%) top left no-repeat,
+        linear-gradient(225deg, #8a6f27 0%, var(--magic-book-accent, #e5c158) 20%, #bfa043 35%, #8a6f27 50%, transparent 50%) top right no-repeat,
+        linear-gradient(45deg, #8a6f27 0%, var(--magic-book-accent, #e5c158) 20%, #bfa043 35%, #8a6f27 50%, transparent 50%) bottom left no-repeat,
+        linear-gradient(315deg, #8a6f27 0%, var(--magic-book-accent, #e5c158) 20%, #bfa043 35%, #8a6f27 50%, transparent 50%) bottom right no-repeat;
+    background-size: 55px 55px;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
+}
+
+/* 리벳 느낌 추가 가상 요소 */
+.atelier-focus-board.magic-book-theme::after {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 1px dashed rgba(197, 160, 89, 0.3);
+    border-radius: 16px;
+    pointer-events: none;
+    z-index: 101;
+}
+
+
 .focus-stage-left {
     flex: 1.1;
     background: #18110b;
@@ -1644,6 +1706,7 @@ footer {
     min-height: 210px;
     flex-wrap: nowrap;
     justify-content: center;
+    perspective: 800px; /* 3D 입체 효과 원근감 적용 */
 }
 
 /* 선반 판 */
@@ -1714,5 +1777,224 @@ footer {
     .bookshelf-frame { padding: 0 14px; }
     .shelf-books { min-height: 160px; gap: 4px; }
     .bookshelf-title { font-size: 1.6rem; }
+}
+
+/* ==========================================================================
+   새 마법책 Focus 모달 CSS (fc-*)
+   ========================================================================== */
+
+/* 세로 탭 버튼 */
+.fc-tab-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 44px;
+    padding: 10px 4px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 10px;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    font-size: 0.62rem;
+    font-weight: 700;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: background 0.2s, color 0.2s;
+    outline: none;
+}
+.fc-tab-btn i { font-size: 1rem; }
+.fc-tab-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+.fc-tab-btn.fc-tab-active {
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* 재료 계산기 rows */
+.fc-anchor-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #fff;
+    border-radius: 12px;
+    border: 2px solid #e5d8bf;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.fc-sub-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    background: #faf8f5;
+    border-radius: 10px;
+    border: 1px solid #ede5d8;
+    margin-bottom: 6px;
+}
+.fc-ing-name {
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: #3b2208;
+    flex: 1;
+}
+.fc-anchor-label { font-weight: 700; }
+.fc-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.fc-anchor-input {
+    width: 68px;
+    padding: 5px 8px;
+    border: 2px solid #e5d8bf;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-align: center;
+    outline: none;
+    background: #fffdf9;
+    color: #3b2208;
+    transition: border-color 0.2s;
+}
+.fc-anchor-input:focus { border-color: #c5a059; }
+.fc-sub-input {
+    width: 60px;
+    padding: 4px 6px;
+    border: 1px solid #ded5c5;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    background: #f8f5ef;
+    color: #5a4a38;
+    outline: none;
+}
+.fc-unit { font-size: 0.75rem; color: #8a7a6a; font-weight: 600; }
+
+/* 진행률 바 */
+.fc-progress-bar-wrap {
+    margin-bottom: 14px;
+    background: #f0ece5;
+    border-radius: 12px;
+    padding: 10px 14px;
+}
+.fc-progress-label {
+    font-size: 0.75rem;
+    color: #887a6d;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.fc-progress-bg {
+    height: 6px;
+    background: #e0d5c5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.fc-progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+/* 베이킹 순서 rows */
+.fc-step-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #ede5d8;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+.fc-step-row:hover { background: #fdf8f0; }
+.fc-step-row.fc-step-done { background: #faf8f5; border-color: #d0c8b8; opacity: 0.75; text-decoration: line-through; }
+.fc-step-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700;
+    flex-shrink: 0;
+    transition: background 0.25s, color 0.25s;
+}
+.fc-step-body { flex: 1; }
+.fc-step-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #3b2208;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.fc-step-time {
+    font-size: 0.72rem;
+    color: #887a6d;
+    font-weight: 500;
+    background: rgba(0,0,0,0.04);
+    padding: 2px 6px;
+    border-radius: 8px;
+}
+.fc-step-desc { font-size: 0.78rem; color: #6a5a4a; line-height: 1.45; }
+
+/* Q&A 실패대처법 */
+.fc-qa-q {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 14px;
+    background: #fff5f5;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #c0392b;
+    margin-bottom: 10px;
+    line-height: 1.45;
+}
+.fc-qa-a {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 14px;
+    background: #fff;
+    border: 1.5px solid #e0d5c5;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    color: #3b2208;
+    line-height: 1.5;
+}
+.fc-qa-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    font-size: 0.68rem;
+    font-weight: 900;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+.fc-qa-q-badge { background: #e53935; }
+
+/* 빈 상태 */
+.fc-empty {
+    text-align: center;
+    color: #8a7a6a;
+    font-size: 0.84rem;
+    padding: 24px 0;
+    line-height: 1.6;
+}
+.fc-no-trouble { font-style: italic; }
+
+/* coming-soon 자물쇠 pulse 애니메이션 */
+@keyframes pulseGlow {
+    0%, 100% { filter: drop-shadow(0 0 8px currentColor); opacity: 0.8; }
+    50% { filter: drop-shadow(0 0 18px currentColor); opacity: 1; }
 }
 

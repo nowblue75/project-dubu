@@ -312,181 +312,259 @@ function openFocusStage(recipeId) {
     if (!recipe) return;
 
     activeFocusRecipeId = recipeId;
-    const overlay = document.getElementById('atelier-focus-overlay');
-    if (!overlay) return;
+
+    // 기존 모달 제거
+    const old = document.getElementById('focus-modal-overlay');
+    if (old) old.remove();
 
     const theme = getRecipeTheme(recipe);
-
-    const board = overlay.querySelector('.atelier-focus-board');
-    if (board) {
-        board.classList.add('magic-book-theme');
-        board.style.setProperty('--magic-book-color', theme.themeColor);
-        board.style.setProperty('--magic-book-glow', theme.themeGlow);
-        board.style.setProperty('--magic-book-accent', theme.accentColor);
-    }
-
-    // 첫 번째 탭으로 리셋
-    switchFocusTab('calc');
-
-    // 1. 화보 세팅
-    document.getElementById('focus-recipe-img').src = recipe.img;
-    const titleEl = document.getElementById('focus-recipe-title');
-    titleEl.innerText = recipe.title;
-
-    if (theme) {
-        titleEl.style.color = theme.themeColor;
-        const diffPill = document.getElementById('focus-recipe-difficulty');
-        if (diffPill) {
-            diffPill.style.backgroundColor = theme.themeGlow;
-            diffPill.style.color = theme.themeColor;
-            diffPill.style.borderColor = theme.themeColor;
-        }
-    }
-
-    // 2. 가이드 데이터 바인딩
+    const ingredients = INGREDIENT_DICT ? (INGREDIENT_DICT[recipeId] || []) : [];
+    const steps = typeof RECIPE_STEPS_DB !== 'undefined' ? (RECIPE_STEPS_DB[recipeId] || []) : [];
     const meta = getRecipeMetadata(recipeId);
 
-    const cheersEl = document.getElementById('focus-recipe-cheers');
-    if (cheersEl) cheersEl.innerText = meta.cheers;
+    // ─── 탭 콘텐츠 빌드 ───────────────────────────────
+    // 재료 계산기
+    const ingredientsHtml = ingredients.length > 0
+        ? ingredients.map((ing, idx) => idx === 0
+            ? `<div class="fc-anchor-row">
+                   <span class="fc-ing-name fc-anchor-label">${ing.name}</span>
+                   <div class="fc-input-wrap">
+                       <input type="number" id="fc-anchor-${recipeId}" class="fc-anchor-input"
+                              value="${ing.base}" data-base="${ing.base}"
+                              oninput="onFCanchorChange(${recipeId})"
+                              style="border-color:${theme.themeColor};color:${theme.themeColor};">
+                       <span class="fc-unit">g</span>
+                   </div>
+               </div>`
+            : `<div class="fc-sub-row">
+                   <span class="fc-ing-name">${ing.name}</span>
+                   <div class="fc-input-wrap">
+                       <input type="number" class="fc-sub-input" data-base="${ing.base}" value="${ing.base}" readonly>
+                       <span class="fc-unit">g</span>
+                   </div>
+               </div>`
+        ).join('')
+        : `<p class="fc-empty">재료 데이터 준비 중입니다.</p>`;
 
-    const diffPill = document.getElementById('focus-recipe-difficulty');
-    if (diffPill) diffPill.innerText = meta.difficulty;
-
-    // 문제 해결(Q&A) 탭 바인딩
-    const troubleContent = document.getElementById('focus-tab-trouble-content');
-    if (troubleContent) {
-        const rawTrouble = recipe.troubleShoot || "";
-        let troubleHTML = "";
-        if (rawTrouble.includes("Q.") && rawTrouble.includes("A.")) {
-            const parts = rawTrouble.split("<br>");
-            const qText = parts[0].replace("Q.", "").trim();
-            const aText = parts[1] ? parts[1].replace("A.", "").trim() : "";
-
-            troubleHTML = `
-                <div class="trouble-qa-card" style="display: flex; flex-direction: column; gap: 10px;">
-                    <div class="trouble-question" style="font-weight: 700; color: #D32F2F; margin-bottom: 4px; font-size: 0.88rem; display: flex; align-items: flex-start; gap: 8px;">
-                        <span style="background: #E53935; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.68rem; font-family: var(--font-playfair), serif; font-weight: 900; line-height: 1; margin-top: 2px;">Q</span>
-                        <span style="word-break: keep-all; line-height: 1.4;">${qText}</span>
-                    </div>
-                    <div class="trouble-answer" style="background: white; border: 1px solid rgba(58, 105, 88, 0.12); border-radius: 8px; padding: 12px; font-size: 0.8rem; color: #2C3E50; line-height: 1.6; display: flex; align-items: flex-start; gap: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
-                        <span style="background: var(--dubu-mint-accent); color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.68rem; font-family: var(--font-playfair), serif; font-weight: 900; line-height: 1; margin-top: 2px;">A</span>
-                        <span style="word-break: keep-all; font-weight: 500;">${aText}</span>
-                    </div>
+    // 베이킹 순서
+    const stepsHtml = steps.length > 0
+        ? `<div class="fc-progress-bar-wrap">
+               <div class="fc-progress-label" id="fc-progress-label-${recipeId}">0 / ${steps.length} 완료</div>
+               <div class="fc-progress-bg"><div class="fc-progress-fill" id="fc-progress-fill-${recipeId}" style="background:${theme.themeColor};"></div></div>
+           </div>` +
+          steps.map((s, i) => `
+            <div class="fc-step-row" data-step="${i}" onclick="toggleFCstep(this, ${steps.length}, '${recipeId}', '${theme.themeColor}')">
+                <div class="fc-step-num" style="background:#eee6d8;color:#887a6d;">${i+1}</div>
+                <div class="fc-step-body">
+                    <div class="fc-step-title">${s.title} <span class="fc-step-time">⏱ ${s.time}</span></div>
+                    <div class="fc-step-desc">${s.desc}</div>
                 </div>
-            `;
-        } else {
-            troubleHTML = `
-                <div class="no-troubles" style="text-align: center; color: #7f8c8d; font-size: 0.85rem; padding: 20px 0; display: flex; flex-direction: column; gap: 8px; width: 100%;">
-                    <i class="fa-solid fa-circle-check" style="font-size: 1.5rem; color: var(--dubu-mint-accent);"></i>
-                    <span>이 레시피는 특별한 실패 유의사항이 접수되지 않았습니다. 기본 계량과 온도를 잘 지켜주시면 성공입니다!</span>
-                </div>
-            `;
-        }
-        troubleContent.innerHTML = troubleHTML;
+            </div>`).join('')
+        : `<p class="fc-empty">베이킹 순서 데이터 준비 중입니다.</p>`;
+
+    // 실패 대처법
+    let troubleHtml = '';
+    const rawTrouble = recipe.troubleShoot || '';
+    if (rawTrouble.includes('Q.') && rawTrouble.includes('A.')) {
+        const parts = rawTrouble.split('<br>');
+        const q = (parts[0] || '').replace('Q.', '').trim();
+        const a = (parts[1] || '').replace('A.', '').trim();
+        troubleHtml = `
+            <div class="fc-qa-q"><span class="fc-qa-badge fc-qa-q-badge">Q</span>${q}</div>
+            <div class="fc-qa-a" style="border-color:${theme.themeColor};"><span class="fc-qa-badge" style="background:${theme.themeColor};">A</span>${a}</div>`;
+    } else {
+        troubleHtml = `<div class="fc-empty fc-no-trouble"><i class="fa-solid fa-circle-check" style="color:${theme.themeColor};font-size:1.5rem;display:block;margin-bottom:8px;"></i>특별한 실패 유의사항이 없습니다.<br>기본 계량과 온도를 지켜주시면 성공!</div>`;
     }
 
-    // 3. 재료 목록 세팅 (첫 번째 재료는 내 순두부 양으로 하이라이트)
-    const ingredients = INGREDIENT_DICT[recipeId] || [
-        { name: "순두부 베이스", base: 100 },
-        { name: "박력분 / 대체분", base: 100 },
-        { name: "유기농 설탕", base: 50 }
-    ];
+    // ─── 오버레이 DOM 생성 ───────────────────────────
+    const overlay = document.createElement('div');
+    overlay.id = 'focus-modal-overlay';
+    overlay.className = 'atelier-focus-overlay';
+    overlay.onclick = (e) => { if (e.target === overlay) closeFocusStage(); };
 
-    const anchorIngredient = ingredients[0];
-    document.getElementById('focus-anchor-label').innerText = anchorIngredient.name;
+    overlay.innerHTML = `
+        <div id="focus-modal-board" class="atelier-focus-board magic-book-theme" style="
+            --magic-book-color: ${theme.themeColor};
+            --magic-book-glow: ${theme.themeGlow};
+            --magic-book-accent: ${theme.accentColor};
+            position:relative;">
 
-    const anchorInput = document.getElementById('focus-anchor-input');
-    anchorInput.value = anchorIngredient.base;
-    anchorInput.setAttribute('data-base', anchorIngredient.base);
-
-    // 순두부 앵커 체크박스 초기화
-    const anchorParent = document.querySelector('.primary-anchor-box');
-    if (anchorParent) {
-        anchorParent.classList.remove('checked-row');
-        const circle = anchorParent.querySelector('.ing-check-circle');
-        if (circle) circle.classList.remove('checked');
-    }
-
-    // 나머지 재료들 리스트화
-    const listContainer = document.getElementById('focus-ingredients-list');
-    listContainer.innerHTML = '';
-
-    for (let i = 1; i < ingredients.length; i++) {
-        const ing = ingredients[i];
-        const row = document.createElement('div');
-        row.className = 'focus-ingredient-calc-row';
-        row.innerHTML = `
-            <div class="ing-check-circle" onclick="toggleIngCheck(this)"></div>
-            <span class="focus-ing-name">${ing.name}</span>
-            <div class="focus-ing-input-wrapper">
-                <input type="number" class="focus-ing-input focus-sub-input" 
-                       data-base="${ing.base}" 
-                       value="${ing.base}" 
-                       readonly>
-                <span class="focus-ing-unit">g</span>
+            <!-- 왼쪽: 이미지 패널 -->
+            <div style="
+                flex:1.05;background:#18110b;padding:28px;
+                display:flex;flex-direction:column;justify-content:space-between;
+                border-right:1px solid rgba(255,255,255,0.07);">
+                <div style="font-size:0.68rem;letter-spacing:2px;color:#a08070;font-weight:600;font-family:'Noto Serif KR',serif;">RECIPE FILE · Vol.${recipe.id}</div>
+                <div style="flex:1;margin:14px 0;border-radius:14px;overflow:hidden;
+                    box-shadow:0 8px 24px rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.07);background:#111;">
+                    <img src="${recipe.img}" alt="${recipe.title}"
+                         style="width:100%;height:100%;object-fit:cover;"
+                         onerror="this.style.display='none'">
+                </div>
+                <div style="border-left:3px solid ${theme.accentColor};padding:10px 14px;
+                    background:rgba(255,255,255,0.03);border-radius:0 10px 10px 0;">
+                    <p style="color:#e5dcd3;font-size:0.76rem;line-height:1.5;margin:0;font-style:italic;">${meta.cheers}</p>
+                </div>
             </div>
-        `;
-        listContainer.appendChild(row);
-    }
 
-    // 4. 동적 순서 타임라인 빌드
-    const stepsList = RECIPE_STEPS_DB[recipeId] || [
-        { title: "준비하기", time: "5분", desc: "재료를 계량하고 오븐을 예열합니다." }
-    ];
-    const timelineContainer = document.getElementById('focus-steps-timeline');
-    if (timelineContainer) {
-        timelineContainer.innerHTML = stepsList.map((step, idx) => {
-            return `
-                <div class="timeline-step-item" data-step-idx="${idx}" onclick="toggleTimelineStepComplete(this, ${stepsList.length})">
-                    <div class="step-num-circle">
-                        <span class="step-num-text">${idx + 1}</span>
-                        <i class="fa-solid fa-check step-check-icon" style="display: none; font-size: 0.75rem; color: white;"></i>
+            <!-- 오른쪽: 세로 탭 패널 -->
+            <div style="flex:1.35;display:flex;overflow:hidden;position:relative;background:#faf8f5;">
+
+                <!-- 세로 탭 버튼 바 -->
+                <div class="fc-tab-bar" style="
+                    display:flex;flex-direction:column;
+                    width:54px;flex-shrink:0;
+                    background:${theme.themeColor};
+                    align-items:center;padding:60px 0 20px 0;gap:4px;">
+                    <button id="fctab-calc" class="fc-tab-btn fc-tab-active"
+                        onclick="switchFCTab('calc','${recipeId}','${theme.themeColor}')"
+                        title="재료 계산기">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <span>재료</span>
+                    </button>
+                    <button id="fctab-steps" class="fc-tab-btn"
+                        onclick="switchFCTab('steps','${recipeId}','${theme.themeColor}')"
+                        title="베이킹순서">
+                        <i class="fa-solid fa-list-ol"></i>
+                        <span>순서</span>
+                    </button>
+                    <button id="fctab-trouble" class="fc-tab-btn"
+                        onclick="switchFCTab('trouble','${recipeId}','${theme.themeColor}')"
+                        title="실패 대처법">
+                        <i class="fa-solid fa-circle-question"></i>
+                        <span>대처</span>
+                    </button>
+                </div>
+
+                <!-- 탭 콘텐츠 패널 -->
+                <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;padding:0;">
+                    <!-- 닫기 버튼 -->
+                    <button onclick="closeFocusStage()" style="
+                        position:absolute;top:18px;right:22px;
+                        background:none;border:none;font-size:1.9rem;color:#887a6d;
+                        cursor:pointer;outline:none;transition:color 0.2s;z-index:10;"
+                        onmouseover="this.style.color='#3a1d11'" onmouseout="this.style.color='#887a6d'">&times;</button>
+
+                    <!-- 제목 헤더 -->
+                    <div style="padding:22px 28px 0 28px;padding-right:52px;">
+                        <h2 class="serif" style="font-size:1.45rem;font-weight:700;color:${theme.themeColor};margin:0 0 6px 0;">${recipe.title}</h2>
+                        <span style="display:inline-block;padding:3px 12px;border:1.5px solid ${theme.themeColor};
+                            border-radius:20px;background:rgba(0,0,0,0.04);
+                            font-size:0.7rem;font-weight:700;color:${theme.themeColor};">
+                            <i class="fa-solid fa-box-open"></i> 분량: ${meta.difficulty}
+                        </span>
                     </div>
-                    <div class="step-content-box">
-                        <div class="step-header-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                            <h4 class="step-title-text" style="margin: 0; font-weight: 700; color: #3a1d11;">${step.title}</h4>
-                            <span class="step-time-pill" style="font-size: 0.75rem; background: rgba(58,105,88,0.08); padding: 2px 8px; border-radius: 12px; color: #163b32;"><i class="fa-regular fa-clock"></i> ${step.time}</span>
-                        </div>
-                        <p class="step-desc-text" style="margin: 5px 0 0 0; font-size: 0.82rem; color: #555; line-height: 1.4;">${step.desc}</p>
+
+                    <!-- 탭 콘텐츠 스크롤 영역 -->
+                    <div style="flex:1;overflow-y:auto;padding:16px 28px;box-sizing:border-box;">
+                        <div id="fctab-content-calc">${ingredientsHtml}</div>
+                        <div id="fctab-content-steps" style="display:none;">${stepsHtml}</div>
+                        <div id="fctab-content-trouble" style="display:none;">${troubleHtml}</div>
+                    </div>
+
+                    <!-- 하단 버튼 3개 -->
+                    <div style="display:flex;gap:8px;padding:14px 28px;border-top:1px solid #e5d8bf;flex-shrink:0;">
+                        <button onclick="issueRecipeCardFromFocus(${recipeId},'${recipe.title}','${recipe.img}','${meta.difficulty}','${meta.bakingTip}','${meta.cheers}')" style="
+                            flex:1;background:${theme.themeColor};color:${theme.accentColor};
+                            border:none;border-radius:10px;padding:11px 6px;
+                            font-size:0.76rem;font-weight:700;cursor:pointer;outline:none;
+                            font-family:inherit;transition:opacity 0.2s;"
+                            onmouseover="this.style.opacity='0.82'" onmouseout="this.style.opacity='1'">
+                            <i class="fa-solid fa-download"></i> 레시피소장
+                        </button>
+                        ${ recipe.blogUrl
+                            ? `<a href="${recipe.blogUrl}" target="_blank" style="
+                                flex:1;background:#eee6d8;color:#3b281f;
+                                border:none;border-radius:10px;padding:11px 6px;
+                                font-size:0.76rem;font-weight:700;cursor:pointer;outline:none;
+                                text-decoration:none;display:flex;align-items:center;justify-content:center;gap:4px;
+                                transition:background 0.2s;font-family:inherit;"
+                                onmouseover="this.style.background='#e2d7c5'" onmouseout="this.style.background='#eee6d8'">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> 블로그가기
+                               </a>`
+                            : `<button disabled style="flex:1;background:#f0ece5;color:#ccc;border:none;border-radius:10px;padding:11px 6px;font-size:0.76rem;cursor:default;outline:none;font-family:inherit;">블로그준비중</button>` }
+                        <button onclick="openLookbook(${recipeId})" style="
+                            flex:1;background:#3a6958;color:#fff;
+                            border:none;border-radius:10px;padding:11px 6px;
+                            font-size:0.76rem;font-weight:700;cursor:pointer;outline:none;
+                            font-family:inherit;transition:background 0.2s;"
+                            onmouseover="this.style.background='#2b5042'" onmouseout="this.style.background='#3a6958'">
+                            <i class="fa-solid fa-book-open"></i> 룩북보기
+                        </button>
                     </div>
                 </div>
-            `;
-        }).join('');
-    }
+            </div>
+        </div>`;
 
-    // 진행률 게이지 리셋
-    resetTimelineProgress(stepsList.length);
-
-    // 5. 레시피 다운로드 & 공유 버튼 이벤트 바인딩
-    document.getElementById('focus-btn-download').onclick = () => {
-        issueRecipeCardFromFocus(recipeId, recipe.title, recipe.img, meta.difficulty, meta.bakingTip, meta.cheers);
-    };
-
-    const shareBtn = document.getElementById('focus-btn-share');
-    if (shareBtn) {
-        shareBtn.onclick = (e) => {
-            shareRecipe(e, recipe.title);
-        };
-    }
-
-    // 블로그 버튼 연동
-    const blogBtn = document.getElementById('focus-btn-blog');
-    if (blogBtn) {
-        if (recipe.blogUrl) {
-            blogBtn.href = recipe.blogUrl;
-            blogBtn.style.opacity = '1';
-            blogBtn.style.pointerEvents = 'auto';
-            blogBtn.target = '_blank';
-        } else {
-            blogBtn.href = '#';
-            blogBtn.style.opacity = '0.45';
-            blogBtn.style.pointerEvents = 'none';
-        }
-    }
-
-    overlay.classList.add('active');
+    document.body.appendChild(overlay);
     document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+        overlay.classList.add('active');
+    }, 30);
 }
+
+function closeFocusStage() {
+    // 새 동적 모달
+    const newOverlay = document.getElementById('focus-modal-overlay');
+    if (newOverlay) {
+        newOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        setTimeout(() => newOverlay.remove(), 500);
+        return;
+    }
+    // 기존 정적 overlay (하위호환)
+    const old = document.getElementById('atelier-focus-overlay');
+    if (old) old.classList.remove('active');
+    document.body.style.overflow = '';
+    activeFocusRecipeId = null;
+}
+
+function switchFCTab(tabId, recipeId, themeColor) {
+    ['calc','steps','trouble'].forEach(t => {
+        const btn = document.getElementById(`fctab-${t}`);
+        const content = document.getElementById(`fctab-content-${t}`);
+        if (btn) btn.classList.remove('fc-tab-active');
+        if (content) content.style.display = 'none';
+    });
+    const btn = document.getElementById(`fctab-${tabId}`);
+    const content = document.getElementById(`fctab-content-${tabId}`);
+    if (btn) btn.classList.add('fc-tab-active');
+    if (content) content.style.display = 'block';
+}
+
+function onFCanchorChange(recipeId) {
+    const anchorInput = document.getElementById(`fc-anchor-${recipeId}`);
+    if (!anchorInput) return;
+    const val = parseFloat(anchorInput.value) || 0;
+    const base = parseFloat(anchorInput.getAttribute('data-base')) || 1;
+    const scale = val / base;
+    const subInputs = document.querySelectorAll('#focus-modal-board .fc-sub-input');
+    subInputs.forEach(inp => {
+        inp.value = Math.round(parseFloat(inp.getAttribute('data-base')) * scale);
+    });
+}
+
+function toggleFCstep(el, total, recipeId, themeColor) {
+    el.classList.toggle('fc-step-done');
+    const numEl = el.querySelector('.fc-step-num');
+    if (el.classList.contains('fc-step-done')) {
+        if (numEl) { numEl.style.background = themeColor; numEl.style.color = '#fff'; numEl.innerHTML = '<i class="fa-solid fa-check" style="font-size:0.7rem;"></i>'; }
+    } else {
+        const stepNum = el.getAttribute('data-step');
+        if (numEl) { numEl.style.background = '#eee6d8'; numEl.style.color = '#887a6d'; numEl.textContent = Number(stepNum)+1; }
+    }
+    // 진행률 업데이트
+    const board = document.getElementById('focus-modal-board');
+    if (!board) return;
+    const done = board.querySelectorAll('.fc-step-done').length;
+    const fill = document.getElementById(`fc-progress-fill-${recipeId}`);
+    const label = document.getElementById(`fc-progress-label-${recipeId}`);
+    if (fill) fill.style.width = `${Math.round(done/total*100)}%`;
+    if (label) label.textContent = `${done} / ${total} 완료`;
+}
+
+
+
 
 function toggleIngCheck(circleEl) {
     circleEl.classList.toggle('checked');
@@ -568,13 +646,7 @@ function updateTimelineProgress(timelineContainer, totalSteps) {
     }
 }
 
-function closeFocusStage() {
-    const overlay = document.getElementById('atelier-focus-overlay');
-    if (overlay) {
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-}
+// 구식 중복 closeFocusStage 제거
 
 // ==========================================================================
 // 5. 역비례 & 다중 앵커 양방향 비례 연산 (Atelier Scale)
@@ -951,8 +1023,7 @@ function renderAccordionArtbook() {
             id: 36,
             title: "순두부 티라미수푸딩",
             img: "31. 순두부 티라미수푸딩_완/0.jpg",
-            creatorsNote: "순두부와 마스카포네 크림에 커피 젤리 큐브를 레이어로 쌓아 냉장 굳힌 노오븐 티라미수 푸딩.",
-            pairingGuide: "시나몬 가루를 솔솔 올린 콜드브루 커피와 곁들여 보세요.",
+            creatorsNote: "마스카포네 크림과 커피 젤리 큐브를 레이어로 쌓아 냉장 굳힌 노오븐 티라미수 푸딩.",
             themeColor: "#826359",
             themeGlow: "rgba(130, 99, 89, 0.15)",
             accentColor: "#FFCCBC"
@@ -961,8 +1032,7 @@ function renderAccordionArtbook() {
             id: 37,
             title: "순두부 화이트바크초콜릿",
             img: "36. 순두부화이트바크초콜릿_완/0.jpg",
-            creatorsNote: "순두부 시트 위에 녹인 화이트 커버춰를 부어 피스타치오와 스프링클로 장식해 굳히는 바크 초콜릿.",
-            pairingGuide: "산뜻하게 우려낸 홍차나 가벼운 디저트 와인과 최고로 잘 어울립니다.",
+            creatorsNote: "순두부 시트 위에 화이트 커버춰를 부어 피스타치오와 스프링클로 장식해 굳히는 바크 초콜릿.",
             themeColor: "#C25D7E",
             themeGlow: "rgba(194, 93, 126, 0.15)",
             accentColor: "#F48FB1"
@@ -970,9 +1040,8 @@ function renderAccordionArtbook() {
         {
             id: 38,
             title: "순두부 쑥 찰떡브라우니",
-            img: "39. 순두부 쑥 찰떡브라우니_완/0.jpg",
+            img: "39. 순두부 쑥 찰떡브라우니_화보북 여기서부터/assets/0.jpg",
             creatorsNote: "찹쌀가루 없이 완성한 반전의 찰기! 향긋한 쑥 반죽과 콩고물의 고소한 동행.",
-            pairingGuide: "쌉싸름한 말차 라떼나 드립 커피와 함께 곁들이면 맛의 깊이가 극대화됩니다.",
             themeColor: "#4E6B56",
             themeGlow: "rgba(78, 107, 86, 0.15)",
             accentColor: "#A5D6A7"
@@ -980,9 +1049,8 @@ function renderAccordionArtbook() {
         {
             id: 39,
             title: "순두부 흑임자 테린",
-            img: "40. 순두부 흑임자테린_완/assets/01.png",
-            creatorsNote: "오븐 중탕 공법으로 진하고 크리미하게 구워내 만든 다음날 더 고소하고 꾸덕한 흑임자 테린.",
-            pairingGuide: "따뜻한 아메리카노와 깊은 조화를 이룹니다.",
+            img: "40. 순두부 흑임자테린/assets/01.png",
+            creatorsNote: "오븐 중탕 공법으로 진하고 크리미하게 구워낸, 다음날 더 고소한 흑임자 테린.",
             themeColor: "#4A4F54",
             themeGlow: "rgba(74, 79, 84, 0.15)",
             accentColor: "#78909C"
@@ -990,9 +1058,8 @@ function renderAccordionArtbook() {
         {
             id: 40,
             title: "순두부 콩물 파운드케익",
-            img: "41. 순두부콩물 파운드케익_완/순두부 콩물 파운드케익 (0).jpg",
-            creatorsNote: "순두부와 콩물을 함께 곱게 갈아 고소하고 촉촉하게 완성한 웰빙 파운드케익입니다.",
-            pairingGuide: "콩물라떼 또는 따뜻한 황차와 부드러운 페어링을 자랑합니다.",
+            img: "41. 순두부콩물 파운드케익_완/순두부 콩물 파운드케익 (0).png",
+            creatorsNote: "순두부와 콩물을 함께 갈아 고소하고 촉촉하게 완성한 웰빙 파운드케익.",
             themeColor: "#7B6F55",
             themeGlow: "rgba(123, 111, 85, 0.15)",
             accentColor: "#F5E6C8",
@@ -1000,10 +1067,10 @@ function renderAccordionArtbook() {
         },
         {
             id: 'coming-soon',
-            title: "Vol.41 Coming Soon",
+            title: "순두부 찜케익",
+            comingSoonSubtitle: "Vol.41 Coming Soon",
             img: "",
-            creatorsNote: "다음 컬렉션이 곧 공개됩니다.",
-            pairingGuide: "새로운 맛의 조화와 비법을 기대해 주세요.",
+            creatorsNote: "촉촉하게 쪄낸 순두부 찜케익이 곧 공개됩니다.",
             themeColor: "#2C3E50",
             themeGlow: "rgba(44, 62, 80, 0.2)",
             accentColor: "#95A5A6",
@@ -1015,7 +1082,8 @@ function renderAccordionArtbook() {
     const comingSoonVol = maxId + 1;
     const comingSoonItem = activeRecipes.find(r => r.id === 'coming-soon');
     if (comingSoonItem) {
-        comingSoonItem.title = `Vol.${comingSoonVol} Coming Soon`;
+        comingSoonItem.title = "순두부 찜케익";
+        comingSoonItem.comingSoonSubtitle = `Vol.${comingSoonVol} Coming Soon`;
     }
 
     const specsData = {
@@ -1035,15 +1103,16 @@ function renderAccordionArtbook() {
             : `background-image: url('${p.img}');`;
 
         const comingSoonOverlay = p.isComingSoon 
-            ? `<div class="coming-soon-glowing-core" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <i class="fa-solid fa-lock" style="font-size: 2.2rem; color: var(--accent-color); filter: drop-shadow(0 0 12px var(--theme-color)); margin-bottom: 12px; opacity: 0.85;"></i>
-                <span class="coming-soon-text-en font-serif" style="color: #95A5A6; font-size: 0.72rem; letter-spacing: 2px; margin-bottom: 4px;">COMING SOON</span>
-                <span class="coming-soon-text-ko" style="color: #7F8C8D; font-size: 0.82rem; font-weight: 700;">비밀의 문이 곧 열립니다</span>
+            ? `<div class="coming-soon-glowing-core" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align:center; padding:0 10px;">
+                <i class="fa-solid fa-lock" style="font-size: 2.2rem; color: var(--accent-color); filter: drop-shadow(0 0 12px var(--theme-color)); margin-bottom: 12px; opacity: 0.85; animation: pulseGlow 2s infinite ease-in-out;"></i>
+                <span style="color:#e5dcd3; font-size:1.1rem; font-weight:700; font-family:'Noto Serif KR',serif; margin-bottom:6px;">${p.title}</span>
+                <span class="coming-soon-text-en font-serif" style="color: #95A5A6; font-size: 0.72rem; letter-spacing: 2px; margin-bottom: 2px;">COMING SOON</span>
+                <span class="coming-soon-text-ko" style="color: #7F8C8D; font-size: 0.78rem;">비밀의 문이 곧 열립니다</span>
                </div>`
             : '';
 
         const titleHtml = p.isComingSoon 
-            ? `<h3 class="serif showcase-title" style="color: #7f8c8d;">${p.title}</h3>`
+            ? `<h3 class="serif showcase-title" style="color: #7f8c8d;">${p.comingSoonSubtitle || 'Coming Soon'}</h3>`
             : `<h3 class="serif showcase-title">${p.title}${p.isNew ? ` <span style="display: inline-block; background: #FF3D71; color: white; font-family: var(--font-playfair), serif; font-weight: 700; font-size: 0.65rem; padding: 2px 8px; border-radius: 20px; vertical-align: middle; margin-left: 10px; box-shadow: 0 0 10px rgba(255, 61, 113, 0.4); text-transform: uppercase; letter-spacing: 0.5px;">NEW</span>` : ''}</h3>`;
 
         const metaText = p.isComingSoon ? "RECIPE FILE // COMING SOON" : `RECIPE FILE // Vol.${p.id}`;
@@ -1084,12 +1153,6 @@ function renderAccordionArtbook() {
                             <span class="spec-label">BAKING METHOD</span>
                             <span class="spec-value">${specs.method}</span>
                         </div>
-                    </div>
-                    
-                    <!-- 푸터 연동 페어링 가이드 -->
-                    <div class="editorial-footer-essence">
-                        <span class="pairing-label">RECOMMENDED PAIRING</span>
-                        <p class="pairing-desc font-serif">${p.pairingGuide}</p>
                     </div>
                     
                     <!-- 인터랙티브 소환 버튼 -->
@@ -1288,7 +1351,7 @@ function renderBookshelf() {
             const colors = getBookSpineColors(p);
             const shortTitle = p.title.replace('순두부 ','').replace('순두부','');
             return `
-                <div class="magic-book" onclick="openBookModal(${p.id})" title="VOL.${p.id} ${p.title}"
+                <div class="magic-book" onclick="openFocusStage(${p.id})" title="VOL.${p.id} ${p.title}"
                      style="--spine1:${colors.spine1};--spine2:${colors.spine2};--book-text:${colors.textColor};--book-accent:${colors.accent};">
                     <div class="book-spine">
                         <div class="book-vol">VOL.${p.id}</div>
