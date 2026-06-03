@@ -1999,6 +1999,21 @@ footer {
 }
 
 /* 3. 우측 책갈피 가죽 인덱스 탭 (Bookmark Ribbons) - 계단식 절대좌표 배치 */
+.atelier-focus-board.magic-book-theme {
+    overflow: visible !important;
+}
+
+/* 책 보드의 overflow가 해제됨에 따라 양쪽 내부 영역의 모퉁이가 모달 바깥으로 튀어나가지 않도록 둥글기 보정 */
+.magic-book-theme .focus-stage-left {
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+}
+.magic-book-theme .focus-stage-right {
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    overflow: visible !important; /* 탭 돌출 허용 */
+}
+
 .focus-card-tabs {
     position: absolute;
     top: 60px;
@@ -2015,29 +2030,30 @@ footer {
 
 .focus-card-tab-btn {
     position: absolute;
-    right: -32px; /* 기본 (비활성): 책 가죽 틈새 안으로 밀려들어감 */
-    width: 46px;
-    height: 68px;
-    border-radius: 0 8px 8px 0;
+    right: -42px; /* 기본 (비활성): 책 가죽 표지 뒤로 살짝 파묻혀 돌출됨 */
+    width: 52px;
+    height: 74px;
+    border-radius: 0 10px 10px 0;
     border: 2px solid var(--magic-book-accent, #a68342);
     border-left: none;
     color: rgba(255,255,255,0.75) !important;
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     font-family: 'Playfair Display', 'Noto Serif KR', serif;
     font-weight: 700;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow: 4px 4px 8px rgba(0,0,0,0.4);
-    padding: 10px 4px 10px 10px;
+    padding: 10px 4px 10px 14px;
     margin-left: 0;
     text-orientation: mixed;
     line-height: 1.25;
     word-break: keep-all;
+    opacity: 0.85;
 }
 
 /* 개별 탭 버튼들의 계단식 세로 위치(top) 및 그라디언트 분기 */
@@ -2046,23 +2062,32 @@ footer {
     background: linear-gradient(135deg, #8b263e 0%, #5e1322 100%); /* 레드 가죽 */
 }
 #btn-tab-steps {
-    top: 82px;
+    top: 86px;
     background: linear-gradient(135deg, #1e4620 0%, #112d12 100%); /* 그린 가죽 */
 }
 #btn-tab-trouble {
-    top: 164px;
+    top: 172px;
     background: linear-gradient(135deg, #1c355e 0%, #0d1e38 100%); /* 블루 가죽 */
+}
+
+/* 마우스 호버 시 살짝 돌출 연출 */
+.focus-card-tab-btn:hover {
+    right: -52px;
+    opacity: 1;
+    color: #ffffff !important;
 }
 
 /* 활성화 탭 (책갈피가 삐져나온 듯한 3D 돌출 연출) */
 .focus-card-tab-btn.active {
-    right: -60px; /* 더 확실하게 삐져나옴 */
-    width: 76px;  /* 가로 너비 확장 */
+    right: -62px; /* 더 확실하게 삐져나옴 */
+    width: 72px;  /* 가로 너비 확장 */
     color: #ffffff !important;
     font-weight: 900;
     border-color: #ffe066;
-    box-shadow: 5px 5px 12px rgba(0,0,0,0.55);
+    box-shadow: 6px 6px 15px rgba(0,0,0,0.55);
     z-index: 220; /* 앞 레이어 */
+    opacity: 1;
 }
+
 
 
