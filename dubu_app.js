@@ -1007,15 +1007,6 @@ function renderAccordionArtbook() {
 
     const activeRecipes = [
         {
-            id: 36,
-            title: "순두부 티라미수푸딩",
-            img: "31. 순두부 티라미수푸딩_완/0.jpg",
-            creatorsNote: "마스카포네 크림과 커피 젤리 큐브를 레이어로 쌓아 냉장 굳힌 노오븐 티라미수 푸딩.",
-            themeColor: "#826359",
-            themeGlow: "rgba(130, 99, 89, 0.15)",
-            accentColor: "#FFCCBC"
-        },
-        {
             id: 37,
             title: "순두부 화이트바크초콜릿",
             img: "36. 순두부화이트바크초콜릿_완/0.jpg",
@@ -1049,15 +1040,24 @@ function renderAccordionArtbook() {
             creatorsNote: "순두부와 콩물을 함께 갈아 고소하고 촉촉하게 완성한 웰빙 파운드케익.",
             themeColor: "#7B6F55",
             themeGlow: "rgba(123, 111, 85, 0.15)",
-            accentColor: "#F5E6C8",
+            accentColor: "#F5E6C8"
+        },
+        {
+            id: 42,
+            title: "순두부 모찌 찜케이크",
+            img: "42. 순두부 찜케익/순두부 찜케익 (0).jpg",
+            creatorsNote: "물기 안 짠 순두부를 우유, 오일과 갈아 찹쌀가루 및 팥앙금을 얹어 쪄낸 쫀득 촉촉한 찜케이크.",
+            themeColor: "#5A3816",
+            themeGlow: "rgba(90, 56, 22, 0.15)",
+            accentColor: "#EAD7A8",
             isNew: true
         },
         {
             id: 'coming-soon',
-            title: "순두부 찜케익",
-            comingSoonSubtitle: "Vol.41 Coming Soon",
+            title: "순두부 레몬파운드케익",
+            comingSoonSubtitle: "Vol.43 Coming Soon",
             img: "",
-            creatorsNote: "촉촉하게 쪄낸 순두부 찜케익이 곧 공개됩니다.",
+            creatorsNote: "상큼한 레몬 글레이즈와 고소한 순두부 시트가 어우러진 레몬 파운드케익이 곧 공개됩니다.",
             themeColor: "#2C3E50",
             themeGlow: "rgba(44, 62, 80, 0.2)",
             accentColor: "#95A5A6",
@@ -1069,16 +1069,16 @@ function renderAccordionArtbook() {
     const comingSoonVol = maxId + 1;
     const comingSoonItem = activeRecipes.find(r => r.id === 'coming-soon');
     if (comingSoonItem) {
-        comingSoonItem.title = "순두부 찜케익";
+        comingSoonItem.title = "순두부 레몬파운드케익";
         comingSoonItem.comingSoonSubtitle = `Vol.${comingSoonVol} Coming Soon`;
     }
 
     const specsData = {
+        42: { texture: "쫀득하고 촉촉함", wellness: "No밀가루, No버터, No오븐", method: "찜기 50분 찌기" },
         40: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 구움" },
         39: { texture: "꾸덕함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
         38: { texture: "쫀득함", wellness: "No버터, 비건 지향", method: "160℃ 오븐 구움" },
-        37: { texture: "바삭하고 달콤함", wellness: "No버터, 볶은 순두부", method: "165℃ 오븐 구움" },
-        36: { texture: "부드럽고 촉촉함", wellness: "No오븐, 알룰로스 대체 가능", method: "No오븐 냉장 굳히기" }
+        37: { texture: "바삭하고 달콤함", wellness: "No버터, 볶은 순두부", method: "165℃ 오븐 구움" }
     };
 
     container.innerHTML = activeRecipes.map((p, idx) => {
