@@ -612,7 +612,7 @@ function updateTimelineProgress(timelineContainer, totalSteps) {
 // ==========================================================================
 const BASE_YIELDS = {
     40: { template: "오란다 대 틀 {x}개 분량 🍞", baseCount: 3 },
-    39: { template: "흑임자 테린 {x}판 분량 🖤", baseCount: 1 },
+    39: { template: "오란다 대 틀 {x}개 분량 🖤", baseCount: 1 },
     38: { template: "쑥 찰떡브라우니 {x}판 분량 🌿", baseCount: 1 },
     37: { template: "화이트 바크초콜릿 {x}판 분량 🍫", baseCount: 1 },
     36: { template: "티라미수 푸딩 {x}컵 분량 🍮", baseCount: 2 },
@@ -1201,10 +1201,40 @@ function handleSliceClick(event, projectId) {
 // ==========================================================================
 // 15. 시즌 이벤트 테마 모달 (2단계)
 // ==========================================================================
+// 시즌 모달 슬라이더 인덱스 제어 전역 변수
+let themeModalCurrentSlide = 0;
+
+function slideTheme(dir, maxIndex) {
+    const slider = document.querySelector('.theme-modal-cards-slider');
+    if (!slider) return;
+    
+    themeModalCurrentSlide += dir;
+    if (themeModalCurrentSlide < 0) themeModalCurrentSlide = 0;
+    if (themeModalCurrentSlide > maxIndex) themeModalCurrentSlide = maxIndex;
+
+    const cardWidth = 260;
+    const gap = 25;
+    const translateVal = -themeModalCurrentSlide * (cardWidth + gap);
+    slider.style.transform = `translateX(${translateVal}px)`;
+
+    const prevBtn = document.querySelector('.theme-slider-btn.prev');
+    const nextBtn = document.querySelector('.theme-slider-btn.next');
+    if (prevBtn) {
+        prevBtn.style.opacity = themeModalCurrentSlide === 0 ? '0.2' : '1';
+        prevBtn.style.pointerEvents = themeModalCurrentSlide === 0 ? 'none' : 'auto';
+    }
+    if (nextBtn) {
+        nextBtn.style.opacity = themeModalCurrentSlide === maxIndex ? '0.2' : '1';
+        nextBtn.style.pointerEvents = themeModalCurrentSlide === maxIndex ? 'none' : 'auto';
+    }
+}
+
 function openTheme(themeId) {
     if (typeof THEMES === 'undefined') return;
     const theme = THEMES.find(t => t.id === themeId);
     if (!theme) return;
+
+    themeModalCurrentSlide = 0; // 슬라이드 위치 초기화
 
     const old = document.getElementById('theme-modal-overlay');
     if (old) old.remove();
@@ -1222,6 +1252,10 @@ function openTheme(themeId) {
     overlay.className = 'theme-modal-overlay';
     overlay.style.cssText = `background: ${pal.bg}; color: ${pal.text};`;
     overlay.onclick = (e) => { if (e.target === overlay) closeThemeModal(); };
+
+    const recipesCount = (theme.recipes || []).length;
+    const maxIndex = recipesCount > 4 ? recipesCount - 4 : 0;
+    const showButtons = recipesCount > 4;
 
     const recipesHtml = (theme.recipes || []).map(recipe => {
         const imgSrc = recipe.img || '';
@@ -1246,8 +1280,24 @@ function openTheme(themeId) {
             <h2 class="theme-modal-title serif" style="color:${pal.text};">${theme.title}</h2>
             <p class="theme-modal-desc" style="color:${pal.subtext};">${theme.desc}</p>
         </div>
-        <div class="theme-modal-cards-container">
-            ${recipesHtml}
+        <div class="theme-modal-carousel-wrapper">
+            ${showButtons ? `
+            <button class="theme-slider-btn prev" onclick="slideTheme(-1, ${maxIndex})" style="color: ${pal.text}; opacity: 0.2; pointer-events: none;">
+                <i class="fa-solid fa-circle-chevron-left"></i>
+            </button>
+            ` : ''}
+            
+            <div class="theme-modal-cards-viewport">
+                <div class="theme-modal-cards-slider">
+                    ${recipesHtml}
+                </div>
+            </div>
+            
+            ${showButtons ? `
+            <button class="theme-slider-btn next" onclick="slideTheme(1, ${maxIndex})" style="color: ${pal.text};">
+                <i class="fa-solid fa-circle-chevron-right"></i>
+            </button>
+            ` : ''}
         </div>
     `;
 

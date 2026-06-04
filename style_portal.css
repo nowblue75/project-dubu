@@ -1346,29 +1346,74 @@ footer {
     margin: 0;
 }
 
-/* Cards Grid inside Modal */
-.theme-modal-cards-container {
+/* Carousel Slider inside Modal */
+.theme-modal-carousel-wrapper {
     display: flex;
-    gap: 25px;
-    max-width: 1300px;
-    width: 100%;
-    overflow-x: auto;
-    padding: 20px 10px 40px 10px;
+    align-items: center;
     justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    gap: 20px;
     box-sizing: border-box;
 }
 
-/* Custom Scrollbar for horizontal container */
-.theme-modal-cards-container::-webkit-scrollbar {
-    height: 8px;
+.theme-modal-cards-viewport {
+    width: 1115px; /* (260 * 4) + (25 * 3) = 1115px */
+    overflow: hidden;
+    padding: 20px 0;
 }
-.theme-modal-cards-container::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.05);
-    border-radius: 10px;
+
+.theme-modal-cards-slider {
+    display: flex;
+    gap: 25px;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    width: max-content;
 }
-.theme-modal-cards-container::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.15);
-    border-radius: 10px;
+
+/* Slider Navigation Buttons */
+.theme-slider-btn {
+    background: none;
+    border: none;
+    font-size: 2.8rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    padding: 0;
+    outline: none;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-slider-btn:hover {
+    transform: scale(1.1);
+}
+
+.theme-slider-btn:active {
+    transform: scale(0.95);
+}
+
+/* Mobile & Tablet Optimization */
+@media (max-width: 1200px) {
+    .theme-modal-carousel-wrapper {
+        gap: 10px;
+        padding: 0 20px;
+    }
+    .theme-modal-cards-viewport {
+        width: 100%;
+        overflow-x: auto;
+        padding: 20px 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+    .theme-modal-cards-slider {
+        transform: none !important;
+        gap: 20px;
+    }
+    .theme-slider-btn {
+        display: none !important;
+    }
 }
 
 /* Individual card inside theme modal */
