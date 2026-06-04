@@ -1319,154 +1319,45 @@ function closeThemeModal() {
 // ==========================================================================
 // 전역 3D 책장 제어 상태 객체
 let bookshelfState = {
-    targetX: 0,
-    currentX: 0,
-    isDragging: false,
-    startX: 0,
-    scrollStartX: 0,
-    minX: -2000,
-    maxX: 0,
-    animationFrameId: null,
+    currentPage: 1, // 오래된순 1페이지를 디폴트로 먼저 표시
     isEngineInitialized: false
 };
 
 function scrollBookshelf(direction) {
-    const step = 440; // 둥근 화살표 클릭 시 이동할 가로 너비 오프셋 (책 5권 기준: 88px * 5)
-    let newX = bookshelfState.targetX;
+    const sorted = [...PROJECTS].sort((a, b) => a.id - b.id);
+    const totalPages = Math.ceil(sorted.length / 16);
+    
+    let dir = 0;
     if (direction === 'left') {
-        newX += step; // 오른쪽으로 밀어서 이전 책 보기
+        dir = -1;
     } else if (direction === 'right') {
-        newX -= step; // 왼쪽으로 밀어서 다음 책 보기
+        dir = 1;
     }
-    bookshelfState.targetX = Math.max(bookshelfState.minX, Math.min(newX, bookshelfState.maxX));
+    
+    let newPage = bookshelfState.currentPage + dir;
+    if (newPage < 1) newPage = 1;
+    if (newPage > totalPages) newPage = totalPages;
+    
+    if (bookshelfState.currentPage !== newPage) {
+        bookshelfState.currentPage = newPage;
+        renderBookshelf();
+    }
 }
 
 function recalculateBookshelfBounds() {
-    const wrapper = document.querySelector('.bookshelf-wrapper');
     const row0 = document.getElementById('shelf-books-0');
     const row1 = document.getElementById('shelf-books-1');
-    if (!wrapper) return;
-
-    if (row0) row0.classList.remove('under-flow');
-    if (row1) row1.classList.remove('under-flow');
-
-    const wrapperWidth = wrapper.offsetWidth;
-    const rowWidth = Math.max(
-        row0 ? row0.scrollWidth : 0,
-        row1 ? row1.scrollWidth : 0
-    );
-
-    if (rowWidth > wrapperWidth - 80) {
-        // 책들이 화면보다 많을 때 (스크롤 활성화)
-        bookshelfState.minX = wrapperWidth - rowWidth - 60;
-    } else {
-        // 책들이 적어서 한눈에 들어올 때 (스크롤 고정 및 정중앙 정렬)
-        bookshelfState.minX = 0;
-        bookshelfState.targetX = 0;
-        bookshelfState.currentX = 0;
-        if (row0) row0.classList.add('under-flow');
-        if (row1) row1.classList.add('under-flow');
+    if (row0) {
+        row0.classList.add('under-flow');
+        row0.style.transform = 'none';
+    }
+    if (row1) {
+        row1.classList.add('under-flow');
+        row1.style.transform = 'none';
     }
 }
 
 function initBookshelfEngine() {
-    const wrapper = document.querySelector('.bookshelf-wrapper');
-    if (!wrapper) return;
-
-    // 1. 마우스 드래그 및 터치 스와이프 등록
-    const handleDragStart = (e) => {
-        bookshelfState.isDragging = true;
-        let pageX = 0;
-        if (e.touches && e.touches.length > 0) {
-            pageX = e.touches[0].pageX;
-        } else {
-            pageX = e.pageX !== undefined ? e.pageX : 0;
-        }
-        bookshelfState.startX = pageX;
-        bookshelfState.scrollStartX = bookshelfState.targetX;
-        bookshelfState.targetX = bookshelfState.currentX; // 관성 정지 유도
-    };
-
-    const handleDragMove = (e) => {
-        if (!bookshelfState.isDragging) return;
-        let pageX = 0;
-        if (e.touches && e.touches.length > 0) {
-            pageX = e.touches[0].pageX;
-        } else {
-            pageX = e.pageX !== undefined ? e.pageX : 0;
-        }
-        const walk = (pageX - bookshelfState.startX) * 1.2; // 드래그 감도
-        let newX = bookshelfState.scrollStartX + walk;
-
-        // 경계 밖 저항(Rubber-band) 효과
-        if (newX > bookshelfState.maxX) {
-            newX = bookshelfState.maxX + (newX - bookshelfState.maxX) * 0.3;
-        } else if (newX < bookshelfState.minX) {
-            newX = bookshelfState.minX + (newX - bookshelfState.minX) * 0.3;
-        }
-        bookshelfState.targetX = newX;
-    };
-
-    const handleDragEnd = () => {
-        if (!bookshelfState.isDragging) return;
-        bookshelfState.isDragging = false;
-        bookshelfState.targetX = Math.max(bookshelfState.minX, Math.min(bookshelfState.targetX, bookshelfState.maxX));
-    };
-
-    wrapper.addEventListener('mousedown', handleDragStart);
-    window.addEventListener('mousemove', handleDragMove);
-    window.addEventListener('mouseup', handleDragEnd);
-
-    wrapper.addEventListener('touchstart', handleDragStart, { passive: true });
-    window.addEventListener('touchmove', handleDragMove, { passive: true });
-    window.addEventListener('touchend', handleDragEnd);
-
-    // 2. 마우스 휠 스크롤 지원
-    wrapper.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        const delta = e.deltaY || e.deltaX;
-        let newX = bookshelfState.targetX - delta * 1.5;
-        bookshelfState.targetX = Math.max(bookshelfState.minX, Math.min(newX, bookshelfState.maxX));
-    }, { passive: false });
-
-    // 3. 실시간 관성 보간 프레임 업데이트 루프 (update3D)
-    const update3D = () => {
-        bookshelfState.currentX += (bookshelfState.targetX - bookshelfState.currentX) * 0.12;
-
-        const row0 = document.getElementById('shelf-books-0');
-        const row1 = document.getElementById('shelf-books-1');
-
-        // 화살표 활성/비활성화 시각화
-        const leftArrow = wrapper.querySelector('.left-arrow');
-        const rightArrow = wrapper.querySelector('.right-arrow');
-        if (leftArrow) {
-            if (bookshelfState.currentX >= bookshelfState.maxX - 5) {
-                leftArrow.classList.add('disabled');
-            } else {
-                leftArrow.classList.remove('disabled');
-            }
-        }
-        if (rightArrow) {
-            if (bookshelfState.currentX <= bookshelfState.minX + 5) {
-                rightArrow.classList.add('disabled');
-            } else {
-                rightArrow.classList.remove('disabled');
-            }
-        }
-
-        // 스무스 관성 트랙 이동 적용
-        if (row0) row0.style.transform = `translate3d(${bookshelfState.currentX}px, 0, 0)`;
-        if (row1) row1.style.transform = `translate3d(${bookshelfState.currentX}px, 0, 0)`;
-
-        bookshelfState.animationFrameId = requestAnimationFrame(update3D);
-    };
-
-    if (bookshelfState.animationFrameId) {
-        cancelAnimationFrame(bookshelfState.animationFrameId);
-    }
-    bookshelfState.animationFrameId = requestAnimationFrame(update3D);
-
-    window.addEventListener('resize', recalculateBookshelfBounds);
     bookshelfState.isEngineInitialized = true;
 }
 
@@ -1484,14 +1375,20 @@ function renderBookshelf() {
     const section = document.getElementById('archive');
     if (!section) return;
 
-    // Vol 순서대로 정렬 (1→41)
+    // 1. 오래된 순 정렬 (1 -> 40)
     const sorted = [...PROJECTS].sort((a, b) => a.id - b.id);
+    const totalPages = Math.ceil(sorted.length / 16);
 
-    // 전체 책을 선반 2개(상/하단)에 절반씩 나누어 담기
-    const half = Math.ceil(sorted.length / 2);
-    // 상단 선반에는 최신 책들(뒤쪽 절반), 하단 선반에는 이전 책들(앞쪽 절반)을 담아서 순서 흐름 보장
-    const row0Books = sorted.slice(half); // 상단 선반
-    const row1Books = sorted.slice(0, half); // 하단 선반
+    // 2. 현재 페이지 보정
+    if (bookshelfState.currentPage < 1) bookshelfState.currentPage = 1;
+    if (bookshelfState.currentPage > totalPages) bookshelfState.currentPage = totalPages;
+
+    // 3. 현재 페이지의 16권(2단 * 8권) 슬라이싱
+    const startIndex = (bookshelfState.currentPage - 1) * 16;
+    const pageBooks = sorted.slice(startIndex, startIndex + 16);
+
+    const row0Books = pageBooks.slice(0, 8); // 상단 선반 (최대 8권)
+    const row1Books = pageBooks.slice(8, 16); // 하단 선반 (최대 8권)
 
     // 마법 기호 목록
     const magicSymbols = ['⚜', '✦', '🜚', '🝎', '🜔', '🕮', '🜏', '🝔', '✺', '🜛'];
@@ -1514,19 +1411,25 @@ function renderBookshelf() {
     const row0Html = row0Books.map(buildBookHtml).join('');
     const row1Html = row1Books.map(buildBookHtml).join('');
 
+    // 화살표 활성/비활성 플래그
+    const isFirstPage = bookshelfState.currentPage === 1;
+    const isLastPage = bookshelfState.currentPage === totalPages;
+
     section.innerHTML = `
         <div class="bookshelf-wrapper">
             <!-- 헤더 -->
             <div class="bookshelf-header">
                 <div class="bookshelf-tag">RECIPE ARCHIVE</div>
                 <h2 class="serif bookshelf-title">실패없는 베이킹노트</h2>
-                <p class="bookshelf-hint">🖱 마우스 드래그나 마우스 휠로 서가를 둘러보세요</p>
+                <p class="bookshelf-hint">🚪 앤티크 양옆 화살표를 눌러 서가 페이지를 넘겨보세요</p>
             </div>
 
             <!-- 책장 무대 -->
             <div class="bookshelf-scene">
-                <!-- 왼쪽 화살표 -->
-                <button class="shelf-nav-btn shelf-nav-left left-arrow" onclick="scrollBookshelf('left')">
+                <!-- 왼쪽 화살표 (1페이지면 비활성) -->
+                <button class="shelf-nav-btn shelf-nav-left left-arrow ${isFirstPage ? 'disabled' : ''}" 
+                        onclick="scrollBookshelf('left')" 
+                        style="${isFirstPage ? 'opacity: 0.2; pointer-events: none;' : ''}">
                     <i class="fa-solid fa-chevron-left"></i>
                 </button>
 
@@ -1555,29 +1458,29 @@ function renderBookshelf() {
                     <div class="shelf-floor"></div>
                 </div>
 
-                <!-- 오른쪽 화살표 -->
-                <button class="shelf-nav-btn shelf-nav-right right-arrow" onclick="scrollBookshelf('right')">
+                <!-- 오른쪽 화살표 (마지막 페이지면 비활성) -->
+                <button class="shelf-nav-btn shelf-nav-right right-arrow ${isLastPage ? 'disabled' : ''}" 
+                        onclick="scrollBookshelf('right')" 
+                        style="${isLastPage ? 'opacity: 0.2; pointer-events: none;' : ''}">
                     <i class="fa-solid fa-chevron-right"></i>
                 </button>
             </div>
 
+            <!-- 페이지 인디케이터 -->
+            <div class="shelf-page-info serif">- PAGE ${bookshelfState.currentPage} / ${totalPages} -</div>
+
             <!-- 푸터 -->
-            <footer style="margin-top:30px; text-align:center; opacity:0.4;">
+            <footer style="margin-top:25px; text-align:center; opacity:0.4;">
                 <div class="footer-logo serif">PROJECT DUBU</div>
                 <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
             </footer>
         </div>
     `;
 
-    // 3D 스크롤 범위를 다시 계산
+    // 강제 정렬 동기화
     setTimeout(() => {
         recalculateBookshelfBounds();
-    }, 100);
-
-    // 인터랙션 엔진이 초기화되지 않았다면 초기화
-    if (!bookshelfState.isEngineInitialized) {
-        initBookshelfEngine();
-    }
+    }, 50);
 }
 
 function openLookbook(recipeId) {

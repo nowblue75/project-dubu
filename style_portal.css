@@ -1519,7 +1519,7 @@ footer {
     flex-shrink: 0;
     transform-style: preserve-3d;
     perspective: 1200px;
-    transition: transform 0.5s cubic-bezier(0.15, 0.85, 0.2, 1), filter 0.25s ease, box-shadow 0.5s ease;
+    transition: transform 0.5s cubic-bezier(0.15, 0.85, 0.2, 1), filter 0.3s ease, opacity 0.3s ease, box-shadow 0.5s ease;
     filter: brightness(0.85); /* 마법 서재의 묵직한 조명 느낌 */
     margin-bottom: -2px;
 }
@@ -1540,14 +1540,25 @@ footer {
     transition: transform 0.5s cubic-bezier(0.15, 0.85, 0.2, 1);
 }
 
-/* 3D 역동적 호버 연출 (Y축 상승 최소화로 윗부분 잘림 완벽 방지 & Z축 앞으로 튀어옴 강화) */
+/* 3D 역동적 호버 연출 (Z축 앞으로 튀어옴 강화 및 Y축 상승 조율) */
 .magic-book:hover {
-    transform: translateZ(65px) translateY(-22px) rotateY(-24deg);
-    filter: brightness(1.18);
+    transform: translateZ(75px) translateY(-24px) rotateY(-24deg);
+    filter: brightness(1.2) !important;
+    opacity: 1 !important;
     z-index: 100;
     box-shadow: 
-        0 35px 70px rgba(0,0,0,0.8), 
-        0 0 30px var(--book-accent);
+        0 40px 80px rgba(0,0,0,0.85), 
+        0 0 40px var(--book-accent);
+}
+
+/* 서가 스포트라이트 효과: 마우스가 서가 위에 있을 때 호버되지 않은 책들은 어둡고 불투명해짐 */
+.shelf-books:hover .magic-book {
+    filter: brightness(0.5) contrast(0.95);
+    opacity: 0.55;
+}
+.shelf-books:hover .magic-book:hover {
+    filter: brightness(1.2);
+    opacity: 1;
 }
 
 .book-spine {
@@ -1574,15 +1585,31 @@ footer {
     z-index: 2;
 }
 
-/* 마법 서적 장식 테두리 및 위아래 앤티크 밴드 */
+/* 고서의 꽃: Raised Bands (가로 몰딩 돌기 3줄) 물리적 입체감 부여 */
+.book-spine::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: 
+        linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.45) 21%, rgba(255,255,255,0.12) 22%, rgba(255,255,255,0.12) 24%, rgba(0,0,0,0.55) 25%, transparent 26%),
+        linear-gradient(to bottom, transparent 48%, rgba(0,0,0,0.45) 49%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.12) 52%, rgba(0,0,0,0.55) 53%, transparent 54%),
+        linear-gradient(to bottom, transparent 74%, rgba(0,0,0,0.45) 75%, rgba(255,255,255,0.12) 76%, rgba(255,255,255,0.12) 78%, rgba(0,0,0,0.55) 79%, transparent 80%);
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* 마법 서적 황금빛 아라베스크 보더 테두리 */
 .book-spine::before {
     content: '';
     position: absolute;
     top: 8px; bottom: 8px;
     left: 5px; right: 5px;
-    border: 1.5px solid rgba(212, 175, 55, 0.35); /* 황금 금박 장식선 */
+    border: 1.5px solid rgba(212, 175, 55, 0.25);
+    border-top: 3px double rgba(212, 175, 55, 0.7); /* 위쪽 금박 아라베스크 몰딩 */
+    border-bottom: 3px double rgba(212, 175, 55, 0.7); /* 아래쪽 금박 아라베스크 몰딩 */
     border-radius: 2px;
     pointer-events: none;
+    z-index: 4;
 }
 
 .book-vol {
@@ -1597,13 +1624,14 @@ footer {
     text-orientation: mixed;
     white-space: nowrap;
     text-shadow: 0.5px 0.5px 0px rgba(255,255,255,0.1), -0.5px -0.5px 0px rgba(0,0,0,0.8);
+    z-index: 5;
 }
 
 .book-title-spine {
     font-family: 'Noto Serif KR', serif;
     font-size: 0.95rem;
     color: var(--book-text);
-    font-weight: 700; /* 조금 더 굵고 가독성 좋게 변경 */
+    font-weight: 700;
     writing-mode: vertical-rl;
     text-orientation: mixed;
     white-space: nowrap;
@@ -1611,23 +1639,38 @@ footer {
     text-overflow: ellipsis;
     max-height: 170px;
     line-height: 1.35;
-    /* 양장본 금박/은박 음각 압인(Embossed/Debossed Gold Foil) 효과 부여 */
+    /* 양장본 금박/은박 음각 압인(Embossed/Debossed Gold Foil) 효과 */
     text-shadow: 
-        0.5px 0.5px 0px rgba(255,255,255,0.15), 
-        -0.5px -0.5px 0px rgba(0,0,0,0.85), 
-        0px 2px 4px rgba(0,0,0,0.65);
+        0.5px 0.5px 0px rgba(255,255,255,0.18), 
+        -0.5px -0.5px 0px rgba(0,0,0,0.9), 
+        0px 2px 4px rgba(0,0,0,0.7);
     letter-spacing: 1.5px;
     transition: color 0.3s ease, text-shadow 0.3s ease;
+    z-index: 5;
 }
 
-/* 호버 시 텍스트 마법 불꽃 활성화 (눈부신 황금빛 엠보싱) */
+/* 금박 텍스트 마법 호버 시 번쩍임 숨결 애니메이션 */
+@keyframes goldShine {
+    0%, 100% {
+        text-shadow: 
+            0 0 6px #ffffff, 
+            0 0 15px var(--book-accent), 
+            0 0 25px var(--book-accent),
+            0.5px 0.5px 0px rgba(255,255,255,0.25);
+    }
+    50% {
+        text-shadow: 
+            0 0 12px #ffffff, 
+            0 0 25px #ffffff,
+            0 0 45px var(--book-accent), 
+            0 0 60px var(--book-accent),
+            0.5px 0.5px 0px rgba(255,255,255,0.5);
+    }
+}
+
 .magic-book:hover .book-title-spine {
     color: #ffffff !important;
-    text-shadow: 
-        0 0 6px #ffffff, 
-        0 0 15px var(--book-accent), 
-        0 0 25px var(--book-accent),
-        0.5px 0.5px 0px rgba(255,255,255,0.25);
+    animation: goldShine 2s infinite ease-in-out;
 }
 
 .book-deco {
@@ -1635,6 +1678,7 @@ footer {
     color: var(--book-accent);
     opacity: 0.85;
     transition: transform 0.3s ease;
+    z-index: 5;
 }
 
 .magic-book:hover .book-deco {
@@ -1708,7 +1752,8 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 80px 0 40px 0;
+    padding: 24px 0; /* 상하 여백 콤팩트화 */
+    box-sizing: border-box;
 }
 
 /* 책장 래퍼 (전체 너비 제한) */
@@ -1716,14 +1761,14 @@ footer {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px 20px;
+    padding: 0 40px 10px;
     box-sizing: border-box;
 }
 
 /* 헤더 */
 .bookshelf-header {
     text-align: center;
-    margin-bottom: 36px;
+    margin-bottom: 20px; /* 헤더 마진 축소 */
 }
 .bookshelf-tag {
     font-size: 0.7rem;
@@ -1731,17 +1776,17 @@ footer {
     color: #8C7A6B;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     font-family: 'Noto Serif KR', serif;
 }
 .bookshelf-title {
-    font-size: 2.1rem;
-    margin: 0 0 10px 0;
+    font-size: 2.0rem;
+    margin: 0 0 4px 0;
     color: #1F1A17;
 }
 .bookshelf-hint {
     color: #8C7A6B;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     margin: 0;
 }
 
@@ -2197,6 +2242,22 @@ footer {
     z-index: 220; /* 앞 레이어 */
     opacity: 1;
     transform: scale(1.06); /* 3D 입체감 스케일업 */
+}
+
+/* 책 페이지 전환 시 서서히 나타나며 꽂히는 마법 연출 애니메이션 */
+@keyframes bookFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px) translateZ(-50px) rotateX(15deg); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) translateZ(0) rotateX(0deg); 
+    }
+}
+
+.magic-book {
+    animation: bookFadeIn 0.6s cubic-bezier(0.15, 0.85, 0.2, 1) forwards;
 }
 
 
