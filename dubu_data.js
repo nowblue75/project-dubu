@@ -9,7 +9,7 @@
 // 1. 디저트 메인 데이터베이스 (각 고유의 '베이킹 DNA 속성' 및 '물성 식감 카테고리' 매핑)
 const PROJECTS = [
     {
-        "id": 42,
+        "id": 41,
         "title": "순두부 모찌 찜케이크",
         "noOven": true,
         "noFlour": true,
@@ -527,13 +527,13 @@ const THEMES = [
         "tag": "Harvest & Thanks",
         "recipes": [
             {
-                "id": 42,
+                "id": 41,
                 "title": "순두부 모찌 찜케이크",
                 "noOven": true,
                 "noFlour": true,
                 "noButter": true,
                 "oneBowl": true,
-                "vol": "VOL. 42",
+                "vol": "VOL. 41",
                 "img": "42. 순두부 찜케익/순두부 찜케익 (0).jpg",
                 "path": "42. 순두부 찜케익/index.html",
                 "desc": "물기 안 짠 순두부와 찹쌀가루를 믹서로 갈아 찜기에 쪄낸 쫀득 폭신한 단팥 찜케이크",
@@ -750,7 +750,7 @@ const THEMES = [
 ];
 
 const INGREDIENT_DICT = {
-    "42": [
+    "41": [
         {
             "name": "순두부 (물기 안 짠 그대로)",
             "base": 240
@@ -1324,7 +1324,7 @@ const INGREDIENT_DICT = {
 
 // 4. 레시피 공정 단계 데이터베이스 (3D 타임라인 연동용)
 const RECIPE_STEPS_DB = {
-    "42": [
+    "41": [
         {
             "time": "10분",
             "title": "단계 1: 액체 블렌딩 & 찜기 예열",
@@ -2088,7 +2088,7 @@ const EVENTS = [
     { id: 'valentine', month: 'FEB', title: '발렌타인데이', icon: '💝', vols: '33, 35', path: "[이벤트] 발렌타인_2026/index.html", isReady: true },
     { id: 'whiteday', month: 'MAR', title: '화이트데이', icon: '🍭', vols: '36, 34', path: "[이벤트] 화이트데이_2026/index.html", isReady: true },
     { id: 'family', month: 'MAY', title: '가정의 달', icon: '🌸', vols: '29, 31, 39', path: "[이벤트] 가정의달_2026/index.html", isReady: true },
-    { id: 'holidays', month: 'HOLIDAY', title: '명절 (설/추석)', icon: '🧧', vols: '28, 40, 42', path: "[이벤트] 명절_2026/index.html", isReady: true },
+    { id: 'holidays', month: 'HOLIDAY', title: '명절 (설/추석)', icon: '🧧', vols: '28, 40, 41', path: "[이벤트] 명절_2026/index.html", isReady: true },
     { id: 'halloween', month: 'OCT', title: '할로윈 데이', icon: '🎃', path: "[이벤트] 할로윈_20251029/index.html", isReady: true },
     { id: 'pepero', month: 'NOV', title: '빼빼로데이', icon: '🥖', path: "[이벤트] 빼빼로_20251106/index.html", isReady: true },
     { id: 'sooneung', month: 'NOV', title: '수능 응원', icon: '🎓', path: "[이벤트] 수능 찹쌀떡_20251112/index.html", isReady: true },

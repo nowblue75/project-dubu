@@ -230,7 +230,7 @@ function getRecipeTheme(recipe) {
         title.includes('단팥') || 
         title.includes('모찌') || 
         categories.includes('nostalgia') || 
-        [42, 39, 38, 17, 16, 33, 8, 35, 12, 11].includes(id);
+        [41, 39, 38, 17, 16, 33, 8, 35, 12, 11].includes(id);
 
     if (isTraditional) {
         if (title.includes('쑥') || categories.includes('soymilk')) {
@@ -611,7 +611,7 @@ function updateTimelineProgress(timelineContainer, totalSteps) {
 // 5. 역비례 & 다중 앵커 양방향 비례 연산 (Atelier Scale)
 // ==========================================================================
 const BASE_YIELDS = {
-    42: { template: "찜케이크 1호 {x}개 분량 🧧", baseCount: 1 },
+    41: { template: "찜케이크 1호 {x}개 분량 🧧", baseCount: 1 },
     40: { template: "오란다 대 틀 {x}개 분량 🍞", baseCount: 3 },
     39: { template: "오란다 대 틀 {x}개 분량 🖤", baseCount: 1 },
     38: { template: "쑥 찰떡브라우니 {x}판 분량 🌿", baseCount: 1 },
@@ -708,7 +708,7 @@ function getRecipeMetadata(recipeId) {
     let cheers = "오늘 내 손끝으로 빚는 건강한 두부 베이킹, 설레는 시작입니다! ✨";
 
     if (recipe) {
-        if (recipe.id === 42) {
+        if (recipe.id === 41) {
             bakingTip = "물이 끓는 찜기 중불 / 50분 (뜸 10분)";
             cheers = "케이크처럼 폭신하지만 떡처럼 쫀득함이 살아있는 단팥 찜케이크! 🧧";
         } else if (recipe.id === 40) {
@@ -1043,7 +1043,7 @@ function renderAccordionArtbook() {
             accentColor: "#F5E6C8"
         },
         {
-            id: 42,
+            id: 41,
             title: "순두부 모찌 찜케이크",
             img: "42. 순두부 찜케익/순두부 찜케익 (0).jpg",
             creatorsNote: "물기 안 짠 순두부를 우유, 오일과 갈아 찹쌀가루 및 팥앙금을 얹어 쪄낸 쫀득 촉촉한 찜케이크.",
@@ -1055,7 +1055,7 @@ function renderAccordionArtbook() {
         {
             id: 'coming-soon',
             title: "순두부 레몬파운드케익",
-            comingSoonSubtitle: "Vol.43 Coming Soon",
+            comingSoonSubtitle: "Vol.42 Coming Soon",
             img: "",
             creatorsNote: "상큼한 레몬 글레이즈와 고소한 순두부 시트가 어우러진 레몬 파운드케익이 곧 공개됩니다.",
             themeColor: "#2C3E50",
@@ -1074,7 +1074,7 @@ function renderAccordionArtbook() {
     }
 
     const specsData = {
-        42: { texture: "쫀득하고 촉촉함", wellness: "No밀가루, No버터, No오븐", method: "찜기 50분 찌기" },
+        41: { texture: "쫀득하고 촉촉함", wellness: "No밀가루, No버터, No오븐", method: "찜기 50분 찌기" },
         40: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 구움" },
         39: { texture: "꾸덕함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
         38: { texture: "쫀득함", wellness: "No버터, 비건 지향", method: "160℃ 오븐 구움" },
