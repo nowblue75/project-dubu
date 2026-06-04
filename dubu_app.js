@@ -710,8 +710,12 @@ function getRecipeMetadata(recipeId) {
             bakingTip = "오븐 예열 180℃ / 160℃ 50~55분";
             cheers = "명절의 기품을 한껏 높여주는 굳지 않는 비법 모찌떡케이크, 정성으로 완성해 보아요! 🧧";
         } else if (recipe.id === 17) {
-            difficulty = "밤파운드케이크 1개 분량 🌰";
-            bakingTip = "오븐 예열 170℃ / 25분";
+            difficulty = "오란다 대자 팬 2개 분량 🍞";
+            bakingTip = "오븐 예열 180℃ / 170℃ 40분";
+            cheers = "달콤하고 고소한 밤이 콕콕 박혀 더욱 풍요로운 맛! 가을 감성을 가득 담아 구워내는 영양 만점 순두부 파운드케이크입니다. 🌰";
+        } else if (recipe.id === 18) {
+            difficulty = "코코넛 단팥구움바 4개 분량 🥥";
+            bakingTip = "오븐 예열 180℃ / 20분";
             cheers = "코코넛의 바삭함과 단팥의 든든함! 가벼운 등산이나 소풍 가기 전 최고의 영양 간식입니다. 🥥";
         }
     }
