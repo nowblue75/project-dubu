@@ -392,7 +392,8 @@ function openFocusStage(recipeId) {
     // 3. 실패 대처법
     let troubleHtml = '';
     const rawTrouble = recipe.troubleShoot || '';
-    if (rawTrouble.includes('Q.') && rawTrouble.includes('A.')) {
+    const hasTrouble = rawTrouble.includes('Q.') && rawTrouble.includes('A.');
+    if (hasTrouble) {
         const parts = rawTrouble.split('<br>');
         const q = (parts[0] || '').replace('Q.', '').trim();
         const a = (parts[1] || '').replace('A.', '').trim();
@@ -488,12 +489,14 @@ function openFocusStage(recipeId) {
                         <i class="fa-solid fa-list-ol" style="transform: rotate(90deg);"></i>
                         <span style="writing-mode: vertical-rl; text-orientation: mixed; margin-top: 4px;">순서</span>
                     </button>
+                    ${hasTrouble ? `
                     <button id="btn-tab-trouble" class="focus-card-tab-btn" onclick="switchFCTab('trouble','${recipeId}','${theme.themeColor}')" style="
                         background: ${tabGradient};
                         border-color: ${theme.accentColor};" title="실패 대처법">
                         <i class="fa-solid fa-circle-question" style="transform: rotate(90deg);"></i>
                         <span style="writing-mode: vertical-rl; text-orientation: mixed; margin-top: 4px;">대처</span>
                     </button>
+                    ` : ''}
                 </div>
 
             </div>
@@ -614,8 +617,25 @@ const BASE_YIELDS = {
     37: { template: "화이트 바크초콜릿 {x}판 분량 🍫", baseCount: 1 },
     36: { template: "티라미수 푸딩 {x}컵 분량 🍮", baseCount: 2 },
     35: { template: "모찌떡 케이크 {x}호 1개 분량 🎂", baseCount: 1 },
+    34: { template: "얼그레이그릭스콘 {x}개 분량 🍪", baseCount: 6 },
+    33: { template: "오란다 대 팬 {x}개 분량 🍵", baseCount: 3 },
+    32: { template: "마들렌 틀 {x}개 분량 🍫", baseCount: 12 },
+    31: { template: "마들렌 틀 {x}개 분량 🍋", baseCount: 12 },
+    30: { template: "실리콘 틀 {x}개 분량 🍫", baseCount: 8 },
+    29: { template: "찰떡파이 {x}판 분량 🥧", baseCount: 1 },
+    28: { template: "시나몬롤 {x}개 분량 🍥", baseCount: 6 },
+    27: { template: "머핀 틀 {x}개 분량 🧁", baseCount: 6 },
+    26: { template: "오란다 대 틀 {x}개 분량 🍓", baseCount: 3 },
+    25: { template: "번트틀 {x}개 분량 🍫", baseCount: 1 },
+    24: { template: "번트틀 {x}개 분량 🍋", baseCount: 1 },
+    23: { template: "원형 컵 {x}개 분량 🍒", baseCount: 4 },
+    22: { template: "정사각 팬 {x}판 분량 🍫", baseCount: 1 },
+    21: { template: "슈톨렌 {x}개 분량 🎄", baseCount: 2 },
+    19: { template: "실리콘 오발틀 {x}개 분량 🎃", baseCount: 8 },
     18: { template: "코코넛 단팥구움바 {x}개 분량 🥥", baseCount: 4 },
-    17: { template: "밤파운드케이크 {x}개 분량 🌰", baseCount: 1 }
+    17: { template: "오란다 대자 팬 {x}개 분량 🌰", baseCount: 2 },
+    16: { template: "원형 1호틀 {x}개 분량 🎃", baseCount: 1 },
+    10: { template: "브라우니쿠키 {x}개 분량 🍪", baseCount: 8 }
 };
 
 function getDynamicYieldText(recipeId, scale) {
@@ -689,35 +709,27 @@ function getRecipeMetadata(recipeId) {
 
     if (recipe) {
         if (recipe.id === 40) {
-            difficulty = "오란다 대 틀 3개 분량 🍞";
             bakingTip = "180°C 예열 → 170°C / 40분 (콩물 마무리 + 하루 숙성 권장)";
             cheers = "다음 날이 진짜입니다! 하루 숙성 후 먹는 그 촉촉함과 고소함은 레시피의 진짜 얼굴이에요. ☀️";
         } else if (recipe.id === 39) {
-            difficulty = "흑임자 테린 1판 분량 🖤";
             bakingTip = "중탕 예열 150℃ / 140℃ 60분 (뜸 10분)";
             cheers = "순두부 물기를 짜지 않고 그대로 사용하여, 촉촉함과 꾸덕함이 극대화되는 특별한 레시피입니다. 🖤";
         } else if (recipe.id === 38) {
-            difficulty = "쑥 찰떡브라우니 1판 분량 🌿";
             bakingTip = "오븐 예열 180℃ / 160℃ 30~35분";
             cheers = "향긋한 쑥과 찰기가 만든 한국적 쫀득함! 부모님 선물용 부동의 1위 레시피랍니다. 🌿";
         } else if (recipe.id === 37) {
-            difficulty = "화이트 바크초콜릿 1판 분량 🍫";
             bakingTip = "오븐 예열 165℃ / 25분";
             cheers = "단 한 방울의 수분도 허용하지 않는 수분 박멸 비법으로 완성하는 극강의 바삭함! 💝";
         } else if (recipe.id === 36) {
-            difficulty = "티라미수 푸딩 2컵 분량 🍮";
             bakingTip = "냉장실 냉각 / 4시간";
             cheers = "사르르 사그라지는 두부 크림의 극상 부드러움! 컵에 소복히 담으면 더욱 기쁩니다. 🍮";
         } else if (recipe.id === 35) {
-            difficulty = "모찌떡 케이크 1호 1개 분량 🎂";
             bakingTip = "오븐 예열 180℃ / 160℃ 50~55분";
             cheers = "명절의 기품을 한껏 높여주는 굳지 않는 비법 모찌떡케이크, 정성으로 완성해 보아요! 🧧";
         } else if (recipe.id === 17) {
-            difficulty = "오란다 대자 팬 2개 분량 🍞";
             bakingTip = "오븐 예열 180℃ / 170℃ 40분";
             cheers = "달콤하고 고소한 밤이 콕콕 박혀 더욱 풍요로운 맛! 가을 감성을 가득 담아 구워내는 영양 만점 순두부 파운드케이크입니다. 🌰";
         } else if (recipe.id === 18) {
-            difficulty = "코코넛 단팥구움바 4개 분량 🥥";
             bakingTip = "오븐 예열 180℃ / 20분";
             cheers = "코코넛의 바삭함과 단팥의 든든함! 가벼운 등산이나 소풍 가기 전 최고의 영양 간식입니다. 🥥";
         }
