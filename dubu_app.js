@@ -510,7 +510,10 @@ function closeFocusStage() {
     const overlay = document.getElementById('focus-modal-overlay');
     if (overlay) {
         overlay.classList.remove('active');
-        document.body.style.overflow = '';
+        const themeOverlay = document.getElementById('theme-modal-overlay');
+        if (!themeOverlay) {
+            document.body.style.overflow = '';
+        }
         setTimeout(() => overlay.remove(), 400);
     }
     activeFocusRecipeId = null;
@@ -1212,7 +1215,7 @@ function openTheme(themeId) {
         const imgSrc = recipe.img || '';
         const displayTitle = recipe.title.replace('순두부 ', '');
         return `
-            <div class="theme-recipe-card" onclick="closeThemeModal(); setTimeout(()=>openFocusStage(${recipe.id}),250);">
+            <div class="theme-recipe-card" onclick="openFocusStage(${recipe.id});">
                 <div class="theme-recipe-card-img-wrapper">
                     <img src="${imgSrc}" alt="${recipe.title}" loading="lazy" onerror="this.parentNode.style.background='#f0f0f0'">
                     <div class="theme-recipe-card-vol" style="color:${pal.text};">${recipe.vol}</div>
