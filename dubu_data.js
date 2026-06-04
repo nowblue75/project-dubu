@@ -202,6 +202,22 @@ const PROJECTS = [
         "time": "25분"
     },
     {
+        "id": 31,
+        "title": "순두부 레몬마들렌",
+        "noOven": false,
+        "noFlour": false,
+        "noButter": false,
+        "oneBowl": true,
+        "desc": "상큼한 레몬 글레이즈와 촉촉한 순두부 반죽의 조화",
+        "path": "34. 순두부레몬마들렌_완/index.html",
+        "img": "34. 순두부레몬마들렌_완/0.jpg",
+        "isInteractive": true,
+        "categories": [
+            "teatime"
+        ],
+        "time": "30분"
+    },
+    {
         "id": 30,
         "title": "순두부 미니초코케익",
         "noOven": false,
@@ -257,42 +273,56 @@ const PROJECTS = [
         "id": 27,
         "title": "순두부 눈꽃컵케이크",
         "isInteractive": false,
+        "path": "27. 순두부 눈꽃컵케이크_완/index.html",
+        "img": "27. 순두부 눈꽃컵케이크_완/0.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224127335052"
     },
     {
         "id": 26,
         "title": "순두부 3종케익",
         "isInteractive": false,
+        "path": "26. 순두부 3종케익_완/index.html",
+        "img": "26. 순두부 3종케익_완/0.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224113782805"
     },
     {
         "id": 25,
         "title": "순두부 초코번트케익",
         "isInteractive": false,
+        "path": "25. 순두부초코번트케익_완/index.html",
+        "img": "25. 순두부초코번트케익_완/0.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224106900867"
     },
     {
         "id": 24,
         "title": "순두부 레몬번트케익",
         "isInteractive": false,
+        "path": "24. 순두부레몬번트케익_완/index.html",
+        "img": "24. 순두부레몬번트케익_완/0.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224103127145"
     },
     {
         "id": 23,
         "title": "순두부 블랙포레스트 컵케익",
         "isInteractive": false,
+        "path": "23. 순두부블랙포레스트 컵케익_완/index.html",
+        "img": "23. 순두부블랙포레스트 컵케익_완/0.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224089622187"
     },
     {
         "id": 22,
         "title": "순두부 부쉬드노엘",
         "isInteractive": false,
+        "path": "22. 순두부 부쉬드노엘_완/index.html",
+        "img": "22. 순두부 부쉬드노엘_완/0.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224097606202"
     },
     {
         "id": 21,
         "title": "순두부 슈톨렌",
         "isInteractive": false,
+        "path": "21. 순두부슈톨렌_완/index.html",
+        "img": "21. 순두부슈톨렌_완/0.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224083029266"
     },
     {
@@ -304,6 +334,8 @@ const PROJECTS = [
         "id": 19,
         "title": "순두부 단호박 찹쌀빵",
         "isInteractive": false,
+        "path": "19. 순두부 단호박 찹쌀빵_완/index.html",
+        "img": "19. 순두부 단호박 찹쌀빵_완/KakaoTalk_20251002_083711682.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224044280791"
     },
     {
@@ -318,12 +350,16 @@ const PROJECTS = [
         "id": 17,
         "title": "순두부 밤파운드케이크",
         "isInteractive": false,
+        "path": "17. 순두부 밤파운드케이크_완/index.html",
+        "img": "17. 순두부 밤파운드케이크_완/KakaoTalk_20251002_083513712_15.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224035441110"
     },
     {
         "id": 16,
         "title": "순두부 단호박바스크치즈케이크",
         "isInteractive": false,
+        "path": "16. 순두부단호박바스크치즈케이크_완/index.html",
+        "img": "16. 순두부단호박바스크치즈케이크_완/KakaoTalk_20251002_082631387_17.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224029278133"
     },
     {
@@ -358,6 +394,8 @@ const PROJECTS = [
         "id": 10,
         "title": "순두부 브라우니쿠키",
         "isInteractive": false,
+        "path": "10. 순두부 브라우니쿠키_완/index.html",
+        "img": "10. 순두부 브라우니쿠키_완/12.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/223961946339"
     },
     {
@@ -393,6 +431,8 @@ const PROJECTS = [
         "id": 4,
         "title": "순두부 퍼지브라우니",
         "isInteractive": false,
+        "path": "4. 순두부퍼지브라우니_완/index.html",
+        "img": "[이벤트] 할로윈_20251029/KakaoTalk_20251029_091834561_01.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/223925764123"
     },
     {
@@ -509,8 +549,8 @@ const THEMES = [
                 "noButter": true,
                 "oneBowl": true,
                 "vol": "VOL. 38",
-                "img": "39. 순두부 쑥 찰떡브라우니_완/0.jpg",
-                "path": "39. 순두부 쑥 찰떡브라우니_완/index.html",
+                "img": "39. 순두부 쑥 찰떡브라우니_화보북 여기서부터/assets/0.jpg",
+                "path": "39. 순두부 쑥 찰떡브라우니_화보북 여기서부터/index.html",
                 "desc": "밀가루 없이 완성한 쫀득한 쑥 반죽과 콩가루의 고소한 동행",
                 "blogUrl": "https://blog.naver.com/project_dubu/224247304779"
             },

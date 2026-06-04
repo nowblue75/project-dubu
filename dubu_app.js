@@ -318,7 +318,19 @@ function openFocusStage(recipeId) {
     if (old) old.remove();
 
     const theme = getRecipeTheme(recipe);
-    const ingredients = INGREDIENT_DICT ? (INGREDIENT_DICT[recipeId] || []) : [];
+    const baseIngredients = INGREDIENT_DICT ? (INGREDIENT_DICT[recipeId] || []) : [];
+
+    // "순두부" 또는 "두부"가 포함된 재료를 찾아서 배열의 가장 맨 앞(0번 인덱스)으로 재배치
+    let ingredients = [...baseIngredients];
+    let targetIdx = ingredients.findIndex(ing => ing.name && ing.name.includes('순두부'));
+    if (targetIdx === -1) {
+        targetIdx = ingredients.findIndex(ing => ing.name && ing.name.includes('두부'));
+    }
+    if (targetIdx > 0) {
+        const targetIng = ingredients.splice(targetIdx, 1)[0];
+        ingredients.unshift(targetIng);
+    }
+
     const steps = typeof RECIPE_STEPS_DB !== 'undefined' ? (RECIPE_STEPS_DB[recipeId] || []) : [];
     const meta = getRecipeMetadata(recipeId);
 
@@ -770,10 +782,9 @@ function openUnifiedRecipeCardModal(id, title, img, yieldText, bakingTip, cheers
 
     modal.innerHTML = `
         <div style="background: #FDFBF4; width: 95%; max-width: 400px; border-radius: 20px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transform: translateY(30px); transition: transform 0.3s ease; border: 2px solid #E8DCC4; position: relative;">
-            <div style="text-align: center; margin-bottom: 15px; position: relative;">
-                <h3 style="color: #3A1D11; font-size: 1.25rem; margin: 0 0 5px 0; font-weight: 900; letter-spacing: 1px;">ATELIER RECIPE CARD</h3>
-                <span style="font-size: 0.7rem; color: #7F8C8D; letter-spacing: 2px;">PROJECT DUBU</span>
-                <button onclick="closeRecipeCardModal()" style="position: absolute; right: -10px; top: -10px; background: none; border: none; font-size: 1.5rem; color: #7F8C8D; cursor: pointer; outline: none;">&times;</button>
+            <div style="text-align: center; margin-bottom: 15px; position: relative; padding-top: 10px;">
+                <span style="font-size: 0.76rem; color: #7F8C8D; letter-spacing: 2.5px; font-weight: 700; display: block;">PROJECT DUBU</span>
+                <button onclick="closeRecipeCardModal()" style="position: absolute; right: -10px; top: -5px; background: none; border: none; font-size: 1.5rem; color: #7F8C8D; cursor: pointer; outline: none;">&times;</button>
             </div>
             
             <div style="border-radius: 12px; overflow: hidden; height: 160px; margin-bottom: 15px; border: 1px solid #E8DCC4;">
@@ -1116,12 +1127,22 @@ function renderAccordionArtbook() {
         `;
     }).join('');
 
-    // 페이지 로드 시 첫 번째 슬라이스(Vol.40 콩물 파운드케익)를 기본 활성화(확장) 상태로 세팅
+    // 페이지 로드 시 가장 최신(ID가 가장 높은) 슬라이스를 기본 활성화(확장) 상태로 세팅
     setTimeout(() => {
-        const firstSlice = container.querySelector('[data-vol="40"]');
-        if (firstSlice) {
-            firstSlice.style.flex = '5.4';
-            firstSlice.classList.add('active-expanded');
+        const validRecipes = activeRecipes.filter(r => typeof r.id === 'number');
+        if (validRecipes.length > 0) {
+            const maxRecipe = validRecipes.reduce((max, curr) => curr.id > max.id ? curr : max, validRecipes[0]);
+            const targetSlice = container.querySelector(`[data-vol="${maxRecipe.id}"]`);
+            if (targetSlice) {
+                targetSlice.style.flex = '5.4';
+                targetSlice.classList.add('active-expanded');
+            }
+        } else {
+            const firstSlice = container.querySelector('.accordion-slice');
+            if (firstSlice) {
+                firstSlice.style.flex = '5.4';
+                firstSlice.classList.add('active-expanded');
+            }
         }
     }, 50);
 }
@@ -1370,6 +1391,16 @@ function initBookshelfEngine() {
 
     window.addEventListener('resize', recalculateBookshelfBounds);
     bookshelfState.isEngineInitialized = true;
+}
+
+function getBookSpineColors(recipe) {
+    const theme = getRecipeTheme(recipe);
+    return {
+        spine1: theme.spineColor1,
+        spine2: theme.spineColor2,
+        textColor: theme.spineTextColor,
+        accentColor: theme.accentColor
+    };
 }
 
 function renderBookshelf() {

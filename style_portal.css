@@ -1163,12 +1163,13 @@ footer {
 .editorial-spec-grid {
     border-top: 1px solid rgba(250, 248, 243, 0.15);
     border-bottom: 1px solid rgba(250, 248, 243, 0.15);
-    padding: 20px 0;
-    margin: 20px 0;
+    padding: 15px 0;
+    margin: 10px 0 60px 0; /* 아래 마진을 대폭 늘려 상세보기 버튼 영역과 분리 */
     display: flex;
     flex-direction: column;
     gap: 12px;
     max-width: 480px;
+    transform: translateY(-25px); /* 텍스트 영역 전체를 살짝 위로 당김 */
 }
 
 .spec-row {
@@ -2049,25 +2050,25 @@ footer {
 
 .focus-card-tab-btn {
     position: absolute;
-    right: -42px; /* 기본 (비활성): 책 가죽 표지 뒤로 살짝 파묻혀 돌출됨 */
-    width: 52px;
-    height: 74px;
-    border-radius: 0 10px 10px 0;
+    right: -48px; /* 책 표지 바깥으로 조금 더 돌출 */
+    width: 58px;  /* 기본 너비 증가로 비활성 상태 텍스트 잘림 방지 */
+    height: 78px;
+    border-radius: 0 12px 12px 0;
     border: 2px solid var(--magic-book-accent, #a68342);
     border-left: none;
-    color: rgba(255,255,255,0.75) !important;
-    font-size: 0.78rem;
+    color: rgba(255,255,255,0.85) !important;
+    font-size: 0.82rem;
     font-family: 'Playfair Display', 'Noto Serif KR', serif;
     font-weight: 700;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
     cursor: pointer;
     transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 4px 4px 8px rgba(0,0,0,0.4);
-    padding: 10px 4px 10px 14px;
+    box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+    padding: 8px 6px 8px 12px; /* 패딩을 최적화하여 텍스트 영역 확보 */
     margin-left: 0;
     text-orientation: mixed;
     line-height: 1.25;
@@ -2075,37 +2076,35 @@ footer {
     opacity: 0.85;
 }
 
-/* 개별 탭 버튼들의 계단식 세로 위치(top) 및 그라디언트 분기 */
+/* 개별 탭 버튼들의 계단식 세로 위치(top) 설정 (가죽 그라디언트는 인라인 톤으로 통일) */
 #btn-tab-calc {
     top: 0px;
-    background: linear-gradient(135deg, #8b263e 0%, #5e1322 100%); /* 레드 가죽 */
 }
 #btn-tab-steps {
     top: 86px;
-    background: linear-gradient(135deg, #1e4620 0%, #112d12 100%); /* 그린 가죽 */
 }
 #btn-tab-trouble {
     top: 172px;
-    background: linear-gradient(135deg, #1c355e 0%, #0d1e38 100%); /* 블루 가죽 */
 }
 
 /* 마우스 호버 시 살짝 돌출 연출 */
 .focus-card-tab-btn:hover {
-    right: -52px;
+    right: -54px;
     opacity: 1;
     color: #ffffff !important;
 }
 
-/* 활성화 탭 (책갈피가 삐져나온 듯한 3D 돌출 연출) */
+/* 활성화 탭 (책갈피가 삐져나온 듯한 3D 돌출 연출 및 금빛 네온 글로우) */
 .focus-card-tab-btn.active {
-    right: -62px; /* 더 확실하게 삐져나옴 */
-    width: 72px;  /* 가로 너비 확장 */
+    right: -72px; /* 더 확실하게 우측으로 돌출 */
+    width: 82px;  /* 가로 너비 대폭 확장 */
     color: #ffffff !important;
     font-weight: 900;
-    border-color: #ffe066;
-    box-shadow: 6px 6px 15px rgba(0,0,0,0.55);
+    border-color: #ffd700 !important; /* 찬란한 금빛 테두리 */
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.7), 6px 6px 15px rgba(0, 0, 0, 0.45); /* 금빛 네온 광채 및 그림자 */
     z-index: 220; /* 앞 레이어 */
     opacity: 1;
+    transform: scale(1.06); /* 3D 입체감 스케일업 */
 }
 
 
