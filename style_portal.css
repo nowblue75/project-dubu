@@ -1518,9 +1518,9 @@ footer {
     cursor: pointer;
     flex-shrink: 0;
     transform-style: preserve-3d;
-    perspective: 1000px;
-    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.25s ease, box-shadow 0.45s ease;
-    filter: brightness(0.9);
+    perspective: 1200px;
+    transition: transform 0.5s cubic-bezier(0.15, 0.85, 0.2, 1), filter 0.25s ease, box-shadow 0.5s ease;
+    filter: brightness(0.85); /* 마법 서재의 묵직한 조명 느낌 */
     margin-bottom: -2px;
 }
 
@@ -1537,17 +1537,17 @@ footer {
     transform-origin: left;
     box-shadow: inset 1px 0 3px rgba(0,0,0,0.15);
     z-index: 1;
-    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 0.5s cubic-bezier(0.15, 0.85, 0.2, 1);
 }
 
-/* 3D 역동적 호버 연출 및 그림자/아우라 발광 효과 */
+/* 3D 역동적 호버 연출 (Y축 상승 최소화로 윗부분 잘림 완벽 방지 & Z축 앞으로 튀어옴 강화) */
 .magic-book:hover {
-    transform: translateZ(50px) translateY(-38px) rotateY(-28deg);
-    filter: brightness(1.15);
+    transform: translateZ(65px) translateY(-22px) rotateY(-24deg);
+    filter: brightness(1.18);
     z-index: 100;
     box-shadow: 
-        0 30px 60px rgba(0,0,0,0.7), 
-        0 0 25px var(--book-accent);
+        0 35px 70px rgba(0,0,0,0.8), 
+        0 0 30px var(--book-accent);
 }
 
 .book-spine {
@@ -1562,23 +1562,26 @@ footer {
     justify-content: space-between;
     padding: 22px 8px;
     box-sizing: border-box;
+    /* 고서 양장본 특유의 볼록 솟아오른 3D 원기둥 볼륨 섀도우 */
     box-shadow:
-        inset -4px 0 10px rgba(0,0,0,0.4),
-        inset 3px 0 6px rgba(255,255,255,0.08),
-        3px 0 12px rgba(0,0,0,0.45);
+        inset -12px 0 24px rgba(0,0,0,0.65),
+        inset 12px 0 20px rgba(255,255,255,0.07),
+        inset 0 3px 6px rgba(255,255,255,0.1),
+        4px 0 15px rgba(0,0,0,0.6);
     border-left: 2px solid rgba(255,255,255,0.08);
-    border-right: 1px solid rgba(0,0,0,0.6);
+    border-right: 1px solid rgba(0,0,0,0.7);
     overflow: hidden;
     z-index: 2;
 }
 
+/* 마법 서적 장식 테두리 및 위아래 앤티크 밴드 */
 .book-spine::before {
     content: '';
     position: absolute;
     top: 8px; bottom: 8px;
-    left: 4px; right: 4px;
-    border: 1px solid rgba(197,160,89,0.25);
-    border-radius: 3px;
+    left: 5px; right: 5px;
+    border: 1.5px solid rgba(212, 175, 55, 0.35); /* 황금 금박 장식선 */
+    border-radius: 2px;
     pointer-events: none;
 }
 
@@ -1593,32 +1596,38 @@ footer {
     writing-mode: vertical-rl;
     text-orientation: mixed;
     white-space: nowrap;
+    text-shadow: 0.5px 0.5px 0px rgba(255,255,255,0.1), -0.5px -0.5px 0px rgba(0,0,0,0.8);
 }
 
 .book-title-spine {
     font-family: 'Noto Serif KR', serif;
     font-size: 0.95rem;
     color: var(--book-text);
-    font-weight: 600;
+    font-weight: 700; /* 조금 더 굵고 가독성 좋게 변경 */
     writing-mode: vertical-rl;
     text-orientation: mixed;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 170px;
-    line-height: 1.3;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.7);
-    letter-spacing: 1px;
+    line-height: 1.35;
+    /* 양장본 금박/은박 음각 압인(Embossed/Debossed Gold Foil) 효과 부여 */
+    text-shadow: 
+        0.5px 0.5px 0px rgba(255,255,255,0.15), 
+        -0.5px -0.5px 0px rgba(0,0,0,0.85), 
+        0px 2px 4px rgba(0,0,0,0.65);
+    letter-spacing: 1.5px;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-/* 호버 시 텍스트 발광(Neon Glow) 효과 극대화 */
+/* 호버 시 텍스트 마법 불꽃 활성화 (눈부신 황금빛 엠보싱) */
 .magic-book:hover .book-title-spine {
     color: #ffffff !important;
     text-shadow: 
-        0 0 8px #ffffff, 
+        0 0 6px #ffffff, 
         0 0 15px var(--book-accent), 
-        0 0 25px var(--book-accent);
+        0 0 25px var(--book-accent),
+        0.5px 0.5px 0px rgba(255,255,255,0.25);
 }
 
 .book-deco {
@@ -1744,13 +1753,13 @@ footer {
     width: 100%;
 }
 
-/* 책장 프레임 (어두운 배경 프레임 -> 신비로운 딥 블루/인디고 그라데이션) */
+/* 책장 프레임 (어두운 배경 -> 해리포터 고딕 라이브러리 풍 마호가니 원목 & 황금 이중 보더) */
 .bookshelf-frame {
     flex: 1;
-    background: linear-gradient(145deg, #0b0f19 0%, #111827 40%, #1e1b4b 100%);
-    border-radius: 20px;
-    border: 2px solid rgba(229, 169, 59, 0.4); /* 금빛 테두리 */
-    box-shadow: 0 30px 70px rgba(0,0,0,0.65), inset 0 0 80px rgba(124, 58, 237, 0.08);
+    background: linear-gradient(135deg, #1c0f0a 0%, #110906 50%, #080402 100%);
+    border-radius: 24px;
+    border: 4px double rgba(212, 175, 55, 0.65); /* 고풍스러운 황금 이중 보더 */
+    box-shadow: 0 40px 80px rgba(0,0,0,0.8), inset 0 0 100px rgba(0,0,0,0.95);
     padding: 0 28px;
     position: relative;
     overflow: hidden;
@@ -1785,14 +1794,14 @@ footer {
 .shelf-books {
     display: flex;
     align-items: flex-end;
-    gap: 12px; /* 책 스케일 업에 따른 간격 확장 (기존 6px) */
-    padding: 25px 0 0 0;
-    min-height: 285px; /* 책 높이 스케일 업(260px)에 맞춰 하단 선반 삐져나옴 방지 (기존 210px) */
+    gap: 12px;
+    padding: 40px 0 0 0; /* 위쪽 여백 확장으로 호버 튀어나옴 잘림 방지 (기존 25px) */
+    min-height: 325px; /* 공간 확보로 호버 책 윗부분 잘림 완벽 방지 (기존 285px) */
     flex-wrap: nowrap;
     justify-content: flex-start;
     padding-left: 36px;
     padding-right: 36px;
-    perspective: 1000px; /* 3D 입체 효과 원근감 조율 (기존 800px) */
+    perspective: 1200px; /* 3D 원근감 튜닝 */
     will-change: transform;
 }
 
@@ -1812,13 +1821,13 @@ footer {
     cursor: default !important;
 }
 
-/* 선반 판 (기존 밤색 나무 -> 리치 골드 라인과 대리석 텍스처 조합) */
+/* 선반 판 (마호가니 통원목 & 리치 골드 탑 라인) */
 .shelf-plank {
-    height: 24px; /* 높이 상향 */
-    background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+    height: 26px; /* 높이 상향 */
+    background: linear-gradient(180deg, #593116 0%, #3a1e0b 50%, #211005 100%);
     border-radius: 4px;
-    box-shadow: 0 12px 24px rgba(0,0,0,0.65), inset 0 2px 4px rgba(255,255,255,0.1);
-    border-top: 3px solid rgba(229, 169, 59, 0.8); /* 리치 골드 라인 */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255,255,255,0.08);
+    border-top: 3px solid rgba(212, 175, 55, 0.85); /* 리치 골드 라인 강조 */
     position: relative;
     margin-bottom: 0;
 }
@@ -1832,8 +1841,8 @@ footer {
 
 /* 책장 바닥 */
 .shelf-floor {
-    height: 18px;
-    background: linear-gradient(180deg, #111827, #030712);
+    height: 20px;
+    background: linear-gradient(180deg, #3a1e0b, #150a04);
     border-radius: 0 0 16px 16px;
     box-shadow: inset 0 3px 8px rgba(0,0,0,0.6);
     margin: 0 -28px;

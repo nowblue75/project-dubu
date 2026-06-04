@@ -139,8 +139,8 @@ function getRecipeTheme(recipe) {
     if (!recipe) {
         return {
             themeColor: '#3a1d11',
-            themeGlow: 'rgba(229, 169, 59, 0.25)',
-            accentColor: '#c5a059',
+            themeGlow: 'rgba(212, 175, 55, 0.35)',
+            accentColor: '#d4af37',
             spineColor1: '#251109',
             spineColor2: '#3a1d11',
             spineTextColor: '#ebd090'
@@ -152,7 +152,7 @@ function getRecipeTheme(recipe) {
     const categories = recipe.categories || [];
     const title = recipe.title || '';
 
-    // 1. 크리스마스 / 성탄절 (짙은 에메랄드 그린 + 골드)
+    // 1. 크리스마스 / 성탄절 (짙은 에메랄드 고딕 그린 + 리치 골드)
     const isChristmas = 
         path.includes('성탄절') || 
         path.includes('크리스마스') || 
@@ -164,16 +164,16 @@ function getRecipeTheme(recipe) {
 
     if (isChristmas) {
         return {
-            themeColor: '#0A3F21',
-            themeGlow: 'rgba(10, 63, 33, 0.45)',
-            accentColor: '#E5A93B',
-            spineColor1: '#052412',
-            spineColor2: '#0A3F21',
+            themeColor: '#08321B',
+            themeGlow: 'rgba(8, 50, 27, 0.5)',
+            accentColor: '#D4AF37',
+            spineColor1: '#041B0E',
+            spineColor2: '#08321B',
             spineTextColor: '#ffd79e'
         };
     }
 
-    // 2. 할로윈 (신비로운 퍼플 + 호박 오렌지)
+    // 2. 할로윈 (오컬트 마법사 딥 바이올렛 + 오렌지 골드)
     const isHalloween = 
         path.includes('할로윈') || 
         title.includes('단호박') || 
@@ -181,16 +181,16 @@ function getRecipeTheme(recipe) {
 
     if (isHalloween) {
         return {
-            themeColor: '#421453',
-            themeGlow: 'rgba(66, 20, 83, 0.45)',
-            accentColor: '#FF9E00',
-            spineColor1: '#23072E',
-            spineColor2: '#421453',
+            themeColor: '#320B44',
+            themeGlow: 'rgba(50, 11, 68, 0.5)',
+            accentColor: '#E09F3E',
+            spineColor1: '#1B0626',
+            spineColor2: '#320B44',
             spineTextColor: '#eed5ff'
         };
     }
 
-    // 3. 발렌타인데이 / 화이트데이 / 로맨틱 테마 (루비 레드 & 초콜릿 브라운)
+    // 3. 발렌타인데이 / 화이트데이 / 로맨틱 테마 (드라이 버건디 & 딥 에스프레소)
     const isRomantic = 
         path.includes('발렌타인') || 
         path.includes('화이트데이') || 
@@ -202,26 +202,26 @@ function getRecipeTheme(recipe) {
     if (isRomantic) {
         if (id === 37 || id === 30) {
             return {
-                themeColor: '#66101F',
-                themeGlow: 'rgba(102, 16, 31, 0.4)',
-                accentColor: '#FFA6C9',
-                spineColor1: '#3B050E',
-                spineColor2: '#66101F',
+                themeColor: '#5A0E1F',
+                themeGlow: 'rgba(90, 14, 31, 0.45)',
+                accentColor: '#E0A3B1',
+                spineColor1: '#3A0813',
+                spineColor2: '#5A0E1F',
                 spineTextColor: '#ffe6eb'
             };
         } else {
             return {
-                themeColor: '#4C2920',
-                themeGlow: 'rgba(76, 41, 32, 0.4)',
-                accentColor: '#FCD3C1',
-                spineColor1: '#2F1710',
-                spineColor2: '#4C2920',
+                themeColor: '#3A1E18',
+                themeGlow: 'rgba(58, 30, 24, 0.45)',
+                accentColor: '#E3C6B6',
+                spineColor1: '#23120E',
+                spineColor2: '#3A1E18',
                 spineTextColor: '#fff0eb'
             };
         }
     }
 
-    // 4. 설날-추석 / 명절 / 전통 감성 테마 (말차 그린 & 호두 단팥 브라운)
+    // 4. 설날-추석 / 명절 / 전통 감성 테마 (앤티크 말차 그린 & 묵직한 단팥 브라운)
     const isTraditional = 
         path.includes('명절') || 
         path.includes('수능') || 
@@ -236,8 +236,8 @@ function getRecipeTheme(recipe) {
         if (title.includes('쑥') || categories.includes('soymilk')) {
             return {
                 themeColor: '#244724',
-                themeGlow: 'rgba(36, 71, 36, 0.4)',
-                accentColor: '#D6CBA0',
+                themeGlow: 'rgba(36, 71, 36, 0.45)',
+                accentColor: '#C4B182',
                 spineColor1: '#152A15',
                 spineColor2: '#244724',
                 spineTextColor: '#e5debf'
@@ -245,7 +245,7 @@ function getRecipeTheme(recipe) {
         } else {
             return {
                 themeColor: '#5A3816',
-                themeGlow: 'rgba(90, 56, 22, 0.4)',
+                themeGlow: 'rgba(90, 56, 22, 0.45)',
                 accentColor: '#EAD7A8',
                 spineColor1: '#3B220B',
                 spineColor2: '#5A3816',
@@ -254,52 +254,52 @@ function getRecipeTheme(recipe) {
         }
     }
 
-    // 5. 카테고리별 테마 (에메랄드 틸, 딥 인디고, 러스틱 시나몬, 티 올리브)
+    // 5. 카테고리별 테마 (에메랄드 틸, 미드나잇 블루, 다크 시나몬, 티 올리브)
     if (categories.includes('creamy')) {
         return {
-            themeColor: '#0E3D32',
-            themeGlow: 'rgba(14, 61, 50, 0.4)',
-            accentColor: '#EAD3A2',
-            spineColor1: '#05261F',
-            spineColor2: '#0E3D32',
+            themeColor: '#0A3129',
+            themeGlow: 'rgba(10, 49, 41, 0.45)',
+            accentColor: '#D6C195',
+            spineColor1: '#061D19',
+            spineColor2: '#0A3129',
             spineTextColor: '#ebdcb8'
         };
     }
     if (categories.includes('cloud')) {
         return {
-            themeColor: '#20233D',
-            themeGlow: 'rgba(32, 35, 61, 0.4)',
-            accentColor: '#E6D3FC',
-            spineColor1: '#121424',
-            spineColor2: '#20233D',
+            themeColor: '#1B1E37',
+            themeGlow: 'rgba(27, 30, 55, 0.45)',
+            accentColor: '#D3C2E8',
+            spineColor1: '#101221',
+            spineColor2: '#1B1E37',
             spineTextColor: '#eae1ed'
         };
     }
     if (categories.includes('fudgy')) {
         return {
-            themeColor: '#4A2315',
-            themeGlow: 'rgba(74, 35, 21, 0.4)',
-            accentColor: '#F3DFB7',
-            spineColor1: '#2B1209',
-            spineColor2: '#4A2315',
+            themeColor: '#3C1B0F',
+            themeGlow: 'rgba(60, 27, 15, 0.45)',
+            accentColor: '#DFCEAA',
+            spineColor1: '#230E07',
+            spineColor2: '#3C1B0F',
             spineTextColor: '#faedd2'
         };
     }
     if (categories.includes('teatime')) {
         return {
-            themeColor: '#4C3A14',
-            themeGlow: 'rgba(76, 58, 20, 0.4)',
-            accentColor: '#F9E7B3',
-            spineColor1: '#2D2108',
-            spineColor2: '#4C3A14',
+            themeColor: '#3C2B0C',
+            themeGlow: 'rgba(60, 43, 12, 0.45)',
+            accentColor: '#EBCFA2',
+            spineColor1: '#211806',
+            spineColor2: '#3C2B0C',
             spineTextColor: '#faf3d9'
         };
     }
 
     return {
         themeColor: '#3a1d11',
-        themeGlow: 'rgba(229, 169, 59, 0.25)',
-        accentColor: '#c5a059',
+        themeGlow: 'rgba(212, 175, 55, 0.35)',
+        accentColor: '#d4af37',
         spineColor1: '#251109',
         spineColor2: '#3a1d11',
         spineTextColor: '#ebd090'
