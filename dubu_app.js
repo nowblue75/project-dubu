@@ -1323,6 +1323,39 @@ let bookshelfState = {
     isEngineInitialized: false
 };
 
+// 휠 스크롤 쿨타임 상태
+let bookshelfWheelCooldown = false;
+
+function handleBookshelfWheel(e) {
+    const frame = document.getElementById('bookshelf-frame');
+    if (!frame) return;
+
+    // 책장 영역 내부에서 휠을 굴렸을 때만 기본 세로 스크롤을 막고 페이지 전환을 실행
+    e.preventDefault();
+
+    if (bookshelfWheelCooldown) return;
+
+    if (e.deltaY > 0) {
+        scrollBookshelf('right');
+    } else if (e.deltaY < 0) {
+        scrollBookshelf('left');
+    }
+
+    bookshelfWheelCooldown = true;
+    setTimeout(() => {
+        bookshelfWheelCooldown = false;
+    }, 600); // 600ms 쿨타임 (CSS 애니메이션 0.6s와 동기화)
+}
+
+function bindBookshelfWheelEvent() {
+    const frame = document.getElementById('bookshelf-frame');
+    if (!frame) return;
+
+    // passive: false로 지정해야 e.preventDefault()가 작동하여 브라우저 스크롤을 차단함
+    frame.removeEventListener('wheel', handleBookshelfWheel); // 중복 등록 방지
+    frame.addEventListener('wheel', handleBookshelfWheel, { passive: false });
+}
+
 function scrollBookshelf(direction) {
     const sorted = [...PROJECTS].sort((a, b) => a.id - b.id);
     const totalPages = Math.ceil(sorted.length / 16);
@@ -1477,9 +1510,10 @@ function renderBookshelf() {
         </div>
     `;
 
-    // 강제 정렬 동기화
+    // 강제 정렬 동기화 및 휠 리스너 바인딩
     setTimeout(() => {
         recalculateBookshelfBounds();
+        bindBookshelfWheelEvent();
     }, 50);
 }
 
