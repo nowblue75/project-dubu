@@ -230,7 +230,7 @@ function getRecipeTheme(recipe) {
         title.includes('단팥') || 
         title.includes('모찌') || 
         categories.includes('nostalgia') || 
-        [39, 38, 17, 16, 33, 8, 35, 12, 11].includes(id);
+        [42, 39, 38, 17, 16, 33, 8, 35, 12, 11].includes(id);
 
     if (isTraditional) {
         if (title.includes('쑥') || categories.includes('soymilk')) {
@@ -611,6 +611,7 @@ function updateTimelineProgress(timelineContainer, totalSteps) {
 // 5. 역비례 & 다중 앵커 양방향 비례 연산 (Atelier Scale)
 // ==========================================================================
 const BASE_YIELDS = {
+    42: { template: "찜케이크 1호 {x}개 분량 🧧", baseCount: 1 },
     40: { template: "오란다 대 틀 {x}개 분량 🍞", baseCount: 3 },
     39: { template: "오란다 대 틀 {x}개 분량 🖤", baseCount: 1 },
     38: { template: "쑥 찰떡브라우니 {x}판 분량 🌿", baseCount: 1 },
@@ -632,7 +633,6 @@ const BASE_YIELDS = {
     22: { template: "정사각 팬 {x}판 분량 🍫", baseCount: 1 },
     21: { template: "슈톨렌 {x}개 분량 🎄", baseCount: 2 },
     19: { template: "실리콘 오발틀 {x}개 분량 🎃", baseCount: 8 },
-    18: { template: "코코넛 단팥구움바 {x}개 분량 🥥", baseCount: 4 },
     17: { template: "오란다 대자 팬 {x}개 분량 🌰", baseCount: 2 },
     16: { template: "원형 1호틀 {x}개 분량 🎃", baseCount: 1 },
     10: { template: "브라우니쿠키 {x}개 분량 🍪", baseCount: 8 }
@@ -708,7 +708,10 @@ function getRecipeMetadata(recipeId) {
     let cheers = "오늘 내 손끝으로 빚는 건강한 두부 베이킹, 설레는 시작입니다! ✨";
 
     if (recipe) {
-        if (recipe.id === 40) {
+        if (recipe.id === 42) {
+            bakingTip = "물이 끓는 찜기 중불 / 50분 (뜸 10분)";
+            cheers = "케이크처럼 폭신하지만 떡처럼 쫀득함이 살아있는 단팥 찜케이크! 🧧";
+        } else if (recipe.id === 40) {
             bakingTip = "180°C 예열 → 170°C / 40분 (콩물 마무리 + 하루 숙성 권장)";
             cheers = "다음 날이 진짜입니다! 하루 숙성 후 먹는 그 촉촉함과 고소함은 레시피의 진짜 얼굴이에요. ☀️";
         } else if (recipe.id === 39) {
@@ -729,9 +732,6 @@ function getRecipeMetadata(recipeId) {
         } else if (recipe.id === 17) {
             bakingTip = "오븐 예열 180℃ / 170℃ 40분";
             cheers = "달콤하고 고소한 밤이 콕콕 박혀 더욱 풍요로운 맛! 가을 감성을 가득 담아 구워내는 영양 만점 순두부 파운드케이크입니다. 🌰";
-        } else if (recipe.id === 18) {
-            bakingTip = "오븐 예열 180℃ / 20분";
-            cheers = "코코넛의 바삭함과 단팥의 든든함! 가벼운 등산이나 소풍 가기 전 최고의 영양 간식입니다. 🥥";
         }
     }
     return { difficulty, bakingTip, cheers };

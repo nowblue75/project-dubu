@@ -9,6 +9,32 @@
 // 1. 디저트 메인 데이터베이스 (각 고유의 '베이킹 DNA 속성' 및 '물성 식감 카테고리' 매핑)
 const PROJECTS = [
     {
+        "id": 42,
+        "title": "순두부 모찌 찜케이크",
+        "noOven": true,
+        "noFlour": true,
+        "noButter": true,
+        "oneBowl": true,
+        "desc": "물기 안 짠 순두부를 우유, 설탕, 오일과 함께 곱게 갈아 찹쌀가루와 함께 찜기에 쪄낸 쫀득하고 촉촉한 찜케이크. 가운데 들어간 단팥 앙금과 흑임자가 정겨운 맛을 더합니다.",
+        "path": "42. 순두부 찜케익/index.html",
+        "img": "42. 순두부 찜케익/순두부 찜케익 (0).jpg",
+        "calcPath": "42. 순두부 찜케익/calculator/index.html",
+        "isInteractive": true,
+        "blogUrl": "https://blog.naver.com/project_dubu/224306478353",
+        "categories": [
+            "gift",
+            "nostalgia",
+            "fudgy",
+            "flourfree",
+            "butterfree"
+        ],
+        "pairing": "식혜나 수정과, 혹은 따뜻한 녹차",
+        "time": "60분",
+        "emotionalQuote": "케이크인데 떡 같은 쫀득함! 단팥 앙금이 사르르 배어 나오는 정겨운 찜케이크입니다. 🧧",
+        "troubleShoot": "Q. 찜케이크가 덜 익거나 표면이 축축해요. 어떻게 해야 하나요?<br>A. [수분 낙하 방지 & 시간 조절 팁] 찜기 뚜껑에 면포를 둘러 수증기가 반죽 위로 떨어지지 않게 해주시고, 반드시 물이 팔팔 끓을 때 팬을 올려 중불에서 50분간 충분히 쪄주세요. 찌는 시간 후 불을 끄고 10분간 뜸을 들여주시면 반죽 속까지 골고루 쫀득하게 익습니다.",
+        "isNew": true
+    },
+    {
         "id": 40,
         "title": "순두부 콩물 파운드케익",
         "noOven": false,
@@ -29,8 +55,7 @@ const PROJECTS = [
         "pairing": "콩물라떼 또는 따뜻한 황차",
         "time": "50분",
         "emotionalQuote": "콩물의 고소함 and 순두부의 촉촉함이 만들어내는 건강한 콩물 파운드케익입니다. ☀️",
-        "troubleShoot": "Q. 반죽 분리가 일어나지 않고 속이 촉촉하게 잘 익으려면 어떻게 해야 하나요?<br>A. [수분 제거 & 유화 팁] 순두부의 물기를 확실히 제거한 뒤, 실온 버터와 설탕을 충분히 크림화하고 순두부, 달걀, 콩물을 조금씩 나누어 넣으며 분리되지 않도록 유화시켜 섞어줍니다. 오븐 온도가 너무 높으면 겉만 타고 속은 안 익을 수 있으니, 170도에서 은은하게 구워주시고 이쑤시개 테스트 후 꺼내어 주세요.",
-        "isNew": true
+        "troubleShoot": "Q. 반죽 분리가 일어나지 않고 속이 촉촉하게 잘 익으려면 어떻게 해야 하나요?<br>A. [수분 제거 & 유화 팁] 순두부의 물기를 확실히 제거한 뒤, 실온 버터와 설탕을 충분히 크림화하고 순두부, 달걀, 콩물을 조금씩 나누어 넣으며 분리되지 않도록 유화시켜 섞어줍니다. 오븐 온도가 너무 높으면 겉만 타고 속은 안 익을 수 있으니, 170도에서 은은하게 구워주시고 이쑤시개 테스트 후 꺼내어 주세요."
     },
     {
         "id": 39,
@@ -212,6 +237,7 @@ const PROJECTS = [
         "path": "34. 순두부레몬마들렌_완/index.html",
         "img": "34. 순두부레몬마들렌_완/0.jpg",
         "isInteractive": true,
+        "blogUrl": "https://blog.naver.com/project_dubu/224197631515",
         "categories": [
             "teatime"
         ],
@@ -326,25 +352,12 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224083029266"
     },
     {
-        "id": 20,
-        "title": "투톤 순두부 타르트",
-        "isInteractive": false
-    },
-    {
         "id": 19,
         "title": "순두부 단호박 찹쌀빵",
         "isInteractive": false,
         "path": "19. 순두부 단호박 찹쌀빵_완/index.html",
         "img": "19. 순두부 단호박 찹쌀빵_완/KakaoTalk_20251002_083711682.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224044280791"
-    },
-    {
-        "id": 18,
-        "title": "순두부 코코넛 단팥찹쌀구움바",
-        "desc": "전통 단팥의 달콤함과 찹쌀의 쫄깃함이 만난 현대적 해석. 명절의 정갈함을 담은 주전부리입니다.",
-        "path": "18. 순두부 코코넛 단팥찹쌀구움바/index.html",
-        "img": "18. 순두부 코코넛 단팥찹쌀구움바/KakaoTalk_20251002_083305924.jpg",
-        "isInteractive": true
     },
     {
         "id": 17,
@@ -361,16 +374,6 @@ const PROJECTS = [
         "path": "16. 순두부단호박바스크치즈케이크_완/index.html",
         "img": "16. 순두부단호박바스크치즈케이크_완/KakaoTalk_20251002_082631387_17.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224029278133"
-    },
-    {
-        "id": 15,
-        "title": "순두부 시나몬롤",
-        "isInteractive": false
-    },
-    {
-        "id": 14,
-        "title": "순두부 녹차팥푸딩",
-        "isInteractive": false
     },
     {
         "id": 13,
@@ -415,11 +418,6 @@ const PROJECTS = [
         "title": "얼그레이 순두부 케이크",
         "isInteractive": false,
         "blogUrl": "https://blog.naver.com/project_dubu/223945052824"
-    },
-    {
-        "id": 6,
-        "title": "순두부 갈릭포카치아(보류)",
-        "isInteractive": false
     },
     {
         "id": 5,
@@ -528,6 +526,19 @@ const THEMES = [
         "img": "40. 순두부 흑임자테린/assets/01.png",
         "tag": "Harvest & Thanks",
         "recipes": [
+            {
+                "id": 42,
+                "title": "순두부 모찌 찜케이크",
+                "noOven": true,
+                "noFlour": true,
+                "noButter": true,
+                "oneBowl": true,
+                "vol": "VOL. 42",
+                "img": "42. 순두부 찜케익/순두부 찜케익 (0).jpg",
+                "path": "42. 순두부 찜케익/index.html",
+                "desc": "물기 안 짠 순두부와 찹쌀가루를 믹서로 갈아 찜기에 쪄낸 쫀득 폭신한 단팥 찜케이크",
+                "blogUrl": "https://blog.naver.com/project_dubu/224306478353"
+            },
             {
                 "id": 39,
                 "title": "순두부 흑임자 테린",
@@ -739,6 +750,44 @@ const THEMES = [
 ];
 
 const INGREDIENT_DICT = {
+    "42": [
+        {
+            "name": "순두부 (물기 안 짠 그대로)",
+            "base": 240
+        },
+        {
+            "name": "찹쌀가루",
+            "base": 240
+        },
+        {
+            "name": "우유",
+            "base": 130
+        },
+        {
+            "name": "설탕",
+            "base": 95
+        },
+        {
+            "name": "포도씨유",
+            "base": 32
+        },
+        {
+            "name": "베이킹파우더",
+            "base": 8
+        },
+        {
+            "name": "소금",
+            "base": 1
+        },
+        {
+            "name": "저당 단팥앙금 (필링)",
+            "base": 100
+        },
+        {
+            "name": "흑임자 통깨 (마무리)",
+            "base": 5
+        }
+    ],
     "1": [
         {
             "time": "10분",
@@ -1275,6 +1324,38 @@ const INGREDIENT_DICT = {
 
 // 4. 레시피 공정 단계 데이터베이스 (3D 타임라인 연동용)
 const RECIPE_STEPS_DB = {
+    "42": [
+        {
+            "time": "10분",
+            "title": "단계 1: 액체 블렌딩 & 찜기 예열",
+            "desc": "믹서기에 물기 안 짠 순두부, 우유, 설탕, 소금, 포도씨유를 순서대로 넣고 고르게 갈아줍니다. 동시에 찜기에 물을 넣고 끓여 준비합니다."
+        },
+        {
+            "time": "5분",
+            "title": "단계 2: 가루 혼합",
+            "desc": "믹서에 찹쌀가루와 베이킹파우더를 추가로 넣고 날가루가 보이지 않을 때까지만 짧게 갈아 묽은 반죽을 완성합니다."
+        },
+        {
+            "time": "5분",
+            "title": "단계 3: 1차 팬닝 & 앙금 올리기",
+            "desc": "유산지를 깐 1호 원형 틀(15cm)에 반죽의 절반 분량을 먼저 붓고, 그 위에 단팥앙금 100g을 가운데 올립니다. (앙금이 가장자리로 가지 않게 주의합니다.)"
+        },
+        {
+            "time": "5분",
+            "title": "단계 4: 2차 팬닝 & 마무리",
+            "desc": "남은 반죽을 조심히 부어 팥앙금을 완전히 덮어준 뒤, 윗면에 흑임자 통깨를 골고루 뿌려 장식합니다."
+        },
+        {
+            "time": "50분",
+            "title": "단계 5: 찜기 베이킹",
+            "desc": "물이 끓어오르는 찜기에 팬을 넣고 뚜껑에 면포를 두른 뒤, 중불에서 50분 동안 쪄 줍니다."
+        },
+        {
+            "time": "10분",
+            "title": "단계 6: 뜸 들이기 & 식히기",
+            "desc": "불을 끈 뒤 뚜껑을 덮은 상태로 10분간 뜸을 들입니다. 꺼낸 후 실온에서 완전히 식힌 뒤 틀에서 분리하여 드십시오."
+        }
+    ],
     "1": [
         {
             "time": "10분",
@@ -2007,7 +2088,7 @@ const EVENTS = [
     { id: 'valentine', month: 'FEB', title: '발렌타인데이', icon: '💝', vols: '33, 35', path: "[이벤트] 발렌타인_2026/index.html", isReady: true },
     { id: 'whiteday', month: 'MAR', title: '화이트데이', icon: '🍭', vols: '36, 34', path: "[이벤트] 화이트데이_2026/index.html", isReady: true },
     { id: 'family', month: 'MAY', title: '가정의 달', icon: '🌸', vols: '29, 31, 39', path: "[이벤트] 가정의달_2026/index.html", isReady: true },
-    { id: 'holidays', month: 'HOLIDAY', title: '명절 (설/추석)', icon: '🧧', vols: '18, 28, 40', path: "[이벤트] 명절_2026/index.html", isReady: true },
+    { id: 'holidays', month: 'HOLIDAY', title: '명절 (설/추석)', icon: '🧧', vols: '28, 40, 42', path: "[이벤트] 명절_2026/index.html", isReady: true },
     { id: 'halloween', month: 'OCT', title: '할로윈 데이', icon: '🎃', path: "[이벤트] 할로윈_20251029/index.html", isReady: true },
     { id: 'pepero', month: 'NOV', title: '빼빼로데이', icon: '🥖', path: "[이벤트] 빼빼로_20251106/index.html", isReady: true },
     { id: 'sooneung', month: 'NOV', title: '수능 응원', icon: '🎓', path: "[이벤트] 수능 찹쌀떡_20251112/index.html", isReady: true },
