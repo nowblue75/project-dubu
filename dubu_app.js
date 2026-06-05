@@ -1566,9 +1566,18 @@ function openLookbook(recipeId) {
         }
 
         // 가상 경로 변경 전에 실제 물리적 base path 연산
+        // 주소창에 /lookbook/이 들어있는 상태에서 새로고침이 되더라도 실제 루트 경로를 찾을 수 있도록 보정
+        let currentPath = window.location.pathname;
+        const lookbookIdx = currentPath.indexOf('/lookbook/');
+        if (lookbookIdx !== -1) {
+            currentPath = currentPath.substring(0, lookbookIdx + 1);
+        } else {
+            currentPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+        }
+        
         const lookbookBasePath = window.location.protocol === 'file:' 
-            ? window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1)
-            : window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+            ? currentPath
+            : window.location.origin + currentPath;
 
         // 2. 가상 라우팅 설정 (/lookbook/39)
         history.pushState({ page: 'lookbook', id: 39 }, '', '/lookbook/39');
