@@ -1368,15 +1368,6 @@ function goToBookshelfPage(page) {
     }
 }
 
-function triggerBookshelfToast(currentPage, totalPages) {
-    const toast = document.getElementById('bookshelf-toast');
-    if (!toast) return;
-    toast.textContent = `PAGE ${currentPage} / ${totalPages}`;
-    toast.classList.remove('show');
-    void toast.offsetWidth; // Reflow 트리거하여 애니메이션 리셋
-    toast.classList.add('show');
-}
-
 function scrollBookshelf(direction) {
     const sorted = [...PROJECTS].sort((a, b) => a.id - b.id);
     const totalPages = Math.ceil(sorted.length / 16);
@@ -1469,27 +1460,17 @@ function renderBookshelf() {
     const isFirstPage = bookshelfState.currentPage === 1;
     const isLastPage = bookshelfState.currentPage === totalPages;
 
-    // 페이지 이동 닷(dot) 인디케이터 생성
-    let dotsHtml = '';
-    for (let i = 1; i <= totalPages; i++) {
-        const isActive = i === bookshelfState.currentPage;
-        dotsHtml += `<span class="shelf-dot ${isActive ? 'active' : ''}" onclick="goToBookshelfPage(${i})" title="Go to Page ${i}"></span>`;
-    }
-
     section.innerHTML = `
         <div class="bookshelf-wrapper">
             <!-- 헤더 -->
             <div class="bookshelf-header">
                 <div class="bookshelf-tag">RECIPE ARCHIVE</div>
                 <h2 class="serif bookshelf-title">실패없는 베이킹노트</h2>
-                <p class="bookshelf-hint">🚪 앤티크 양옆 화살표를 누르거나 휠을 굴려 페이지를 넘겨보세요</p>
+                <p class="bookshelf-hint">🚪 앤티크 양옆 화살표를 눌러 서가 페이지를 넘겨보세요</p>
             </div>
 
             <!-- 책장 무대 -->
-            <div class="bookshelf-scene" style="position: relative;">
-                <!-- 중앙 큰 페이지 오버레이 토스트 -->
-                <div id="bookshelf-toast" class="bookshelf-toast"></div>
-
+            <div class="bookshelf-scene">
                 <!-- 왼쪽 화살표 (1페이지면 비활성) -->
                 <button class="shelf-nav-btn shelf-nav-left left-arrow ${isFirstPage ? 'disabled' : ''}" 
                         onclick="scrollBookshelf('left')" 
@@ -1499,6 +1480,9 @@ function renderBookshelf() {
 
                 <!-- 책장 프레임 -->
                 <div class="bookshelf-frame" id="bookshelf-frame">
+                    <!-- 중앙 페이지 토스트 -->
+                    <div id="bookshelf-toast" class="bookshelf-toast">PAGE ${bookshelfState.currentPage} / ${totalPages}</div>
+
                     <!-- 별빛 -->
                     <div class="shelf-stars">
                         <div class="star" style="top:8%;left:12%;width:2px;height:2px;animation-delay:0s;"></div>
@@ -1530,9 +1514,15 @@ function renderBookshelf() {
                 </button>
             </div>
 
-            <!-- 페이지 인디케이터 및 닷 리스트 -->
+            <!-- 페이지 인디케이터 -->
             <div class="shelf-page-info serif">- PAGE ${bookshelfState.currentPage} / ${totalPages} -</div>
-            <div class="shelf-dots-container">${dotsHtml}</div>
+            <div class="shelf-dots-container">
+                ${Array.from({ length: totalPages }, (_, i) => {
+                    const pageNum = i + 1;
+                    const isActive = pageNum === bookshelfState.currentPage;
+                    return `<span class="shelf-dot ${isActive ? 'active' : ''}" onclick="goToBookshelfPage(${pageNum})"></span>`;
+                }).join('')}
+            </div>
 
             <!-- 푸터 -->
             <footer style="margin-top:25px; text-align:center; opacity:0.4;">
@@ -1542,11 +1532,17 @@ function renderBookshelf() {
         </div>
     `;
 
-    // 강제 정렬 동기화, 휠 리스너 바인딩, 페이지 전환 토스트 연출
+    // 강제 정렬 동기화 및 휠 리스너 바인딩, 페이지 전환 토스트 트리거
     setTimeout(() => {
         recalculateBookshelfBounds();
         bindBookshelfWheelEvent();
-        triggerBookshelfToast(bookshelfState.currentPage, totalPages);
+
+        const toast = document.getElementById('bookshelf-toast');
+        if (toast) {
+            toast.classList.remove('show');
+            void toast.offsetWidth; // reflow 트리거하여 CSS 애니메이션 초기화
+            toast.classList.add('show');
+        }
     }, 50);
 }
 
