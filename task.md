@@ -1,12 +1,14 @@
-# 프로젝트 두부: 화보북 고도화 및 불필요 문구 제거
+# 프로젝트 두부: 누락 레시피 데이터 복구 (2그룹 & 3그룹)
 
-- [x] **흑임자테린(Vol 40) 세목 수정**
-    - [x] 재료 설명에서 수치(g) 제거
-    - [x] 하단 'PROJECT DUBU Archive' 문구 삭제
-- [x] **전사 화보북 하단 문구 일괄 삭제**
-    - [x] 성탄절 시리즈 (눈꽃컵케이크, 부쉬드노엘 등)
-    - [x] 발렌타인/화이트데이 시리즈
-    - [x] 가정의 달 시리즈
-    - [x] 기타 스페셜 화보북 (수능, 할로윈, 빼빼로)
-    - [x] 나머지 일반 화보북 (Vol 16, 18, 19, 23, 28, 34, 36)
-- [x] **최종 검수 및 정합성 확인**
+- [ ] **2그룹 누락 레시피 데이터 주입 (ID 12, 13, 28, 29, 34)**
+    - [ ] INGREDIENT_DICT에 재료 데이터 추가
+    - [ ] RECIPE_STEPS_DB에 만드는 법 단계 데이터 추가
+- [ ] **2그룹 검증 및 Git Push**
+    - [ ] `node -c dubu_data.js` 문법 검증
+    - [ ] Git Commit & Push (`feat: add recipe data for vol 12, 13, 28, 29, 34`)
+- [ ] **3그룹 누락 레시피 데이터 주입 (ID 35)**
+    - [ ] INGREDIENT_DICT에 재료 데이터 추가
+    - [ ] RECIPE_STEPS_DB에 만드는 법 단계 데이터 추가
+- [ ] **3그룹 검증 및 최종 Git Push**
+    - [ ] `node -c dubu_data.js` 문법 검증
+    - [ ] Git Commit & Push (`feat: add recipe data for vol 35`)
