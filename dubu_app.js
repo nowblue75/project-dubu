@@ -1565,13 +1565,13 @@ function openLookbook(recipeId) {
             }, 400);
         }
 
-        // 2. 가상 라우팅 설정 (/lookbook/39)
-        history.pushState({ page: 'lookbook', id: 39 }, '', '/lookbook/39');
-
-        // 가상 경로 변경 시 리소스 절대 주소를 참조하기 위한 base path 연산
+        // 가상 경로 변경 전에 실제 물리적 base path 연산
         const lookbookBasePath = window.location.protocol === 'file:' 
             ? window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1)
             : window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+
+        // 2. 가상 라우팅 설정 (/lookbook/39)
+        history.pushState({ page: 'lookbook', id: 39 }, '', '/lookbook/39');
 
         // 3. 풀스크린 룩북 오버레이 동적 생성
         let lookbookOverlay = document.getElementById('lookbook-overlay');
