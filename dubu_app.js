@@ -1590,6 +1590,9 @@ function openLookbook(recipeId) {
         lookbookOverlay.id = 'lookbook-overlay';
         lookbookOverlay.innerHTML = `
             <div class="lookbook-container">
+                <!-- 럭셔리 골드 테두리 프레임 추가 -->
+                <div class="lookbook-gold-frame"></div>
+
                 <button class="lookbook-close-btn" onclick="closeLookbook()">&times;</button>
                 
                 <button class="lookbook-nav-btn lookbook-nav-left" onclick="changeLookbookPage(-1)"><i class="fa-solid fa-chevron-left"></i></button>
@@ -1601,6 +1604,7 @@ function openLookbook(recipeId) {
                         <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/01.png');">
                             <div class="lookbook-main-title-box">
                                 <div class="lookbook-main-tag">MEMBERSHIP ONLY // DESSERT ARCHIVE</div>
+                                <div class="lookbook-main-divider"></div>
                                 <h1 class="lookbook-main-h1">Vol.39 순두부 흑임자 테린</h1>
                             </div>
                         </div>
@@ -1646,13 +1650,15 @@ function openLookbook(recipeId) {
                     
                     <!-- 4페이지: 피날레 (마무리 컷 & 페어링) -->
                     <div class="lookbook-slide" data-page="4" style="background: #0b0c0d;">
+                        <!-- 백라이트 글로우 서클 추가 -->
+                        <div class="lookbook-backlight-glow"></div>
                         <div class="lookbook-finale-box">
                             <div class="lookbook-finale-img-frame">
                                 <img src="${lookbookBasePath}40. 순두부 흑임자테린/assets/02.png" alt="완성된 흑임자테린">
                             </div>
                             <div class="lookbook-pairing-title">PAIRING MOMENT</div>
                             <p class="lookbook-pairing-text">
-                                "깊어가는 가을 밤, 따뜻한 아메리카노 혹은 구수한 우롱차 한 잔과 함께하는 차분한 여유."
+                                깊어가는 가을 밤, 따뜻한 아메리카노 혹은 구수한 우롱차 한 잔과 함께하는 차분한 여유.
                             </p>
                         </div>
                     </div>

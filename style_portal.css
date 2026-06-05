@@ -2361,7 +2361,7 @@ footer {
     z-index: 20000;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     font-family: 'Noto Serif KR', serif;
     color: #EAE2D5;
 }
@@ -2378,6 +2378,26 @@ footer {
     overflow: hidden;
 }
 
+/* 럭셔리 골드 프레임 테두리 */
+.lookbook-gold-frame {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    pointer-events: none;
+    z-index: 95;
+    transition: border-color 0.5s;
+}
+
+.lookbook-gold-frame::before {
+    content: '';
+    position: absolute;
+    top: 4px; left: 4px; right: 4px; bottom: 4px;
+    border: 1px solid rgba(212, 175, 55, 0.08);
+}
+
 .lookbook-slider {
     width: 100%;
     height: 100%;
@@ -2392,8 +2412,8 @@ footer {
     width: 100%;
     height: 100%;
     opacity: 0;
-    transform: scale(1.05) translateZ(0);
-    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: scale(1.03) translateZ(0);
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1);
     pointer-events: none;
     display: flex;
     align-items: center;
@@ -2410,32 +2430,32 @@ footer {
 
 .lookbook-slide.prev {
     opacity: 0;
-    transform: scale(0.95) translateX(-20%) translateZ(0);
+    transform: scale(0.96) translateX(-15%) translateZ(0);
 }
 
 .lookbook-slide.next {
     opacity: 0;
-    transform: scale(0.95) translateX(20%) translateZ(0);
+    transform: scale(0.96) translateX(15%) translateZ(0);
 }
 
 /* 닫기 버튼 */
 .lookbook-close-btn {
     position: absolute;
-    top: 30px;
-    right: 40px;
+    top: 35px;
+    right: 45px;
     background: none;
     border: none;
     font-size: 2.2rem;
-    color: rgba(234, 226, 213, 0.6);
+    color: rgba(234, 226, 213, 0.55);
     cursor: pointer;
     z-index: 100;
-    transition: color 0.3s, transform 0.3s;
+    transition: color 0.3s, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     outline: none;
 }
 
 .lookbook-close-btn:hover {
-    color: #78909C;
-    transform: rotate(90deg);
+    color: #D4AF37;
+    transform: rotate(90deg) scale(1.1);
 }
 
 /* 좌우 화살표 버튼 */
@@ -2443,31 +2463,32 @@ footer {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(15, 15, 15, 0.4);
-    border: 1px solid rgba(234, 226, 213, 0.15);
-    width: 60px;
-    height: 60px;
+    background: rgba(13, 14, 15, 0.5);
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(234, 226, 213, 0.7);
-    font-size: 1.5rem;
+    color: rgba(234, 226, 213, 0.65);
+    font-size: 1.4rem;
     cursor: pointer;
     z-index: 90;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     outline: none;
 }
 
 .lookbook-nav-btn:hover {
-    background: rgba(120, 144, 156, 0.2);
-    border-color: #78909C;
-    color: #78909C;
-    box-shadow: 0 0 15px rgba(120, 144, 156, 0.35);
+    background: rgba(212, 175, 55, 0.12);
+    border-color: #D4AF37;
+    color: #D4AF37;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+    transform: translateY(-50%) scale(1.05);
 }
 
-.lookbook-nav-left { left: 40px; }
-.lookbook-nav-right { right: 40px; }
+.lookbook-nav-left { left: 55px; }
+.lookbook-nav-right { right: 55px; }
 .lookbook-nav-btn.disabled {
     opacity: 0;
     pointer-events: none;
@@ -2476,27 +2497,27 @@ footer {
 /* 하단 닷 인디케이터 */
 .lookbook-dots {
     position: absolute;
-    bottom: 40px;
+    bottom: 45px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 16px;
+    gap: 18px;
     z-index: 90;
 }
 
 .lookbook-dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    background: rgba(234, 226, 213, 0.3);
+    background: rgba(234, 226, 213, 0.25);
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .lookbook-dot.active {
-    background: #78909C;
-    transform: scale(1.4);
-    box-shadow: 0 0 8px rgba(120, 144, 156, 0.8);
+    background: #D4AF37;
+    transform: scale(1.5);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
 }
 
 /* --- 1페이지: 메인화보 --- */
@@ -2509,50 +2530,77 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+/* 켄번즈 애니메이션 적용 */
+.lookbook-slide.active .lookbook-bg-slide {
+    animation: kenBurns 12s ease-out forwards;
 }
 
 .lookbook-bg-slide::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle, rgba(13,14,15,0.4) 0%, rgba(13,14,15,0.92) 80%);
+    background: radial-gradient(circle, rgba(13,14,15,0.35) 0%, rgba(13,14,15,0.95) 85%);
+    z-index: 2;
 }
 
 .lookbook-main-title-box {
     position: relative;
     z-index: 20;
     text-align: center;
-    max-width: 800px;
-    padding: 0 20px;
+    max-width: 850px;
+    padding: 0 30px;
+}
+
+.lookbook-slide.active .lookbook-main-tag {
+    animation: lookbookFadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
 .lookbook-main-tag {
     font-size: 0.85rem;
     letter-spacing: 0.5em;
-    color: #78909C;
+    color: #D4AF37;
     margin-bottom: 24px;
     text-transform: uppercase;
-    animation: fadeInUp 1.2s ease-out both;
+    opacity: 0;
+}
+
+.lookbook-main-divider {
+    width: 60px;
+    height: 1px;
+    background: rgba(212, 175, 55, 0.35);
+    margin: 16px auto;
+    opacity: 0;
+}
+
+.lookbook-slide.active .lookbook-main-divider {
+    animation: lookbookFadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.2s both;
+}
+
+.lookbook-slide.active .lookbook-main-h1 {
+    animation: lookbookFadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.4s both;
 }
 
 .lookbook-main-h1 {
-    font-size: 4.2rem;
+    font-size: 4.5rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
-    line-height: 1.3;
+    letter-spacing: 0.12em;
+    line-height: 1.35;
     margin: 0;
     color: #EAE2D5;
-    text-shadow: 0 4px 25px rgba(0,0,0,0.8);
-    animation: fadeInUp 1.2s ease-out 0.3s both;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.9);
+    opacity: 0;
 }
 
 /* --- 2페이지: 디테일 컷 (가로 분할) --- */
 .lookbook-split-container {
     display: flex;
-    width: 80%;
-    max-width: 1200px;
-    height: 68%;
-    gap: 40px;
+    width: 82%;
+    max-width: 1250px;
+    height: 70%;
+    gap: 45px;
     align-items: center;
 }
 
@@ -2560,16 +2608,29 @@ footer {
     flex: 1;
     height: 100%;
     position: relative;
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-    border: 1px solid rgba(234, 226, 213, 0.08);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.75);
+    border: 1px solid rgba(212, 175, 55, 0.12);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    background: #111213;
+}
+
+.lookbook-split-left:hover, .lookbook-split-right:hover {
+    transform: translateY(-10px) scale(1.02) rotate(0.5deg);
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 25px 55px rgba(212, 175, 55, 0.15), 0 30px 60px rgba(0,0,0,0.85);
 }
 
 .lookbook-split-left img, .lookbook-split-right img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.lookbook-split-left:hover img, .lookbook-split-right:hover img {
+    transform: scale(1.05);
 }
 
 .lookbook-caption-overlay {
@@ -2577,52 +2638,84 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(transparent, rgba(13,14,15,0.95) 75%);
-    padding: 30px 40px;
+    background: linear-gradient(transparent, rgba(13,14,15,0.98) 70%);
+    padding: 35px 45px;
     box-sizing: border-box;
     text-align: center;
+    backdrop-filter: blur(2px);
 }
 
 .lookbook-caption-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #78909C;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #D4AF37;
+    letter-spacing: 0.1em;
 }
 
 .lookbook-caption-desc {
     font-size: 0.95rem;
-    color: rgba(234, 226, 213, 0.8);
-    line-height: 1.6;
+    color: rgba(234, 226, 213, 0.85);
+    line-height: 1.65;
     word-break: keep-all;
+}
+
+.lookbook-slide.active .lookbook-split-left {
+    animation: lookbookFadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.lookbook-slide.active .lookbook-split-right {
+    animation: lookbookFadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s both;
 }
 
 /* --- 3페이지: 크리에이터 노트 --- */
 .lookbook-note-container {
     display: flex;
-    width: 75%;
-    max-width: 1050px;
-    background: #151718;
-    border: 1px solid rgba(234, 226, 213, 0.1);
-    border-radius: 20px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    width: 78%;
+    max-width: 1100px;
+    background: #141516;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 24px;
+    box-shadow: 0 25px 65px rgba(0,0,0,0.8);
     overflow: hidden;
-    height: 55%;
+    height: 60%;
+    animation: goldGlow 6s infinite ease-in-out;
+    transition: all 0.5s;
+}
+
+.lookbook-slide.active .lookbook-note-container {
+    animation: lookbookFadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) both, goldGlow 6s infinite ease-in-out;
 }
 
 .lookbook-note-img {
     flex: 1.1;
     height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.lookbook-note-img::before {
+    content: '';
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: linear-gradient(to right, transparent 80%, #141516 100%);
+    z-index: 2;
 }
 
 .lookbook-note-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 1.2s;
+}
+
+.lookbook-note-container:hover .lookbook-note-img img {
+    transform: scale(1.06);
 }
 
 .lookbook-note-content {
     flex: 1.2;
-    padding: 50px;
+    padding: 55px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2632,21 +2725,23 @@ footer {
 .lookbook-note-tag {
     font-size: 0.8rem;
     letter-spacing: 0.3em;
-    color: #78909C;
+    color: #D4AF37;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 
 .lookbook-note-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    font-weight: 700;
     margin: 0 0 24px 0;
     color: #EAE2D5;
+    letter-spacing: 0.05em;
 }
 
 .lookbook-note-text {
-    font-size: 0.95rem;
-    line-height: 1.75;
-    color: rgba(234, 226, 213, 0.75);
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: rgba(234, 226, 213, 0.8);
     margin: 0;
     word-break: keep-all;
 }
@@ -2654,18 +2749,47 @@ footer {
 /* --- 4페이지: 피날레 --- */
 .lookbook-finale-box {
     text-align: center;
-    max-width: 850px;
-    padding: 0 30px;
+    max-width: 900px;
+    padding: 0 40px;
+    position: relative;
+    z-index: 10;
+}
+
+/* 백라이트 글로우 서클 */
+.lookbook-backlight-glow {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: backdropGlowPulse 8s infinite ease-in-out;
+}
+
+.lookbook-slide.active .lookbook-finale-img-frame {
+    animation: lookbookFadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
 .lookbook-finale-img-frame {
-    width: 480px;
-    height: 320px;
-    margin: 0 auto 40px auto;
-    border-radius: 12px;
+    width: 520px;
+    height: 340px;
+    margin: 0 auto 45px auto;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.6);
-    border: 2px solid rgba(120, 144, 156, 0.3);
+    box-shadow: 0 25px 55px rgba(0,0,0,0.8);
+    border: 2px solid rgba(212, 175, 55, 0.28);
+    position: relative;
+    z-index: 5;
+    transition: all 0.5s;
+}
+
+.lookbook-finale-img-frame:hover {
+    transform: scale(1.03);
+    border-color: #D4AF37;
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.25), 0 25px 55px rgba(0,0,0,0.95);
 }
 
 .lookbook-finale-img-frame img {
@@ -2677,42 +2801,100 @@ footer {
 .lookbook-pairing-title {
     font-size: 1.1rem;
     letter-spacing: 0.4em;
-    color: #78909C;
+    color: #D4AF37;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 5;
+}
+
+.lookbook-slide.active .lookbook-pairing-text {
+    animation: lookbookFadeInUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.3s both;
 }
 
 .lookbook-pairing-text {
-    font-size: 1.6rem;
+    font-size: 1.75rem;
     font-weight: 500;
     color: #EAE2D5;
-    line-height: 1.6;
+    line-height: 1.7;
     margin: 0;
     word-break: keep-all;
+    position: relative;
+    z-index: 5;
+    font-style: italic;
+    opacity: 0;
+}
+
+.lookbook-pairing-text::before {
+    content: '“';
+    font-size: 3rem;
+    font-family: 'Georgia', serif;
+    color: rgba(212, 175, 55, 0.4);
+    position: absolute;
+    left: -35px;
+    top: -20px;
+}
+
+.lookbook-pairing-text::after {
+    content: '”';
+    font-size: 3rem;
+    font-family: 'Georgia', serif;
+    color: rgba(212, 175, 55, 0.4);
+    position: absolute;
+    right: -35px;
+    bottom: -40px;
 }
 
 /* 반응형 모바일 대응 */
 @media (max-width: 768px) {
-    .lookbook-close-btn { top: 20px; right: 20px; font-size: 1.8rem; }
-    .lookbook-nav-btn { width: 45px; height: 45px; font-size: 1.1rem; }
+    .lookbook-gold-frame { top: 12px; left: 12px; right: 12px; bottom: 12px; }
+    .lookbook-close-btn { top: 20px; right: 25px; font-size: 1.8rem; }
+    .lookbook-nav-btn { width: 50px; height: 50px; font-size: 1.1rem; }
     .lookbook-nav-left { left: 15px; }
     .lookbook-nav-right { right: 15px; }
     
-    .lookbook-main-h1 { font-size: 2.5rem; }
+    .lookbook-main-h1 { font-size: 2.6rem; }
     .lookbook-split-container { width: 90%; height: 75%; flex-direction: column; gap: 20px; }
     .lookbook-split-left, .lookbook-split-right { width: 100%; flex: 1; height: 50%; }
-    .lookbook-caption-overlay { padding: 15px 20px; }
-    .lookbook-caption-title { font-size: 1.1rem; margin-bottom: 4px; }
-    .lookbook-caption-desc { font-size: 0.78rem; line-height: 1.4; }
+    .lookbook-split-left:hover, .lookbook-split-right:hover { transform: translateY(-4px) scale(1.01); }
+    .lookbook-caption-overlay { padding: 18px 25px; }
+    .lookbook-caption-title { font-size: 1.15rem; margin-bottom: 6px; }
+    .lookbook-caption-desc { font-size: 0.8rem; line-height: 1.45; }
     
     .lookbook-note-container { width: 90%; height: 75%; flex-direction: column; }
-    .lookbook-note-img { flex: 1; height: 40%; }
-    .lookbook-note-content { flex: 1.5; padding: 25px; }
-    .lookbook-note-title { font-size: 1.4rem; margin-bottom: 12px; }
-    .lookbook-note-text { font-size: 0.8rem; line-height: 1.5; }
+    .lookbook-note-img { flex: 1; height: 38%; }
+    .lookbook-note-img::before { background: linear-gradient(to bottom, transparent 80%, #141516 100%); }
+    .lookbook-note-content { flex: 1.4; padding: 30px; }
+    .lookbook-note-title { font-size: 1.45rem; margin-bottom: 12px; }
+    .lookbook-note-text { font-size: 0.82rem; line-height: 1.6; }
     
-    .lookbook-finale-img-frame { width: 280px; height: 180px; margin-bottom: 25px; }
-    .lookbook-pairing-text { font-size: 1.1rem; line-height: 1.5; }
+    .lookbook-backlight-glow { width: 280px; height: 280px; }
+    .lookbook-finale-img-frame { width: 290px; height: 190px; margin-bottom: 25px; }
+    .lookbook-pairing-text { font-size: 1.15rem; line-height: 1.55; padding: 0 10px; }
+    .lookbook-pairing-text::before { left: -15px; font-size: 2.2rem; }
+    .lookbook-pairing-text::after { right: -15px; font-size: 2.2rem; }
+}
+
+@keyframes kenBurns {
+    0% { transform: scale(1) translateZ(0); }
+    100% { transform: scale(1.08) translateZ(0); }
+}
+
+@keyframes goldGlow {
+    0% { box-shadow: 0 0 35px rgba(212, 175, 55, 0.12); }
+    50% { box-shadow: 0 0 65px rgba(212, 175, 55, 0.32); }
+    100% { box-shadow: 0 0 35px rgba(212, 175, 55, 0.12); }
+}
+
+@keyframes lookbookFadeInUp {
+    from { opacity: 0; transform: translateY(40px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes backdropGlowPulse {
+    0% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.55; transform: translate(-50%, -50%) scale(1.15); }
+    100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
 }
 
 
