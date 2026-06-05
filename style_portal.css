@@ -2348,5 +2348,372 @@ footer {
     animation: bookFadeIn 0.6s cubic-bezier(0.15, 0.85, 0.2, 1) forwards;
 }
 
+/* ==========================================================================
+   🖤 Heukimja Terrine (Vol.39) Fullscreen Lookbook System
+   ========================================================================== */
+#lookbook-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0d0e0f;
+    z-index: 20000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    font-family: 'Noto Serif KR', serif;
+    color: #EAE2D5;
+}
+
+#lookbook-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lookbook-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.lookbook-slider {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+.lookbook-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scale(1.05) translateZ(0);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.lookbook-slide.active {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+    pointer-events: auto;
+    z-index: 10;
+}
+
+.lookbook-slide.prev {
+    opacity: 0;
+    transform: scale(0.95) translateX(-20%) translateZ(0);
+}
+
+.lookbook-slide.next {
+    opacity: 0;
+    transform: scale(0.95) translateX(20%) translateZ(0);
+}
+
+/* 닫기 버튼 */
+.lookbook-close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: none;
+    border: none;
+    font-size: 2.2rem;
+    color: rgba(234, 226, 213, 0.6);
+    cursor: pointer;
+    z-index: 100;
+    transition: color 0.3s, transform 0.3s;
+    outline: none;
+}
+
+.lookbook-close-btn:hover {
+    color: #78909C;
+    transform: rotate(90deg);
+}
+
+/* 좌우 화살표 버튼 */
+.lookbook-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(15, 15, 15, 0.4);
+    border: 1px solid rgba(234, 226, 213, 0.15);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(234, 226, 213, 0.7);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 90;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    outline: none;
+}
+
+.lookbook-nav-btn:hover {
+    background: rgba(120, 144, 156, 0.2);
+    border-color: #78909C;
+    color: #78909C;
+    box-shadow: 0 0 15px rgba(120, 144, 156, 0.35);
+}
+
+.lookbook-nav-left { left: 40px; }
+.lookbook-nav-right { right: 40px; }
+.lookbook-nav-btn.disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* 하단 닷 인디케이터 */
+.lookbook-dots {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 16px;
+    z-index: 90;
+}
+
+.lookbook-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(234, 226, 213, 0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.lookbook-dot.active {
+    background: #78909C;
+    transform: scale(1.4);
+    box-shadow: 0 0 8px rgba(120, 144, 156, 0.8);
+}
+
+/* --- 1페이지: 메인화보 --- */
+.lookbook-bg-slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lookbook-bg-slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(13,14,15,0.4) 0%, rgba(13,14,15,0.92) 80%);
+}
+
+.lookbook-main-title-box {
+    position: relative;
+    z-index: 20;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.lookbook-main-tag {
+    font-size: 0.85rem;
+    letter-spacing: 0.5em;
+    color: #78909C;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    animation: fadeInUp 1.2s ease-out both;
+}
+
+.lookbook-main-h1 {
+    font-size: 4.2rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+    margin: 0;
+    color: #EAE2D5;
+    text-shadow: 0 4px 25px rgba(0,0,0,0.8);
+    animation: fadeInUp 1.2s ease-out 0.3s both;
+}
+
+/* --- 2페이지: 디테일 컷 (가로 분할) --- */
+.lookbook-split-container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    height: 68%;
+    gap: 40px;
+    align-items: center;
+}
+
+.lookbook-split-left, .lookbook-split-right {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    border: 1px solid rgba(234, 226, 213, 0.08);
+}
+
+.lookbook-split-left img, .lookbook-split-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lookbook-caption-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(13,14,15,0.95) 75%);
+    padding: 30px 40px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.lookbook-caption-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #78909C;
+}
+
+.lookbook-caption-desc {
+    font-size: 0.95rem;
+    color: rgba(234, 226, 213, 0.8);
+    line-height: 1.6;
+    word-break: keep-all;
+}
+
+/* --- 3페이지: 크리에이터 노트 --- */
+.lookbook-note-container {
+    display: flex;
+    width: 75%;
+    max-width: 1050px;
+    background: #151718;
+    border: 1px solid rgba(234, 226, 213, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    overflow: hidden;
+    height: 55%;
+}
+
+.lookbook-note-img {
+    flex: 1.1;
+    height: 100%;
+}
+
+.lookbook-note-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lookbook-note-content {
+    flex: 1.2;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.lookbook-note-tag {
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: #78909C;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.lookbook-note-title {
+    font-size: 2rem;
+    margin: 0 0 24px 0;
+    color: #EAE2D5;
+}
+
+.lookbook-note-text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(234, 226, 213, 0.75);
+    margin: 0;
+    word-break: keep-all;
+}
+
+/* --- 4페이지: 피날레 --- */
+.lookbook-finale-box {
+    text-align: center;
+    max-width: 850px;
+    padding: 0 30px;
+}
+
+.lookbook-finale-img-frame {
+    width: 480px;
+    height: 320px;
+    margin: 0 auto 40px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+    border: 2px solid rgba(120, 144, 156, 0.3);
+}
+
+.lookbook-finale-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lookbook-pairing-title {
+    font-size: 1.1rem;
+    letter-spacing: 0.4em;
+    color: #78909C;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.lookbook-pairing-text {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #EAE2D5;
+    line-height: 1.6;
+    margin: 0;
+    word-break: keep-all;
+}
+
+/* 반응형 모바일 대응 */
+@media (max-width: 768px) {
+    .lookbook-close-btn { top: 20px; right: 20px; font-size: 1.8rem; }
+    .lookbook-nav-btn { width: 45px; height: 45px; font-size: 1.1rem; }
+    .lookbook-nav-left { left: 15px; }
+    .lookbook-nav-right { right: 15px; }
+    
+    .lookbook-main-h1 { font-size: 2.5rem; }
+    .lookbook-split-container { width: 90%; height: 75%; flex-direction: column; gap: 20px; }
+    .lookbook-split-left, .lookbook-split-right { width: 100%; flex: 1; height: 50%; }
+    .lookbook-caption-overlay { padding: 15px 20px; }
+    .lookbook-caption-title { font-size: 1.1rem; margin-bottom: 4px; }
+    .lookbook-caption-desc { font-size: 0.78rem; line-height: 1.4; }
+    
+    .lookbook-note-container { width: 90%; height: 75%; flex-direction: column; }
+    .lookbook-note-img { flex: 1; height: 40%; }
+    .lookbook-note-content { flex: 1.5; padding: 25px; }
+    .lookbook-note-title { font-size: 1.4rem; margin-bottom: 12px; }
+    .lookbook-note-text { font-size: 0.8rem; line-height: 1.5; }
+    
+    .lookbook-finale-img-frame { width: 280px; height: 180px; margin-bottom: 25px; }
+    .lookbook-pairing-text { font-size: 1.1rem; line-height: 1.5; }
+}
+
 
 

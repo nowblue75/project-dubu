@@ -1546,14 +1546,248 @@ function renderBookshelf() {
     }, 50);
 }
 
+let lookbookCurrentPage = 1;
+const lookbookTotalPages = 4;
+
 function openLookbook(recipeId) {
     recipeId = Number(recipeId);
     const recipe = PROJECTS.find(p => p.id === recipeId);
     if (!recipe) return;
-    if (recipe.path) {
-        window.open(recipe.path, '_blank');
+
+    // Vol.39 흑임자 테린 전용 풀스크린 화보집 파일럿 구현
+    if (recipeId === 39) {
+        // 1. 기존 상세 모달 찾기 및 페이드아웃
+        const focusOverlay = document.getElementById('focus-modal-overlay');
+        if (focusOverlay) {
+            focusOverlay.classList.remove('active');
+            setTimeout(() => {
+                focusOverlay.style.display = 'none';
+            }, 400);
+        }
+
+        // 2. 가상 라우팅 설정 (/lookbook/39)
+        history.pushState({ page: 'lookbook', id: 39 }, '', '/lookbook/39');
+
+        // 3. 풀스크린 룩북 오버레이 동적 생성
+        let lookbookOverlay = document.getElementById('lookbook-overlay');
+        if (lookbookOverlay) lookbookOverlay.remove();
+
+        lookbookOverlay = document.createElement('div');
+        lookbookOverlay.id = 'lookbook-overlay';
+        lookbookOverlay.innerHTML = `
+            <div class="lookbook-container">
+                <button class="lookbook-close-btn" onclick="closeLookbook()">&times;</button>
+                
+                <button class="lookbook-nav-btn lookbook-nav-left" onclick="changeLookbookPage(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="lookbook-nav-btn lookbook-nav-right" onclick="changeLookbookPage(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                
+                <div class="lookbook-slider">
+                    <!-- 1페이지: 메인화보 -->
+                    <div class="lookbook-slide active" data-page="1">
+                        <div class="lookbook-bg-slide" style="background-image: url('40. 순두부 흑임자테린/assets/01.png');">
+                            <div class="lookbook-main-title-box">
+                                <div class="lookbook-main-tag">MEMBERSHIP ONLY // DESSERT ARCHIVE</div>
+                                <h1 class="lookbook-main-h1">Vol.39 순두부 흑임자 테린</h1>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 2페이지: 디테일 컷 (질감/단면) -->
+                    <div class="lookbook-slide" data-page="2" style="background: #111213;">
+                        <div class="lookbook-split-container">
+                            <div class="lookbook-split-left">
+                                <img src="40. 순두부 흑임자테린/assets/07.png" alt="흑임자테린 단면">
+                                <div class="lookbook-caption-overlay">
+                                    <div class="lookbook-caption-title">07 // 단면의 기록</div>
+                                    <div class="lookbook-caption-desc">칼 끝을 묵직하게 잡아당기는 응축된 찰기를 만나는 기쁨</div>
+                                </div>
+                            </div>
+                            <div class="lookbook-split-right">
+                                <img src="40. 순두부 흑임자테린/assets/lb_aging_new.png" alt="흑임자테린 디테일">
+                                <div class="lookbook-caption-overlay">
+                                    <div class="lookbook-caption-title">08 // 숙성의 미학</div>
+                                    <div class="lookbook-caption-desc">흑임자와 순두부가 만나 탄생한 가장 꾸덕한 침묵</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3페이지: 크리에이터 노트 (베이킹 장면) -->
+                    <div class="lookbook-slide" data-page="3" style="background: #0f1011;">
+                        <div class="lookbook-note-container">
+                            <div class="lookbook-note-img">
+                                <img src="40. 순두부 흑임자테린/assets/baking_shot.png" alt="베이킹 굽기 과정">
+                            </div>
+                            <div class="lookbook-note-content">
+                                <div class="lookbook-note-tag">BAKING ARCHIVE NOTES</div>
+                                <h3 class="lookbook-note-title">중탕 베이킹의 깊이</h3>
+                                <p class="lookbook-note-text">
+                                    오븐 팬에 뜨거운 물을 채워 은은하게 쪄내듯 구워내는 150℃ 중탕 베이킹. 
+                                    순두부의 묵직한 수분을 빵 속에 그대로 가두어 테린 특유의 
+                                    꾸덕하고 실키한 텍스처를 완성하는 가장 핵심적인 순간입니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4페이지: 피날레 (마무리 컷 & 페어링) -->
+                    <div class="lookbook-slide" data-page="4" style="background: #0b0c0d;">
+                        <div class="lookbook-finale-box">
+                            <div class="lookbook-finale-img-frame">
+                                <img src="40. 순두부 흑임자테린/assets/02.png" alt="완성된 흑임자테린">
+                            </div>
+                            <div class="lookbook-pairing-title">PAIRING MOMENT</div>
+                            <p class="lookbook-pairing-text">
+                                "깊어가는 가을 밤, 따뜻한 아메리카노 혹은 쌉싸름한 황차 한 잔과 함께하는 차분한 여유."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lookbook-dots">
+                    <span class="lookbook-dot active" onclick="goLookbookPage(1)"></span>
+                    <span class="lookbook-dot" onclick="goLookbookPage(2)"></span>
+                    <span class="lookbook-dot" onclick="goLookbookPage(3)"></span>
+                    <span class="lookbook-dot" onclick="goLookbookPage(4)"></span>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(lookbookOverlay);
+
+        lookbookCurrentPage = 1;
+        updateLookbookUI();
+
+        // 4. 페이드인 활성화
+        setTimeout(() => {
+            lookbookOverlay.classList.add('active');
+        }, 50);
+
+        // 5. 이벤트 및 휠 바인딩
+        initLookbookEvents();
     } else {
-        alert('룩북 페이지 준비 중입니다.');
+        // 기존 룩북보기는 다른 레시피의 경우 새 탭 연결
+        if (recipe.path) {
+            window.open(recipe.path, '_blank');
+        } else {
+            alert('룩북 페이지 준비 중입니다.');
+        }
     }
 }
+
+function updateLookbookUI() {
+    const slides = document.querySelectorAll('.lookbook-slide');
+    const dots = document.querySelectorAll('.lookbook-dot');
+    
+    slides.forEach(slide => {
+        const pNum = Number(slide.getAttribute('data-page'));
+        slide.className = 'lookbook-slide';
+        if (pNum === lookbookCurrentPage) {
+            slide.classList.add('active');
+        } else if (pNum < lookbookCurrentPage) {
+            slide.classList.add('prev');
+        } else {
+            slide.classList.add('next');
+        }
+    });
+
+    dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx + 1 === lookbookCurrentPage);
+    });
+
+    // 화살표 활성/비활성 제어
+    const leftBtn = document.querySelector('.lookbook-nav-left');
+    const rightBtn = document.querySelector('.lookbook-nav-right');
+    if (leftBtn) leftBtn.classList.toggle('disabled', lookbookCurrentPage === 1);
+    if (rightBtn) rightBtn.classList.toggle('disabled', lookbookCurrentPage === lookbookTotalPages);
+}
+
+function changeLookbookPage(dir) {
+    const target = lookbookCurrentPage + dir;
+    if (target >= 1 && target <= lookbookTotalPages) {
+        lookbookCurrentPage = target;
+        updateLookbookUI();
+    }
+}
+
+function goLookbookPage(pageNum) {
+    if (pageNum >= 1 && pageNum <= lookbookTotalPages) {
+        lookbookCurrentPage = pageNum;
+        updateLookbookUI();
+    }
+}
+
+// ✕ 닫기 동작
+function closeLookbook(isFromPopstate = false) {
+    const lookbookOverlay = document.getElementById('lookbook-overlay');
+    if (!lookbookOverlay) return;
+
+    lookbookOverlay.classList.remove('active');
+    
+    // popstate가 아닐 때에만 브라우저 뒤로가기 실행 (가상 라우팅 원복)
+    if (!isFromPopstate) {
+        history.back();
+    }
+
+    setTimeout(() => {
+        lookbookOverlay.remove();
+        // 숨겨두었던 원래 상세화면 복귀
+        const focusOverlay = document.getElementById('focus-modal-overlay');
+        if (focusOverlay) {
+            focusOverlay.style.display = 'flex';
+            setTimeout(() => {
+                focusOverlay.classList.add('active');
+            }, 50);
+        }
+    }, 600);
+}
+
+// 휠 및 키보드 이벤트 바인딩
+let lookbookWheelDebounce = false;
+
+function initLookbookEvents() {
+    // 휠 감지
+    const overlay = document.getElementById('lookbook-overlay');
+    if (!overlay) return;
+
+    overlay.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        if (lookbookWheelDebounce) return;
+        
+        lookbookWheelDebounce = true;
+        if (e.deltaY > 0) {
+            changeLookbookPage(1);
+        } else {
+            changeLookbookPage(-1);
+        }
+
+        setTimeout(() => {
+            lookbookWheelDebounce = false;
+        }, 800); // 휠 리스너 디바운스
+    }, { passive: false });
+
+    // 키보드 감지
+    const handleKeyDown = (e) => {
+        if (!document.getElementById('lookbook-overlay')) {
+            document.removeEventListener('keydown', handleKeyDown);
+            return;
+        }
+        if (e.key === 'ArrowRight') {
+            changeLookbookPage(1);
+        } else if (e.key === 'ArrowLeft') {
+            changeLookbookPage(-1);
+        } else if (e.key === 'Escape') {
+            closeLookbook();
+        }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+}
+
+// popstate 리스너 등록 (뒤로가기 시 룩북 닫기 연동)
+window.addEventListener('popstate', (e) => {
+    const lookbookOverlay = document.getElementById('lookbook-overlay');
+    if (lookbookOverlay) {
+        // 현재 브라우저 히스토리 상태가 룩북이 아니라면 닫기 수행
+        closeLookbook(true);
+    }
+});
 
