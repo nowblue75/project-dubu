@@ -715,7 +715,7 @@ function getRecipeMetadata(recipeId) {
             bakingTip = "180°C 예열 → 170°C / 40분 (콩물 마무리 + 하루 숙성 권장)";
             cheers = "다음 날이 진짜입니다! 하루 숙성 후 먹는 그 촉촉함과 고소함은 레시피의 진짜 얼굴이에요. ☀️";
         } else if (recipe.id === 39) {
-            bakingTip = "중탕 예열 150℃ / 140℃ 60분 (뜸 10분)";
+            bakingTip = "중탕 예열 140℃ / 140℃ 60분 (뜸 10분)";
             cheers = "순두부 물기를 짜지 않고 그대로 사용하여, 촉촉함과 꾸덕함이 극대화되는 특별한 레시피입니다. 🖤";
         } else if (recipe.id === 38) {
             bakingTip = "오븐 예열 180℃ / 160℃ 30~35분";
@@ -1640,7 +1640,7 @@ function openLookbook(recipeId) {
                                 <div class="lookbook-note-tag">BAKING ARCHIVE NOTES</div>
                                 <h3 class="lookbook-note-title">중탕 베이킹의 깊이</h3>
                                 <p class="lookbook-note-text">
-                                    오븐 팬에 뜨거운 물을 채워 은은하게 쪄내듯 구워내는 150℃ 중탕 베이킹. 
+                                    오븐 팬에 뜨거운 물을 채워 은은하게 쪄내듯 구워내는 140℃ 중탕 베이킹. 
                                     순두부의 묵직한 수분을 빵 속에 그대로 가두어 테린 특유의 
                                     꾸덕하고 실키한 텍스처를 완성하는 가장 핵심적인 순간입니다.
                                 </p>
