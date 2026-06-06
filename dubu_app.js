@@ -1599,42 +1599,45 @@ function openLookbook(recipeId) {
                 <button class="lookbook-nav-btn lookbook-nav-right" onclick="changeLookbookPage(1)"><i class="fa-solid fa-chevron-right"></i></button>
                 
                 <div class="lookbook-slider">
-                    <!-- 1페이지: 메인화보 -->
+                    <!-- 1페이지: 메인화보 (완성샷 전체 풀스크린) -->
                     <div class="lookbook-slide active" data-page="1">
                         <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/01.png');">
                             <div class="lookbook-main-title-box">
-                                <div class="lookbook-main-tag">MEMBERSHIP ONLY // DESSERT ARCHIVE</div>
+                                <div class="lookbook-main-tag">MEMBERSHIP ONLY // KOREAN TRADITIONAL</div>
                                 <div class="lookbook-main-divider"></div>
                                 <h1 class="lookbook-main-h1">Vol.39 순두부 흑임자 테린</h1>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- 2페이지: 디테일 컷 (질감/단면) -->
-                    <div class="lookbook-slide" data-page="2" style="background: #111213;">
-                        <div class="lookbook-split-container">
-                            <div class="lookbook-split-left">
+                    <!-- 2페이지: 단면/질감 클로즈업 (베이지 배경 바탕의 세련된 세로 액자형 레이아웃) -->
+                    <div class="lookbook-slide" data-page="2" style="background: #F5EBE0;">
+                        <div class="lookbook-detail-container">
+                            <div class="lookbook-detail-img-frame">
                                 <img src="${lookbookBasePath}40. 순두부 흑임자테린/assets/07.png" alt="흑임자테린 단면">
-                                <div class="lookbook-caption-overlay">
-                                    <div class="lookbook-caption-title">07 // 단면의 기록</div>
-                                    <div class="lookbook-caption-desc">칼 끝을 묵직하게 잡아당기는 응축된 찰기를 만나는 기쁨</div>
-                                </div>
                             </div>
-                            <div class="lookbook-split-right">
-                                <img src="${lookbookBasePath}40. 순두부 흑임자테린/assets/lb_aging_new.png" alt="흑임자테린 디테일">
-                                <div class="lookbook-caption-overlay">
-                                    <div class="lookbook-caption-title">08 // 숙성의 미학</div>
-                                    <div class="lookbook-caption-desc">흑임자와 순두부가 만나 탄생한 가장 꾸덕한 침묵</div>
-                                </div>
+                            <div class="lookbook-detail-text-box">
+                                <div class="lookbook-detail-tag">TEXTURE DETAIL</div>
+                                <h2 class="lookbook-detail-title">단면의 기록</h2>
+                                <div class="lookbook-detail-divider"></div>
+                                <p class="lookbook-detail-desc">
+                                    칼 끝을 묵직하게 잡아당기는 응축된 찰기를 만나는 기쁨.
+                                    순두부의 묵직한 수분을 머금어 부드럽고 꾸덕하게 쪼개지는 밀도 높은 밀착감을 선사합니다.
+                                </p>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- 3페이지: 크리에이터 노트 (베이킹 장면) -->
-                    <div class="lookbook-slide" data-page="3" style="background: #0f1011;">
+                    <!-- 3페이지: 크리에이터 노트 (베이킹 & 숙성 2분할 좌측 + 노트 우측) -->
+                    <div class="lookbook-slide" data-page="3" style="background: #F5EBE0;">
                         <div class="lookbook-note-container">
-                            <div class="lookbook-note-img">
-                                <img src="${lookbookBasePath}40. 순두부 흑임자테린/assets/baking_shot.png" alt="베이킹 굽기 과정">
+                            <div class="lookbook-note-images">
+                                <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/baking_shot.png');">
+                                    <div class="lookbook-img-label">140℃ 중탕 베이킹</div>
+                                </div>
+                                <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/lb_aging_new.png');">
+                                    <div class="lookbook-img-label">하루의 숙성</div>
+                                </div>
                             </div>
                             <div class="lookbook-note-content">
                                 <div class="lookbook-note-tag">BAKING ARCHIVE NOTES</div>
@@ -1648,18 +1651,16 @@ function openLookbook(recipeId) {
                         </div>
                     </div>
                     
-                    <!-- 4페이지: 피날레 (마무리 컷 & 페어링) -->
-                    <div class="lookbook-slide" data-page="4" style="background: #0b0c0d;">
-                        <!-- 백라이트 글로우 서클 추가 -->
-                        <div class="lookbook-backlight-glow"></div>
-                        <div class="lookbook-finale-box">
-                            <div class="lookbook-finale-img-frame">
-                                <img src="${lookbookBasePath}40. 순두부 흑임자테린/assets/02.png" alt="완성된 흑임자테린">
+                    <!-- 4페이지: 피날레 (완성 1조각 풀스크린 오버레이 + 페어링) -->
+                    <div class="lookbook-slide" data-page="4">
+                        <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/08.png');">
+                            <div class="lookbook-backlight-glow"></div>
+                            <div class="lookbook-finale-box">
+                                <div class="lookbook-pairing-title">PAIRING MOMENT</div>
+                                <p class="lookbook-pairing-text">
+                                    깊어가는 가을 밤, 따뜻한 아메리카노 혹은 구수한 우롱차 한 잔과 함께하는 차분한 여유.
+                                </p>
                             </div>
-                            <div class="lookbook-pairing-title">PAIRING MOMENT</div>
-                            <p class="lookbook-pairing-text">
-                                깊어가는 가을 밤, 따뜻한 아메리카노 혹은 구수한 우롱차 한 잔과 함께하는 차분한 여유.
-                            </p>
                         </div>
                     </div>
                 </div>
