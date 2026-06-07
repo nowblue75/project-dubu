@@ -1590,8 +1590,8 @@ function openLookbook(recipeId) {
         lookbookOverlay.id = 'lookbook-overlay';
         lookbookOverlay.innerHTML = `
             <div class="lookbook-container">
-                <!-- 럭셔리 골드 테두리 프레임 추가 -->
-                <div class="lookbook-gold-frame"></div>
+                <!-- 럭셔리 네온 테크 라인 프레임 -->
+                <div class="lookbook-tech-frame"></div>
 
                 <button class="lookbook-close-btn" onclick="closeLookbook()">&times;</button>
                 
@@ -1599,67 +1599,95 @@ function openLookbook(recipeId) {
                 <button class="lookbook-nav-btn lookbook-nav-right" onclick="changeLookbookPage(1)"><i class="fa-solid fa-chevron-right"></i></button>
                 
                 <div class="lookbook-slider">
-                    <!-- 1페이지: 메인화보 (완성샷 전체 풀스크린) -->
+                    <!-- 1페이지: 메인 완성샷 풀스크린 + 상단 테크 스캔 패널 -->
                     <div class="lookbook-slide active" data-page="1">
                         <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/01.png');">
-                            <div class="lookbook-main-title-box">
-                                <div class="lookbook-main-tag">MEMBERSHIP ONLY // KOREAN TRADITIONAL</div>
-                                <div class="lookbook-main-divider"></div>
-                                <h1 class="lookbook-main-h1">Vol.39 순두부 흑임자 테린</h1>
+                            <div class="lookbook-tech-scan-panel">
+                                <div class="lookbook-tech-scan-line"></div>
+                                <h1 class="lookbook-tech-title">Vol.39 순두부 흑임자 테린</h1>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- 2페이지: 단면/질감 클로즈업 (베이지 배경 바탕의 세련된 세로 액자형 레이아웃) -->
-                    <div class="lookbook-slide" data-page="2" style="background: #F5EBE0;">
+                    <!-- 2페이지: 단면 컷 + [TEXTURE ANALYSIS] 인포그래픽 패널 -->
+                    <div class="lookbook-slide" data-page="2">
                         <div class="lookbook-detail-container">
                             <div class="lookbook-detail-img-frame">
                                 <img src="${lookbookBasePath}40. 순두부 흑임자테린/assets/07.png" alt="흑임자테린 단면">
+                                <div class="lookbook-scanner-bar"></div>
                             </div>
-                            <div class="lookbook-detail-text-box">
-                                <div class="lookbook-detail-tag">TEXTURE DETAIL</div>
-                                <h2 class="lookbook-detail-title">단면의 기록</h2>
-                                <div class="lookbook-detail-divider"></div>
-                                <p class="lookbook-detail-desc">
-                                    칼 끝을 묵직하게 잡아당기는 응축된 찰기를 만나는 기쁨.
-                                    순두부의 묵직한 수분을 머금어 부드럽고 꾸덕하게 쪼개지는 밀도 높은 밀착감을 선사합니다.
-                                </p>
+                            <div class="lookbook-tech-panel">
+                                <div class="lookbook-panel-header">[TEXTURE ANALYSIS]</div>
+                                <div class="lookbook-panel-content">
+                                    <div class="lookbook-analysis-item">
+                                        <span class="label">찰기 (STICKINESS)</span>
+                                        <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
+                                        <span class="value">95%</span>
+                                    </div>
+                                    <div class="lookbook-analysis-item">
+                                        <span class="label">유화도 (EMULSIFICATION)</span>
+                                        <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
+                                        <span class="value">90%</span>
+                                    </div>
+                                    <div class="lookbook-analysis-item">
+                                        <span class="label">밀도 (DENSITY)</span>
+                                        <div class="bar-bg"><div class="bar-fill" style="width: 98%;"></div></div>
+                                        <span class="value">98%</span>
+                                    </div>
+                                    <p class="lookbook-analysis-desc">
+                                        순두부의 풍부한 수분이 흑임자 페이스트와 화이트 초콜릿의 분자 구조 사이에 정교하게 밀착 유화되어, 빵보다 쫀득하고 푸딩보다 묵직하게 입안을 감싸는 밀도 높은 텍스처를 완성합니다.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- 3페이지: 크리에이터 노트 (베이킹 & 숙성 2분할 좌측 + 노트 우측) -->
-                    <div class="lookbook-slide" data-page="3" style="background: #F5EBE0;">
+                    <!-- 3페이지: 2분할 컷 + [PROCESS MONITORING: 150℃ STEAM BAKING] 로딩바 -->
+                    <div class="lookbook-slide" data-page="3">
                         <div class="lookbook-note-container">
                             <div class="lookbook-note-images">
                                 <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/baking_shot.png');">
-                                    <div class="lookbook-img-label">140℃ 중탕 베이킹</div>
+                                    <div class="lookbook-img-label">150℃ 중탕 베이킹</div>
                                 </div>
                                 <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/lb_aging_new.png');">
                                     <div class="lookbook-img-label">하루의 숙성</div>
                                 </div>
                             </div>
-                            <div class="lookbook-note-content">
-                                <div class="lookbook-note-tag">BAKING ARCHIVE NOTES</div>
-                                <h3 class="lookbook-note-title">중탕 베이킹의 깊이</h3>
-                                <p class="lookbook-note-text">
-                                    오븐 팬에 뜨거운 물을 채워 은은하게 쪄내듯 구워내는 140℃ 중탕 베이킹. 
-                                    순두부의 묵직한 수분을 빵 속에 그대로 가두어 테린 특유의 
-                                    꾸덕하고 실키한 텍스처를 완성하는 가장 핵심적인 순간입니다.
-                                </p>
+                            <div class="lookbook-tech-panel">
+                                <div class="lookbook-panel-header">[PROCESS MONITORING: 150℃ STEAM BAKING]</div>
+                                <div class="lookbook-panel-content">
+                                    <div class="lookbook-process-loader">
+                                        <div class="loader-label">SYSTEM STEAM BAKING IN PROGRESS...</div>
+                                        <div class="loader-bar-bg"><div class="loader-bar-fill"></div></div>
+                                        <div class="loader-percentage">100%</div>
+                                    </div>
+                                    <p class="lookbook-note-text" style="margin-top: 22px;">
+                                        오븐 팬에 뜨거운 물을 채워 풍부한 스팀을 지속 공급하는 150℃ 중탕 베이킹 공정. 
+                                        테린 표면의 균열을 원천 차단하고 촉촉함을 응축시킨 뒤, 24시간의 냉장 숙성을 거치며 깊고 진한 밀착감을 가진 테린이 비로소 완성됩니다.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- 4페이지: 피날레 (완성 1조각 풀스크린 오버레이 + 페어링) -->
+                    <!-- 4페이지: 피날레 풀스크린 + [RECIPE SYSTEM: COMPLETE] 네온 팝업 -->
                     <div class="lookbook-slide" data-page="4">
                         <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/08.png');">
-                            <div class="lookbook-backlight-glow"></div>
-                            <div class="lookbook-finale-box">
-                                <div class="lookbook-pairing-title">PAIRING MOMENT</div>
-                                <p class="lookbook-pairing-text">
-                                    깊어가는 가을 밤, 따뜻한 아메리카노 혹은 구수한 우롱차 한 잔과 함께하는 차분한 여유.
-                                </p>
+                            <div class="lookbook-tech-complete-panel">
+                                <div class="complete-header">[RECIPE SYSTEM: COMPLETE]</div>
+                                <div class="complete-body">
+                                    <div class="complete-icon"><i class="fa-solid fa-circle-check"></i></div>
+                                    <h2 class="complete-title">순두부 흑임자 테린 완결</h2>
+                                    <div class="complete-pairing-section">
+                                        <div class="pairing-title">RECOMMENDED PAIRING DRINK</div>
+                                        <div class="pairing-drinks">
+                                            <span class="drink-tag"><i class="fa-solid fa-mug-hot"></i> 아메리카노</span>
+                                            <span class="drink-tag"><i class="fa-solid fa-leaf"></i> 따뜻한 녹차</span>
+                                            <span class="drink-tag"><i class="fa-solid fa-mug-saucer"></i> 구수한 우롱차</span>
+                                            <span class="drink-tag"><i class="fa-solid fa-glass-water"></i> 카페 라떼</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
