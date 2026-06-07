@@ -1599,17 +1599,16 @@ function openLookbook(recipeId) {
                 <button class="lookbook-nav-btn lookbook-nav-right" onclick="changeLookbookPage(1)"><i class="fa-solid fa-chevron-right"></i></button>
                 
                 <div class="lookbook-slider">
-                    <!-- 1페이지: 메인 완성샷 풀스크린 + 상단 테크 스캔 패널 -->
+                    <!-- 1페이지: 메인 완성샷 풀스크린 + 상단 테크 스캔 패널 (스캔라인 모션 삭제) -->
                     <div class="lookbook-slide active" data-page="1">
                         <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/01.png');">
                             <div class="lookbook-tech-scan-panel">
-                                <div class="lookbook-tech-scan-line"></div>
                                 <h1 class="lookbook-tech-title">Vol.39 순두부 흑임자 테린</h1>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- 2페이지: 단면 컷 + [TEXTURE ANALYSIS] 인포그래픽 패널 -->
+                    <!-- 2페이지: 단면 컷 + [TEXTURE ANALYSIS] 인포그래픽 패널 (텍스트 간결화) -->
                     <div class="lookbook-slide" data-page="2">
                         <div class="lookbook-detail-container">
                             <div class="lookbook-detail-img-frame">
@@ -1635,26 +1634,26 @@ function openLookbook(recipeId) {
                                         <span class="value">98%</span>
                                     </div>
                                     <p class="lookbook-analysis-desc">
-                                        순두부의 풍부한 수분이 흑임자 페이스트와 화이트 초콜릿의 분자 구조 사이에 정교하게 밀착 유화되어, 빵보다 쫀득하고 푸딩보다 묵직하게 입안을 감싸는 밀도 높은 텍스처를 완성합니다.
+                                        순두부의 풍부한 수분과 흑임자가 정밀하게 밀착 유화되어, 빵보다 쫀득하고 푸딩보다 묵직한 극한의 밀착 텍스처를 만듭니다.
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- 3페이지: 2분할 컷 + [PROCESS MONITORING: 150℃ STEAM BAKING] 로딩바 -->
+                    <!-- 3페이지: 2분할 컷 + [PROCESS MONITORING: 140℃ STEAM BAKING] (140도 원복 및 텍스트 간결화) -->
                     <div class="lookbook-slide" data-page="3">
                         <div class="lookbook-note-container">
                             <div class="lookbook-note-images">
                                 <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/baking_shot.png');">
-                                    <div class="lookbook-img-label">150℃ 중탕 베이킹</div>
+                                    <div class="lookbook-img-label">140℃ 중탕 베이킹</div>
                                 </div>
                                 <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/lb_aging_new.png');">
                                     <div class="lookbook-img-label">하루의 숙성</div>
                                 </div>
                             </div>
                             <div class="lookbook-tech-panel">
-                                <div class="lookbook-panel-header">[PROCESS MONITORING: 150℃ STEAM BAKING]</div>
+                                <div class="lookbook-panel-header">[PROCESS MONITORING: 140℃ STEAM BAKING]</div>
                                 <div class="lookbook-panel-content">
                                     <div class="lookbook-process-loader">
                                         <div class="loader-label">SYSTEM STEAM BAKING IN PROGRESS...</div>
@@ -1662,8 +1661,8 @@ function openLookbook(recipeId) {
                                         <div class="loader-percentage">100%</div>
                                     </div>
                                     <p class="lookbook-note-text" style="margin-top: 22px;">
-                                        오븐 팬에 뜨거운 물을 채워 풍부한 스팀을 지속 공급하는 150℃ 중탕 베이킹 공정. 
-                                        테린 표면의 균열을 원천 차단하고 촉촉함을 응축시킨 뒤, 24시간의 냉장 숙성을 거치며 깊고 진한 밀착감을 가진 테린이 비로소 완성됩니다.
+                                        뜨거운 물을 채운 오븐에서 140℃ 스팀으로 서서히 구워내 내부 수분을 완벽하게 봉인합니다. 
+                                        이후 24시간의 냉장 숙성을 거치며 흑임자의 깊고 꾸덕한 밀도가 완성됩니다.
                                     </p>
                                 </div>
                             </div>

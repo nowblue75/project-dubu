@@ -2544,6 +2544,18 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 8s ease-out;
+}
+
+/* 1, 4페이지의 요리 이미지 초밀착 줌인 (쇼츠 쿡방 스타일) */
+.lookbook-slide[data-page="1"].active .lookbook-bg-slide,
+.lookbook-slide[data-page="4"].active .lookbook-bg-slide {
+    animation: kenBurnsZoom 8s ease-out forwards;
+}
+
+@keyframes kenBurnsZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
 }
 
 /* 풀스크린 가독성을 돕는 다크 그라디언트 */
@@ -2570,14 +2582,6 @@ footer {
 
 .lookbook-slide.active .lookbook-tech-scan-panel {
     animation: techPanelFadeIn 1s cubic-bezier(0.25, 1, 0.5, 1) both;
-}
-
-.lookbook-tech-scan-line {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 2px;
-    background: #00ffcc;
-    box-shadow: 0 0 10px #00ffcc;
-    animation: scannerMove 3s infinite linear;
 }
 
 .lookbook-tech-title {
@@ -2714,8 +2718,8 @@ footer {
 }
 
 .lookbook-analysis-desc {
-    font-size: 0.92rem;
-    line-height: 1.7;
+    font-size: 1.15rem;
+    line-height: 1.85;
     color: #a0aab2;
     margin: 15px 0 0 0;
     word-break: keep-all;
@@ -2830,11 +2834,19 @@ footer {
 }
 
 .lookbook-note-text {
-    font-size: 0.92rem;
-    line-height: 1.75;
+    font-size: 1.15rem;
+    line-height: 1.85;
     color: #a0aab2;
     word-break: keep-all;
     margin: 0;
+}
+
+/* 4페이지 비대칭 정렬을 위한 우측 정렬 */
+.lookbook-slide[data-page="4"] {
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 8%;
+    box-sizing: border-box;
 }
 
 
@@ -2935,6 +2947,10 @@ footer {
 
 /* --- 반응형 모바일 대응 (HUD 테크화) --- */
 @media (max-width: 768px) {
+    .lookbook-slide[data-page="4"] {
+        justify-content: center;
+        padding-right: 0;
+    }
     .lookbook-tech-frame { top: 12px; left: 12px; right: 12px; bottom: 12px; }
     .lookbook-close-btn { top: 20px; right: 25px; font-size: 1.8rem; width: 45px; height: 45px; }
     .lookbook-nav-btn { width: 50px; height: 50px; font-size: 1.1rem; }
