@@ -72,6 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0] });
 
     sections.forEach(section => scrollObserver.observe(section));
+
+    // 최초 진입 시 URL 라우팅 처리 (/lookbook/39 대응)
+    const initPath = window.location.pathname;
+    if (initPath.includes('/lookbook/39')) {
+        setTimeout(() => {
+            openFocusStage(39);
+            setTimeout(() => {
+                openLookbook(39);
+            }, 150);
+        }, 300);
+    }
 });
 
 // ==========================================================================
@@ -1764,12 +1775,16 @@ function goLookbookPage(pageNum) {
     }
 }
 
-// ✕ 닫기 동작
+// ✕ 닫기 동작 중복 차단 플래그
+let isClosingLookbook = false;
+
 function closeLookbook(isFromPopstate = false) {
     const lookbookOverlay = document.getElementById('lookbook-overlay');
-    if (!lookbookOverlay) return;
+    if (!lookbookOverlay || isClosingLookbook) return;
 
+    isClosingLookbook = true;
     lookbookOverlay.classList.remove('active');
+    lookbookOverlay.classList.add('closing');
     
     // popstate가 아닐 때에만 브라우저 뒤로가기 실행 (가상 라우팅 원복)
     if (!isFromPopstate) {
@@ -1778,6 +1793,7 @@ function closeLookbook(isFromPopstate = false) {
 
     setTimeout(() => {
         lookbookOverlay.remove();
+        isClosingLookbook = false;
         // 숨겨두었던 원래 상세화면 복귀
         const focusOverlay = document.getElementById('focus-modal-overlay');
         if (focusOverlay) {
@@ -1785,6 +1801,9 @@ function closeLookbook(isFromPopstate = false) {
             setTimeout(() => {
                 focusOverlay.classList.add('active');
             }, 50);
+        } else {
+            // 새로고침이나 URL 직접 입력으로 상세 모달이 없는 경우, 동적으로 39번 상세 모달 렌더링
+            openFocusStage(39);
         }
     }, 600);
 }

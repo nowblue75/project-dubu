@@ -18,10 +18,13 @@ http.createServer((req, res) => {
     }
 
     let urlPath = req.url.split('?')[0];
-    let filePath = path.join(__dirname, urlPath === '/' ? 'index.html' : urlPath);
     try {
-        filePath = decodeURIComponent(filePath);
+        urlPath = decodeURIComponent(urlPath);
     } catch(e) {}
+
+    // SPA Fallback: /lookbook 으로 시작하면서 확장자가 없는 주소는 index.html로 서빙
+    const isSPARoute = urlPath.startsWith('/lookbook') && !path.extname(urlPath);
+    let filePath = path.join(__dirname, (urlPath === '/' || isSPARoute) ? 'index.html' : urlPath);
 
     const ext = path.extname(filePath).toLowerCase();
     let contentType = 'text/html; charset=utf-8';
@@ -47,7 +50,13 @@ http.createServer((req, res) => {
             }
         } else {
             console.log(`[200] ${req.url}`);
-            res.writeHead(200, { 'Content-Type': contentType });
+            // 강력한 캐시 방지 헤더 설정
+            res.writeHead(200, { 
+                'Content-Type': contentType,
+                'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+            });
             res.end(content);
         }
     });
