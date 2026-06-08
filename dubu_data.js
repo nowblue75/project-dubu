@@ -422,34 +422,107 @@ const PROJECTS = [
     {
         "id": 5,
         "title": "순두부 황치즈휘낭시에",
-        "isInteractive": false,
-        "blogUrl": "https://blog.naver.com/project_dubu/223916749341"
+        "noOven": false,
+        "noFlour": false,
+        "noButter": false,
+        "oneBowl": true,
+        "isInteractive": true,
+        "path": "5. 순두부황치즈휘낭시에_완/index.html",
+        "img": "5. 순두부황치즈휘낭시에_완/KakaoTalk_20250623_175152559.jpg",
+        "blogUrl": "https://blog.naver.com/project_dubu/223916749341",
+        "categories": [
+            "teatime",
+            "fudgy"
+        ],
+        "pairing": "따뜻한 아메리카노 또는 흰 우유",
+        "time": "20분",
+        "emotionalQuote": "단짠의 완벽한 조화, 황치즈의 고소함과 순두부의 쫀득한 만남. 🧀",
+        "desc": "황치즈가루와 순두부 베이스가 빈틈없이 어우러져, 겉은 바삭하고 속은 쫀득한 단짠 휘낭시에를 완성합니다.",
+        "troubleShoot": "Q. 겉은 바삭하고 속은 쫀득하게 굽고 싶은데 식감이 질척해요!<br>A. [휘낭시에 고온 베이킹 팁] 휘낭시에는 겉을 빠르게 구워내기 위해 초반 오븐 온도를 190~200℃로 예열해 굽다가 180℃로 낮춰 구워주시면 겉은 바삭한 껍질이 형성되고 속은 쫀득한 질감이 완벽히 유지됩니다."
     },
     {
         "id": 4,
         "title": "순두부 퍼지브라우니",
-        "isInteractive": false,
+        "noOven": false,
+        "noFlour": true,
+        "noButter": false,
+        "oneBowl": true,
+        "isInteractive": true,
         "path": "4. 순두부퍼지브라우니_완/index.html",
         "img": "[이벤트] 할로윈_20251029/KakaoTalk_20251029_091834561_01.jpg",
-        "blogUrl": "https://blog.naver.com/project_dubu/223925764123"
+        "blogUrl": "https://blog.naver.com/project_dubu/223925764123",
+        "categories": [
+            "teatime",
+            "fudgy"
+        ],
+        "pairing": "따뜻한 아메리카노 또는 찬 우유",
+        "time": "30분",
+        "emotionalQuote": "밀가루 한 줌 없이 입안에 꾸덕하게 밀착되는 진한 초콜릿의 향연. 🍫",
+        "desc": "순두부 반죽 and 다크 초콜릿이 묵직하게 결합되어, 입안에 진하게 밀착되는 꾸덕한 퍼지 질감을 구현합니다.",
+        "troubleShoot": "Q. 브라우니 표면에 윤기가 없고 퍽퍽하게 구워졌어요!<br>A. [오븐 온도 및 시간 조절 팁] 오븐 온도가 너무 높거나 오래 구우면 수분이 모두 날아가 퍽퍽해집니다. 165℃에서 20~22분간 굽고 이쑤시개로 찔렀을 때 반죽이 살짝 묻어나는 수준에서 꺼내주어야 퍼지다운 꾸덕한 식감이 완성됩니다."
     },
     {
         "id": 3,
         "title": "순두부 바스크치즈케이크",
-        "isInteractive": false,
-        "blogUrl": "https://blog.naver.com/project_dubu/223909587683"
+        "noOven": false,
+        "noFlour": true,
+        "noButter": true,
+        "oneBowl": true,
+        "isInteractive": true,
+        "path": "3. 순두부바스크치즈케이크_완/index.html",
+        "img": "3. 순두부바스크치즈케이크_완/KakaoTalk_20250618_084702444.jpg",
+        "blogUrl": "https://blog.naver.com/project_dubu/223909587683",
+        "categories": [
+            "teatime",
+            "fudgy"
+        ],
+        "pairing": "진한 에스프레소나 드라이한 와인",
+        "time": "45분",
+        "emotionalQuote": "스모키한 겉면 속 숨겨진 촉촉하고 크리미한 순두부의 반전 매력. 🧀",
+        "desc": "순두부 크림 반죽이 고온에서 빠르게 구워져, 바스크 특유의 스모키함과 크리미한 단면을 완성합니다.",
+        "troubleShoot": "Q. 오븐에서 갓 꺼냈을 때 너무 흐물거리는데 덜 익은 건가요?<br>A. [바스크 냉장 숙성 팁] 바스크 치즈케이크는 고온에서 구워내어 꺼낸 직후에는 푸딩처럼 흔들리는 것이 정상입니다. 실온에서 완전히 식힌 후 냉장고에서 최소 6시간 이상 충분히 굳혀주면 밀도가 아주 단단하고 꾸덕하게 가라앉습니다."
     },
     {
         "id": 2,
         "title": "순두부 크림치즈티라미수",
-        "isInteractive": false,
-        "blogUrl": "https://blog.naver.com/project_dubu/223901807888"
+        "noOven": true,
+        "noFlour": true,
+        "noButter": true,
+        "oneBowl": true,
+        "isInteractive": true,
+        "path": "2. 순두부크림치즈티라미수_완/index.html",
+        "img": "2. 순두부크림치즈티라미수_완/5-1.jpg",
+        "blogUrl": "https://blog.naver.com/project_dubu/223901807888",
+        "categories": [
+            "teatime",
+            "creamy"
+        ],
+        "pairing": "쌉싸름한 드립 커피나 허브티",
+        "time": "20분",
+        "emotionalQuote": "에스프레소의 쌉싸름함과 순두부 치즈크림의 달콤하고 고소한 레이어링. ☕",
+        "desc": "순두부 마스카포네 크림과 촉촉한 에스프레소 시트가 조화되어, 깊은 레이어드 텍스처를 완성합니다.",
+        "troubleShoot": "Q. 시트가 너무 축축하게 젖어서 식감이 나빠요!<br>A. [커피 시럽 분량 조절 팁] 커피 시럽은 빵 시트에 살짝 머금을 정도로만 적셔주셔야 크림을 올렸을 때 흐물거리지 않고 깔끔한 레이어를 유지할 수 있습니다."
     },
     {
         "id": 1,
         "title": "순두부 크림치즈",
-        "isInteractive": false,
-        "blogUrl": "https://blog.naver.com/project_dubu/223895335443"
+        "noOven": true,
+        "noFlour": true,
+        "noButter": true,
+        "oneBowl": true,
+        "isInteractive": true,
+        "path": "1. 순두부크림치즈_완/index.html",
+        "img": "1. 순두부크림치즈_완/5-1.jpg",
+        "blogUrl": "https://blog.naver.com/project_dubu/223895335443",
+        "categories": [
+            "teatime",
+            "creamy"
+        ],
+        "pairing": "따뜻하게 구운 베이글이나 담백한 크래커",
+        "time": "15분",
+        "emotionalQuote": "오직 5가지 재료로 완성하는 기적의 노오븐 크림치즈. 순두부가 버터를 대신합니다. 🌿",
+        "desc": "순두부와 카놀라유가 곱게 유화되어, 독보적인 부드러운 스프레드 텍스처를 완성합니다.",
+        "troubleShoot": "Q. 크림치즈가 너무 단단하거나 덩어리져서 잘 섞이지 않아요!<br>A. [유화 성공 꿀팁] 크림치즈를 반드시 실온(30분 이상)에서 부드럽게 풀어준 뒤 작업하세요. 차가운 상태로 믹싱하면 분리가 생겨 식감이 거칠어집니다. 핸드믹서로 크림치즈를 먼저 1분 이상 풀어준 뒤, 연유, 전분, 레몬즙을 순서대로 하나씩 넣으며 유화시키면 실크처럼 매끄러운 크림이 완성됩니다."
     }
 ];
 
@@ -861,16 +934,12 @@ const INGREDIENT_DICT = {
         { "name": "레몬즙 (글레이즈)", "base": 12 }
     ],
     "1": [
-        {
-            "time": "10분",
-            "title": "단계 1",
-            "desc": "다음 프로젝트 예고: &#x27;노오븐 순두부 티라미수&#x27;"
-        },
-        {
-            "time": "20분",
-            "title": "단계 2",
-            "desc": "다음 시간에는 이 크림을 200% 활용해서 만드는, 입에서 살살 녹는 &#x27;노오븐 순두부 티라미수&#x27; 레시피로 찾아뵙겠습니다. 기대해주세요!"
-        }
+        { "name": "순두부 (물기 꽉 짠 것)", "base": 150 },
+        { "name": "크림치즈", "base": 80 },
+        { "name": "연유", "base": 35 },
+        { "name": "레몬즙", "base": 2 },
+        { "name": "소금", "base": 1 },
+        { "name": "옥수수전분", "base": 10 }
     ],
     "2": [
         {
@@ -1682,31 +1751,41 @@ const RECIPE_STEPS_DB = {
     ],
     "1": [
         {
-            "time": "10분",
-            "title": "단계 1",
-            "desc": "다음 프로젝트 예고: &#x27;노오븐 순두부 티라미수&#x27;"
+            "time": "15분",
+            "title": "단계 1: 순두부 탈수",
+            "desc": "순두부는 면보에 싸서 무거운 용기로 눌러 1시간 이상 물기를 완전히 빼고 150g을 준비합니다."
         },
         {
-            "time": "20분",
-            "title": "단계 2",
-            "desc": "다음 시간에는 이 크림을 200% 활용해서 만드는, 입에서 살살 녹는 &#x27;노오븐 순두부 티라미수&#x27; 레시피로 찾아뵙겠습니다. 기대해주세요!"
+            "time": "5분",
+            "title": "단계 2: 크림치즈 유화",
+            "desc": "실온에 두어 부드러워진 크림치즈 80g을 볼에 담아 거품기로 매끄럽게 풀어줍니다."
+        },
+        {
+            "time": "5분",
+            "title": "단계 3: 재료 블렌딩",
+            "desc": "풀어둔 크림치즈에 탈수한 순두부, 연유 35g, 레몬즙 2g, 소금 1g, 전분 10g을 넣고 블렌더로 덩어리 없이 곱게 갈아 완성합니다."
         }
     ],
     "2": [
         {
+            "time": "10분",
+            "title": "단계 1: 티라미수 크림 배합",
+            "desc": "순두부 크림치즈와 마스카포네 크림치즈를 함께 섞어준 뒤, 꿀 25g을 넣어 부드러운 티라미수용 크림을 만듭니다."
+        },
+        {
             "time": "5분",
-            "title": "Step 1",
-            "desc": "더 진한 초코맛을 원한다면?"
+            "title": "단계 2: 시트 적시기",
+            "desc": "용기 바닥에 카스텔라 시트를 깔고 에스프레소 커피를 고르게 적셔 커피 향을 입혀 줍니다."
         },
         {
             "time": "10분",
-            "title": "Step 2",
-            "desc": "깔끔함의 비결, 짤주머니!"
+            "title": "단계 3: 크림 적층",
+            "desc": "커피에 적신 시트 위에 준비한 순두부 마스카포네 크림을 두껍고 평평하게 얹어 줍니다. 이 과정을 한 번 더 반복하여 2단으로 쌓아 올립니다."
         },
         {
-            "time": "15분",
-            "title": "Step 3",
-            "desc": "가장 중요한 &#x27;기다림의 미학&#x27;"
+            "time": "10분",
+            "title": "단계 4: 코코아 파우더 데코",
+            "desc": "마지막 크림 층 위에 고운 체를 사용해 무가당 코코아 파우더를 빈틈없이 뿌려준 뒤, 냉장고에서 2시간 이상 차갑게 굳혀 서빙합니다."
         }
     ],
     "3": [
