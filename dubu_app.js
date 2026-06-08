@@ -1038,7 +1038,7 @@ function renderAccordionArtbook() {
         {
             id: 39,
             title: "순두부 흑임자 테린",
-            img: "40. 순두부 흑임자테린/assets/01.png",
+            img: "40. 순두부 흑임자테린/assets/08.png",
             creatorsNote: "오븐 중탕 공법으로 진하고 크리미하게 구워낸, 다음날 더 고소한 흑임자 테린.",
             themeColor: "#4A4F54",
             themeGlow: "rgba(74, 79, 84, 0.15)",
