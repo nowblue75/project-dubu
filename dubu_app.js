@@ -1610,11 +1610,13 @@ function openLookbook(recipeId) {
                 <button class="lookbook-nav-btn lookbook-nav-right" onclick="changeLookbookPage(1)"><i class="fa-solid fa-chevron-right"></i></button>
                 
                 <div class="lookbook-slider">
-                    <!-- 1페이지: 메인 완성샷 풀스크린 + 상단 테크 스캔 패널 (스캔라인 모션 삭제) -->
+                    <!-- 1페이지: 메인 완성샷 풀스크린 + 상단 테크 스캔 패널 -->
                     <div class="lookbook-slide active" data-page="1">
                         <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/01.png');">
                             <div class="lookbook-tech-scan-panel">
+                                <div class="rec-indicator"><span class="rec-dot"></span> LIVE REC</div>
                                 <h1 class="lookbook-tech-title">Vol.39 순두부 흑임자 테린</h1>
+                                <div class="cam-specs">60 FPS // UHD 4K // COMPLETED</div>
                             </div>
                         </div>
                     </div>
@@ -1631,20 +1633,20 @@ function openLookbook(recipeId) {
                                     <div class="lookbook-analysis-item">
                                         <span class="label">찰기 (STICKINESS)</span>
                                         <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
-                                        <span class="value">95%</span>
+                                        <span class="value">0%</span>
                                     </div>
                                     <div class="lookbook-analysis-item">
                                         <span class="label">유화도 (EMULSIFICATION)</span>
                                         <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
-                                        <span class="value">90%</span>
+                                        <span class="value">0%</span>
                                     </div>
                                     <div class="lookbook-analysis-item">
                                         <span class="label">밀도 (DENSITY)</span>
                                         <div class="bar-bg"><div class="bar-fill" style="width: 98%;"></div></div>
-                                        <span class="value">98%</span>
+                                        <span class="value">0%</span>
                                     </div>
                                     <p class="lookbook-analysis-desc">
-                                        순두부의 풍부한 수분과 흑임자가 정밀하게 유화되어, 빵보다 쫀득하고 푸딩보다 묵직한 극한의 밀착 텍스처를 구현합니다.
+                                        <span class="lookbook-highlight">순두부</span>의 풍부한 수분과 <span class="lookbook-highlight">흑임자</span>가 정밀하게 유화되어, 빵보다 쫀득하고 푸딩보다 묵직한 극한의 <span class="lookbook-highlight">밀착 텍스처</span>를 구현합니다.
                                     </p>
                                 </div>
                             </div>
@@ -1668,10 +1670,13 @@ function openLookbook(recipeId) {
                                     <div class="lookbook-process-loader">
                                         <div class="loader-label">SYSTEM STEAM BAKING IN PROGRESS...</div>
                                         <div class="loader-bar-bg"><div class="loader-bar-fill"></div></div>
-                                        <div class="loader-percentage">100%</div>
+                                        <div class="loader-stats" style="display:flex; justify-content:space-between; margin-top:8px;">
+                                            <span class="loader-temp-val">TEMP: 25℃</span>
+                                            <span class="loader-percentage">0%</span>
+                                        </div>
                                     </div>
                                     <p class="lookbook-note-text" style="margin-top: 22px;">
-                                        140℃ 저온 스팀 중탕으로 구워내 수분을 완전 봉인한 뒤, 24시간 냉장 숙성으로 흑임자의 극대화된 꾸덕함을 완성합니다.
+                                        <span class="lookbook-highlight">140℃ 저온 스팀 중탕</span>으로 구워내 수분을 완전 봉인한 뒤, <span class="lookbook-highlight">24시간 냉장 숙성</span>으로 흑임자의 <span class="lookbook-highlight">극대화된 꾸덕함</span>을 완성합니다.
                                     </p>
                                 </div>
                             </div>
@@ -1731,6 +1736,7 @@ function openLookbook(recipeId) {
 
         lookbookCurrentPage = 1;
         updateLookbookUI();
+        playSoundFocus();
 
         // 4. 페이드인 활성화
         setTimeout(() => {
@@ -1774,6 +1780,50 @@ function updateLookbookUI() {
     const rightBtn = document.querySelector('.lookbook-nav-right');
     if (leftBtn) leftBtn.classList.toggle('disabled', lookbookCurrentPage === 1);
     if (rightBtn) rightBtn.classList.toggle('disabled', lookbookCurrentPage === lookbookTotalPages);
+
+    // ─── 쿡방 HUD 테크니컬 실시간 카운트업 모션 제어 ───
+    if (lookbookCurrentPage === 2) {
+        const valElements = document.querySelectorAll('.lookbook-analysis-item .value');
+        if (valElements.length >= 3) {
+            animateNumber(valElements[0], 0, 95, 1200, '%');
+            animateNumber(valElements[1], 0, 90, 1200, '%');
+            animateNumber(valElements[2], 0, 98, 1200, '%');
+        }
+    } else if (lookbookCurrentPage === 3) {
+        const percentageEl = document.querySelector('.lookbook-process-loader .loader-percentage');
+        const tempEl = document.querySelector('.lookbook-process-loader .loader-temp-val');
+        if (percentageEl) {
+            animateNumber(percentageEl, 0, 100, 1500, '%');
+        }
+        if (tempEl) {
+            animateNumber(tempEl, 25, 140, 1500, '℃', 'TEMP: ');
+        }
+    }
+}
+
+// requestAnimationFrame 기반 부드러운 숫자 업 카운팅 모션 함수
+function animateNumber(element, start, end, duration, suffix = '', prefix = '') {
+    if (!element) return;
+    let startTime = null;
+    let lastValue = start;
+    function update(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const current = Math.floor(progress * (end - start) + start);
+        element.innerText = prefix + current + suffix;
+
+        if (current !== lastValue) {
+            playSoundCount();
+            lastValue = current;
+        }
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        } else {
+            element.innerText = prefix + end + suffix;
+        }
+    }
+    requestAnimationFrame(update);
 }
 
 function changeLookbookPage(dir) {
@@ -1781,6 +1831,7 @@ function changeLookbookPage(dir) {
     if (target >= 1 && target <= lookbookTotalPages) {
         lookbookCurrentPage = target;
         updateLookbookUI();
+        playSoundTick();
     }
 }
 
@@ -1788,6 +1839,7 @@ function goLookbookPage(pageNum) {
     if (pageNum >= 1 && pageNum <= lookbookTotalPages) {
         lookbookCurrentPage = pageNum;
         updateLookbookUI();
+        playSoundTick();
     }
 }
 
@@ -1801,6 +1853,7 @@ function closeLookbook(isFromPopstate = false) {
     isClosingLookbook = true;
     lookbookOverlay.classList.remove('active');
     lookbookOverlay.classList.add('closing');
+    playSoundTick();
     
     // popstate가 아닐 때에만 브라우저 뒤로가기 실행 (가상 라우팅 원복)
     if (!isFromPopstate) {
@@ -1823,6 +1876,136 @@ function closeLookbook(isFromPopstate = false) {
         }
     }, 600);
 }
+
+// ==========================================================================
+// Web Audio API 기반 쿡방 테크니컬 효과음 신시사이저
+// ==========================================================================
+let audioCtx = null;
+let lastSoundTime = 0;
+
+function getAudioContext() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    return audioCtx;
+}
+
+// 페이지 전환 시 경쾌한 스위치 틱! 소리
+function playSoundTick() {
+    try {
+        const ctx = getAudioContext();
+        if (ctx.state === 'suspended') {
+            ctx.resume();
+        }
+        if (ctx.state === 'suspended') return;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1400, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.06);
+
+        gain.gain.setValueAtTime(0.04, ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.06);
+    } catch (e) {
+        console.warn('Audio playSoundTick failed:', e);
+    }
+}
+
+// 1페이지 오프닝 카메라 초점(지이잉) + 삐빅 셔터 효과음
+function playSoundFocus() {
+    try {
+        const ctx = getAudioContext();
+        if (ctx.state === 'suspended') {
+            ctx.resume();
+        }
+        if (ctx.state === 'suspended') return;
+
+        // 1. 오토포커싱 지이잉 소리 (가상 모터음)
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+
+        osc1.type = 'triangle';
+        osc1.frequency.setValueAtTime(120, ctx.currentTime);
+        osc1.frequency.linearRampToValueAtTime(320, ctx.currentTime + 0.4);
+
+        gain1.gain.setValueAtTime(0.02, ctx.currentTime);
+        gain1.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+
+        osc1.start();
+        osc1.stop(ctx.currentTime + 0.4);
+
+        // 2. 삐빅 초점 고정 신호음 (오픈 후 0.4초 뒤에 재생)
+        setTimeout(() => {
+            try {
+                const osc2 = ctx.createOscillator();
+                const gain2 = ctx.createGain();
+                osc2.connect(gain2);
+                gain2.connect(ctx.destination);
+
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(1000, ctx.currentTime);
+                osc2.frequency.setValueAtTime(1000, ctx.currentTime + 0.08);
+
+                gain2.gain.setValueAtTime(0.03, ctx.currentTime);
+                gain2.gain.setValueAtTime(0.03, ctx.currentTime + 0.08);
+                gain2.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.16);
+
+                osc2.start();
+                osc2.stop(ctx.currentTime + 0.16);
+            } catch(err){}
+        }, 400);
+
+    } catch (e) {
+        console.warn('Audio playSoundFocus failed:', e);
+    }
+}
+
+// 2, 3페이지 수치 카운트업 테크니컬 스캔음
+function playSoundCount() {
+    try {
+        const now = Date.now();
+        if (now - lastSoundTime < 45) return; // 45ms 간격 제어
+        lastSoundTime = now;
+
+        const ctx = getAudioContext();
+        if (ctx.state === 'suspended') return;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(2200, ctx.currentTime); // 매우 높은 주파수의 짧은 비프
+
+        gain.gain.setValueAtTime(0.012, ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.02);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.02);
+    } catch (e) {
+        // 실패 시 침묵
+    }
+}
+
+// 사용자 첫 상호작용 시 AudioContext 활성화 바인딩
+document.addEventListener('click', () => {
+    try {
+        const ctx = getAudioContext();
+        if (ctx && ctx.state === 'suspended') {
+            ctx.resume();
+        }
+    } catch(e){}
+}, { once: true });
 
 // 휠 및 키보드 이벤트 바인딩
 let lookbookWheelDebounce = false;

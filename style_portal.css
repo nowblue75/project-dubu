@@ -2544,11 +2544,21 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 8s ease-out;
+    transition: transform 8s ease-out, filter 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 1페이지 진입 시 카메라 오토포커싱 모션 (blur -> clear) */
+.lookbook-slide[data-page="1"] .lookbook-bg-slide {
+    filter: blur(15px);
+    transform: scale(1.18);
+}
+
+.lookbook-slide[data-page="1"].active .lookbook-bg-slide {
+    filter: blur(0);
+    animation: kenBurnsZoom 8s ease-out forwards;
 }
 
 /* 1, 4페이지의 요리 이미지 초밀착 줌인 (쇼츠 쿡방 스타일) */
-.lookbook-slide[data-page="1"].active .lookbook-bg-slide,
 .lookbook-slide[data-page="4"].active .lookbook-bg-slide {
     animation: kenBurnsZoom 8s ease-out forwards;
 }
@@ -2567,17 +2577,54 @@ footer {
     z-index: 1;
 }
 
-/* --- 1페이지: 테크 스캔 패널 연출 --- */
+/* --- 1페이지: 테크 스캔 패널 연출 (REC 카메라 뷰파인더 쿡방 테마) --- */
 .lookbook-tech-scan-panel {
     position: relative;
     z-index: 10;
     border: 1px solid rgba(0, 255, 204, 0.5);
-    background: rgba(17, 18, 20, 0.9);
+    background: rgba(10, 11, 12, 0.95);
     padding: 35px 60px;
     border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.15);
+    box-shadow: 0 0 35px rgba(0, 255, 204, 0.2);
     overflow: hidden;
     opacity: 0;
+    text-align: center;
+}
+
+.rec-indicator {
+    font-family: 'Courier New', Courier, monospace;
+    color: #ff3333;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 8px rgba(255, 51, 51, 0.6);
+}
+
+.rec-dot {
+    width: 9px;
+    height: 9px;
+    background: #ff3333;
+    border-radius: 50%;
+    display: inline-block;
+    animation: recBlink 1s infinite steps(2);
+}
+
+@keyframes recBlink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.cam-specs {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.72rem;
+    color: rgba(0, 255, 204, 0.75);
+    margin-top: 15px;
+    letter-spacing: 0.08em;
 }
 
 .lookbook-slide.active .lookbook-tech-scan-panel {
@@ -2712,14 +2759,26 @@ footer {
     text-align: right;
 }
 
+.lookbook-highlight {
+    color: #FFE600 !important; /* 쇼츠 시그니처 형광 옐로우 */
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(255, 230, 0, 0.6);
+}
+
 .lookbook-analysis-desc {
-    font-size: 1.3rem; /* 크기 상향 */
-    line-height: 1.8;
-    color: #ffffff; /* 가독성을 위한 순백색 매핑 */
-    font-weight: 500;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    margin: 18px 0 0 0;
+    font-size: 1.45rem; /* 더 크게 상향 */
+    line-height: 1.7;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    background: rgba(10, 11, 12, 0.85); /* 검은색 반투명 둥근 박스 */
+    padding: 16px 24px;
+    border-radius: 12px;
+    border-left: 5px solid #00ffcc; /* 네온그린 포인트 사이드 라인 */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    margin: 22px 0 0 0;
     word-break: keep-all;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 
@@ -2832,13 +2891,19 @@ footer {
 }
 
 .lookbook-note-text {
-    font-size: 1.3rem; /* 크기 상향 */
-    line-height: 1.8;
-    color: #ffffff; /* 가독성을 위한 순백색 매핑 */
-    font-weight: 500;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    font-size: 1.45rem; /* 더 크게 상향 */
+    line-height: 1.7;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    background: rgba(10, 11, 12, 0.85); /* 검은색 반투명 둥근 박스 */
+    padding: 16px 24px;
+    border-radius: 12px;
+    border-left: 5px solid #00ffcc; /* 네온그린 포인트 사이드 라인 */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     word-break: keep-all;
     margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 /* 4페이지 비대칭 정렬을 위한 우측 정렬 (자식인 lookbook-bg-slide 정렬 제어) */
