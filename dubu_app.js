@@ -1948,6 +1948,60 @@ function applyCategoryTheme(recipe) {
     }
 }
 
+function updateLookbookUI() {
+    const slides = document.querySelectorAll('.lookbook-slide');
+    const dots = document.querySelectorAll('.lookbook-dot');
+    
+    slides.forEach(slide => {
+        const pNum = Number(slide.getAttribute('data-page'));
+        slide.className = 'lookbook-slide';
+        if (pNum === lookbookCurrentPage) {
+            slide.classList.add('active');
+        } else if (pNum < lookbookCurrentPage) {
+            slide.classList.add('prev');
+        } else {
+            slide.classList.add('next');
+        }
+    });
+
+    dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx + 1 === lookbookCurrentPage);
+    });
+
+    // 화살표 활성/비활성 제어
+    const leftBtn = document.querySelector('.lookbook-nav-left');
+    const rightBtn = document.querySelector('.lookbook-nav-right');
+    if (leftBtn) leftBtn.classList.toggle('disabled', lookbookCurrentPage === 1);
+    if (rightBtn) rightBtn.classList.toggle('disabled', lookbookCurrentPage === lookbookTotalPages);
+
+    // ─── 쿡방 HUD 테크니컬 실시간 카운트업 모션 제어 ───
+    const dbData = LOOKBOOK_DB[currentLookbookRecipeId];
+    if (!dbData) return;
+
+    if (lookbookCurrentPage === 2) {
+        const valElements = document.querySelectorAll('.lookbook-analysis-item .value');
+        if (valElements.length >= 3) {
+            animateNumber(valElements[0], 0, dbData.stickiness, 1200, '%');
+            animateNumber(valElements[1], 0, dbData.emulsification, 1200, '%');
+            animateNumber(valElements[2], 0, dbData.density, 1200, '%');
+        }
+    } else if (lookbookCurrentPage === 3) {
+        const percentageEl = document.querySelector('.lookbook-process-loader .loader-percentage');
+        const tempEl = document.querySelector('.lookbook-process-loader .loader-temp-val');
+        if (percentageEl) {
+            animateNumber(percentageEl, 0, dbData.loaderPercent, 1500, '%');
+        }
+        if (tempEl) {
+            if (dbData.loaderTemp.startsWith('TEMP:')) {
+                const targetTemp = parseInt(dbData.loaderTemp.replace(/[^0-9]/g, '')) || 0;
+                animateNumber(tempEl, 25, targetTemp, 1500, '℃', 'TEMP: ');
+            } else {
+                tempEl.innerText = dbData.loaderTemp;
+            }
+        }
+    }
+}
+
 // requestAnimationFrame 기반 부드러운 숫자 업 카운팅 모션 함수
 function animateNumber(element, start, end, duration, suffix = '', prefix = '') {
     if (!element) return;
