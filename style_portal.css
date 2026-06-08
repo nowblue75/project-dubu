@@ -2852,12 +2852,26 @@ footer {
 }
 
 
-/* --- 4페이지: COMPLETE 네온 팝업 --- */
-.lookbook-slide[data-page="4"] .lookbook-bg-slide::before {
-    background: linear-gradient(to left, rgba(10, 11, 12, 0.96) 0%, rgba(10, 11, 12, 0.55) 45%, rgba(10, 11, 12, 0.08) 80%, transparent 100%) !important;
+/* --- 4페이지: COMPLETE 네온 팝업 (좌우 분리형 리디자인) --- */
+.lookbook-complete-img-frame {
+    flex: 1.25;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 255, 204, 0.45);
+    position: relative;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.65);
+    opacity: 0;
 }
 
-.lookbook-slide[data-page="4"] .lookbook-bg-slide {
+.lookbook-slide.active .lookbook-complete-img-frame {
+    animation: lookbookFadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.lookbook-complete-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     filter: contrast(1.05) saturate(1.12) brightness(1.02);
 }
 
@@ -2877,9 +2891,10 @@ footer {
 .tech-corner.bottom-right { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
 
 .lookbook-tech-complete-panel {
+    flex: 1;
+    height: 100%;
     position: relative;
     z-index: 10;
-    width: 460px;
     background: rgba(10, 12, 15, 0.72) !important; /* 글래스모피즘 */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -2888,13 +2903,15 @@ footer {
     box-shadow: 0 0 45px rgba(0, 255, 204, 0.25), 0 25px 60px rgba(0,0,0,0.85);
     overflow: hidden;
     opacity: 0;
-    transform: scale(0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .lookbook-slide.active .lookbook-tech-complete-panel {
     opacity: 1;
-    transform: scale(1);
 }
 
 .complete-header {
@@ -2992,10 +3009,6 @@ footer {
 
 /* --- 반응형 모바일 대응 (HUD 테크화) --- */
 @media (max-width: 768px) {
-    .lookbook-slide[data-page="4"] {
-        justify-content: center;
-        padding-right: 0;
-    }
     .lookbook-tech-frame { top: 12px; left: 12px; right: 12px; bottom: 12px; }
     .lookbook-close-btn { top: 20px; right: 25px; font-size: 1.8rem; width: 45px; height: 45px; }
     .lookbook-nav-btn { width: 50px; height: 50px; font-size: 1.1rem; }
@@ -3025,7 +3038,8 @@ footer {
     .lookbook-process-loader .loader-percentage { font-size: 0.75rem; margin-top: 4px; }
     .lookbook-note-text { font-size: 0.8rem; line-height: 1.5; }
     
-    .lookbook-tech-complete-panel { width: 90%; }
+    .lookbook-complete-img-frame { width: 100%; flex: 1; height: 45%; }
+    .lookbook-tech-complete-panel { width: 100%; flex: 1.25; height: auto; }
     .complete-header { padding: 12px 15px; font-size: 0.85rem; }
     .complete-body { padding: 25px 20px; }
     .complete-icon { font-size: 2.8rem; margin-bottom: 12px; }

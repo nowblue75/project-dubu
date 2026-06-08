@@ -1678,9 +1678,19 @@ function openLookbook(recipeId) {
                         </div>
                     </div>
                     
-                    <!-- 4페이지: 피날레 풀스크린 + [RECIPE SYSTEM: COMPLETE] 네온 팝업 -->
+                    <!-- 4페이지: 피날레 플레이트 + [RECIPE SYSTEM: COMPLETE] 패널 (좌우 분리형 레이아웃) -->
                     <div class="lookbook-slide" data-page="4">
-                        <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/08.png');">
+                        <div class="lookbook-detail-container">
+                            <!-- 좌측 완성 요리 이미지 카드 프레임 (네온 코너 브래킷 탑재) -->
+                            <div class="lookbook-complete-img-frame">
+                                <img src="${lookbookBasePath}40. 순두부 흑임자테린/assets/08.png" alt="순두부 흑임자 테린 완결">
+                                <div class="tech-corner top-left"></div>
+                                <div class="tech-corner top-right"></div>
+                                <div class="tech-corner bottom-left"></div>
+                                <div class="tech-corner bottom-right"></div>
+                            </div>
+                            
+                            <!-- 우측 완결 HUD 팝업 패널 -->
                             <div class="lookbook-tech-complete-panel">
                                 <!-- 테크 브래킷 코너 디자인 디테일 -->
                                 <div class="tech-corner top-left"></div>
