@@ -1581,19 +1581,19 @@ const LOOKBOOK_DB = {
         subtitle: "RECIPE ARCHIVE // Vol.01",
         images: [
             "1. 순두부크림치즈_완/5-1.jpg",
-            "1. 순두부크림치즈_완/4.최종 크림.jpg",
+            "1. 순두부크림치즈_완/3.jpg",
             "1. 순두부크림치즈_완/5-3.jpg",
             "1. 순두부크림치즈_완/5-2.jpg"
         ],
         stickiness: 40,
         emulsification: 95,
         density: 80,
-        desc: "<span class='lookbook-highlight'>순두부</span>와 <span class='lookbook-highlight'>크림치즈</span>가 고르게 데워져, 독보적인 부드러운 <span class='lookbook-highlight'>스프레드 텍스처</span>를 완성합니다.",
+        desc: "순두부·크림치즈 고온 유화. 독보적인 <span class='lookbook-highlight'>실크 스프레드 텍스처</span> 완성.",
         processHeader: "[PROCESS MONITORING]",
         loaderLabel: "HEATING IN PROGRESS...",
         loaderTemp: "TEMP: 80°C",
         loaderPercent: 95,
-        processText: "순두부의 물기를 짜고 재료를 섞은 뒤, <span class='lookbook-highlight'>약불에서 데워</span> 되직하게 만들고 냉장고에서 식혀 <span class='lookbook-highlight'>꾸덕한 스프레드</span>를 완성합니다.",
+        processText: "약불 3분 가열로 <span class='lookbook-highlight'>전분 완벽 호화</span>. 1시간 냉장 숙성으로 <span class='lookbook-highlight'>꾸덕함 극대화</span>.",
         label1: "재료 혼합",
         label2: "약불 데우기",
         completeTitle: "순두부 크림치즈 완성",
@@ -1797,93 +1797,110 @@ function openLookbook(recipeId) {
             <button class="lookbook-nav-btn lookbook-nav-right" onclick="changeLookbookPage(1)"><i class="fa-solid fa-chevron-right"></i></button>
             
             <div class="lookbook-slider">
-                <!-- 1페이지: 완성샷 풀스크린 + 제목 오버레이 -->
+                <!-- 1페이지: 완성샷 풀스크린 + 제목 오버레이 하단 이동 -->
                 <div class="lookbook-slide active" data-page="1">
-                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[0]}');">
-                        <div class="lookbook-scan-line"></div>
-                        <div class="lookbook-tech-scan-panel">
-                            <span class="lookbook-subtitle" style="font-family: 'Playfair Display', serif; font-size: 0.85rem; letter-spacing: 0.25em; color: #8899a6; display: block; margin-bottom: 12px;">${dbData.subtitle}</span>
-                            <h1 class="lookbook-tech-title">${dbData.title}</h1>
+                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[0]}'); filter: blur(12px) brightness(0.35);"></div>
+                    
+                    <div class="lookbook-3d-card-frame">
+                        <div class="lookbook-3d-card-inner" style="background-image: url('${lookbookBasePath}${dbData.images[0]}');">
+                            <div class="tech-corner top-left"></div>
+                            <div class="tech-corner top-right"></div>
+                            <div class="tech-corner bottom-left"></div>
+                            <div class="tech-corner bottom-right"></div>
                         </div>
+                    </div>
+
+                    <div class="lookbook-tech-scan-panel">
+                        <span class="lookbook-subtitle" style="font-family: 'Playfair Display', serif; font-size: 0.82rem; letter-spacing: 0.25em; color: #a0aec0; display: block; margin-bottom: 8px;">${dbData.subtitle}</span>
+                        <h1 class="lookbook-tech-title" style="margin: 0; font-size: 1.6rem; color: #fff; text-shadow: 0 0 10px rgba(var(--lookbook-theme-color-rgb), 0.35);">${dbData.title}</h1>
                     </div>
                 </div>
                 
                 <!-- 2페이지: 단면 또는 클로즈업 풀스크린 + TEXTURE 데이터 하단 최소화 -->
                 <div class="lookbook-slide" data-page="2">
-                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[1]}');">
-                        <div class="lookbook-scan-line"></div>
-                        <div class="tech-corner top-left"></div>
-                        <div class="tech-corner top-right"></div>
-                        <div class="tech-corner bottom-left"></div>
-                        <div class="tech-corner bottom-right"></div>
-                        
-                        <div class="lookbook-hud-bottom-panel">
-                            <div class="hud-header">[TEXTURE ANALYSIS]</div>
-                            <div class="hud-content-row">
-                                <div class="hud-metric">
-                                    <span class="label">찰기 (STICKINESS)</span>
-                                    <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.stickiness}%;"></div></div>
-                                    <span class="value">0%</span>
-                                </div>
-                                <div class="hud-metric">
-                                    <span class="label">유화도 (EMULSIFICATION)</span>
-                                    <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.emulsification}%;"></div></div>
-                                    <span class="value">0%</span>
-                                </div>
-                                <div class="hud-metric">
-                                    <span class="label">밀도 (DENSITY)</span>
-                                    <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.density}%;"></div></div>
-                                    <span class="value">0%</span>
-                                </div>
-                            </div>
-                            <p class="hud-desc">${dbData.desc}</p>
+                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[1]}'); filter: blur(12px) brightness(0.35);"></div>
+                    
+                    <div class="lookbook-3d-card-frame">
+                        <div class="lookbook-3d-card-inner" style="background-image: url('${lookbookBasePath}${dbData.images[1]}');">
+                            <div class="tech-corner top-left"></div>
+                            <div class="tech-corner top-right"></div>
+                            <div class="tech-corner bottom-left"></div>
+                            <div class="tech-corner bottom-right"></div>
                         </div>
+                    </div>
+                    
+                    <div class="lookbook-hud-bottom-panel">
+                        <div class="hud-header">[TEXTURE ANALYSIS]</div>
+                        <div class="hud-content-row">
+                            <div class="hud-metric">
+                                <span class="label">찰기 (STICKINESS)</span>
+                                <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.stickiness}%;"></div></div>
+                                <span class="value">0%</span>
+                            </div>
+                            <div class="hud-metric">
+                                <span class="label">유화도 (EMULSIFICATION)</span>
+                                <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.emulsification}%;"></div></div>
+                                <span class="value">0%</span>
+                            </div>
+                            <div class="hud-metric">
+                                <span class="label">밀도 (DENSITY)</span>
+                                <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.density}%;"></div></div>
+                                <span class="value">0%</span>
+                            </div>
+                        </div>
+                        <p class="hud-desc">${dbData.desc}</p>
                     </div>
                 </div>
                 
                 <!-- 3페이지: 두 번째 완성샷 풀스크린 + PROCESS 데이터 하단 최소화 -->
                 <div class="lookbook-slide" data-page="3">
-                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[2]}');">
-                        <div class="lookbook-scan-line"></div>
-                        <div class="tech-corner top-left"></div>
-                        <div class="tech-corner top-right"></div>
-                        <div class="tech-corner bottom-left"></div>
-                        <div class="tech-corner bottom-right"></div>
-                        
-                        <div class="lookbook-hud-bottom-panel">
-                            <div class="hud-header">${dbData.processHeader}</div>
-                            <div class="hud-content-row">
-                                <div class="hud-process-loader">
-                                    <span class="loader-label">${dbData.loaderLabel}</span>
-                                    <div class="loader-bar-bg"><div class="loader-bar-fill"></div></div>
-                                    <div class="loader-stats" style="display:flex; justify-content:space-between; margin-top:8px;">
-                                        <span class="loader-temp-val">${dbData.loaderTemp.startsWith('TEMP:') ? 'TEMP: 25℃' : dbData.loaderTemp.replace(/[0-9]+/g, '0')}</span>
-                                        <span class="loader-percentage">0%</span>
-                                    </div>
+                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[2]}'); filter: blur(12px) brightness(0.35);"></div>
+                    
+                    <div class="lookbook-3d-card-frame">
+                        <div class="lookbook-3d-card-inner" style="background-image: url('${lookbookBasePath}${dbData.images[2]}');">
+                            <div class="tech-corner top-left"></div>
+                            <div class="tech-corner top-right"></div>
+                            <div class="tech-corner bottom-left"></div>
+                            <div class="tech-corner bottom-right"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="lookbook-hud-bottom-panel">
+                        <div class="hud-header">${dbData.processHeader}</div>
+                        <div class="hud-content-row">
+                            <div class="hud-process-loader">
+                                <span class="loader-label">${dbData.loaderLabel}</span>
+                                <div class="loader-bar-bg"><div class="loader-bar-fill"></div></div>
+                                <div class="loader-stats" style="display:flex; justify-content:space-between; margin-top:8px;">
+                                    <span class="loader-temp-val">${dbData.loaderTemp.startsWith('TEMP:') ? 'TEMP: 25℃' : dbData.loaderTemp.replace(/[0-9]+/g, '0')}</span>
+                                    <span class="loader-percentage">0%</span>
                                 </div>
                             </div>
-                            <p class="hud-desc">${dbData.processText}</p>
                         </div>
+                        <p class="hud-desc">${dbData.processText}</p>
                     </div>
                 </div>
                 
                 <!-- 4페이지: 플레이팅샷 풀스크린 + 페어링 문구 하단 오버레이 -->
                 <div class="lookbook-slide" data-page="4">
-                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[3]}');">
-                        <div class="lookbook-scan-line"></div>
-                        <div class="tech-corner top-left"></div>
-                        <div class="tech-corner top-right"></div>
-                        <div class="tech-corner bottom-left"></div>
-                        <div class="tech-corner bottom-right"></div>
-                        
-                        <div class="lookbook-hud-bottom-panel lookbook-complete-panel">
-                            <div class="hud-header">[RECIPE COMPLETED]</div>
-                            <div class="hud-content-row complete-row">
-                                <h2 class="complete-title-hud">${dbData.completeTitle}</h2>
-                                <div class="pairing-drinks-hud">
-                                    <span class="pairing-label">RECOMMENDED PAIRING:</span>
-                                    ${drinksHtml}
-                                </div>
+                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[3]}'); filter: blur(12px) brightness(0.35);"></div>
+                    
+                    <div class="lookbook-3d-card-frame">
+                        <div class="lookbook-3d-card-inner" style="background-image: url('${lookbookBasePath}${dbData.images[3]}');">
+                            <div class="tech-corner top-left"></div>
+                            <div class="tech-corner top-right"></div>
+                            <div class="tech-corner bottom-left"></div>
+                            <div class="tech-corner bottom-right"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="lookbook-hud-bottom-panel lookbook-complete-panel">
+                        <div class="hud-header">[RECIPE COMPLETED]</div>
+                        <div class="hud-content-row complete-row">
+                            <h2 class="complete-title-hud">${dbData.completeTitle}</h2>
+                            <div class="pairing-drinks-hud">
+                                <span class="pairing-label">RECOMMENDED PAIRING:</span>
+                                ${drinksHtml}
                             </div>
                         </div>
                     </div>

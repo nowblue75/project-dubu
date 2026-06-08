@@ -2583,16 +2583,29 @@ footer {
 
 /* --- 1페이지: 테크 스캔 패널 연출 (REC 카메라 뷰파인더 쿡방 테마) --- */
 .lookbook-tech-scan-panel {
-    position: relative;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    width: 90%;
+    max-width: 950px;
     z-index: 10;
-    border: 1px solid rgba(var(--lookbook-theme-color-rgb), 0.5);
-    background: rgba(10, 11, 12, 0.95);
-    padding: 35px 60px;
-    border-radius: 8px;
-    box-shadow: 0 0 35px rgba(var(--lookbook-theme-color-rgb), 0.2);
+    border: 1px solid rgba(var(--lookbook-theme-color-rgb), 0.25);
+    background: rgba(17, 18, 20, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 24px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(var(--lookbook-theme-color-rgb), 0.05);
     overflow: hidden;
     opacity: 0;
     text-align: center;
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.lookbook-slide.active .lookbook-tech-scan-panel {
+    opacity: 1;
+    transform: translate(-50%, 0);
 }
 
 .rec-indicator {
@@ -3086,7 +3099,12 @@ footer {
     .lookbook-nav-right { right: 15px; }
     
     .lookbook-tech-title { font-size: 1.8rem; }
-    .lookbook-tech-scan-panel { padding: 25px 40px; }
+    .lookbook-tech-scan-panel {
+        bottom: 15px;
+        width: 90%;
+        padding: 12px 20px;
+        transform: translate(-50%, 0);
+    }
     
     .lookbook-detail-container { width: 90%; height: 75%; flex-direction: column; gap: 20px; }
     .lookbook-detail-img-frame { width: 100%; flex: 1; height: 45%; }
@@ -3233,30 +3251,59 @@ footer {
     }
 }
 
-/* --- 취사병 전설이 되다 스타일의 미래지향적 홀로그램 스캔 및 HUD 비주얼 효과 --- */
-.lookbook-scan-line {
+/* --- 디저트 이미지 3D 입체 카드 프레임 스타일 --- */
+.lookbook-3d-card-frame {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(to right, 
-        rgba(var(--lookbook-theme-color-rgb), 0) 0%, 
-        rgba(var(--lookbook-theme-color-rgb), 0.95) 50%, 
-        rgba(var(--lookbook-theme-color-rgb), 0) 100%
-    );
-    box-shadow: 0 0 15px var(--lookbook-theme-color), 0 0 5px var(--lookbook-theme-color);
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 60%;
+    height: 52%;
+    max-width: 800px;
+    max-height: 480px;
     z-index: 5;
-    pointer-events: none;
-    animation: lookbookSweepingScan 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    perspective: 1200px;
     opacity: 0;
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes lookbookSweepingScan {
-    0% { top: 0%; opacity: 0; }
-    5% { opacity: 0.85; }
-    95% { opacity: 0.85; }
-    100% { top: 100%; opacity: 0; }
+.lookbook-slide.active .lookbook-3d-card-frame {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.lookbook-3d-card-inner {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    border: 1px solid rgba(var(--lookbook-theme-color-rgb), 0.35);
+    /* 3D 팝업을 연출하는 강력한 입체 그림자 */
+    box-shadow: 
+        0 30px 75px rgba(0, 0, 0, 0.9), 
+        0 0 30px rgba(var(--lookbook-theme-color-rgb), 0.2),
+        inset 0 0 25px rgba(255, 255, 255, 0.05);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+/* 마우스 오버 시 입체적으로 튀어나오는 볼록 효과 */
+.lookbook-3d-card-frame:hover .lookbook-3d-card-inner {
+    transform: scale(1.04) translateZ(35px) rotateX(4deg) rotateY(-4deg);
+    border-color: var(--lookbook-theme-color);
+    box-shadow: 
+        0 45px 95px rgba(0, 0, 0, 0.98), 
+        0 0 45px rgba(var(--lookbook-theme-color-rgb), 0.5);
+}
+
+@media (max-width: 768px) {
+    .lookbook-3d-card-frame {
+        width: 85%;
+        height: 45%;
+        top: 38%;
+    }
 }
 
 /* 2페이지 단면 프레임 및 이미지 컨테이너 상대적 위치 제어 */
