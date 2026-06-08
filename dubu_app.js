@@ -1610,13 +1610,12 @@ function openLookbook(recipeId) {
                 <button class="lookbook-nav-btn lookbook-nav-right" onclick="changeLookbookPage(1)"><i class="fa-solid fa-chevron-right"></i></button>
                 
                 <div class="lookbook-slider">
-                    <!-- 1페이지: 메인 완성샷 풀스크린 + 상단 테크 스캔 패널 -->
+                    <!-- 1페이지: 메인 완성샷 풀스크린 + 상단 타이틀 패널 -->
                     <div class="lookbook-slide active" data-page="1">
                         <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/01.png');">
                             <div class="lookbook-tech-scan-panel">
-                                <div class="rec-indicator"><span class="rec-dot"></span> LIVE REC</div>
-                                <h1 class="lookbook-tech-title">Vol.39 순두부 흑임자 테린</h1>
-                                <div class="cam-specs">60 FPS // UHD 4K // COMPLETED</div>
+                                <span class="lookbook-subtitle" style="font-family: 'Playfair Display', serif; font-size: 0.85rem; letter-spacing: 0.25em; color: #8899a6; display: block; margin-bottom: 12px;">RECIPE ARCHIVE // Vol.39</span>
+                                <h1 class="lookbook-tech-title">순두부 흑임자 테린</h1>
                             </div>
                         </div>
                     </div>
@@ -1653,22 +1652,22 @@ function openLookbook(recipeId) {
                         </div>
                     </div>
                     
-                    <!-- 3페이지: 2분할 컷 + [PROCESS MONITORING: 140℃ STEAM BAKING] -->
+                    <!-- 3페이지: 2분할 컷 + [PROCESS MONITORING] -->
                     <div class="lookbook-slide" data-page="3">
                         <div class="lookbook-note-container">
                             <div class="lookbook-note-images">
                                 <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/baking_shot.png');">
-                                    <div class="lookbook-img-label">140℃ 중탕 베이킹</div>
+                                    <div class="lookbook-img-label">중탕 베이킹</div>
                                 </div>
                                 <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/lb_aging_new.png');">
                                     <div class="lookbook-img-label">하루의 숙성</div>
                                 </div>
                             </div>
                             <div class="lookbook-tech-panel">
-                                <div class="lookbook-panel-header">[PROCESS MONITORING: 140℃ STEAM BAKING]</div>
+                                <div class="lookbook-panel-header">[PROCESS MONITORING]</div>
                                 <div class="lookbook-panel-content">
                                     <div class="lookbook-process-loader">
-                                        <div class="loader-label">SYSTEM STEAM BAKING IN PROGRESS...</div>
+                                        <div class="loader-label">BAKING IN PROGRESS...</div>
                                         <div class="loader-bar-bg"><div class="loader-bar-fill"></div></div>
                                         <div class="loader-stats" style="display:flex; justify-content:space-between; margin-top:8px;">
                                             <span class="loader-temp-val">TEMP: 25℃</span>
