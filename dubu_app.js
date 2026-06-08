@@ -646,7 +646,12 @@ const BASE_YIELDS = {
     19: { template: "실리콘 오발틀 {x}개 분량 🎃", baseCount: 8 },
     17: { template: "오란다 대자 팬 {x}개 분량 🌰", baseCount: 2 },
     16: { template: "원형 1호틀 {x}개 분량 🎃", baseCount: 1 },
-    10: { template: "브라우니쿠키 {x}개 분량 🍪", baseCount: 8 }
+    10: { template: "브라우니쿠키 {x}개 분량 🍪", baseCount: 8 },
+    5: { template: "황치즈 휘낭시에 {x}개 분량 🧀", baseCount: 6 },
+    4: { template: "퍼지 브라우니 {x}판 분량 🍫", baseCount: 1 },
+    3: { template: "바스크 치즈케이크 {x}호 분량 🧀", baseCount: 1 },
+    2: { template: "순두부 티라미수 {x}대접 분량 ☕", baseCount: 1 },
+    1: { template: "순두부 크림치즈 {x}병 분량 🍯", baseCount: 1 }
 };
 
 function getDynamicYieldText(recipeId, scale) {
@@ -1584,14 +1589,14 @@ const LOOKBOOK_DB = {
         stickiness: 40,
         emulsification: 95,
         density: 80,
-        desc: "<span class='lookbook-highlight'>순두부</span>와 <span class='lookbook-highlight'>카놀라유</span>가 곱게 유화되어, 독보적인 부드러운 <span class='lookbook-highlight'>스프레드 텍스처</span>를 완성합니다.",
+        desc: "<span class='lookbook-highlight'>순두부</span>와 <span class='lookbook-highlight'>크림치즈</span>가 고르게 데워져, 독보적인 부드러운 <span class='lookbook-highlight'>스프레드 텍스처</span>를 완성합니다.",
         processHeader: "[PROCESS MONITORING]",
-        loaderLabel: "BLENDING IN PROGRESS...",
-        loaderTemp: "SPEED: 3000 RPM",
+        loaderLabel: "HEATING IN PROGRESS...",
+        loaderTemp: "TEMP: 80°C",
         loaderPercent: 95,
-        processText: "순두부를 면포에 감싸 <span class='lookbook-highlight'>충분히 압착</span>한 뒤, 모든 재료를 블렌더로 갈아 <span class='lookbook-highlight'>크리미한 질감</span>을 끌어올립니다.",
-        label1: "순두부 압착",
-        label2: "곱게 블렌딩",
+        processText: "순두부의 물기를 짜고 재료를 섞은 뒤, <span class='lookbook-highlight'>약불에서 데워</span> 되직하게 만들고 냉장고에서 식혀 <span class='lookbook-highlight'>꾸덕한 스프레드</span>를 완성합니다.",
+        label1: "재료 혼합",
+        label2: "약불 데우기",
         completeTitle: "순두부 크림치즈 완성",
         drinks: ["따뜻한 베이글", "바삭한 크래커", "홍차", "아메리카노"]
     },
