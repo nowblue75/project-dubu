@@ -2627,20 +2627,15 @@ footer {
     object-fit: cover;
 }
 
-/* 수직 스캐너 라인 효과 */
+/* 수직 스캐너 라인 효과 (사용자 요청으로 제거) */
 .lookbook-scanner-bar {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 3px;
-    background: #00ffcc;
-    box-shadow: 0 0 12px #00ffcc;
-    animation: scannerVertMove 4s infinite ease-in-out;
-    z-index: 5;
+    display: none;
 }
 
 /* 공통 테크 패널 */
 .lookbook-tech-panel {
     flex: 1;
-    background: rgba(17, 18, 20, 0.9);
+    background: rgba(10, 11, 12, 0.95); /* 더 깊고 매트한 블랙으로 텍스트 가독성 극대화 */
     border: 1px solid rgba(0, 255, 204, 0.4);
     border-radius: 12px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.5);
@@ -2718,10 +2713,12 @@ footer {
 }
 
 .lookbook-analysis-desc {
-    font-size: 1.15rem;
-    line-height: 1.85;
-    color: #a0aab2;
-    margin: 15px 0 0 0;
+    font-size: 1.3rem; /* 크기 상향 */
+    line-height: 1.8;
+    color: #ffffff; /* 가독성을 위한 순백색 매핑 */
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    margin: 18px 0 0 0;
     word-break: keep-all;
 }
 
@@ -2834,18 +2831,23 @@ footer {
 }
 
 .lookbook-note-text {
-    font-size: 1.15rem;
-    line-height: 1.85;
-    color: #a0aab2;
+    font-size: 1.3rem; /* 크기 상향 */
+    line-height: 1.8;
+    color: #ffffff; /* 가독성을 위한 순백색 매핑 */
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
     word-break: keep-all;
     margin: 0;
 }
 
-/* 4페이지 비대칭 정렬을 위한 우측 정렬 */
+/* 4페이지 비대칭 정렬을 위한 우측 정렬 (자식인 lookbook-bg-slide 정렬 제어) */
 .lookbook-slide[data-page="4"] {
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 8%;
+    box-sizing: border-box;
+}
+
+.lookbook-slide[data-page="4"] .lookbook-bg-slide {
+    justify-content: flex-end !important;
+    padding-right: 12% !important;
     box-sizing: border-box;
 }
 

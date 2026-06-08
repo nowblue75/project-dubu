@@ -1619,12 +1619,11 @@ function openLookbook(recipeId) {
                         </div>
                     </div>
                     
-                    <!-- 2페이지: 단면 컷 + [TEXTURE ANALYSIS] 인포그래픽 패널 (텍스트 간결화) -->
+                    <!-- 2페이지: 단면 컷 + [TEXTURE ANALYSIS] 인포그래픽 패널 -->
                     <div class="lookbook-slide" data-page="2">
                         <div class="lookbook-detail-container">
                             <div class="lookbook-detail-img-frame">
                                 <img src="${lookbookBasePath}40. 순두부 흑임자테린/assets/07.png" alt="흑임자테린 단면">
-                                <div class="lookbook-scanner-bar"></div>
                             </div>
                             <div class="lookbook-tech-panel">
                                 <div class="lookbook-panel-header">[TEXTURE ANALYSIS]</div>
@@ -1645,14 +1644,14 @@ function openLookbook(recipeId) {
                                         <span class="value">98%</span>
                                     </div>
                                     <p class="lookbook-analysis-desc">
-                                        순두부의 풍부한 수분과 흑임자가 정밀하게 밀착 유화되어, 빵보다 쫀득하고 푸딩보다 묵직한 극한의 밀착 텍스처를 만듭니다.
+                                        순두부의 풍부한 수분과 흑임자가 정밀하게 유화되어, 빵보다 쫀득하고 푸딩보다 묵직한 극한의 밀착 텍스처를 구현합니다.
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- 3페이지: 2분할 컷 + [PROCESS MONITORING: 140℃ STEAM BAKING] (140도 원복 및 텍스트 간결화) -->
+                    <!-- 3페이지: 2분할 컷 + [PROCESS MONITORING: 140℃ STEAM BAKING] -->
                     <div class="lookbook-slide" data-page="3">
                         <div class="lookbook-note-container">
                             <div class="lookbook-note-images">
@@ -1672,8 +1671,7 @@ function openLookbook(recipeId) {
                                         <div class="loader-percentage">100%</div>
                                     </div>
                                     <p class="lookbook-note-text" style="margin-top: 22px;">
-                                        뜨거운 물을 채운 오븐에서 140℃ 스팀으로 서서히 구워내 내부 수분을 완벽하게 봉인합니다. 
-                                        이후 24시간의 냉장 숙성을 거치며 흑임자의 깊고 꾸덕한 밀도가 완성됩니다.
+                                        140℃ 저온 스팀 중탕으로 구워내 수분을 완전 봉인한 뒤, 24시간 냉장 숙성으로 흑임자의 극대화된 꾸덕함을 완성합니다.
                                     </p>
                                 </div>
                             </div>
