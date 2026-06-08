@@ -1645,7 +1645,7 @@ function openLookbook(recipeId) {
                                         <span class="value">0%</span>
                                     </div>
                                     <p class="lookbook-analysis-desc">
-                                        <span class="lookbook-highlight">순두부</span>의 풍부한 수분과 <span class="lookbook-highlight">흑임자</span>가 정밀하게 유화되어, 빵보다 쫀득하고 푸딩보다 묵직한 극한의 <span class="lookbook-highlight">밀착 텍스처</span>를 구현합니다.
+                                        <span class="lookbook-highlight">순두부</span>와 <span class="lookbook-highlight">흑임자</span>가 정밀하게 유화되어, 독보적인 <span class="lookbook-highlight">밀착 텍스처</span>를 완성합니다.
                                     </p>
                                 </div>
                             </div>
