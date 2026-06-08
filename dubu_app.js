@@ -1582,8 +1582,7 @@ const LOOKBOOK_DB = {
         images: [
             "1. 순두부크림치즈_완/5-1.jpg",
             "1. 순두부크림치즈_완/4.최종 크림.jpg",
-            "1. 순두부크림치즈_완/1.순두부 물기짜기 .png",
-            "1. 순두부크림치즈_완/2. 모든재료 갈기 .png",
+            "1. 순두부크림치즈_완/5-3.jpg",
             "1. 순두부크림치즈_완/5-2.jpg"
         ],
         stickiness: 40,
@@ -1798,9 +1797,10 @@ function openLookbook(recipeId) {
             <button class="lookbook-nav-btn lookbook-nav-right" onclick="changeLookbookPage(1)"><i class="fa-solid fa-chevron-right"></i></button>
             
             <div class="lookbook-slider">
-                <!-- 1페이지: 메인 완성샷 풀스크린 -->
+                <!-- 1페이지: 완성샷 풀스크린 + 제목 오버레이 -->
                 <div class="lookbook-slide active" data-page="1">
                     <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[0]}');">
+                        <div class="lookbook-scan-line"></div>
                         <div class="lookbook-tech-scan-panel">
                             <span class="lookbook-subtitle" style="font-family: 'Playfair Display', serif; font-size: 0.85rem; letter-spacing: 0.25em; color: #8899a6; display: block; margin-bottom: 12px;">${dbData.subtitle}</span>
                             <h1 class="lookbook-tech-title">${dbData.title}</h1>
@@ -1808,98 +1808,81 @@ function openLookbook(recipeId) {
                     </div>
                 </div>
                 
-                <!-- 2페이지: 단면 컷 + [TEXTURE ANALYSIS] -->
+                <!-- 2페이지: 단면 또는 클로즈업 풀스크린 + TEXTURE 데이터 하단 최소화 -->
                 <div class="lookbook-slide" data-page="2">
-                    <div class="lookbook-detail-container">
-                        <div class="lookbook-detail-img-frame">
-                            <img src="${lookbookBasePath}${dbData.images[1]}" alt="${dbData.title} 단면" onerror="this.src='${lookbookBasePath}${dbData.images[0]}'">
-                        </div>
-                        <div class="lookbook-tech-panel">
-                            <div class="lookbook-panel-header">[TEXTURE ANALYSIS]</div>
-                            <div class="lookbook-panel-content">
-                                <div class="lookbook-analysis-item">
+                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[1]}');">
+                        <div class="lookbook-scan-line"></div>
+                        <div class="tech-corner top-left"></div>
+                        <div class="tech-corner top-right"></div>
+                        <div class="tech-corner bottom-left"></div>
+                        <div class="tech-corner bottom-right"></div>
+                        
+                        <div class="lookbook-hud-bottom-panel">
+                            <div class="hud-header">[TEXTURE ANALYSIS]</div>
+                            <div class="hud-content-row">
+                                <div class="hud-metric">
                                     <span class="label">찰기 (STICKINESS)</span>
                                     <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.stickiness}%;"></div></div>
                                     <span class="value">0%</span>
                                 </div>
-                                <div class="lookbook-analysis-item">
+                                <div class="hud-metric">
                                     <span class="label">유화도 (EMULSIFICATION)</span>
                                     <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.emulsification}%;"></div></div>
                                     <span class="value">0%</span>
                                 </div>
-                                <div class="lookbook-analysis-item">
+                                <div class="hud-metric">
                                     <span class="label">밀도 (DENSITY)</span>
                                     <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.density}%;"></div></div>
                                     <span class="value">0%</span>
                                 </div>
-                                <p class="lookbook-analysis-desc">
-                                    ${dbData.desc}
-                                </p>
                             </div>
+                            <p class="hud-desc">${dbData.desc}</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- 3페이지: 2분할 과정 컷 + [PROCESS MONITORING] -->
+                <!-- 3페이지: 두 번째 완성샷 풀스크린 + PROCESS 데이터 하단 최소화 -->
                 <div class="lookbook-slide" data-page="3">
-                    <div class="lookbook-note-container">
-                        <div class="lookbook-note-images">
-                            <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}${dbData.images[2]}');">
-                                <div class="lookbook-img-label">${dbData.label1}</div>
-                            </div>
-                            <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}${dbData.images[3]}');">
-                                <div class="lookbook-img-label">${dbData.label2}</div>
-                            </div>
-                        </div>
-                        <div class="lookbook-tech-panel">
-                            <div class="lookbook-panel-header">${dbData.processHeader}</div>
-                            <div class="lookbook-panel-content">
-                                <div class="lookbook-process-loader">
-                                    <div class="lookbook-process-loader">
-                                        <div class="loader-label">${dbData.loaderLabel}</div>
-                                        <div class="loader-bar-bg"><div class="loader-bar-fill"></div></div>
-                                        <div class="loader-stats" style="display:flex; justify-content:space-between; margin-top:8px;">
-                                            <span class="loader-temp-val">${dbData.loaderTemp.startsWith('TEMP:') ? 'TEMP: 25℃' : dbData.loaderTemp.replace(/[0-9]+/g, '0')}</span>
-                                            <span class="loader-percentage">0%</span>
-                                        </div>
+                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[2]}');">
+                        <div class="lookbook-scan-line"></div>
+                        <div class="tech-corner top-left"></div>
+                        <div class="tech-corner top-right"></div>
+                        <div class="tech-corner bottom-left"></div>
+                        <div class="tech-corner bottom-right"></div>
+                        
+                        <div class="lookbook-hud-bottom-panel">
+                            <div class="hud-header">${dbData.processHeader}</div>
+                            <div class="hud-content-row">
+                                <div class="hud-process-loader">
+                                    <span class="loader-label">${dbData.loaderLabel}</span>
+                                    <div class="loader-bar-bg"><div class="loader-bar-fill"></div></div>
+                                    <div class="loader-stats" style="display:flex; justify-content:space-between; margin-top:8px;">
+                                        <span class="loader-temp-val">${dbData.loaderTemp.startsWith('TEMP:') ? 'TEMP: 25℃' : dbData.loaderTemp.replace(/[0-9]+/g, '0')}</span>
+                                        <span class="loader-percentage">0%</span>
                                     </div>
                                 </div>
-                                <p class="lookbook-note-text" style="margin-top: 22px;">
-                                    ${dbData.processText}
-                                </p>
                             </div>
+                            <p class="hud-desc">${dbData.processText}</p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- 4페이지: 피날레 플레이트 + [RECIPE COMPLETED] -->
+                <!-- 4페이지: 플레이팅샷 풀스크린 + 페어링 문구 하단 오버레이 -->
                 <div class="lookbook-slide" data-page="4">
-                    <div class="lookbook-detail-container">
-                        <div class="lookbook-complete-img-frame">
-                            <img src="${lookbookBasePath}${dbData.images[4]}" alt="${dbData.title} 피날레" onerror="this.src='${lookbookBasePath}${dbData.images[0]}'">
-                            <div class="tech-corner top-left"></div>
-                            <div class="tech-corner top-right"></div>
-                            <div class="tech-corner bottom-left"></div>
-                            <div class="tech-corner bottom-right"></div>
-                        </div>
+                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[3]}');">
+                        <div class="lookbook-scan-line"></div>
+                        <div class="tech-corner top-left"></div>
+                        <div class="tech-corner top-right"></div>
+                        <div class="tech-corner bottom-left"></div>
+                        <div class="tech-corner bottom-right"></div>
                         
-                        <div class="lookbook-tech-complete-panel">
-                            <div class="tech-corner top-left"></div>
-                            <div class="tech-corner top-right"></div>
-                            <div class="tech-corner bottom-left"></div>
-                            <div class="tech-corner bottom-right"></div>
-                            
-                            <div class="complete-header">[RECIPE COMPLETED]</div>
-                            <div class="complete-body">
-                                <div class="complete-icon">
-                                    <i class="fa-solid fa-check"></i>
-                                </div>
-                                <h2 class="complete-title">${dbData.completeTitle}</h2>
-                                <div class="complete-pairing-section">
-                                    <div class="pairing-title">RECOMMENDED PAIRING</div>
-                                    <div class="pairing-drinks">
-                                        ${drinksHtml}
-                                    </div>
+                        <div class="lookbook-hud-bottom-panel lookbook-complete-panel">
+                            <div class="hud-header">[RECIPE COMPLETED]</div>
+                            <div class="hud-content-row complete-row">
+                                <h2 class="complete-title-hud">${dbData.completeTitle}</h2>
+                                <div class="pairing-drinks-hud">
+                                    <span class="pairing-label">RECOMMENDED PAIRING:</span>
+                                    ${drinksHtml}
                                 </div>
                             </div>
                         </div>
@@ -1984,17 +1967,37 @@ function updateLookbookUI() {
     if (!dbData) return;
 
     if (lookbookCurrentPage === 2) {
-        const valElements = document.querySelectorAll('.lookbook-analysis-item .value');
+        const valElements = document.querySelectorAll('.hud-metric .value');
+        const fillElements = document.querySelectorAll('.hud-metric .bar-fill');
+        
+        fillElements.forEach((bar, idx) => {
+            const targetWidth = idx === 0 ? dbData.stickiness : (idx === 1 ? dbData.emulsification : dbData.density);
+            bar.style.width = '0%';
+            setTimeout(() => {
+                bar.style.width = targetWidth + '%';
+                bar.style.transition = 'width 1.2s cubic-bezier(0.25, 1, 0.5, 1)';
+            }, 50);
+        });
+
         if (valElements.length >= 3) {
             animateNumber(valElements[0], 0, dbData.stickiness, 1200, '%');
             animateNumber(valElements[1], 0, dbData.emulsification, 1200, '%');
             animateNumber(valElements[2], 0, dbData.density, 1200, '%');
         }
     } else if (lookbookCurrentPage === 3) {
-        const percentageEl = document.querySelector('.lookbook-process-loader .loader-percentage');
-        const tempEl = document.querySelector('.lookbook-process-loader .loader-temp-val');
+        const percentageEl = document.querySelector('.hud-process-loader .loader-percentage');
+        const tempEl = document.querySelector('.hud-process-loader .loader-temp-val');
+        const barFillEl = document.querySelector('.hud-process-loader .loader-bar-fill');
+        
         if (percentageEl) {
             animateNumber(percentageEl, 0, dbData.loaderPercent, 1500, '%');
+        }
+        if (barFillEl) {
+            barFillEl.style.width = '0%';
+            setTimeout(() => {
+                barFillEl.style.width = dbData.loaderPercent + '%';
+                barFillEl.style.transition = 'width 1.5s cubic-bezier(0.25, 1, 0.5, 1)';
+            }, 50);
         }
         if (tempEl) {
             if (dbData.loaderTemp.startsWith('TEMP:')) {
