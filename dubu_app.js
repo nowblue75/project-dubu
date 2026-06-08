@@ -1702,12 +1702,12 @@ function openLookbook(recipeId) {
                                 <div class="tech-corner bottom-left"></div>
                                 <div class="tech-corner bottom-right"></div>
                                 
-                                <div class="complete-header">[RECIPE SYSTEM: COMPLETE]</div>
+                                <div class="complete-header">[RECIPE COMPLETED]</div>
                                 <div class="complete-body">
                                     <div class="complete-icon">
                                         <i class="fa-solid fa-check"></i>
                                     </div>
-                                    <h2 class="complete-title">순두부 흑임자 테린 완결</h2>
+                                    <h2 class="complete-title">순두부 흑임자 테린의 완성</h2>
                                     <div class="complete-pairing-section">
                                         <div class="pairing-title">RECOMMENDED PAIRING DRINK</div>
                                         <div class="pairing-drinks">
