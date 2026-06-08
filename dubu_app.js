@@ -1682,9 +1682,17 @@ function openLookbook(recipeId) {
                     <div class="lookbook-slide" data-page="4">
                         <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/08.png');">
                             <div class="lookbook-tech-complete-panel">
+                                <!-- 테크 브래킷 코너 디자인 디테일 -->
+                                <div class="tech-corner top-left"></div>
+                                <div class="tech-corner top-right"></div>
+                                <div class="tech-corner bottom-left"></div>
+                                <div class="tech-corner bottom-right"></div>
+                                
                                 <div class="complete-header">[RECIPE SYSTEM: COMPLETE]</div>
                                 <div class="complete-body">
-                                    <div class="complete-icon"><i class="fa-solid fa-circle-check"></i></div>
+                                    <div class="complete-icon">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
                                     <h2 class="complete-title">순두부 흑임자 테린 완결</h2>
                                     <div class="complete-pairing-section">
                                         <div class="pairing-title">RECOMMENDED PAIRING DRINK</div>

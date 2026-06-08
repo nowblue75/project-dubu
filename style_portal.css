@@ -2853,14 +2853,39 @@ footer {
 
 
 /* --- 4페이지: COMPLETE 네온 팝업 --- */
+.lookbook-slide[data-page="4"] .lookbook-bg-slide::before {
+    background: linear-gradient(to left, rgba(10, 11, 12, 0.96) 0%, rgba(10, 11, 12, 0.55) 45%, rgba(10, 11, 12, 0.08) 80%, transparent 100%) !important;
+}
+
+.lookbook-slide[data-page="4"] .lookbook-bg-slide {
+    filter: contrast(1.05) saturate(1.12) brightness(1.02);
+}
+
+/* 테크 브래킷 코너 */
+.tech-corner {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: rgba(0, 255, 204, 0.85);
+    border-style: solid;
+    pointer-events: none;
+    z-index: 20;
+}
+.tech-corner.top-left { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
+.tech-corner.top-right { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
+.tech-corner.bottom-left { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
+.tech-corner.bottom-right { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+
 .lookbook-tech-complete-panel {
     position: relative;
     z-index: 10;
-    width: 480px;
-    background: rgba(17, 18, 20, 0.92);
-    border: 1px solid #00ffcc;
+    width: 460px;
+    background: rgba(10, 12, 15, 0.72) !important; /* 글래스모피즘 */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 255, 204, 0.55) !important;
     border-radius: 16px;
-    box-shadow: 0 0 40px rgba(0, 255, 204, 0.2), 0 25px 60px rgba(0,0,0,0.85);
+    box-shadow: 0 0 45px rgba(0, 255, 204, 0.25), 0 25px 60px rgba(0,0,0,0.85);
     overflow: hidden;
     opacity: 0;
     transform: scale(0.95);
@@ -2890,18 +2915,33 @@ footer {
 }
 
 .complete-icon {
-    font-size: 3.5rem;
+    position: relative;
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    line-height: 75px;
+    font-size: 2.5rem;
     color: #00ffcc;
-    text-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
-    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+    margin-bottom: 25px;
+}
+
+.complete-icon::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: -8px; right: -8px; bottom: -8px;
+    border: 2px dashed rgba(0, 255, 204, 0.45);
+    border-radius: 50%;
+    animation: rotCircle 12s linear infinite;
 }
 
 .complete-title {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #F5EBE0;
+    color: #ffffff;
     margin: 0 0 30px 0;
     letter-spacing: 0.05em;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.6);
 }
 
 .complete-pairing-section {
@@ -2925,14 +2965,16 @@ footer {
 }
 
 .complete-pairing-section .drink-tag {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(0, 255, 204, 0.2);
-    color: #a0aab2;
-    padding: 8px 15px;
-    font-size: 0.82rem;
-    border-radius: 20px;
-    transition: all 0.3s;
+    background: rgba(0, 255, 204, 0.03);
+    border: 1px solid rgba(0, 255, 204, 0.25);
+    color: #e5fcf8;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: default;
+    font-weight: 500;
+    box-shadow: inset 0 0 8px rgba(0, 255, 204, 0.05);
 }
 
 .complete-pairing-section .drink-tag i {
@@ -2941,9 +2983,10 @@ footer {
 
 .complete-pairing-section .drink-tag:hover {
     border-color: #00ffcc;
-    color: #00ffcc;
-    background: rgba(0, 255, 204, 0.05);
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+    color: #111214;
+    background: #00ffcc;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+    transform: translateY(-2px);
 }
 
 
@@ -3017,6 +3060,11 @@ footer {
 @keyframes lookbookFadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rotCircle {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 
