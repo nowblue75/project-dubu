@@ -2736,9 +2736,10 @@ footer {
 
 .lookbook-note-images {
     display: flex;
-    flex: 1.1;
+    flex-direction: column; /* 데스크톱에선 상하 2단 배열로 가로 와이드뷰 연출 */
+    flex: 1.25;
     height: 100%;
-    gap: 20px;
+    gap: 16px;
     opacity: 0;
 }
 
@@ -3029,7 +3030,7 @@ footer {
     .lookbook-analysis-desc { font-size: 0.8rem; line-height: 1.5; margin-top: 10px; }
     
     .lookbook-note-container { width: 90%; height: 75%; flex-direction: column; gap: 20px; }
-    .lookbook-note-images { width: 100%; flex: 1; gap: 10px; }
+    .lookbook-note-images { width: 100%; flex: 1; flex-direction: row; gap: 10px; }
     .lookbook-img-label { bottom: 12px; left: 12px; padding: 4px 8px; font-size: 0.72rem; }
     
     .lookbook-process-loader { padding: 12px; }
