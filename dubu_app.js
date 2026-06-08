@@ -437,7 +437,7 @@ function openFocusStage(recipeId) {
             <div class="focus-stage-left">
                 <div class="focus-tag-top" style="font-family:'Playfair Display',serif; font-weight:600; letter-spacing:2px;">RECIPE FILE // Vol.${recipe.id}</div>
                 <div class="focus-img-wrapper" style="height:62%; margin-top:20px; border-radius:14px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.5);">
-                    <img src="${recipe.img}" alt="${recipe.title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='assets/default_dubu.jpg'">
+                    <img src="${recipe.img.startsWith('/') ? recipe.img : '/' + recipe.img}" alt="${recipe.title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='/assets/default_dubu.jpg'">
                 </div>
                 <div class="focus-cheers-box" style="border-left-color:${theme.accentColor}; background:rgba(255,255,255,0.03); margin-top:15px; padding:10px 14px;">
                     <i class="fa-solid fa-quote-left" style="color:${theme.accentColor}; opacity:0.6; margin-bottom:6px; font-size:0.9rem;"></i>
@@ -2000,6 +2000,110 @@ function updateLookbookUI() {
             }
         }
     }
+}
+
+function renderQuickNavigator(currentRecipeId) {
+    currentRecipeId = Number(currentRecipeId);
+    const quickNavEl = document.querySelector('.lookbook-quick-nav');
+    if (!quickNavEl) return;
+
+    // 10개 단위 그룹 정의
+    const groups = [
+        { label: "Vol.1-10", start: 1, end: 10 },
+        { label: "Vol.11-20", start: 11, end: 20 },
+        { label: "Vol.21-30", start: 21, end: 30 },
+        { label: "Vol.31-41", start: 31, end: 41 }
+    ];
+
+    // 현재 레시피가 속한 그룹 찾기
+    let activeGroupIdx = groups.findIndex(g => currentRecipeId >= g.start && currentRecipeId <= g.end);
+    if (activeGroupIdx === -1) activeGroupIdx = 0; // 예외 방어
+
+    // 그룹 헤더 탭 HTML 빌드
+    const tabsHtml = groups.map((g, idx) => {
+        const isActive = idx === activeGroupIdx;
+        return `<button class="quick-nav-tab ${isActive ? 'active' : ''}" onclick="onQuickGroupChange(${idx}, ${currentRecipeId})">${g.label}</button>`;
+    }).join('');
+
+    // 현재 활성화된 그룹의 레시피 목록 HTML 빌드
+    const activeGroup = groups[activeGroupIdx];
+    const itemsHtml = [];
+    
+    for (let id = activeGroup.start; id <= activeGroup.end; id++) {
+        const recipe = PROJECTS.find(p => p.id === id);
+        if (!recipe) continue;
+
+        const isCurrent = id === currentRecipeId;
+        const allowedIds = [1, 2, 3, 4, 5, 39];
+        const isReady = allowedIds.includes(id);
+
+        itemsHtml.push(`
+            <button class="quick-nav-item ${isCurrent ? 'current' : ''} ${!isReady ? 'disabled' : ''}"
+                    onclick="onQuickRecipeClick(${id}, ${isReady})"
+                    title="${recipe.title}">
+                Vol.${id}
+            </button>
+        `);
+    }
+
+    quickNavEl.innerHTML = `
+        <div class="quick-nav-tabs-row">
+            ${tabsHtml}
+        </div>
+        <div class="quick-nav-items-row">
+            ${itemsHtml.join('')}
+        </div>
+    `;
+}
+
+function onQuickGroupChange(groupIdx, currentRecipeId) {
+    const quickNavEl = document.querySelector('.lookbook-quick-nav');
+    if (!quickNavEl) return;
+
+    const tabs = quickNavEl.querySelectorAll('.quick-nav-tab');
+    tabs.forEach((tab, idx) => {
+        tab.classList.toggle('active', idx === groupIdx);
+    });
+
+    const groups = [
+        { label: "Vol.1-10", start: 1, end: 10 },
+        { label: "Vol.11-20", start: 11, end: 20 },
+        { label: "Vol.21-30", start: 21, end: 30 },
+        { label: "Vol.31-41", start: 31, end: 41 }
+    ];
+
+    const activeGroup = groups[groupIdx];
+    const itemsHtml = [];
+    
+    for (let id = activeGroup.start; id <= activeGroup.end; id++) {
+        const recipe = PROJECTS.find(p => p.id === id);
+        if (!recipe) continue;
+
+        const isCurrent = id === currentRecipeId;
+        const allowedIds = [1, 2, 3, 4, 5, 39];
+        const isReady = allowedIds.includes(id);
+
+        itemsHtml.push(`
+            <button class="quick-nav-item ${isCurrent ? 'current' : ''} ${!isReady ? 'disabled' : ''}"
+                    onclick="onQuickRecipeClick(${id}, ${isReady})"
+                    title="${recipe.title}">
+                Vol.${id}
+            </button>
+        `);
+    }
+
+    const itemsRow = quickNavEl.querySelector('.quick-nav-items-row');
+    if (itemsRow) {
+        itemsRow.innerHTML = itemsHtml.join('');
+    }
+}
+
+function onQuickRecipeClick(recipeId, isReady) {
+    if (!isReady) {
+        alert('Vol.' + recipeId + ' 레시피 룩북은 준비 중입니다. 1그룹(Vol.1~5)과 Vol.39(흑임자테린) 룩북을 감상해 보세요!');
+        return;
+    }
+    openLookbook(recipeId);
 }
 
 // requestAnimationFrame 기반 부드러운 숫자 업 카운팅 모션 함수
