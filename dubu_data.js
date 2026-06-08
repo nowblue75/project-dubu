@@ -66,7 +66,7 @@ const PROJECTS = [
         "oneBowl": true,
         "desc": "오란다 대 틀 1판 기준! 오븐 중탕 공법과 오븐 베이킹으로 완성하는 깊고 진한 흑임자 테린. 만든 다음 날 차갑게 굳혀 드실 때 더욱 꾸덕합니다.",
         "path": "40. 순두부 흑임자테린/index.html",
-        "img": "40. 순두부 흑임자테린/assets/01.png",
+        "img": "40. 순두부 흑임자테린/assets/08.png",
         "calcPath": "40. 순두부 흑임자테린_완/calculator/index.html",
         "isInteractive": true,
         "blogUrl": "https://blog.naver.com/project_dubu/224277363532",
