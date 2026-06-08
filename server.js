@@ -22,6 +22,71 @@ http.createServer((req, res) => {
         urlPath = decodeURIComponent(urlPath);
     } catch(e) {}
 
+    // GET /api/scan_images API 구현
+    if (req.method === 'GET' && urlPath === '/api/scan_images') {
+        const urlParams = new URL(req.url, `http://${req.headers.host || 'localhost'}`).searchParams;
+        const recipeId = urlParams.get('recipeId');
+        if (!recipeId) {
+            res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+            res.end(JSON.stringify({ error: "recipeId is required" }));
+            return;
+        }
+
+        fs.readdir(__dirname, (err, files) => {
+            if (err) {
+                res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+                res.end(JSON.stringify({ error: "Failed to read directory" }));
+                return;
+            }
+
+            const targetRegex = new RegExp('^' + recipeId + '\\b');
+            const matchedDir = files.find(file => {
+                try {
+                    const isDir = fs.statSync(path.join(__dirname, file)).isDirectory();
+                    return isDir && targetRegex.test(file);
+                } catch(e) {
+                    return false;
+                }
+            });
+
+            if (!matchedDir) {
+                res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
+                res.end(JSON.stringify({ error: `Directory for recipeId ${recipeId} not found`, images: [] }));
+                return;
+            }
+
+            const dirPath = path.join(__dirname, matchedDir);
+            fs.readdir(dirPath, (err, subFiles) => {
+                if (err) {
+                    res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+                    res.end(JSON.stringify({ error: "Failed to read subdirectory" }));
+                    return;
+                }
+
+                const imageExtensions = ['.png', '.jpg', '.jpeg', '.webp', '.gif'];
+                const images = subFiles
+                    .filter(file => {
+                        try {
+                            const isFile = fs.statSync(path.join(dirPath, file)).isFile();
+                            const ext = path.extname(file).toLowerCase();
+                            return isFile && imageExtensions.includes(ext);
+                        } catch(e) {
+                            return false;
+                        }
+                    })
+                    .map(file => `/${matchedDir}/${file}`)
+                    .sort();
+
+                res.writeHead(200, { 
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
+                });
+                res.end(JSON.stringify({ recipeId, directory: matchedDir, images }));
+            });
+        });
+        return;
+    }
+
     // SPA Fallback: /lookbook 으로 시작하면서 확장자가 없는 주소는 index.html로 서빙
     const isSPARoute = urlPath.startsWith('/lookbook') && !path.extname(urlPath);
     let filePath = path.join(__dirname, (urlPath === '/' || isSPARoute) ? 'index.html' : urlPath);

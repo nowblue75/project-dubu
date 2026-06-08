@@ -1557,246 +1557,394 @@ function renderBookshelf() {
     }, 50);
 }
 
+// ==========================================================================
+// 룩북 데이터베이스 및 카테고리 테마 정의
+// ==========================================================================
+const CATEGORY_THEMES = {
+    creamy:    { color: '#00ffcc', rgb: '0, 255, 204' },
+    fudgy:     { color: '#ffaa00', rgb: '255, 170, 0' },
+    cloud:     { color: '#bd00ff', rgb: '189, 0, 255' },
+    teatime:   { color: '#00a2ff', rgb: '0, 162, 255' },
+    nostalgia: { color: '#ff0066', rgb: '255, 0, 102' },
+    soymilk:   { color: '#a2ff00', rgb: '162, 255, 0' },
+    gift:      { color: '#ff5e00', rgb: '255, 94, 0' }
+};
+
+const LOOKBOOK_DB = {
+    1: {
+        title: "순두부 크림치즈",
+        subtitle: "RECIPE ARCHIVE // Vol.01",
+        images: [
+            "1. 순두부크림치즈_완/5-1.jpg",
+            "1. 순두부크림치즈_완/4.최종 크림.jpg",
+            "1. 순두부크림치즈_완/1.순두부 물기짜기 .png",
+            "1. 순두부크림치즈_완/2. 모든재료 갈기 .png",
+            "1. 순두부크림치즈_완/5-2.jpg"
+        ],
+        stickiness: 40,
+        emulsification: 95,
+        density: 80,
+        desc: "<span class='lookbook-highlight'>순두부</span>와 <span class='lookbook-highlight'>카놀라유</span>가 곱게 유화되어, 독보적인 부드러운 <span class='lookbook-highlight'>스프레드 텍스처</span>를 완성합니다.",
+        processHeader: "[PROCESS MONITORING]",
+        loaderLabel: "BLENDING IN PROGRESS...",
+        loaderTemp: "SPEED: 3000 RPM",
+        loaderPercent: 95,
+        processText: "순두부를 면포에 감싸 <span class='lookbook-highlight'>충분히 압착</span>한 뒤, 모든 재료를 블렌더로 갈아 <span class='lookbook-highlight'>크리미한 질감</span>을 끌어올립니다.",
+        label1: "순두부 압착",
+        label2: "곱게 블렌딩",
+        completeTitle: "순두부 크림치즈 완성",
+        drinks: ["따뜻한 베이글", "바삭한 크래커", "홍차", "아메리카노"]
+    },
+    2: {
+        title: "순두부 크림치즈 티라미수",
+        subtitle: "RECIPE ARCHIVE // Vol.02",
+        images: [
+            "2. 순두부크림치즈티라미수_완/5-3.jpg",
+            "2. 순두부크림치즈티라미수_완/5-4.jpg",
+            "2. 순두부크림치즈티라미수_완/3.jpg",
+            "2. 순두부크림치즈티라미수_완/4-1.jpg",
+            "2. 순두부크림치즈티라미수_완/6-2.jpg"
+        ],
+        stickiness: 50,
+        emulsification: 92,
+        density: 85,
+        desc: "<span class='lookbook-highlight'>순두부 마스카포네 크림</span>과 촉촉한 에스프레소 시트가 조화되어, 깊은 <span class='lookbook-highlight'>레이어드 텍스처</span>를 완성합니다.",
+        processHeader: "[PROCESS MONITORING]",
+        loaderLabel: "CHILLING IN PROGRESS...",
+        loaderTemp: "TEMP: 4℃",
+        loaderPercent: 92,
+        processText: "에스프레소 시트 위에 <span class='lookbook-highlight'>순두부 마스카포네 크림</span>을 교차로 쌓아 올린 후, <span class='lookbook-highlight'>차갑게 냉장 굳힘</span>하여 맛을 완성합니다.",
+        label1: "크림 배합",
+        label2: "레이어 적층",
+        completeTitle: "순두부 크림치즈 티라미수 완성",
+        drinks: ["콜드브루 커피", "진한 아메리카노", "에스프레소", "루이보스티"]
+    },
+    3: {
+        title: "순두부 바스크 치즈케이크",
+        subtitle: "RECIPE ARCHIVE // Vol.03",
+        images: [
+            "3. 순두부바스크치즈케이크_완/KakaoTalk_20250618_084702444.jpg",
+            "3. 순두부바스크치즈케이크_완/KakaoTalk_20250618_084702444_02.jpg",
+            "3. 순두부바스크치즈케이크_완/만들기01.png",
+            "3. 순두부바스크치즈케이크_완/만들기02.png",
+            "3. 순두부바스크치즈케이크_완/KakaoTalk_20250618_084702444_01.jpg"
+        ],
+        stickiness: 75,
+        emulsification: 90,
+        density: 92,
+        desc: "<span class='lookbook-highlight'>순두부 크림 반죽</span>이 고온에서 빠르게 구워져, 바스크 특유의 스모키함과 <span class='lookbook-highlight'>크리미한 단면</span>을 완성합니다.",
+        processHeader: "[PROCESS MONITORING]",
+        loaderLabel: "HIGH-TEMP BAKING...",
+        loaderTemp: "TEMP: 220℃",
+        loaderPercent: 90,
+        processText: "<span class='lookbook-highlight'>220℃ 고온 오븐</span>에서 표면을 태우듯 굽고, <span class='lookbook-highlight'>한 김 식힌 뒤 냉장 숙성</span>하여 치즈케이크의 밀착된 식감을 살립니다.",
+        label1: "고온 베이킹",
+        label2: "오븐 냉각",
+        completeTitle: "순두부 바스크 치즈케이크 완성",
+        drinks: ["아메리카노", "드라이 와인", "루이보스티", "카페라떼"]
+    },
+    4: {
+        title: "순두부 퍼지 브라우니",
+        subtitle: "RECIPE ARCHIVE // Vol.04",
+        images: [
+            "4. 순두부퍼지브라우니_완/KakaoTalk_20250619_145808456.jpg",
+            "4. 순두부퍼지브라우니_완/KakaoTalk_20250619_145808456_03.jpg",
+            "4. 순두부퍼지브라우니_완/KakaoTalk_20250619_145808456_01.jpg",
+            "4. 순두부퍼지브라우니_완/KakaoTalk_20250619_145808456_02.jpg",
+            "4. 순두부퍼지브라우니_완/KakaoTalk_20250619_190927296_01.jpg"
+        ],
+        stickiness: 90,
+        emulsification: 88,
+        density: 96,
+        desc: "<span class='lookbook-highlight'>순두부 반죽</span>과 다크 초콜릿이 묵직하게 결합되어, 입안에 진하게 밀착되는 <span class='lookbook-highlight'>꾸덕한 퍼지 질감</span>을 구현합니다.",
+        processHeader: "[PROCESS MONITORING]",
+        loaderLabel: "MELTING & BAKING...",
+        loaderTemp: "TEMP: 165℃",
+        loaderPercent: 88,
+        processText: "중탕으로 녹인 다크 초콜릿에 <span class='lookbook-highlight'>물기를 뺀 순두부</span>를 혼합해 <span class='lookbook-highlight'>오븐에서 촉촉하게</span> 구워내어 꾸덕함을 완성합니다.",
+        label1: "초콜릿 멜팅",
+        label2: "정밀 블렌딩",
+        completeTitle: "순두부 퍼지 브라우니 완성",
+        drinks: ["따뜻한 아메리카노", "흰 우유", "카페라떼", "허브티"]
+    },
+    5: {
+        title: "순두부 황치즈 휘낭시에",
+        subtitle: "RECIPE ARCHIVE // Vol.05",
+        images: [
+            "5. 순두부황치즈휘낭시에_완/KakaoTalk_20250623_175152559.jpg",
+            "5. 순두부황치즈휘낭시에_완/KakaoTalk_20250623_175152559_02.jpg",
+            "5. 순두부황치즈휘낭시에_완/만들기1.png",
+            "5. 순두부황치즈휘낭시에_완/만들기2.png",
+            "5. 순두부황치즈휘낭시에_완/KakaoTalk_20250623_175152559_05.jpg"
+        ],
+        stickiness: 60,
+        emulsification: 94,
+        density: 82,
+        desc: "<span class='lookbook-highlight'>황치즈가루</span>와 순두부 베이스가 빈틈없이 어우러져, 겉은 바삭하고 속은 쫀득한 <span class='lookbook-highlight'>단짠 휘낭시에</span>를 완성합니다.",
+        processHeader: "[PROCESS MONITORING]",
+        loaderLabel: "FINANCIER BAKING...",
+        loaderTemp: "TEMP: 180℃",
+        loaderPercent: 94,
+        processText: "휘낭시에 틀에 반죽을 <span class='lookbook-highlight'>적정량 팬닝</span>한 뒤, <span class='lookbook-highlight'>180℃ 오븐</span>에서 노릇하게 구워 황치즈의 고소한 향을 극대화합니다.",
+        label1: "팬닝 과정",
+        label2: "오븐 베이킹",
+        completeTitle: "순두부 황치즈 휘낭시에 완성",
+        drinks: ["따뜻한 아메리카노", "보리차", "흰 우유", "아이스 라떼"]
+    },
+    39: {
+        title: "순두부 흑임자 테린",
+        subtitle: "RECIPE ARCHIVE // Vol.39",
+        images: [
+            "40. 순두부 흑임자테린/assets/01.png",
+            "40. 순두부 흑임자테린/assets/07.png",
+            "40. 순두부 흑임자테린/assets/baking_shot.png",
+            "40. 순두부 흑임자테린/assets/lb_aging_new.png",
+            "40. 순두부 흑임자테린/assets/08.png"
+        ],
+        stickiness: 95,
+        emulsification: 90,
+        density: 98,
+        desc: "<span class='lookbook-highlight'>순두부</span>와 <span class='lookbook-highlight'>흑임자</span>가 정밀하게 유화되어, 독보적인 <span class='lookbook-highlight'>밀착 텍스처</span>를 완성합니다.",
+        processHeader: "[PROCESS MONITORING]",
+        loaderLabel: "BAKING IN PROGRESS...",
+        loaderTemp: "TEMP: 25℃",
+        loaderPercent: 100,
+        processText: "<span class='lookbook-highlight'>140℃ 저온 스팀 중탕</span>으로 구워내 수분을 완전 봉인한 뒤, <span class='lookbook-highlight'>24시간 냉장 숙성</span>으로 흑임자의 <span class='lookbook-highlight'>극대화된 꾸덕함</span>을 완성합니다.",
+        label1: "중탕 베이킹",
+        label2: "하루의 숙성",
+        completeTitle: "순두부 흑임자 테린의 완성",
+        drinks: ["아메리카노", "따뜻한 녹차", "구수한 우롱차", "카페 라떼"]
+    }
+};
+
 let lookbookCurrentPage = 1;
 const lookbookTotalPages = 4;
+let currentLookbookRecipeId = 39;
 
 function openLookbook(recipeId) {
     recipeId = Number(recipeId);
+    
+    // 1그룹(1~5) 및 39번 이외의 레시피는 준비중 처리
+    const allowedIds = [1, 2, 3, 4, 5, 39];
+    if (!allowedIds.includes(recipeId)) {
+        alert('Vol.' + recipeId + ' 레시피 룩북은 준비 중입니다. 1그룹(Vol.1~5)과 Vol.39(흑임자테린) 룩북을 감상해 보세요!');
+        return;
+    }
+
     const recipe = PROJECTS.find(p => p.id === recipeId);
     if (!recipe) return;
 
-    // Vol.39 흑임자 테린 전용 풀스크린 화보집 파일럿 구현
-    if (recipeId === 39) {
-        // 1. 기존 상세 모달 찾기 및 페이드아웃
-        const focusOverlay = document.getElementById('focus-modal-overlay');
-        if (focusOverlay) {
-            focusOverlay.classList.remove('active');
-            setTimeout(() => {
-                focusOverlay.style.display = 'none';
-            }, 400);
-        }
+    currentLookbookRecipeId = recipeId;
+    const dbData = LOOKBOOK_DB[recipeId];
+    if (!dbData) return;
 
-        // 가상 경로 변경 전에 실제 물리적 base path 연산
-        // 주소창에 /lookbook/이 들어있는 상태에서 새로고침이 되더라도 실제 루트 경로를 찾을 수 있도록 보정
-        let currentPath = window.location.pathname;
-        const lookbookIdx = currentPath.indexOf('/lookbook/');
-        if (lookbookIdx !== -1) {
-            currentPath = currentPath.substring(0, lookbookIdx + 1);
-        } else {
-            currentPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
-        }
-        
-        const lookbookBasePath = window.location.protocol === 'file:' 
-            ? currentPath
-            : window.location.origin + currentPath;
+    // 기존 상세 모달 찾기 및 페이드아웃
+    const focusOverlay = document.getElementById('focus-modal-overlay');
+    if (focusOverlay) {
+        focusOverlay.classList.remove('active');
+        setTimeout(() => {
+            focusOverlay.style.display = 'none';
+        }, 400);
+    }
 
-        // 2. 가상 라우팅 설정 (/lookbook/39)
-        history.pushState({ page: 'lookbook', id: 39 }, '', '/lookbook/39');
+    // 가상 경로 연산을 위한 물리적 base path
+    let currentPath = window.location.pathname;
+    const lookbookIdx = currentPath.indexOf('/lookbook/');
+    if (lookbookIdx !== -1) {
+        currentPath = currentPath.substring(0, lookbookIdx + 1);
+    } else {
+        currentPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+    }
+    const lookbookBasePath = window.location.protocol === 'file:' 
+        ? currentPath
+        : window.location.origin + currentPath;
 
-        // 3. 풀스크린 룩북 오버레이 동적 생성
-        let lookbookOverlay = document.getElementById('lookbook-overlay');
-        if (lookbookOverlay) lookbookOverlay.remove();
+    // 가상 라우팅 설정
+    history.pushState({ page: 'lookbook', id: recipeId }, '', '/lookbook/' + recipeId);
 
-        lookbookOverlay = document.createElement('div');
-        lookbookOverlay.id = 'lookbook-overlay';
-        lookbookOverlay.innerHTML = `
-            <div class="lookbook-container">
-                <!-- 럭셔리 네온 테크 라인 프레임 -->
-                <div class="lookbook-tech-frame"></div>
+    // 오버레이 동적 생성
+    let lookbookOverlay = document.getElementById('lookbook-overlay');
+    if (lookbookOverlay) lookbookOverlay.remove();
 
-                <button class="lookbook-close-btn" onclick="closeLookbook()">&times;</button>
+    lookbookOverlay = document.createElement('div');
+    lookbookOverlay.id = 'lookbook-overlay';
+    
+    // 페어링 음료 HTML 빌드
+    const drinksHtml = dbData.drinks.map(d => {
+        let iconClass = "fa-solid fa-mug-hot";
+        if (d.includes("차") || d.includes("티")) iconClass = "fa-solid fa-leaf";
+        else if (d.includes("와인")) iconClass = "fa-solid fa-glass-wine";
+        else if (d.includes("크래커") || d.includes("베이글")) iconClass = "fa-solid fa-bread-slice";
+        else if (d.includes("우유")) iconClass = "fa-solid fa-glass-water";
+        return `<span class="drink-tag"><i class="${iconClass}"></i> ${d}</span>`;
+    }).join('');
+
+    lookbookOverlay.innerHTML = `
+        <div class="lookbook-container">
+            <!-- 10개 단위 퀵 아카이브 내비게이터 -->
+            <div class="lookbook-quick-nav"></div>
+
+            <!-- 럭셔리 네온 테크 라인 프레임 -->
+            <div class="lookbook-tech-frame"></div>
+
+            <button class="lookbook-close-btn" onclick="closeLookbook()">&times;</button>
+            
+            <button class="lookbook-nav-btn lookbook-nav-left" onclick="changeLookbookPage(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="lookbook-nav-btn lookbook-nav-right" onclick="changeLookbookPage(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            
+            <div class="lookbook-slider">
+                <!-- 1페이지: 메인 완성샷 풀스크린 -->
+                <div class="lookbook-slide active" data-page="1">
+                    <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[0]}');">
+                        <div class="lookbook-tech-scan-panel">
+                            <span class="lookbook-subtitle" style="font-family: 'Playfair Display', serif; font-size: 0.85rem; letter-spacing: 0.25em; color: #8899a6; display: block; margin-bottom: 12px;">${dbData.subtitle}</span>
+                            <h1 class="lookbook-tech-title">${dbData.title}</h1>
+                        </div>
+                    </div>
+                </div>
                 
-                <button class="lookbook-nav-btn lookbook-nav-left" onclick="changeLookbookPage(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-                <button class="lookbook-nav-btn lookbook-nav-right" onclick="changeLookbookPage(1)"><i class="fa-solid fa-chevron-right"></i></button>
-                
-                <div class="lookbook-slider">
-                    <!-- 1페이지: 메인 완성샷 풀스크린 + 상단 타이틀 패널 -->
-                    <div class="lookbook-slide active" data-page="1">
-                        <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/01.png');">
-                            <div class="lookbook-tech-scan-panel">
-                                <span class="lookbook-subtitle" style="font-family: 'Playfair Display', serif; font-size: 0.85rem; letter-spacing: 0.25em; color: #8899a6; display: block; margin-bottom: 12px;">RECIPE ARCHIVE // Vol.39</span>
-                                <h1 class="lookbook-tech-title">순두부 흑임자 테린</h1>
+                <!-- 2페이지: 단면 컷 + [TEXTURE ANALYSIS] -->
+                <div class="lookbook-slide" data-page="2">
+                    <div class="lookbook-detail-container">
+                        <div class="lookbook-detail-img-frame">
+                            <img src="${lookbookBasePath}${dbData.images[1]}" alt="${dbData.title} 단면" onerror="this.src='${lookbookBasePath}${dbData.images[0]}'">
+                        </div>
+                        <div class="lookbook-tech-panel">
+                            <div class="lookbook-panel-header">[TEXTURE ANALYSIS]</div>
+                            <div class="lookbook-panel-content">
+                                <div class="lookbook-analysis-item">
+                                    <span class="label">찰기 (STICKINESS)</span>
+                                    <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.stickiness}%;"></div></div>
+                                    <span class="value">0%</span>
+                                </div>
+                                <div class="lookbook-analysis-item">
+                                    <span class="label">유화도 (EMULSIFICATION)</span>
+                                    <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.emulsification}%;"></div></div>
+                                    <span class="value">0%</span>
+                                </div>
+                                <div class="lookbook-analysis-item">
+                                    <span class="label">밀도 (DENSITY)</span>
+                                    <div class="bar-bg"><div class="bar-fill" style="width: ${dbData.density}%;"></div></div>
+                                    <span class="value">0%</span>
+                                </div>
+                                <p class="lookbook-analysis-desc">
+                                    ${dbData.desc}
+                                </p>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- 2페이지: 단면 컷 + [TEXTURE ANALYSIS] 인포그래픽 패널 -->
-                    <div class="lookbook-slide" data-page="2">
-                        <div class="lookbook-detail-container">
-                            <div class="lookbook-detail-img-frame">
-                                <img src="${lookbookBasePath}40. 순두부 흑임자테린/assets/07.png" alt="흑임자테린 단면">
+                </div>
+                
+                <!-- 3페이지: 2분할 과정 컷 + [PROCESS MONITORING] -->
+                <div class="lookbook-slide" data-page="3">
+                    <div class="lookbook-note-container">
+                        <div class="lookbook-note-images">
+                            <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}${dbData.images[2]}');">
+                                <div class="lookbook-img-label">${dbData.label1}</div>
                             </div>
-                            <div class="lookbook-tech-panel">
-                                <div class="lookbook-panel-header">[TEXTURE ANALYSIS]</div>
-                                <div class="lookbook-panel-content">
-                                    <div class="lookbook-analysis-item">
-                                        <span class="label">찰기 (STICKINESS)</span>
-                                        <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
-                                        <span class="value">0%</span>
-                                    </div>
-                                    <div class="lookbook-analysis-item">
-                                        <span class="label">유화도 (EMULSIFICATION)</span>
-                                        <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
-                                        <span class="value">0%</span>
-                                    </div>
-                                    <div class="lookbook-analysis-item">
-                                        <span class="label">밀도 (DENSITY)</span>
-                                        <div class="bar-bg"><div class="bar-fill" style="width: 98%;"></div></div>
-                                        <span class="value">0%</span>
-                                    </div>
-                                    <p class="lookbook-analysis-desc">
-                                        <span class="lookbook-highlight">순두부</span>와 <span class="lookbook-highlight">흑임자</span>가 정밀하게 유화되어, 독보적인 <span class="lookbook-highlight">밀착 텍스처</span>를 완성합니다.
-                                    </p>
-                                </div>
+                            <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}${dbData.images[3]}');">
+                                <div class="lookbook-img-label">${dbData.label2}</div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- 3페이지: 2분할 컷 + [PROCESS MONITORING] -->
-                    <div class="lookbook-slide" data-page="3">
-                        <div class="lookbook-note-container">
-                            <div class="lookbook-note-images">
-                                <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/baking_shot.png');">
-                                    <div class="lookbook-img-label">중탕 베이킹</div>
-                                </div>
-                                <div class="lookbook-note-img-half" style="background-image: url('${lookbookBasePath}40. 순두부 흑임자테린/assets/lb_aging_new.png');">
-                                    <div class="lookbook-img-label">하루의 숙성</div>
-                                </div>
-                            </div>
-                            <div class="lookbook-tech-panel">
-                                <div class="lookbook-panel-header">[PROCESS MONITORING]</div>
-                                <div class="lookbook-panel-content">
+                        <div class="lookbook-tech-panel">
+                            <div class="lookbook-panel-header">${dbData.processHeader}</div>
+                            <div class="lookbook-panel-content">
+                                <div class="lookbook-process-loader">
                                     <div class="lookbook-process-loader">
-                                        <div class="loader-label">BAKING IN PROGRESS...</div>
+                                        <div class="loader-label">${dbData.loaderLabel}</div>
                                         <div class="loader-bar-bg"><div class="loader-bar-fill"></div></div>
                                         <div class="loader-stats" style="display:flex; justify-content:space-between; margin-top:8px;">
-                                            <span class="loader-temp-val">TEMP: 25℃</span>
+                                            <span class="loader-temp-val">${dbData.loaderTemp.startsWith('TEMP:') ? 'TEMP: 25℃' : dbData.loaderTemp.replace(/[0-9]+/g, '0')}</span>
                                             <span class="loader-percentage">0%</span>
                                         </div>
                                     </div>
-                                    <p class="lookbook-note-text" style="margin-top: 22px;">
-                                        <span class="lookbook-highlight">140℃ 저온 스팀 중탕</span>으로 구워내 수분을 완전 봉인한 뒤, <span class="lookbook-highlight">24시간 냉장 숙성</span>으로 흑임자의 <span class="lookbook-highlight">극대화된 꾸덕함</span>을 완성합니다.
-                                    </p>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 4페이지: 피날레 플레이트 + [RECIPE SYSTEM: COMPLETE] 패널 (좌우 분리형 레이아웃) -->
-                    <div class="lookbook-slide" data-page="4">
-                        <div class="lookbook-detail-container">
-                            <!-- 좌측 완성 요리 이미지 카드 프레임 (네온 코너 브래킷 탑재) -->
-                            <div class="lookbook-complete-img-frame">
-                                <img src="${lookbookBasePath}40. 순두부 흑임자테린/assets/08.png" alt="순두부 흑임자 테린 완결">
-                                <div class="tech-corner top-left"></div>
-                                <div class="tech-corner top-right"></div>
-                                <div class="tech-corner bottom-left"></div>
-                                <div class="tech-corner bottom-right"></div>
-                            </div>
-                            
-                            <!-- 우측 완결 HUD 팝업 패널 -->
-                            <div class="lookbook-tech-complete-panel">
-                                <!-- 테크 브래킷 코너 디자인 디테일 -->
-                                <div class="tech-corner top-left"></div>
-                                <div class="tech-corner top-right"></div>
-                                <div class="tech-corner bottom-left"></div>
-                                <div class="tech-corner bottom-right"></div>
-                                
-                                <div class="complete-header">[RECIPE COMPLETED]</div>
-                                <div class="complete-body">
-                                    <div class="complete-icon">
-                                        <i class="fa-solid fa-check"></i>
-                                    </div>
-                                    <h2 class="complete-title">순두부 흑임자 테린의 완성</h2>
-                                    <div class="complete-pairing-section">
-                                        <div class="pairing-title">RECOMMENDED PAIRING DRINK</div>
-                                        <div class="pairing-drinks">
-                                            <span class="drink-tag"><i class="fa-solid fa-mug-hot"></i> 아메리카노</span>
-                                            <span class="drink-tag"><i class="fa-solid fa-leaf"></i> 따뜻한 녹차</span>
-                                            <span class="drink-tag"><i class="fa-solid fa-mug-saucer"></i> 구수한 우롱차</span>
-                                            <span class="drink-tag"><i class="fa-solid fa-glass-water"></i> 카페 라떼</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                <p class="lookbook-note-text" style="margin-top: 22px;">
+                                    ${dbData.processText}
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="lookbook-dots">
-                    <span class="lookbook-dot active" onclick="goLookbookPage(1)"></span>
-                    <span class="lookbook-dot" onclick="goLookbookPage(2)"></span>
-                    <span class="lookbook-dot" onclick="goLookbookPage(3)"></span>
-                    <span class="lookbook-dot" onclick="goLookbookPage(4)"></span>
+                <!-- 4페이지: 피날레 플레이트 + [RECIPE COMPLETED] -->
+                <div class="lookbook-slide" data-page="4">
+                    <div class="lookbook-detail-container">
+                        <div class="lookbook-complete-img-frame">
+                            <img src="${lookbookBasePath}${dbData.images[4]}" alt="${dbData.title} 피날레" onerror="this.src='${lookbookBasePath}${dbData.images[0]}'">
+                            <div class="tech-corner top-left"></div>
+                            <div class="tech-corner top-right"></div>
+                            <div class="tech-corner bottom-left"></div>
+                            <div class="tech-corner bottom-right"></div>
+                        </div>
+                        
+                        <div class="lookbook-tech-complete-panel">
+                            <div class="tech-corner top-left"></div>
+                            <div class="tech-corner top-right"></div>
+                            <div class="tech-corner bottom-left"></div>
+                            <div class="tech-corner bottom-right"></div>
+                            
+                            <div class="complete-header">[RECIPE COMPLETED]</div>
+                            <div class="complete-body">
+                                <div class="complete-icon">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <h2 class="complete-title">${dbData.completeTitle}</h2>
+                                <div class="complete-pairing-section">
+                                    <div class="pairing-title">RECOMMENDED PAIRING</div>
+                                    <div class="pairing-drinks">
+                                        ${drinksHtml}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        `;
-        document.body.appendChild(lookbookOverlay);
+            
+            <div class="lookbook-dots">
+                <span class="lookbook-dot active" onclick="goLookbookPage(1)"></span>
+                <span class="lookbook-dot" onclick="goLookbookPage(2)"></span>
+                <span class="lookbook-dot" onclick="goLookbookPage(3)"></span>
+                <span class="lookbook-dot" onclick="goLookbookPage(4)"></span>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(lookbookOverlay);
 
-        lookbookCurrentPage = 1;
-        updateLookbookUI();
-        playSoundFocus();
+    // 카테고리 고유 테마 색상 연동
+    applyCategoryTheme(recipe);
 
-        // 4. 페이드인 활성화
-        setTimeout(() => {
-            lookbookOverlay.classList.add('active');
-        }, 50);
+    // 10개 단위 퀵 아카이브 내비게이터 렌더링
+    renderQuickNavigator(recipeId);
 
-        // 5. 이벤트 및 휠 바인딩
-        initLookbookEvents();
-    } else {
-        // 기존 룩북보기는 다른 레시피의 경우 새 탭 연결
-        if (recipe.path) {
-            window.open(recipe.path, '_blank');
-        } else {
-            alert('룩북 페이지 준비 중입니다.');
-        }
-    }
+    lookbookCurrentPage = 1;
+    updateLookbookUI();
+
+    // 페이드인 활성화
+    setTimeout(() => {
+        lookbookOverlay.classList.add('active');
+    }, 50);
+
+    // 이벤트 및 휠 바인딩
+    initLookbookEvents();
 }
 
-function updateLookbookUI() {
-    const slides = document.querySelectorAll('.lookbook-slide');
-    const dots = document.querySelectorAll('.lookbook-dot');
-    
-    slides.forEach(slide => {
-        const pNum = Number(slide.getAttribute('data-page'));
-        slide.className = 'lookbook-slide';
-        if (pNum === lookbookCurrentPage) {
-            slide.classList.add('active');
-        } else if (pNum < lookbookCurrentPage) {
-            slide.classList.add('prev');
-        } else {
-            slide.classList.add('next');
+function applyCategoryTheme(recipe) {
+    const defaultTheme = { color: '#00ffcc', rgb: '0, 255, 204' };
+    let theme = defaultTheme;
+    if (recipe && recipe.categories && recipe.categories.length > 0) {
+        for (const cat of recipe.categories) {
+            if (CATEGORY_THEMES[cat]) {
+                theme = CATEGORY_THEMES[cat];
+                break;
+            }
         }
-    });
-
-    dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx + 1 === lookbookCurrentPage);
-    });
-
-    // 화살표 활성/비활성 제어
-    const leftBtn = document.querySelector('.lookbook-nav-left');
-    const rightBtn = document.querySelector('.lookbook-nav-right');
-    if (leftBtn) leftBtn.classList.toggle('disabled', lookbookCurrentPage === 1);
-    if (rightBtn) rightBtn.classList.toggle('disabled', lookbookCurrentPage === lookbookTotalPages);
-
-    // ─── 쿡방 HUD 테크니컬 실시간 카운트업 모션 제어 ───
-    if (lookbookCurrentPage === 2) {
-        const valElements = document.querySelectorAll('.lookbook-analysis-item .value');
-        if (valElements.length >= 3) {
-            animateNumber(valElements[0], 0, 95, 1200, '%');
-            animateNumber(valElements[1], 0, 90, 1200, '%');
-            animateNumber(valElements[2], 0, 98, 1200, '%');
-        }
-    } else if (lookbookCurrentPage === 3) {
-        const percentageEl = document.querySelector('.lookbook-process-loader .loader-percentage');
-        const tempEl = document.querySelector('.lookbook-process-loader .loader-temp-val');
-        if (percentageEl) {
-            animateNumber(percentageEl, 0, 100, 1500, '%');
-        }
-        if (tempEl) {
-            animateNumber(tempEl, 25, 140, 1500, '℃', 'TEMP: ');
-        }
+    }
+    const overlay = document.getElementById('lookbook-overlay');
+    if (overlay) {
+        overlay.style.setProperty('--lookbook-theme-color', theme.color);
+        overlay.style.setProperty('--lookbook-theme-color-rgb', theme.rgb);
     }
 }
 
@@ -1804,18 +1952,11 @@ function updateLookbookUI() {
 function animateNumber(element, start, end, duration, suffix = '', prefix = '') {
     if (!element) return;
     let startTime = null;
-    let lastValue = start;
     function update(timestamp) {
         if (!startTime) startTime = timestamp;
         const progress = Math.min((timestamp - startTime) / duration, 1);
         const current = Math.floor(progress * (end - start) + start);
         element.innerText = prefix + current + suffix;
-
-        if (current !== lastValue) {
-            playSoundCount();
-            lastValue = current;
-        }
-
         if (progress < 1) {
             requestAnimationFrame(update);
         } else {
@@ -1830,7 +1971,6 @@ function changeLookbookPage(dir) {
     if (target >= 1 && target <= lookbookTotalPages) {
         lookbookCurrentPage = target;
         updateLookbookUI();
-        playSoundTick();
     }
 }
 
@@ -1838,7 +1978,6 @@ function goLookbookPage(pageNum) {
     if (pageNum >= 1 && pageNum <= lookbookTotalPages) {
         lookbookCurrentPage = pageNum;
         updateLookbookUI();
-        playSoundTick();
     }
 }
 
@@ -1852,7 +1991,6 @@ function closeLookbook(isFromPopstate = false) {
     isClosingLookbook = true;
     lookbookOverlay.classList.remove('active');
     lookbookOverlay.classList.add('closing');
-    playSoundTick();
     
     // popstate가 아닐 때에만 브라우저 뒤로가기 실행 (가상 라우팅 원복)
     if (!isFromPopstate) {
@@ -1875,136 +2013,6 @@ function closeLookbook(isFromPopstate = false) {
         }
     }, 600);
 }
-
-// ==========================================================================
-// Web Audio API 기반 쿡방 테크니컬 효과음 신시사이저
-// ==========================================================================
-let audioCtx = null;
-let lastSoundTime = 0;
-
-function getAudioContext() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    return audioCtx;
-}
-
-// 페이지 전환 시 경쾌한 스위치 틱! 소리
-function playSoundTick() {
-    try {
-        const ctx = getAudioContext();
-        if (ctx.state === 'suspended') {
-            ctx.resume();
-        }
-        if (ctx.state === 'suspended') return;
-
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(1400, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.06);
-
-        gain.gain.setValueAtTime(0.04, ctx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.06);
-
-        osc.start();
-        osc.stop(ctx.currentTime + 0.06);
-    } catch (e) {
-        console.warn('Audio playSoundTick failed:', e);
-    }
-}
-
-// 1페이지 오프닝 카메라 초점(지이잉) + 삐빅 셔터 효과음
-function playSoundFocus() {
-    try {
-        const ctx = getAudioContext();
-        if (ctx.state === 'suspended') {
-            ctx.resume();
-        }
-        if (ctx.state === 'suspended') return;
-
-        // 1. 오토포커싱 지이잉 소리 (가상 모터음)
-        const osc1 = ctx.createOscillator();
-        const gain1 = ctx.createGain();
-        osc1.connect(gain1);
-        gain1.connect(ctx.destination);
-
-        osc1.type = 'triangle';
-        osc1.frequency.setValueAtTime(120, ctx.currentTime);
-        osc1.frequency.linearRampToValueAtTime(320, ctx.currentTime + 0.4);
-
-        gain1.gain.setValueAtTime(0.02, ctx.currentTime);
-        gain1.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.4);
-
-        osc1.start();
-        osc1.stop(ctx.currentTime + 0.4);
-
-        // 2. 삐빅 초점 고정 신호음 (오픈 후 0.4초 뒤에 재생)
-        setTimeout(() => {
-            try {
-                const osc2 = ctx.createOscillator();
-                const gain2 = ctx.createGain();
-                osc2.connect(gain2);
-                gain2.connect(ctx.destination);
-
-                osc2.type = 'sine';
-                osc2.frequency.setValueAtTime(1000, ctx.currentTime);
-                osc2.frequency.setValueAtTime(1000, ctx.currentTime + 0.08);
-
-                gain2.gain.setValueAtTime(0.03, ctx.currentTime);
-                gain2.gain.setValueAtTime(0.03, ctx.currentTime + 0.08);
-                gain2.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.16);
-
-                osc2.start();
-                osc2.stop(ctx.currentTime + 0.16);
-            } catch(err){}
-        }, 400);
-
-    } catch (e) {
-        console.warn('Audio playSoundFocus failed:', e);
-    }
-}
-
-// 2, 3페이지 수치 카운트업 테크니컬 스캔음
-function playSoundCount() {
-    try {
-        const now = Date.now();
-        if (now - lastSoundTime < 45) return; // 45ms 간격 제어
-        lastSoundTime = now;
-
-        const ctx = getAudioContext();
-        if (ctx.state === 'suspended') return;
-
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(2200, ctx.currentTime); // 매우 높은 주파수의 짧은 비프
-
-        gain.gain.setValueAtTime(0.012, ctx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.02);
-
-        osc.start();
-        osc.stop(ctx.currentTime + 0.02);
-    } catch (e) {
-        // 실패 시 침묵
-    }
-}
-
-// 사용자 첫 상호작용 시 AudioContext 활성화 바인딩
-document.addEventListener('click', () => {
-    try {
-        const ctx = getAudioContext();
-        if (ctx && ctx.state === 'suspended') {
-            ctx.resume();
-        }
-    } catch(e){}
-}, { once: true });
 
 // 휠 및 키보드 이벤트 바인딩
 let lookbookWheelDebounce = false;
@@ -2051,7 +2059,6 @@ function initLookbookEvents() {
 window.addEventListener('popstate', (e) => {
     const lookbookOverlay = document.getElementById('lookbook-overlay');
     if (lookbookOverlay) {
-        // 현재 브라우저 히스토리 상태가 룩북이 아니라면 닫기 수행
         closeLookbook(true);
     }
 });
