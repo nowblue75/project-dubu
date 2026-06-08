@@ -2799,10 +2799,10 @@ footer {
 
 .lookbook-note-images {
     display: flex;
-    flex-direction: column; /* 데스크톱에선 상하 2단 배열로 가로 와이드뷰 연출 */
-    flex: 1.25;
+    flex-direction: row; /* 데스크톱에선 좌우 나란히 배치하여 이미지 크기를 크게 부각 */
+    flex: 1.6; /* 이미지 영역을 패널 대비 더 크게 강조 */
     height: 100%;
-    gap: 16px;
+    gap: 20px;
     opacity: 0;
 }
 
@@ -3099,7 +3099,7 @@ footer {
     .lookbook-analysis-desc { font-size: 0.8rem; line-height: 1.5; margin-top: 10px; }
     
     .lookbook-note-container { width: 90%; height: 75%; flex-direction: column; gap: 20px; }
-    .lookbook-note-images { width: 100%; flex: 1; flex-direction: row; gap: 10px; }
+    .lookbook-note-images { width: 100%; flex: 1.5; flex-direction: column; gap: 10px; } /* 모바일에선 위아래로 쌓아 자연스러운 비율 연출 */
     .lookbook-img-label { bottom: 12px; left: 12px; padding: 4px 8px; font-size: 0.72rem; }
     
     .lookbook-process-loader { padding: 12px; }

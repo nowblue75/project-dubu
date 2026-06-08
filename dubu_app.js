@@ -2007,7 +2007,7 @@ function updateLookbookUI() {
     }
 }
 
-function renderQuickNavigator(currentRecipeId) {
+function renderQuickNavigator(currentRecipeId, forcedGroupIdx = null) {
     currentRecipeId = Number(currentRecipeId);
     const quickNavEl = document.querySelector('.lookbook-quick-nav');
     if (!quickNavEl) return;
@@ -2020,14 +2020,15 @@ function renderQuickNavigator(currentRecipeId) {
         { label: "Vol.31-41", start: 31, end: 41 }
     ];
 
-    // 현재 레시피가 속한 그룹 찾기
-    let activeGroupIdx = groups.findIndex(g => currentRecipeId >= g.start && currentRecipeId <= g.end);
+    // 현재 레시피가 속한 그룹 또는 강제 지정된 그룹 찾기
+    let activeGroupIdx = forcedGroupIdx !== null 
+        ? forcedGroupIdx 
+        : groups.findIndex(g => currentRecipeId >= g.start && currentRecipeId <= g.end);
     if (activeGroupIdx === -1) activeGroupIdx = 0; // 예외 방어
 
-    // 그룹 헤더 탭 HTML 빌드
-    const tabsHtml = groups.map((g, idx) => {
-        const isActive = idx === activeGroupIdx;
-        return `<button class="quick-nav-tab ${isActive ? 'active' : ''}" onclick="onQuickGroupChange(${idx}, ${currentRecipeId})">${g.label}</button>`;
+    // 셀렉트 박스 옵션 HTML 빌드
+    const optionsHtml = groups.map((g, idx) => {
+        return `<option value="${idx}" ${idx === activeGroupIdx ? 'selected' : ''}>${g.label}</option>`;
     }).join('');
 
     // 현재 활성화된 그룹의 레시피 목록 HTML 빌드
@@ -2043,7 +2044,7 @@ function renderQuickNavigator(currentRecipeId) {
         const isReady = allowedIds.includes(id);
 
         itemsHtml.push(`
-            <button class="quick-nav-item ${isCurrent ? 'current' : ''} ${!isReady ? 'disabled' : ''}"
+            <button class="lookbook-quick-btn ${isCurrent ? 'active' : ''} ${!isReady ? 'disabled' : ''}"
                     onclick="onQuickRecipeClick(${id}, ${isReady})"
                     title="${recipe.title}">
                 Vol.${id}
@@ -2052,55 +2053,18 @@ function renderQuickNavigator(currentRecipeId) {
     }
 
     quickNavEl.innerHTML = `
-        <div class="quick-nav-tabs-row">
-            ${tabsHtml}
-        </div>
-        <div class="quick-nav-items-row">
+        <select class="lookbook-quick-group-select" onchange="onQuickGroupSelectChange(this, ${currentRecipeId})">
+            ${optionsHtml}
+        </select>
+        <div class="lookbook-quick-recipe-list">
             ${itemsHtml.join('')}
         </div>
     `;
 }
 
-function onQuickGroupChange(groupIdx, currentRecipeId) {
-    const quickNavEl = document.querySelector('.lookbook-quick-nav');
-    if (!quickNavEl) return;
-
-    const tabs = quickNavEl.querySelectorAll('.quick-nav-tab');
-    tabs.forEach((tab, idx) => {
-        tab.classList.toggle('active', idx === groupIdx);
-    });
-
-    const groups = [
-        { label: "Vol.1-10", start: 1, end: 10 },
-        { label: "Vol.11-20", start: 11, end: 20 },
-        { label: "Vol.21-30", start: 21, end: 30 },
-        { label: "Vol.31-41", start: 31, end: 41 }
-    ];
-
-    const activeGroup = groups[groupIdx];
-    const itemsHtml = [];
-    
-    for (let id = activeGroup.start; id <= activeGroup.end; id++) {
-        const recipe = PROJECTS.find(p => p.id === id);
-        if (!recipe) continue;
-
-        const isCurrent = id === currentRecipeId;
-        const allowedIds = [1, 2, 3, 4, 5, 39];
-        const isReady = allowedIds.includes(id);
-
-        itemsHtml.push(`
-            <button class="quick-nav-item ${isCurrent ? 'current' : ''} ${!isReady ? 'disabled' : ''}"
-                    onclick="onQuickRecipeClick(${id}, ${isReady})"
-                    title="${recipe.title}">
-                Vol.${id}
-            </button>
-        `);
-    }
-
-    const itemsRow = quickNavEl.querySelector('.quick-nav-items-row');
-    if (itemsRow) {
-        itemsRow.innerHTML = itemsHtml.join('');
-    }
+function onQuickGroupSelectChange(selectEl, currentRecipeId) {
+    const groupIdx = Number(selectEl.value);
+    renderQuickNavigator(currentRecipeId, groupIdx);
 }
 
 function onQuickRecipeClick(recipeId, isReady) {
