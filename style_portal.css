@@ -2359,11 +2359,11 @@ footer {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: #111214; /* 딥 차콜/매트 블랙 전체 배경 */
+    background: radial-gradient(circle at center, rgba(var(--lookbook-theme-color-rgb), 0.22) 0%, rgba(var(--lookbook-theme-color-rgb), 0.06) 55%, #090a0c 100%);
     z-index: 10000;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), background 0.6s ease;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2576,8 +2576,8 @@ footer {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background: 
-        radial-gradient(circle, transparent 20%, rgba(17, 18, 20, 0.45) 70%, rgba(17, 18, 20, 0.95) 100%),
-        linear-gradient(to top, rgba(17, 18, 20, 0.9) 0%, transparent 60%);
+        radial-gradient(circle, transparent 20%, rgba(9, 10, 12, 0.45) 70%, rgba(9, 10, 12, 0.95) 100%),
+        linear-gradient(to top, rgba(var(--lookbook-theme-color-rgb), 0.15) 0%, transparent 60%);
     z-index: 1;
 }
 
@@ -3254,15 +3254,15 @@ footer {
 /* --- 디저트 이미지 3D 입체 카드 프레임 스타일 --- */
 .lookbook-3d-card-frame {
     position: absolute;
-    top: 43%;
+    top: 41%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.95);
-    width: 60%;
-    height: 52%;
-    max-width: 800px;
-    max-height: 480px;
+    width: 75%;
+    height: 60%;
+    max-width: 1100px;
+    max-height: 650px;
     z-index: 5;
-    perspective: 1200px;
+    perspective: 1500px;
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -3275,34 +3275,72 @@ footer {
 .lookbook-3d-card-inner {
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
-    border-radius: 16px;
-    border: 1px solid rgba(var(--lookbook-theme-color-rgb), 0.35);
-    /* 3D 팝업을 연출하는 강력한 입체 그림자 */
+    border-radius: 18px;
+    border: 1.5px solid rgba(var(--lookbook-theme-color-rgb), 0.4);
     box-shadow: 
-        0 30px 75px rgba(0, 0, 0, 0.9), 
-        0 0 30px rgba(var(--lookbook-theme-color-rgb), 0.2),
+        0 25px 65px rgba(0, 0, 0, 0.85), 
+        0 0 35px rgba(var(--lookbook-theme-color-rgb), 0.2),
         inset 0 0 25px rgba(255, 255, 255, 0.05);
     transform-style: preserve-3d;
-    transition: transform 0.5s ease, border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.4s, box-shadow 0.4s;
     position: relative;
+    overflow: hidden;
 }
 
-/* 마우스 오버 시 입체적으로 튀어나오는 볼록 효과 */
+/* 2중 레이어: 배경 */
+.lookbook-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transform: translateZ(0) scale(1);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
+}
+
+/* 2중 레이어: 피사체 (마스크를 씌워 크림치즈, 베이글만 볼록하게 솟아오름) */
+.lookbook-card-fg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 2;
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(circle at center, black 25%, transparent 68%);
+    mask-image: radial-gradient(circle at center, black 25%, transparent 68%);
+    transform: translateZ(0) scale(1);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
+}
+
+/* 마우스 오버 시 볼록 팝업 효과 */
 .lookbook-3d-card-frame:hover .lookbook-3d-card-inner {
-    transform: scale(1.04) translateZ(35px) rotateX(4deg) rotateY(-4deg);
     border-color: var(--lookbook-theme-color);
     box-shadow: 
-        0 45px 95px rgba(0, 0, 0, 0.98), 
-        0 0 45px rgba(var(--lookbook-theme-color-rgb), 0.5);
+        0 45px 90px rgba(0, 0, 0, 0.95), 
+        0 0 50px rgba(var(--lookbook-theme-color-rgb), 0.55);
+}
+
+.lookbook-3d-card-frame:hover .lookbook-card-bg {
+    transform: translateZ(-20px) scale(0.97);
+    filter: brightness(0.65) blur(2.5px);
+}
+
+.lookbook-3d-card-frame:hover .lookbook-card-fg {
+    transform: scale(1.15) translateZ(90px);
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.65));
 }
 
 @media (max-width: 768px) {
     .lookbook-3d-card-frame {
-        width: 85%;
-        height: 45%;
-        top: 38%;
+        width: 90%;
+        height: 55%;
+        top: 35%;
     }
 }
 
@@ -3361,7 +3399,7 @@ footer {
 
 .lookbook-hud-bottom-panel .hud-header {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.78rem;
+    font-size: 1.1rem;
     font-weight: 800;
     letter-spacing: 0.2em;
     color: var(--lookbook-theme-color);
@@ -3386,7 +3424,7 @@ footer {
 }
 
 .lookbook-hud-bottom-panel .hud-metric .label {
-    font-size: 0.72rem;
+    font-size: 0.95rem;
     color: #a0aec0;
     font-weight: 700;
     white-space: nowrap;
@@ -3410,16 +3448,16 @@ footer {
 
 .lookbook-hud-bottom-panel .hud-metric .value {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.82rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--lookbook-theme-color);
-    width: 40px;
+    width: 50px;
     text-align: right;
 }
 
 .lookbook-hud-bottom-panel .hud-desc {
-    font-size: 0.82rem;
-    line-height: 1.5;
+    font-size: 1.15rem;
+    line-height: 1.6;
     color: #e2e8f0;
     margin: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -3435,7 +3473,7 @@ footer {
 }
 
 .lookbook-hud-bottom-panel .hud-process-loader .loader-label {
-    font-size: 0.75rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: #a0aec0;
     white-space: nowrap;
@@ -3460,7 +3498,7 @@ footer {
     display: flex;
     gap: 15px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.98rem;
     font-weight: 700;
     color: var(--lookbook-theme-color);
 }
@@ -3475,7 +3513,7 @@ footer {
 }
 
 .lookbook-hud-bottom-panel .complete-title-hud {
-    font-size: 1.15rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: #fff;
     margin: 0;
@@ -3489,7 +3527,7 @@ footer {
 }
 
 .lookbook-hud-bottom-panel .pairing-drinks-hud .pairing-label {
-    font-size: 0.75rem;
+    font-size: 0.95rem;
     font-weight: 800;
     color: #a0aec0;
     letter-spacing: 0.05em;
@@ -3499,8 +3537,8 @@ footer {
     background: rgba(var(--lookbook-theme-color-rgb), 0.1);
     border: 1px solid rgba(var(--lookbook-theme-color-rgb), 0.3);
     color: var(--lookbook-theme-color);
-    padding: 4px 12px;
-    font-size: 0.72rem;
+    padding: 6px 14px;
+    font-size: 0.9rem;
     font-weight: 700;
     border-radius: 20px;
 }

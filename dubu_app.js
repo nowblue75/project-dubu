@@ -1802,7 +1802,9 @@ function openLookbook(recipeId) {
                     <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[0]}'); filter: blur(12px) brightness(0.35);"></div>
                     
                     <div class="lookbook-3d-card-frame">
-                        <div class="lookbook-3d-card-inner" style="background-image: url('${lookbookBasePath}${dbData.images[0]}');">
+                        <div class="lookbook-3d-card-inner">
+                            <div class="lookbook-card-bg" style="background-image: url('${lookbookBasePath}${dbData.images[0]}');"></div>
+                            <div class="lookbook-card-fg" style="background-image: url('${lookbookBasePath}${dbData.images[0]}');"></div>
                             <div class="tech-corner top-left"></div>
                             <div class="tech-corner top-right"></div>
                             <div class="tech-corner bottom-left"></div>
@@ -1811,8 +1813,8 @@ function openLookbook(recipeId) {
                     </div>
 
                     <div class="lookbook-tech-scan-panel">
-                        <span class="lookbook-subtitle" style="font-family: 'Playfair Display', serif; font-size: 0.82rem; letter-spacing: 0.25em; color: #a0aec0; display: block; margin-bottom: 8px;">${dbData.subtitle}</span>
-                        <h1 class="lookbook-tech-title" style="margin: 0; font-size: 1.6rem; color: #fff; text-shadow: 0 0 10px rgba(var(--lookbook-theme-color-rgb), 0.35);">${dbData.title}</h1>
+                        <span class="lookbook-subtitle" style="font-family: 'Playfair Display', serif; font-size: 1.1rem; letter-spacing: 0.25em; color: #a0aec0; display: block; margin-bottom: 8px;">${dbData.subtitle}</span>
+                        <h1 class="lookbook-tech-title" style="margin: 0; font-size: 2.2rem; color: #fff; text-shadow: 0 0 10px rgba(var(--lookbook-theme-color-rgb), 0.35);">${dbData.title}</h1>
                     </div>
                 </div>
                 
@@ -1821,7 +1823,9 @@ function openLookbook(recipeId) {
                     <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[1]}'); filter: blur(12px) brightness(0.35);"></div>
                     
                     <div class="lookbook-3d-card-frame">
-                        <div class="lookbook-3d-card-inner" style="background-image: url('${lookbookBasePath}${dbData.images[1]}');">
+                        <div class="lookbook-3d-card-inner">
+                            <div class="lookbook-card-bg" style="background-image: url('${lookbookBasePath}${dbData.images[1]}');"></div>
+                            <div class="lookbook-card-fg" style="background-image: url('${lookbookBasePath}${dbData.images[1]}');"></div>
                             <div class="tech-corner top-left"></div>
                             <div class="tech-corner top-right"></div>
                             <div class="tech-corner bottom-left"></div>
@@ -1857,7 +1861,9 @@ function openLookbook(recipeId) {
                     <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[2]}'); filter: blur(12px) brightness(0.35);"></div>
                     
                     <div class="lookbook-3d-card-frame">
-                        <div class="lookbook-3d-card-inner" style="background-image: url('${lookbookBasePath}${dbData.images[2]}');">
+                        <div class="lookbook-3d-card-inner">
+                            <div class="lookbook-card-bg" style="background-image: url('${lookbookBasePath}${dbData.images[2]}');"></div>
+                            <div class="lookbook-card-fg" style="background-image: url('${lookbookBasePath}${dbData.images[2]}');"></div>
                             <div class="tech-corner top-left"></div>
                             <div class="tech-corner top-right"></div>
                             <div class="tech-corner bottom-left"></div>
@@ -1886,7 +1892,9 @@ function openLookbook(recipeId) {
                     <div class="lookbook-bg-slide" style="background-image: url('${lookbookBasePath}${dbData.images[3]}'); filter: blur(12px) brightness(0.35);"></div>
                     
                     <div class="lookbook-3d-card-frame">
-                        <div class="lookbook-3d-card-inner" style="background-image: url('${lookbookBasePath}${dbData.images[3]}');">
+                        <div class="lookbook-3d-card-inner">
+                            <div class="lookbook-card-bg" style="background-image: url('${lookbookBasePath}${dbData.images[3]}');"></div>
+                            <div class="lookbook-card-fg" style="background-image: url('${lookbookBasePath}${dbData.images[3]}');"></div>
                             <div class="tech-corner top-left"></div>
                             <div class="tech-corner top-right"></div>
                             <div class="tech-corner bottom-left"></div>
