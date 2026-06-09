@@ -3254,15 +3254,15 @@ footer {
 /* --- 디저트 이미지 3D 입체 카드 프레임 스타일 --- */
 .lookbook-3d-card-frame {
     position: absolute;
-    top: 41%;
+    top: 38%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.95);
-    width: 75%;
-    height: 60%;
+    width: 72%;
+    height: 54%;
     max-width: 1100px;
-    max-height: 650px;
+    max-height: 600px;
     z-index: 5;
-    perspective: 1500px;
+    perspective: 1600px;
     opacity: 0;
     transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -3312,8 +3312,8 @@ footer {
     background-position: center;
     z-index: 2;
     pointer-events: none;
-    -webkit-mask-image: radial-gradient(circle at center, black 25%, transparent 68%);
-    mask-image: radial-gradient(circle at center, black 25%, transparent 68%);
+    -webkit-mask-image: radial-gradient(circle at center, black 46%, rgba(0, 0, 0, 0.82) 56%, transparent 66%);
+    mask-image: radial-gradient(circle at center, black 46%, rgba(0, 0, 0, 0.82) 56%, transparent 66%);
     transform: translateZ(0) scale(1);
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
 }
@@ -3327,20 +3327,20 @@ footer {
 }
 
 .lookbook-3d-card-frame:hover .lookbook-card-bg {
-    transform: translateZ(-20px) scale(0.97);
-    filter: brightness(0.65) blur(2.5px);
+    transform: translateZ(-30px) scale(0.95);
+    filter: brightness(0.48) blur(4px);
 }
 
 .lookbook-3d-card-frame:hover .lookbook-card-fg {
-    transform: scale(1.15) translateZ(90px);
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.65));
+    transform: scale(1.18) translateZ(140px);
+    filter: drop-shadow(0 30px 22px rgba(0, 0, 0, 0.88));
 }
 
 @media (max-width: 768px) {
     .lookbook-3d-card-frame {
         width: 90%;
-        height: 55%;
-        top: 35%;
+        height: 48%;
+        top: 33%;
     }
 }
 
@@ -3371,17 +3371,19 @@ footer {
 /* 하단 오버레이 HUD 최소화 패널 */
 .lookbook-hud-bottom-panel {
     position: absolute;
-    bottom: 30px;
+    bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
     width: 90%;
     max-width: 950px;
-    background: rgba(17, 18, 20, 0.85);
+    background: rgba(17, 18, 20, 0.88);
     border: 1px solid rgba(var(--lookbook-theme-color-rgb), 0.25);
     border-radius: 12px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    padding: 18px 24px;
+    padding: 14px 24px;
+    max-height: 220px;
+    overflow-y: auto;
     box-sizing: border-box;
     z-index: 10;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(var(--lookbook-theme-color-rgb), 0.05);
@@ -3390,6 +3392,21 @@ footer {
     opacity: 0;
     transform: translate(-50%, 20px);
     transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 스크롤바 스타일링 */
+.lookbook-hud-bottom-panel::-webkit-scrollbar {
+    width: 5px;
+}
+.lookbook-hud-bottom-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+.lookbook-hud-bottom-panel::-webkit-scrollbar-thumb {
+    background: rgba(var(--lookbook-theme-color-rgb), 0.3);
+    border-radius: 4px;
+}
+.lookbook-hud-bottom-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--lookbook-theme-color);
 }
 
 .lookbook-slide.active .lookbook-hud-bottom-panel {
