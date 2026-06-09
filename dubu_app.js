@@ -481,9 +481,6 @@ function openFocusStage(recipeId) {
                            </a>`
                         : `<button class="action-btn blog-btn" disabled style="background:#f0ece5; color:#ccc;">블로그 준비중</button>`
                     }
-                    <button class="action-btn share-btn" onclick="openLookbook(${recipe.id})" style="background:#3a6958; color:#fff;">
-                        <i class="fa-solid fa-book-open"></i> 룩북보기
-                    </button>
                 </div>
 
                 <!-- 우측 가죽 돌출형 책갈피 인덱스 탭 (Bookmark Ribbons) -->
@@ -2208,11 +2205,156 @@ function initLookbookEvents() {
     document.addEventListener('keydown', handleKeyDown);
 }
 
-// popstate 리스너 등록 (뒤로가기 시 룩북 닫기 연동)
+// popstate 리스너 등록 (뒤로가기 시 룩북 및 화보북 닫기 연동)
 window.addEventListener('popstate', (e) => {
     const lookbookOverlay = document.getElementById('lookbook-overlay');
     if (lookbookOverlay) {
         closeLookbook(true);
     }
+    const artbookOverlay = document.getElementById('artbook-viewer-overlay');
+    if (artbookOverlay) {
+        closeArtbookViewer(true);
+    }
 });
+
+// ==========================================================================
+// 8. 디저트 화보북 단독 뷰어 시스템 (v16.0 - 방식 B 단독 화면)
+// ==========================================================================
+function openArtbookViewer() {
+    // 기존 화보 뷰어가 열려 있다면 제거
+    let viewer = document.getElementById('artbook-viewer-overlay');
+    if (viewer) viewer.remove();
+
+    viewer = document.createElement('div');
+    viewer.id = 'artbook-viewer-overlay';
+
+    // 가상 경로 연산을 위한 물리적 base path
+    let currentPath = window.location.pathname;
+    const lookbookIdx = currentPath.indexOf('/lookbook/');
+    if (lookbookIdx !== -1) {
+        currentPath = currentPath.substring(0, lookbookIdx + 1);
+    } else {
+        currentPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
+    }
+    const lookbookBasePath = window.location.protocol === 'file:' 
+        ? currentPath
+        : window.location.origin + currentPath;
+
+    // 가상 라우팅 (디저트 화보집 전용 경로)
+    history.pushState({ page: 'artbook' }, '', '/artbook');
+
+    // 1차 테스트 대상: Vol.39 순두부 흑임자 테린
+    const recipeId = 39;
+    const recipe = PROJECTS.find(p => p.id === recipeId);
+    const dbData = LOOKBOOK_DB[recipeId];
+
+    if (!dbData || !recipe) return;
+
+    // 카테고리 색상 연동 (테마 스타일링용)
+    let themeColor = '#ff0066'; // nostalgia 카테고리 기본
+    let themeRGB = '255, 0, 102';
+    if (recipe.categories && recipe.categories.length > 0) {
+        for (const cat of recipe.categories) {
+            if (CATEGORY_THEMES[cat]) {
+                themeColor = CATEGORY_THEMES[cat].color;
+                themeRGB = CATEGORY_THEMES[cat].rgb;
+                break;
+            }
+        }
+    }
+
+    viewer.style.setProperty('--artbook-theme-color', themeColor);
+    viewer.style.setProperty('--artbook-theme-color-rgb', themeRGB);
+
+    viewer.innerHTML = `
+        <div class="artbook-viewer-container">
+            <!-- 우측 상단 닫기 버튼 -->
+            <button class="artbook-close-btn" onclick="closeArtbookViewer()">&times;</button>
+            
+            <!-- 단독 3D 카드덱 공간 -->
+            <div class="artbook-card-deck-wrapper">
+                <div class="artbook-card-deck">
+                    <!-- Vol.39 흑임자테린 테스트 카드 -->
+                    <div class="artbook-card-frame">
+                        <div class="artbook-card-inner">
+                            <!-- 2중 레이어 구조: 뒷배경 + 둥글게 마스킹된 전면 피사체 -->
+                            <div class="artbook-card-bg" style="background-image: url('${lookbookBasePath}${dbData.images[0]}');"></div>
+                            <div class="artbook-card-fg" style="background-image: url('${lookbookBasePath}${dbData.images[0]}');"></div>
+                            
+                            <!-- 럭셔리 네온 테크 코너 장식 -->
+                            <div class="tech-corner top-left"></div>
+                            <div class="tech-corner top-right"></div>
+                            <div class="tech-corner bottom-left"></div>
+                            <div class="tech-corner bottom-right"></div>
+
+                            <!-- 카드 하단 HUD 메타데이터 패널 -->
+                            <div class="artbook-card-hud">
+                                <div class="artbook-card-header">
+                                    <span class="artbook-vol-tag" style="border-color: var(--artbook-theme-color); color: var(--artbook-theme-color);">Vol.${recipeId}</span>
+                                    <span class="artbook-category-tag">NOSTALGIA</span>
+                                </div>
+                                <h2 class="artbook-card-title">${recipe.title}</h2>
+                                <p class="artbook-card-desc">${dbData.desc}</p>
+                                <button class="artbook-recipe-btn" onclick="viewRecipeFromArtbook(${recipeId})" style="background: var(--artbook-theme-color); box-shadow: 0 0 15px rgba(var(--artbook-theme-color-rgb), 0.45);">
+                                    <i class="fa-solid fa-book-open"></i> 레시피 펼치기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 하단 갤러리 안내 문구 -->
+            <div class="artbook-viewer-footer">
+                <p class="viewer-footer-text">DESSERT ARTBOOK ARCHIVE // 1차 테스트 (Vol.39 흑임자테린)</p>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(viewer);
+    document.body.style.overflow = 'hidden';
+
+    // 페이드인 클래스 추가
+    setTimeout(() => {
+        viewer.classList.add('active');
+    }, 50);
+
+    initArtbookEvents();
+}
+
+function closeArtbookViewer(isFromPopstate = false) {
+    const viewer = document.getElementById('artbook-viewer-overlay');
+    if (!viewer) return;
+
+    viewer.classList.remove('active');
+    document.body.style.overflow = '';
+
+    if (!isFromPopstate) {
+        history.back(); // 가상 라우팅 원복
+    }
+
+    setTimeout(() => {
+        viewer.remove();
+    }, 600);
+}
+
+function viewRecipeFromArtbook(recipeId) {
+    closeArtbookViewer();
+    setTimeout(() => {
+        openFocusStage(recipeId);
+    }, 200);
+}
+
+function initArtbookEvents() {
+    const handleKeyDown = (e) => {
+        if (!document.getElementById('artbook-viewer-overlay')) {
+            document.removeEventListener('keydown', handleKeyDown);
+            return;
+        }
+        if (e.key === 'Escape') {
+            closeArtbookViewer();
+        }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+}
 

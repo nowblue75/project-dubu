@@ -3598,3 +3598,271 @@ footer {
         padding-top: 8px;
     }
 }
+
+/* ==========================================================================
+   🎬 디저트 화보북 단독 뷰어 시스템 (방식 B - 풀스크린 전용 3D 모달)
+   ========================================================================== */
+#artbook-viewer-overlay {
+    --artbook-theme-color: #ff0066;
+    --artbook-theme-color-rgb: 255, 0, 102;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, rgba(var(--artbook-theme-color-rgb), 0.22) 0%, rgba(var(--artbook-theme-color-rgb), 0.05) 55%, #08090b 100%);
+    z-index: 12000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), background 0.6s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Noto Serif KR', 'Noto Sans KR', sans-serif;
+}
+
+#artbook-viewer-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.artbook-viewer-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 닫기 버튼 */
+.artbook-close-btn {
+    position: absolute;
+    top: 35px;
+    right: 45px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 2.8rem;
+    cursor: pointer;
+    z-index: 12100;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-weight: 300;
+    line-height: 1;
+}
+
+.artbook-close-btn:hover {
+    color: var(--artbook-theme-color);
+    transform: rotate(90deg) scale(1.1);
+    text-shadow: 0 0 15px rgba(var(--artbook-theme-color-rgb), 0.6);
+}
+
+/* 3D 카드덱 공간 */
+.artbook-card-deck-wrapper {
+    perspective: 1600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+    margin-top: -30px;
+}
+
+.artbook-card-deck {
+    position: relative;
+    width: 440px;
+    height: 580px;
+    transform-style: preserve-3d;
+}
+
+/* 개별 화보 카드 프레임 */
+.artbook-card-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+}
+
+.artbook-card-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    border: 1.5px solid rgba(var(--artbook-theme-color-rgb), 0.4);
+    box-shadow: 
+        0 30px 75px rgba(0, 0, 0, 0.9), 
+        0 0 40px rgba(var(--artbook-theme-color-rgb), 0.2),
+        inset 0 0 25px rgba(255, 255, 255, 0.05);
+    transform-style: preserve-3d;
+    transition: border-color 0.4s, box-shadow 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 2중 레이어: 배경 */
+.artbook-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transform: translateZ(0) scale(1);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
+}
+
+/* 2중 레이어: 피사체 (마스크 적용) */
+.artbook-card-fg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 2;
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(circle at center, black 46%, rgba(0, 0, 0, 0.82) 56%, transparent 66%);
+    mask-image: radial-gradient(circle at center, black 46%, rgba(0, 0, 0, 0.82) 56%, transparent 66%);
+    transform: translateZ(0) scale(1);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
+}
+
+/* 마우스 오버 시 볼록 팝업 효과 */
+.artbook-card-frame:hover .artbook-card-inner {
+    border-color: var(--artbook-theme-color);
+    box-shadow: 
+        0 50px 95px rgba(0, 0, 0, 0.98), 
+        0 0 50px rgba(var(--artbook-theme-color-rgb), 0.6);
+}
+
+.artbook-card-frame:hover .artbook-card-bg {
+    transform: translateZ(-30px) scale(0.95);
+    filter: brightness(0.48) blur(4px);
+}
+
+.artbook-card-frame:hover .artbook-card-fg {
+    transform: scale(1.18) translateZ(140px);
+    filter: drop-shadow(0 30px 22px rgba(0, 0, 0, 0.88));
+}
+
+/* 카드 하단 HUD 메타데이터 패널 */
+.artbook-card-hud {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(10, 11, 14, 0.96) 0%, rgba(10, 11, 14, 0.82) 65%, transparent 100%);
+    padding: 30px 24px 24px 24px;
+    box-sizing: border-box;
+    z-index: 10;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #fff;
+    transform: translateZ(30px);
+}
+
+.artbook-card-header {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.artbook-vol-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    border: 1px solid var(--artbook-theme-color);
+    color: var(--artbook-theme-color);
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+}
+
+.artbook-category-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.1em;
+}
+
+.artbook-card-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 10px 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.artbook-card-desc {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: #cbd5e0;
+    margin: 0 0 18px 0;
+}
+
+.artbook-recipe-btn {
+    width: 100%;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.artbook-recipe-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+}
+
+/* 하단 안내 풋터 */
+.artbook-viewer-footer {
+    position: absolute;
+    bottom: 30px;
+    z-index: 12050;
+    text-align: center;
+}
+
+.viewer-footer-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.2em;
+    margin: 0;
+}
+
+/* 반응형 조율 */
+@media (max-width: 768px) {
+    .artbook-card-deck {
+        width: 320px;
+        height: 440px;
+    }
+    .artbook-card-title {
+        font-size: 1.3rem;
+    }
+    .artbook-card-desc {
+        font-size: 0.82rem;
+        margin-bottom: 12px;
+    }
+    .artbook-close-btn {
+        top: 20px;
+        right: 25px;
+        font-size: 2.2rem;
+    }
+}
