@@ -276,7 +276,7 @@ const PROJECTS = [
         ],
         "time": "30분",
         "path": "32. 순두부찰떡파이_완/index.html",
-        "img": "32. 순두부찰떡파이_완/0.jpg"
+        "img": "32. 순두부찰떡파이_완/0-0.jpg"
     },
     {
         "id": 28,
@@ -379,18 +379,24 @@ const PROJECTS = [
         "id": 13,
         "title": "순두부 크림치즈롤케익",
         "isInteractive": false,
+        "path": "13. 순두부크림치즈롤케익_완/index.html",
+        "img": "13. 순두부크림치즈롤케익_완/0.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/224012454408"
     },
     {
         "id": 12,
         "title": "순두부 치즈스콘",
         "isInteractive": false,
+        "path": "12. 순두부 치즈스콘_완/index.html",
+        "img": "12. 순두부 치즈스콘_완/1.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/223977891669"
     },
     {
         "id": 11,
         "title": "순두부 레몬케이크",
         "isInteractive": false,
+        "path": "11. 순두부 레몬케이크_완/index.html",
+        "img": "11. 순두부 레몬케이크_완/1.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/223969919173"
     },
     {
@@ -405,18 +411,24 @@ const PROJECTS = [
         "id": 9,
         "title": "순두부 찹쌀모찌 케이크",
         "isInteractive": false,
+        "path": "9. 순두부 찹쌀모찌 케이크_완/index.html",
+        "img": "9. 순두부 찹쌀모찌 케이크_완/1.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/223953399410"
     },
     {
         "id": 8,
         "title": "순두부 크림치즈쿠키",
         "isInteractive": false,
+        "path": "8. 순두부 크림치즈쿠키_완/index.html",
+        "img": "8. 순두부 크림치즈쿠키_완/1.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/223934000393"
     },
     {
         "id": 7,
         "title": "얼그레이 순두부 케이크",
         "isInteractive": false,
+        "path": "7. 얼그레이순두부케이크_완/index.html",
+        "img": "7. 얼그레이순두부케이크_완/완성샷.jpg",
         "blogUrl": "https://blog.naver.com/project_dubu/223945052824"
     },
     {

@@ -3610,7 +3610,8 @@ footer {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: radial-gradient(circle at center, rgba(var(--artbook-theme-color-rgb), 0.22) 0%, rgba(var(--artbook-theme-color-rgb), 0.05) 55%, #08090b 100%);
+    background-color: #050608 !important; /* 뒷배경 완전 격리를 위한 불투명 솔리드 배경 */
+    background: radial-gradient(circle at center, rgba(var(--artbook-theme-color-rgb), 0.22) 0%, rgba(var(--artbook-theme-color-rgb), 0.05) 55%, #050608 100%) !important;
     z-index: 12000;
     opacity: 0;
     pointer-events: none;

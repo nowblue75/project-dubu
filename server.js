@@ -87,8 +87,8 @@ http.createServer((req, res) => {
         return;
     }
 
-    // SPA Fallback: /lookbook 으로 시작하면서 확장자가 없는 주소는 index.html로 서빙
-    const isSPARoute = urlPath.startsWith('/lookbook') && !path.extname(urlPath);
+    // SPA Fallback: /lookbook 또는 /artbook 으로 시작하면서 확장자가 없는 주소는 index.html로 서빙
+    const isSPARoute = (urlPath.startsWith('/lookbook') || urlPath.startsWith('/artbook')) && !path.extname(urlPath);
     let filePath = path.join(__dirname, (urlPath === '/' || isSPARoute) ? 'index.html' : urlPath);
 
     const ext = path.extname(filePath).toLowerCase();

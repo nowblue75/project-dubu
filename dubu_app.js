@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => scrollObserver.observe(section));
 
-    // 최초 진입 시 URL 라우팅 처리 (/lookbook/39 대응)
+    // 최초 진입 시 URL 라우팅 처리 (/lookbook/39 및 /artbook 대응)
     const initPath = window.location.pathname;
     if (initPath.includes('/lookbook/39')) {
         setTimeout(() => {
@@ -81,6 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 openLookbook(39);
             }, 150);
+        }, 300);
+    } else if (initPath.includes('/artbook')) {
+        setTimeout(() => {
+            openArtbookViewer();
         }, 300);
     }
 });
@@ -810,6 +814,9 @@ function openUnifiedRecipeCardModal(id, title, img, yieldText, bakingTip, cheers
     const oldModal = document.getElementById('recipe-card-modal');
     if (oldModal) oldModal.remove();
 
+    // 가상 라우팅 우회용 절대 경로 변환
+    const finalImgSrc = img.startsWith('/') ? img : '/' + img;
+
     const modal = document.createElement('div');
     modal.id = 'recipe-card-modal';
     modal.style.cssText = `
@@ -828,7 +835,7 @@ function openUnifiedRecipeCardModal(id, title, img, yieldText, bakingTip, cheers
             </div>
             
             <div style="border-radius: 12px; overflow: hidden; height: 160px; margin-bottom: 15px; border: 1px solid #E8DCC4;">
-                <img src="${img}" style="width: 100%; height: 100%; object-fit: cover;">
+                <img src="${finalImgSrc}" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
 
             <div style="text-align: center; margin-bottom: 15px;">
@@ -2225,6 +2232,11 @@ function openArtbookViewer() {
     let viewer = document.getElementById('artbook-viewer-overlay');
     if (viewer) viewer.remove();
 
+    // 메인 페이지의 모든 본문 요소(header, section)를 숨겨서 완전한 단독 화면으로 만듭니다.
+    document.querySelectorAll('header, section').forEach(el => {
+        el.style.display = 'none';
+    });
+
     viewer = document.createElement('div');
     viewer.id = 'artbook-viewer-overlay';
 
@@ -2326,6 +2338,11 @@ function closeArtbookViewer(isFromPopstate = false) {
     const viewer = document.getElementById('artbook-viewer-overlay');
     if (!viewer) return;
 
+    // 메인 페이지의 모든 본문 요소(header, section)를 다시 보이도록 복원합니다.
+    document.querySelectorAll('header, section').forEach(el => {
+        el.style.display = '';
+    });
+
     viewer.classList.remove('active');
     document.body.style.overflow = '';
 
@@ -2335,6 +2352,10 @@ function closeArtbookViewer(isFromPopstate = false) {
 
     setTimeout(() => {
         viewer.remove();
+        // 원래 화면으로 왔을 때 3D 책장이나 레이아웃 정렬을 수동 트리거하여 정밀 원복
+        if (typeof recalculateBookshelfBounds === 'function') {
+            recalculateBookshelfBounds();
+        }
     }, 600);
 }
 
