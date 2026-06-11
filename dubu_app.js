@@ -455,9 +455,14 @@ function openFocusStage(recipeId) {
                 <!-- 제목 헤더 -->
                 <div class="focus-header" style="border-bottom:1px dashed rgba(117, 85, 60, 0.25); padding-bottom:14px; margin-bottom:18px;">
                     <h2 class="serif" id="focus-recipe-title" style="font-size:1.45rem; font-weight:900; color:#4e2912; margin:0 0 6px 0; font-family:'Noto Serif KR',serif;">${recipe.title}</h2>
-                    <span id="focus-recipe-difficulty" class="focus-diff-pill" style="border-color:${theme.themeColor}; background:${theme.themeGlow}; color:${theme.themeColor};">
-                        <i class="fa-solid fa-box-open"></i> 분량: ${meta.difficulty}
-                    </span>
+                    <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 6px;">
+                        <span id="focus-recipe-difficulty" class="focus-diff-pill" style="border-color:${theme.themeColor}; background:${theme.themeGlow}; color:${theme.themeColor};">
+                            <i class="fa-solid fa-gauge-simple-high"></i> 난이도: ${meta.difficulty}
+                        </span>
+                        <span id="focus-recipe-yield" class="focus-yield-pill" style="border-color:${theme.themeColor}; background:${theme.themeGlow}; color:${theme.themeColor};">
+                            <i class="fa-solid fa-box-open"></i> 분량: ${meta.yieldText}
+                        </span>
+                    </div>
                 </div>
 
                 <!-- 탭 콘텐츠 스크롤 영역 -->
@@ -668,9 +673,9 @@ function getDynamicYieldText(recipeId, scale) {
 function updateDynamicYieldDisplay(recipeId, scale) {
     const yieldText = getDynamicYieldText(recipeId, scale);
     const board = document.getElementById('focus-modal-board');
-    const diffPill = board ? board.querySelector('#focus-recipe-difficulty') : null;
-    if (diffPill) {
-        diffPill.innerHTML = `<i class="fa-solid fa-box-open"></i> 분량: ${yieldText}`;
+    const yieldPill = board ? board.querySelector('#focus-recipe-yield') : null;
+    if (yieldPill) {
+        yieldPill.innerHTML = `<i class="fa-solid fa-box-open"></i> 분량: ${yieldText}`;
     }
 }
 
@@ -714,11 +719,24 @@ function onFocusAnchorChange(inputEl) {
 function getRecipeMetadata(recipeId) {
     recipeId = Number(recipeId);
     const recipe = PROJECTS.find(p => p.id === recipeId);
-    let difficulty = "보통 🟡";
     
-    // 만약 BASE_YIELDS에 해당 레시피의 기본 분량 템플릿이 정의되어 있다면 1배율 텍스트로 초기 세팅
+    // 1. 실제 난이도 판별 (oneBowl 속성 및 공정 단계 수 기준 동적 판별)
+    let difficulty = "보통 🟡";
+    if (recipe) {
+        const steps = typeof RECIPE_STEPS_DB !== 'undefined' ? (RECIPE_STEPS_DB[recipeId] || []) : [];
+        if (recipe.oneBowl && steps.length <= 4) {
+            difficulty = "쉬움 🟢";
+        } else if (steps.length >= 8 || recipeId === 21) {
+            difficulty = "어려움 🔴";
+        }
+    }
+
+    // 2. 분량 텍스트 결정 (BASE_YIELDS 매핑 여부 기준)
+    let yieldText = "1배 분량";
     if (typeof BASE_YIELDS !== 'undefined' && BASE_YIELDS[recipeId]) {
-        difficulty = getDynamicYieldText(recipeId, 1);
+        yieldText = getDynamicYieldText(recipeId, 1);
+    } else {
+        yieldText = "기본 1판 분량";
     }
 
     let bakingTip = "오븐 예열 170℃ / 25분";
@@ -730,7 +748,7 @@ function getRecipeMetadata(recipeId) {
             cheers = "케이크처럼 폭신하지만 떡처럼 쫀득함이 살아있는 단팥 찜케이크! 🧧";
         } else if (recipe.id === 40) {
             bakingTip = "180°C 예열 → 170°C / 40분 (콩물 마무리 + 하루 숙성 권장)";
-            cheers = "다음 날이 진짜입니다! 하루 숙성 후 먹는 그 촉촉함과 고소함은 레시피의 진짜 얼굴이에요. ☀️";
+            cheers = "다음 날이 진짜입니다! 하루 숙성 후 먹는 그 촉촉함 and 고소함은 레시피의 진짜 얼굴이에요. ☀️";
         } else if (recipe.id === 39) {
             bakingTip = "중탕 예열 140℃ / 140℃ 60분 (뜸 10분)";
             cheers = "순두부 물기를 짜지 않고 그대로 사용하여, 촉촉함과 꾸덕함이 극대화되는 특별한 레시피입니다. 🖤";
@@ -751,7 +769,7 @@ function getRecipeMetadata(recipeId) {
             cheers = "달콤하고 고소한 밤이 콕콕 박혀 더욱 풍요로운 맛! 가을 감성을 가득 담아 구워내는 영양 만점 순두부 파운드케이크입니다. 🌰";
         }
     }
-    return { difficulty, bakingTip, cheers };
+    return { difficulty, yieldText, bakingTip, cheers };
 }
 
 function updateDynamicBakingTip(recipeId, scale) {

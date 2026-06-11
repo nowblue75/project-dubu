@@ -710,8 +710,10 @@ footer {
     margin: 0 0 8px 0;
     font-weight: 700;
 }
-.focus-diff-pill {
-    display: inline-block;
+.focus-diff-pill, .focus-yield-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.72rem;
