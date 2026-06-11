@@ -2534,6 +2534,7 @@ function openArtbookSlider(cardEl, recipeId, folderName, images) {
 }
 
 function updateArtbookSliderUI() {
+    console.log(`[ArtbookSlider] Updating UI. Current Page: ${artbookSliderCurrentPage}`);
     const slides = document.querySelectorAll('.artbook-slide-item');
     const dots = document.querySelectorAll('.artbook-slider-dot');
     
@@ -2547,6 +2548,7 @@ function updateArtbookSliderUI() {
         } else {
             slide.classList.add('next');
         }
+        console.log(`[ArtbookSlider] Slide ${slideNum} classes: "${slide.className}"`);
     });
 
     dots.forEach((dot, idx) => {
@@ -2561,14 +2563,18 @@ function updateArtbookSliderUI() {
 }
 
 function changeArtbookSliderPage(dir) {
+    console.log(`[ArtbookSlider] Request page change direction: ${dir}`);
     const target = artbookSliderCurrentPage + dir;
     if (target >= 1 && target <= 3) {
         artbookSliderCurrentPage = target;
         updateArtbookSliderUI();
+    } else {
+        console.log(`[ArtbookSlider] Page change ignored. Target ${target} out of range (1-3).`);
     }
 }
 
 function goArtbookSliderPage(pageNum) {
+    console.log(`[ArtbookSlider] Request jump to page: ${pageNum}`);
     if (pageNum >= 1 && pageNum <= 3) {
         artbookSliderCurrentPage = pageNum;
         updateArtbookSliderUI();
@@ -2631,6 +2637,12 @@ function initArtbookSliderEvents() {
     };
     document.addEventListener('keydown', handleKeyDown);
 }
+
+// 글로벌 인라인 핸들러 에러 방지를 위한 window 명시적 바인딩
+window.openArtbookSlider = openArtbookSlider;
+window.changeArtbookSliderPage = changeArtbookSliderPage;
+window.goArtbookSliderPage = goArtbookSliderPage;
+window.closeArtbookSlider = closeArtbookSlider;
 
 function initArtbookEvents() {
     const handleKeyDown = (e) => {
