@@ -104,11 +104,14 @@ http.createServer((req, res) => {
                     if (isDir) {
                         const pbPath = path.join(dirPath, '화보집');
                         if (fs.existsSync(pbPath) && fs.statSync(pbPath).isDirectory()) {
-                            const has0 = fs.existsSync(path.join(pbPath, '0.jpg'));
-                            const has1 = fs.existsSync(path.join(pbPath, '1.jpg'));
-                            const has2 = fs.existsSync(path.join(pbPath, '2.jpg'));
+                            const has0 = fs.existsSync(path.join(pbPath, '0.jpg')) ? '0.jpg' : (fs.existsSync(path.join(pbPath, '0.jpeg')) ? '0.jpeg' : null);
+                            const has1 = fs.existsSync(path.join(pbPath, '1.jpg')) ? '1.jpg' : (fs.existsSync(path.join(pbPath, '1.jpeg')) ? '1.jpeg' : null);
+                            const has2 = fs.existsSync(path.join(pbPath, '2.jpg')) ? '2.jpg' : (fs.existsSync(path.join(pbPath, '2.jpeg')) ? '2.jpeg' : null);
                             if (has0 && has1 && has2) {
-                                activePhotobooks.push(file);
+                                activePhotobooks.push({
+                                    folder: file,
+                                    images: [has0, has1, has2]
+                                });
                             }
                         }
                     }

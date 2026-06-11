@@ -2343,11 +2343,11 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
     const sortedProjects = [...PROJECTS].sort((a, b) => {
         const folderPartA = a.path ? a.path.split('/')[0] : '';
         const cleanFolderA = cleanFolderName(folderPartA);
-        const isActiveA = activePhotobooks.some(d => cleanFolderName(d) === cleanFolderA);
+        const isActiveA = activePhotobooks.some(d => cleanFolderName(d.folder) === cleanFolderA);
 
         const folderPartB = b.path ? b.path.split('/')[0] : '';
         const cleanFolderB = cleanFolderName(folderPartB);
-        const isActiveB = activePhotobooks.some(d => cleanFolderName(d) === cleanFolderB);
+        const isActiveB = activePhotobooks.some(d => cleanFolderName(d.folder) === cleanFolderB);
 
         if (isActiveA && !isActiveB) return -1;
         if (!isActiveA && isActiveB) return 1;
@@ -2373,8 +2373,8 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
         const cleanFolder = cleanFolderName(folderPart);
         
         // activePhotobooks에서 매칭되는 실제 폴더명 찾기
-        const matchedDir = activePhotobooks.find(d => cleanFolderName(d) === cleanFolder);
-        const isActive = !!matchedDir;
+        const matchedBook = activePhotobooks.find(d => cleanFolderName(d.folder) === cleanFolder);
+        const isActive = !!matchedBook;
 
         let imgUrl = '';
         let cardClass = 'artbook-card-item';
@@ -2382,10 +2382,13 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
         let visualStyle = '';
 
         if (isActive) {
-            imgUrl = `/${matchedDir}/화보집/0.jpg`;
+            const matchedDir = matchedBook.folder;
+            const images = matchedBook.images;
+            imgUrl = `/${matchedDir}/화보집/${images[0]}`;
             cardClass += ' active-card';
             // 임시로 클릭 시 얼럿 처리 (3단계에서 슬라이더 모달 연결 예정)
-            onClickAttr = `onclick="openArtbookSlider(this, ${p.id}, '${matchedDir}')"`;
+            const imgsJson = JSON.stringify(images).replace(/"/g, '&quot;');
+            onClickAttr = `onclick="openArtbookSlider(this, ${p.id}, '${matchedDir}', ${imgsJson})"`;
             
             const bgColors = {
                 40: '#2a1f14', // 콩물파운드케익
@@ -2462,7 +2465,7 @@ let artbookSliderCurrentPage = 1;
 let isClosingArtbookSlider = false;
 let artbookSliderWheelDebounce = false;
 
-function openArtbookSlider(cardEl, recipeId, folderName) {
+function openArtbookSlider(cardEl, recipeId, folderName, images) {
     // 1. 모든 카드의 selected-card 클래스 제거 및 클릭된 카드 추가
     document.querySelectorAll('.artbook-card-item').forEach(card => {
         card.classList.remove('selected-card');
@@ -2505,9 +2508,9 @@ function openArtbookSlider(cardEl, recipeId, folderName) {
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
             
-            <div class="artbook-slide-item active" data-slide="1" style="background-image: url('/${folderName}/화보집/0.jpg'); background-color: ${bgColor};"></div>
-            <div class="artbook-slide-item" data-slide="2" style="background-image: url('/${folderName}/화보집/1.jpg'); background-color: ${bgColor};"></div>
-            <div class="artbook-slide-item" data-slide="3" style="background-image: url('/${folderName}/화보집/2.jpg'); background-color: ${bgColor};"></div>
+            <div class="artbook-slide-item active" data-slide="1" style="background-image: url('/${folderName}/화보집/${images[0]}'); background-color: ${bgColor};"></div>
+            <div class="artbook-slide-item" data-slide="2" style="background-image: url('/${folderName}/화보집/${images[1]}'); background-color: ${bgColor};"></div>
+            <div class="artbook-slide-item" data-slide="3" style="background-image: url('/${folderName}/화보집/${images[2]}'); background-color: ${bgColor};"></div>
             
             <div class="artbook-slider-dots">
                 <span class="artbook-slider-dot active" onclick="goArtbookSliderPage(1)"></span>
