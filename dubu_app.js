@@ -640,6 +640,7 @@ function updateTimelineProgress(timelineContainer, totalSteps) {
 // 5. 역비례 & 다중 앵커 양방향 비례 연산 (Atelier Scale)
 // ==========================================================================
 const BASE_YIELDS = {
+    42: { template: "미니 번트틀 6구 2개 (총 12개) + 오란다 대 1개 기준 {x}배 분량 🍋", baseCount: 1 },
     41: { template: "찜케이크 1호 {x}개 분량 🧧", baseCount: 1 },
     40: { template: "오란다 대 틀 {x}개 분량 🍞", baseCount: 3 },
     39: { template: "오란다 대 틀 {x}개 분량 🖤", baseCount: 1 },
@@ -765,7 +766,7 @@ function getRecipeMetadata(recipeId) {
             if (timeMatch) timeMinutes = parseInt(timeMatch[1]);
         }
         const isLongTime = timeMinutes >= 50;
-        const isManySteps = steps.length >= 8;
+        const isManySteps = steps.length >= 8 && recipeId !== 42;
         const hasComplexProcess = fullText.includes("머랭") || fullText.includes("발효") || recipeId === 21 || recipeId === 13;
         
         // 쉬움 우선 적용 (예외 공정이 없는 원볼 또는 믹서기 레시피)
