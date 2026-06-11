@@ -2379,21 +2379,31 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
         let imgUrl = '';
         let cardClass = 'artbook-card-item';
         let onClickAttr = '';
+        let visualStyle = '';
 
         if (isActive) {
             imgUrl = `/${matchedDir}/화보집/0.jpg`;
             cardClass += ' active-card';
             // 임시로 클릭 시 얼럿 처리 (3단계에서 슬라이더 모달 연결 예정)
             onClickAttr = `onclick="openArtbookSlider(this, ${p.id}, '${matchedDir}')"`;
+            
+            const bgColors = {
+                40: '#2a1f14', // 콩물파운드케익
+                39: '#f0ede8', // 흑임자테린
+                32: '#2a1810'  // 초코마들렌
+            };
+            const bgColor = bgColors[p.id] || '#0e1015';
+            visualStyle = `background-image: url('${imgUrl}'); background-size: contain; background-repeat: no-repeat; background-position: center; background-color: ${bgColor};`;
         } else {
             // 비활성(준비중)인 경우 디저트의 기본 이미지(p.img)를 백그라운드로 보여줌
             imgUrl = p.img ? `/${p.img}` : '';
             cardClass += ' pending-card';
+            visualStyle = `background-image: url('${imgUrl}');`;
         }
 
         gridHtml += `
             <div class="${cardClass}" ${onClickAttr}>
-                <div class="artbook-card-visual" style="background-image: url('${imgUrl}');">
+                <div class="artbook-card-visual" style="${visualStyle}">
                     ${!isActive ? `
                         <div class="pending-overlay">
                             <span class="pending-text">화보 준비중</span>
