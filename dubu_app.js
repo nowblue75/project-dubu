@@ -167,6 +167,18 @@ function getRecipeTheme(recipe) {
     const categories = recipe.categories || [];
     const title = recipe.title || '';
 
+    // Vol.42 순두부 레몬포슈에케익 전용 골드/옐로우 앤티크 테마
+    if (id === 42) {
+        return {
+            themeColor: '#4A3B18',
+            themeGlow: 'rgba(212, 172, 13, 0.45)',
+            accentColor: '#F4D03F',
+            spineColor1: '#2A200B',
+            spineColor2: '#4A3B18',
+            spineTextColor: '#FCF3CF'
+        };
+    }
+
     // 1. 크리스마스 / 성탄절 (짙은 에메랄드 고딕 그린 + 리치 골드)
     const isChristmas = 
         path.includes('성탄절') || 
@@ -1120,18 +1132,27 @@ function renderAccordionArtbook() {
             creatorsNote: "물기 안 짠 순두부를 우유, 오일과 갈아 찹쌀가루 및 팥앙금을 얹어 쪄낸 쫀득 촉촉한 찜케이크.",
             themeColor: "#5A3816",
             themeGlow: "rgba(90, 56, 22, 0.15)",
-            accentColor: "#EAD7A8",
+            accentColor: "#EAD7A8"
+        },
+        {
+            id: 42,
+            title: "순두부 레몬포슈에케익",
+            img: "43. 순두부 레몬포슈에미니번트케익/순두부 레몬파운드케익 (0).jpg",
+            creatorsNote: "뜨거울 때 새콤한 레몬 시럽을 흠뻑 적셔 속까지 촉촉하게 즐기는 순두부 포슈에 케이크.",
+            themeColor: "#D4AC0D",
+            themeGlow: "rgba(212, 172, 13, 0.15)",
+            accentColor: "#F7DC6F",
             isNew: true
         },
         {
             id: 'coming-soon',
-            title: "순두부 레몬파운드케익",
-            comingSoonSubtitle: "Vol.42 Coming Soon",
+            title: "순두부 자색고구마 롤치즈스콘",
+            comingSoonSubtitle: "Vol.43 Coming Soon",
             img: "",
-            creatorsNote: "상큼한 레몬 글레이즈와 고소한 순두부 시트가 어우러진 레몬 파운드케익이 곧 공개됩니다.",
-            themeColor: "#2C3E50",
-            themeGlow: "rgba(44, 62, 80, 0.2)",
-            accentColor: "#95A5A6",
+            creatorsNote: "자색고구마의 달콤하고 고소한 반죽에 롤치즈가 콕콕 박혀 담백하게 즐기는 웰빙 스콘이 곧 찾아옵니다.",
+            themeColor: "#6C3483",
+            themeGlow: "rgba(108, 52, 131, 0.15)",
+            accentColor: "#BB8FCE",
             isComingSoon: true
         }
     ];
@@ -1140,11 +1161,12 @@ function renderAccordionArtbook() {
     const comingSoonVol = maxId + 1;
     const comingSoonItem = activeRecipes.find(r => r.id === 'coming-soon');
     if (comingSoonItem) {
-        comingSoonItem.title = "순두부 레몬파운드케익";
+        comingSoonItem.title = "순두부 자색고구마 롤치즈스콘";
         comingSoonItem.comingSoonSubtitle = `Vol.${comingSoonVol} Coming Soon`;
     }
 
     const specsData = {
+        42: { texture: "촉촉하고 부드러움", wellness: "레몬 시럽 코팅, 비타민C 가득", method: "170℃ 오븐 구움" },
         41: { texture: "쫀득하고 촉촉함", wellness: "No밀가루, No버터, No오븐", method: "찜기 50분 찌기" },
         40: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 구움" },
         39: { texture: "꾸덕함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
