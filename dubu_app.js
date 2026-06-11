@@ -1101,7 +1101,7 @@ function renderAccordionArtbook() {
         {
             id: 38,
             title: "순두부 쑥 찰떡브라우니",
-            img: "39. 순두부 쑥 찰떡브라우니_화보북 여기서부터/assets/0.jpg",
+            img: "39. 순두부 쑥 찰떡브라우니_완/assets/0.jpg",
             creatorsNote: "찹쌀가루 없이 완성한 반전의 찰기! 향긋한 쑥 반죽과 콩고물의 고소한 동행.",
             themeColor: "#4E6B56",
             themeGlow: "rgba(78, 107, 86, 0.15)",
@@ -1128,7 +1128,7 @@ function renderAccordionArtbook() {
         {
             id: 41,
             title: "순두부 모찌 찜케이크",
-            img: "42. 순두부 찜케익/순두부 찜케익 (0).jpg",
+            img: "42. 순두부 찜케익_완/순두부 찜케익 (0).jpg",
             creatorsNote: "물기 안 짠 순두부를 우유, 오일과 갈아 찹쌀가루 및 팥앙금을 얹어 쪄낸 쫀득 촉촉한 찜케이크.",
             themeColor: "#5A3816",
             themeGlow: "rgba(90, 56, 22, 0.15)",
