@@ -2384,7 +2384,7 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
             imgUrl = `/${matchedDir}/화보집/0.jpg`;
             cardClass += ' active-card';
             // 임시로 클릭 시 얼럿 처리 (3단계에서 슬라이더 모달 연결 예정)
-            onClickAttr = `onclick="openArtbookSlider(${p.id}, '${matchedDir}')"`;
+            onClickAttr = `onclick="openArtbookSlider(this, ${p.id}, '${matchedDir}')"`;
         } else {
             // 비활성(준비중)인 경우 디저트의 기본 이미지(p.img)를 백그라운드로 보여줌
             imgUrl = p.img ? `/${p.img}` : '';
@@ -2399,9 +2399,6 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
                             <span class="pending-text">화보 준비중</span>
                         </div>
                     ` : ''}
-                </div>
-                <div class="artbook-card-info">
-                    <span class="artbook-card-name">${p.title}</span>
                 </div>
             </div>
         `;
@@ -2449,6 +2446,20 @@ function viewRecipeFromArtbook(recipeId) {
     setTimeout(() => {
         openFocusStage(recipeId);
     }, 200);
+}
+
+function openArtbookSlider(cardEl, recipeId, folderName) {
+    // 모든 카드의 selected-card 클래스 제거
+    document.querySelectorAll('.artbook-card-item').forEach(card => {
+        card.classList.remove('selected-card');
+    });
+
+    // 클릭된 카드에 selected-card 클래스 추가
+    if (cardEl) {
+        cardEl.classList.add('selected-card');
+    }
+
+    console.log(`[Artbook Selected] Recipe: ${recipeId}, Folder: ${folderName}`);
 }
 
 function initArtbookEvents() {
