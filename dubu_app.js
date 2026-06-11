@@ -2415,6 +2415,7 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
                 <p class="viewer-footer-text">Maison de Dubu Premium Brand Assets // © 2026 Project Dubu</p>
             </div>
         </div>
+    `;
     viewer.innerHTML = gridHtml;
 }
 
