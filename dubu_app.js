@@ -132,7 +132,7 @@ function renderDashboard() {
                  onclick="openTheme('${theme.id}')">
                 <div class="season-card-img-wrap">
                     <img src="${theme.img}" alt="${theme.title}" loading="lazy"
-                         onerror="this.parentNode.style.background='#f0ece5'">
+                         onerror="this.onerror=null; this.parentNode.style.background='#f0ece5'">
                     <span class="season-card-badge" style="background:${tc.badgeBg};">${theme.tag}</span>
                 </div>
                 <div class="season-card-footer">
@@ -453,7 +453,7 @@ function openFocusStage(recipeId) {
             <div class="focus-stage-left">
                 <div class="focus-tag-top" style="font-family:'Playfair Display',serif; font-weight:600; letter-spacing:2px;">RECIPE FILE // Vol.${recipe.id}</div>
                 <div class="focus-img-wrapper" style="height:62%; margin-top:20px; border-radius:14px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.5);">
-                    <img src="${recipe.img.startsWith('/') ? recipe.img : '/' + recipe.img}" alt="${recipe.title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.src='/assets/default_dubu.jpg'">
+                    <img src="${recipe.img.startsWith('/') ? recipe.img : '/' + recipe.img}" alt="${recipe.title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.src='/assets/default_dubu.jpg'">
                 </div>
                 <div class="focus-cheers-box" style="border-left-color:${theme.accentColor}; background:rgba(255,255,255,0.03); margin-top:15px; padding:10px 14px;">
                     <i class="fa-solid fa-quote-left" style="color:${theme.accentColor}; opacity:0.6; margin-bottom:6px; font-size:0.9rem;"></i>
@@ -1137,7 +1137,7 @@ function renderAccordionArtbook() {
         {
             id: 42,
             title: "순두부 레몬포슈에케익",
-            img: "43. 순두부 레몬포슈에미니번트케익/순두부 레몬파운드케익 (0).jpg",
+            img: "43. 순두부 레몬포슈에케익/0.jpg",
             creatorsNote: "뜨거울 때 새콤한 레몬 시럽을 흠뻑 적셔 속까지 촉촉하게 즐기는 순두부 포슈에 케이크.",
             themeColor: "#D4AC0D",
             themeGlow: "rgba(212, 172, 13, 0.15)",
@@ -1356,7 +1356,7 @@ function openTheme(themeId) {
         return `
             <div class="theme-recipe-card" onclick="openFocusStage(${recipe.id});">
                 <div class="theme-recipe-card-img-wrapper">
-                    <img src="${imgSrc}" alt="${recipe.title}" loading="lazy" onerror="this.parentNode.style.background='#f0f0f0'">
+                    <img src="${imgSrc}" alt="${recipe.title}" loading="lazy" onerror="this.onerror=null; this.parentNode.style.background='#f0f0f0'">
                     <div class="theme-recipe-card-vol" style="color:${pal.text};">${recipe.vol}</div>
                 </div>
                 <div class="theme-recipe-card-info" style="background:${pal.cardBg};">

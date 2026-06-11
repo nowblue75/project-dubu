@@ -16,9 +16,9 @@ const PROJECTS = [
         "noButter": false,
         "oneBowl": true,
         "desc": "뜨거울 때 새콤한 레몬 시럽을 흠뻑 적셔 속까지 촉촉하게 즐기는 미니 케이크. 순두부 반죽의 건강함과 레몬의 상큼함이 조화를 이룹니다.",
-        "path": "43. 순두부 레몬포슈에미니번트케익/index.html",
-        "img": "43. 순두부 레몬포슈에미니번트케익/순두부 레몬파운드케익 (0).jpg",
-        "calcPath": "43. 순두부 레몬포슈에미니번트케익/calculator/index.html",
+        "path": "43. 순두부 레몬포슈에케익/index.html",
+        "img": "43. 순두부 레몬포슈에케익/0.jpg",
+        "calcPath": "43. 순두부 레몬포슈에케익/calculator/index.html",
         "isInteractive": true,
         "blogUrl": "https://blog.naver.com/project_dubu/224313521986",
         "categories": [
@@ -869,9 +869,9 @@ const INGREDIENT_DICT = {
         { "name": "박력분", "base": 265 },
         { "name": "베이킹파우더", "base": 7 },
         { "name": "소금", "base": 2 },
-        { "name": "백설탕 (시럽용)", "base": 65 },
-        { "name": "레몬즙 (시럽용)", "base": 45 },
-        { "name": "물", "base": 35 },
+        { "name": "백설탕 (시럽용)", "base": 45 },
+        { "name": "레몬즙 (시럽용)", "base": 25 },
+        { "name": "물", "base": 40 },
         { "name": "슈가파우더 (마무리)", "base": 10 }
     ],
     "41": [
@@ -1647,7 +1647,7 @@ const RECIPE_STEPS_DB = {
         {
             "time": "5분",
             "title": "단계 9: 레몬 시럽 제조",
-            "desc": "케이크가 구워지는 동안 냄비에 설탕(65g), 레몬즙(45g), 물(35g)을 넣고 설탕이 녹을 때까지 끓여 레몬 시럽을 만듭니다."
+            "desc": "케이크가 구워지는 동안 냄비에 설탕(45g), 레몬즙(25g), 물(40g)을 넣고 설탕이 녹을 때까지 끓여 레몬 시럽을 만듭니다."
         },
         {
             "time": "10분",
