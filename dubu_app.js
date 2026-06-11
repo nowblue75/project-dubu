@@ -726,13 +726,32 @@ function getRecipeMetadata(recipeId) {
     recipeId = Number(recipeId);
     const recipe = PROJECTS.find(p => p.id === recipeId);
     
-    // 1. 실제 난이도 판별 (oneBowl 속성 및 공정 단계 수 기준 동적 판별)
+    // 1. 실제 난이도 판별 (쉬움: 원볼/믹서기 언급, 어려움: 장시간/다단계/복잡공정, 그외 보통)
     let difficulty = "보통 🟡";
     if (recipe) {
         const steps = typeof RECIPE_STEPS_DB !== 'undefined' ? (RECIPE_STEPS_DB[recipeId] || []) : [];
-        if (recipe.oneBowl && steps.length <= 4) {
+        
+        const descText = (recipe.desc || "") + " " + (recipe.emotionalQuote || "");
+        const stepsText = steps.map(s => s.title + " " + s.desc).join(" ");
+        const fullText = (descText + " " + stepsText).toLowerCase();
+        
+        const hasOneBowl = fullText.includes("원볼") || recipe.oneBowl;
+        const hasMixer = fullText.includes("믹서기") || fullText.includes("믹서");
+        const isEasy = hasOneBowl || hasMixer;
+        
+        let timeMinutes = 0;
+        if (recipe.time) {
+            const timeMatch = recipe.time.match(/(\d+)분/);
+            if (timeMatch) timeMinutes = parseInt(timeMatch[1]);
+        }
+        const isLongTime = timeMinutes >= 50;
+        const isManySteps = steps.length >= 8;
+        const hasComplexProcess = fullText.includes("머랭") || fullText.includes("발효") || recipeId === 21 || recipeId === 13;
+        
+        // 쉬움 우선 적용 (원볼 또는 믹서기가 있으면 난이도 쉬움)
+        if (isEasy) {
             difficulty = "쉬움 🟢";
-        } else if (steps.length >= 8 || recipeId === 21) {
+        } else if (isLongTime || isManySteps || hasComplexProcess) {
             difficulty = "어려움 🔴";
         }
     }
