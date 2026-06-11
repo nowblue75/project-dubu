@@ -3948,3 +3948,175 @@ footer {
         margin-bottom: 10px;
     }
 }
+
+/* ==========================================================================
+   📸 화보집 풀스크린 슬라이더 뷰어 (Phase 3)
+   ========================================================================== */
+#artbook-slider-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #08090b;
+    background: radial-gradient(circle at center, #14161d 0%, #08090b 100%);
+    z-index: 13000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#artbook-slider-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 메인 그리드 페이드아웃용 클래스 */
+.artbook-viewer-container.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.artbook-slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.artbook-slide-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.artbook-slide-item.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+/* 닫기 버튼 */
+.artbook-slider-close-btn {
+    position: absolute;
+    top: 35px;
+    right: 45px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 2.8rem;
+    cursor: pointer;
+    z-index: 13200;
+    transition: all 0.3s ease;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.artbook-slider-close-btn:hover {
+    color: #fff;
+    transform: rotate(90deg) scale(1.1);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* 네비게이션 버튼 */
+.artbook-slider-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(17, 18, 20, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.4);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 13100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.artbook-slider-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.artbook-slider-nav-left {
+    left: 40px;
+}
+
+.artbook-slider-nav-right {
+    right: 40px;
+}
+
+.artbook-slider-nav-btn.disabled {
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+/* 닷 인디케이터 */
+.artbook-slider-dots {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 13100;
+}
+
+.artbook-slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.artbook-slider-dot:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.artbook-slider-dot.active {
+    background: #D4AF37;
+    box-shadow: 0 0 10px #D4AF37;
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .artbook-slider-nav-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    .artbook-slider-nav-left {
+        left: 15px;
+    }
+    .artbook-slider-nav-right {
+        right: 15px;
+    }
+    .artbook-slider-close-btn {
+        top: 20px;
+        right: 25px;
+        font-size: 2.2rem;
+    }
+    .artbook-slider-dots {
+        bottom: 25px;
+    }
+}

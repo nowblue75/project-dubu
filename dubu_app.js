@@ -2458,18 +2458,168 @@ function viewRecipeFromArtbook(recipeId) {
     }, 200);
 }
 
+let artbookSliderCurrentPage = 1;
+let isClosingArtbookSlider = false;
+let artbookSliderWheelDebounce = false;
+
 function openArtbookSlider(cardEl, recipeId, folderName) {
-    // 모든 카드의 selected-card 클래스 제거
+    // 1. 모든 카드의 selected-card 클래스 제거 및 클릭된 카드 추가
     document.querySelectorAll('.artbook-card-item').forEach(card => {
         card.classList.remove('selected-card');
     });
-
-    // 클릭된 카드에 selected-card 클래스 추가
     if (cardEl) {
         cardEl.classList.add('selected-card');
     }
 
-    console.log(`[Artbook Selected] Recipe: ${recipeId}, Folder: ${folderName}`);
+    // 2. 메인 그리드 컨테이너 페이드아웃
+    const mainContainer = document.querySelector('.artbook-viewer-container');
+    if (mainContainer) {
+        mainContainer.classList.add('fade-out');
+    }
+
+    // 3. 디저트별 배경색 매핑
+    const bgColors = {
+        40: '#2a1f14', // 콩물파운드케익
+        39: '#f0ede8', // 흑임자테린
+        32: '#2a1810'  // 초코마들렌
+    };
+    const bgColor = bgColors[recipeId] || '#08090b';
+
+    // 4. 슬라이더 오버레이 동적 생성
+    let sliderOverlay = document.getElementById('artbook-slider-overlay');
+    if (sliderOverlay) sliderOverlay.remove();
+
+    sliderOverlay = document.createElement('div');
+    sliderOverlay.id = 'artbook-slider-overlay';
+    document.body.appendChild(sliderOverlay);
+
+    // 5. 슬라이더 HTML 템플릿 빌드 (텍스트 오버레이 완전 배제)
+    sliderOverlay.innerHTML = `
+        <div class="artbook-slider-container">
+            <button class="artbook-slider-close-btn" onclick="closeArtbookSlider()">&times;</button>
+            
+            <button class="artbook-slider-nav-btn artbook-slider-nav-left" onclick="changeArtbookSliderPage(-1)">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="artbook-slider-nav-btn artbook-slider-nav-right" onclick="changeArtbookSliderPage(1)">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            
+            <div class="artbook-slide-item active" data-slide="1" style="background-image: url('/${folderName}/화보집/0.jpg'); background-color: ${bgColor};"></div>
+            <div class="artbook-slide-item" data-slide="2" style="background-image: url('/${folderName}/화보집/1.jpg'); background-color: ${bgColor};"></div>
+            <div class="artbook-slide-item" data-slide="3" style="background-image: url('/${folderName}/화보집/2.jpg'); background-color: ${bgColor};"></div>
+            
+            <div class="artbook-slider-dots">
+                <span class="artbook-slider-dot active" onclick="goArtbookSliderPage(1)"></span>
+                <span class="artbook-slider-dot" onclick="goArtbookSliderPage(2)"></span>
+                <span class="artbook-slider-dot" onclick="goArtbookSliderPage(3)"></span>
+            </div>
+        </div>
+    `;
+
+    artbookSliderCurrentPage = 1;
+    isClosingArtbookSlider = false;
+
+    // 6. 페이드인 활성화
+    setTimeout(() => {
+        sliderOverlay.classList.add('active');
+        updateArtbookSliderUI();
+    }, 50);
+
+    // 7. 이벤트 바인딩
+    initArtbookSliderEvents();
+}
+
+function updateArtbookSliderUI() {
+    const slides = document.querySelectorAll('.artbook-slide-item');
+    const dots = document.querySelectorAll('.artbook-slider-dot');
+    
+    slides.forEach(slide => {
+        const slideNum = Number(slide.getAttribute('data-slide'));
+        slide.classList.toggle('active', slideNum === artbookSliderCurrentPage);
+    });
+
+    dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx + 1 === artbookSliderCurrentPage);
+    });
+
+    // 좌우 버튼 비활성화 처리
+    const leftBtn = document.querySelector('.artbook-slider-nav-left');
+    const rightBtn = document.querySelector('.artbook-slider-nav-right');
+    if (leftBtn) leftBtn.classList.toggle('disabled', artbookSliderCurrentPage === 1);
+    if (rightBtn) rightBtn.classList.toggle('disabled', artbookSliderCurrentPage === 3);
+}
+
+function changeArtbookSliderPage(dir) {
+    const target = artbookSliderCurrentPage + dir;
+    if (target >= 1 && target <= 3) {
+        artbookSliderCurrentPage = target;
+        updateArtbookSliderUI();
+    }
+}
+
+function goArtbookSliderPage(pageNum) {
+    if (pageNum >= 1 && pageNum <= 3) {
+        artbookSliderCurrentPage = pageNum;
+        updateArtbookSliderUI();
+    }
+}
+
+function closeArtbookSlider() {
+    const sliderOverlay = document.getElementById('artbook-slider-overlay');
+    if (!sliderOverlay || isClosingArtbookSlider) return;
+
+    isClosingArtbookSlider = true;
+    sliderOverlay.classList.remove('active');
+
+    // 메인 그리드 컨테이너 페이드인 원복
+    const mainContainer = document.querySelector('.artbook-viewer-container');
+    if (mainContainer) {
+        mainContainer.classList.remove('fade-out');
+    }
+
+    setTimeout(() => {
+        sliderOverlay.remove();
+        isClosingArtbookSlider = false;
+    }, 600);
+}
+
+function initArtbookSliderEvents() {
+    const overlay = document.getElementById('artbook-slider-overlay');
+    if (!overlay) return;
+
+    // 1. 마우스 휠 이벤트 감지
+    overlay.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        if (artbookSliderWheelDebounce) return;
+        
+        artbookSliderWheelDebounce = true;
+        if (e.deltaY > 0) {
+            changeArtbookSliderPage(1);
+        } else {
+            changeArtbookSliderPage(-1);
+        }
+
+        setTimeout(() => {
+            artbookSliderWheelDebounce = false;
+        }, 600); // 휠 디바운스
+    }, { passive: false });
+
+    // 2. 키보드 이벤트 감지
+    const handleKeyDown = (e) => {
+        if (!document.getElementById('artbook-slider-overlay')) {
+            document.removeEventListener('keydown', handleKeyDown);
+            return;
+        }
+        if (e.key === 'ArrowRight') {
+            changeArtbookSliderPage(1);
+        } else if (e.key === 'ArrowLeft') {
+            changeArtbookSliderPage(-1);
+        } else if (e.key === 'Escape') {
+            closeArtbookSlider();
+        }
+    };
+    document.addEventListener('keydown', handleKeyDown);
 }
 
 function initArtbookEvents() {
