@@ -3786,9 +3786,46 @@ footer {
     outline-offset: -3px;
 }
 
+/* 골드 파티클 shimmer 애니메이션 */
+@keyframes goldShimmer {
+    0% {
+        transform: translate(-100%, 100%) rotate(45deg);
+    }
+    100% {
+        transform: translate(100%, -100%) rotate(45deg);
+    }
+}
+
+.artbook-card-item::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        rgba(214, 175, 55, 0) 30%,
+        rgba(214, 175, 55, 0.2) 45%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(214, 175, 55, 0.2) 55%,
+        rgba(214, 175, 55, 0) 70%
+    );
+    transform: translate(-100%, 100%) rotate(45deg);
+    transition: opacity 0.3s ease;
+    z-index: 6;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.artbook-card-item.active-card:hover::after {
+    opacity: 1;
+    animation: goldShimmer 1.5s infinite linear;
+}
+
 .artbook-card-item.active-card:hover .artbook-card-visual {
     transform: scale(1.05);
-    filter: brightness(0.9);
+    filter: brightness(1.1);
 }
 
 /* [선택된 카드 효과 유지] */
@@ -3803,7 +3840,7 @@ footer {
 
 .artbook-card-item.selected-card .artbook-card-visual {
     transform: scale(1.05);
-    filter: brightness(0.9);
+    filter: brightness(1.1);
 }
 
 /* [준비중 카드 예외 효과] */
@@ -3998,13 +4035,34 @@ footer {
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0;
+    filter: blur(15px);
     z-index: 1;
-    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translateX(100%);
+    transition: 
+        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+        opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+        filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .artbook-slide-item.active {
     opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0);
     z-index: 10;
+}
+
+.artbook-slide-item.prev {
+    opacity: 0;
+    filter: blur(15px);
+    transform: translateX(-100%);
+    z-index: 5;
+}
+
+.artbook-slide-item.next {
+    opacity: 0;
+    filter: blur(15px);
+    transform: translateX(100%);
+    z-index: 5;
 }
 
 /* 닫기 버튼 */

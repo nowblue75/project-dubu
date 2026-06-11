@@ -2539,7 +2539,14 @@ function updateArtbookSliderUI() {
     
     slides.forEach(slide => {
         const slideNum = Number(slide.getAttribute('data-slide'));
-        slide.classList.toggle('active', slideNum === artbookSliderCurrentPage);
+        slide.className = 'artbook-slide-item';
+        if (slideNum === artbookSliderCurrentPage) {
+            slide.classList.add('active');
+        } else if (slideNum < artbookSliderCurrentPage) {
+            slide.classList.add('prev');
+        } else {
+            slide.classList.add('next');
+        }
     });
 
     dots.forEach((dot, idx) => {
