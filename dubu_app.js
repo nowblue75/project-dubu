@@ -737,7 +737,15 @@ function getRecipeMetadata(recipeId) {
         
         const hasOneBowl = fullText.includes("원볼") || recipe.oneBowl;
         const hasMixer = fullText.includes("믹서기") || fullText.includes("믹서");
-        const isEasy = hasOneBowl || hasMixer;
+        
+        // 예외 조항: 크럼블, 필링, 글레이즈, 프로스팅, 시럽 등 별도 부속 공정이 들어가는 것은 쉬움에서 배제
+        const hasExtraProcess = fullText.includes("크럼블") || 
+                                 fullText.includes("필링") || 
+                                 fullText.includes("글레이즈") || 
+                                 fullText.includes("프로스팅") || 
+                                 fullText.includes("시럽");
+        
+        const isEasy = (hasOneBowl || hasMixer) && !hasExtraProcess;
         
         let timeMinutes = 0;
         if (recipe.time) {
@@ -748,7 +756,7 @@ function getRecipeMetadata(recipeId) {
         const isManySteps = steps.length >= 8;
         const hasComplexProcess = fullText.includes("머랭") || fullText.includes("발효") || recipeId === 21 || recipeId === 13;
         
-        // 쉬움 우선 적용 (원볼 또는 믹서기가 있으면 난이도 쉬움)
+        // 쉬움 우선 적용 (예외 공정이 없는 원볼 또는 믹서기 레시피)
         if (isEasy) {
             difficulty = "쉬움 🟢";
         } else if (isLongTime || isManySteps || hasComplexProcess) {
