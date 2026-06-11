@@ -2278,7 +2278,7 @@ window.addEventListener('popstate', (e) => {
 // ==========================================================================
 // 8. 디저트 화보북 단독 뷰어 시스템 (v16.0 - 방식 B 단독 화면)
 // ==========================================================================
-function openArtbookViewer() {
+async function openArtbookViewer() {
     // 기존 화보 뷰어가 열려 있다면 제거
     let viewer = document.getElementById('artbook-viewer-overlay');
     if (viewer) viewer.remove();
@@ -2290,99 +2290,132 @@ function openArtbookViewer() {
 
     viewer = document.createElement('div');
     viewer.id = 'artbook-viewer-overlay';
-
-    // 가상 경로 연산을 위한 물리적 base path
-    let currentPath = window.location.pathname;
-    const lookbookIdx = currentPath.indexOf('/lookbook/');
-    if (lookbookIdx !== -1) {
-        currentPath = currentPath.substring(0, lookbookIdx + 1);
-    } else {
-        currentPath = currentPath.substring(0, currentPath.lastIndexOf('/') + 1);
-    }
-    const lookbookBasePath = window.location.protocol === 'file:' 
-        ? currentPath
-        : window.location.origin + currentPath;
+    document.body.appendChild(viewer);
+    document.body.style.overflow = 'hidden';
 
     // 가상 라우팅 (디저트 화보집 전용 경로)
     history.pushState({ page: 'artbook' }, '', '/artbook');
-
-    // 1차 테스트 대상: Vol.39 순두부 흑임자 테린
-    const recipeId = 39;
-    const recipe = PROJECTS.find(p => p.id === recipeId);
-    const dbData = LOOKBOOK_DB[recipeId];
-
-    if (!dbData || !recipe) return;
-
-    // 카테고리 색상 연동 (테마 스타일링용)
-    let themeColor = '#ff0066'; // nostalgia 카테고리 기본
-    let themeRGB = '255, 0, 102';
-    if (recipe.categories && recipe.categories.length > 0) {
-        for (const cat of recipe.categories) {
-            if (CATEGORY_THEMES[cat]) {
-                themeColor = CATEGORY_THEMES[cat].color;
-                themeRGB = CATEGORY_THEMES[cat].rgb;
-                break;
-            }
-        }
-    }
-
-    viewer.style.setProperty('--artbook-theme-color', themeColor);
-    viewer.style.setProperty('--artbook-theme-color-rgb', themeRGB);
-
-    viewer.innerHTML = `
-        <div class="artbook-viewer-container">
-            <!-- 우측 상단 닫기 버튼 -->
-            <button class="artbook-close-btn" onclick="closeArtbookViewer()">&times;</button>
-            
-            <!-- 단독 3D 카드덱 공간 -->
-            <div class="artbook-card-deck-wrapper">
-                <div class="artbook-card-deck">
-                    <!-- Vol.39 흑임자테린 테스트 카드 -->
-                    <div class="artbook-card-frame">
-                        <div class="artbook-card-inner">
-                            <!-- 2중 레이어 구조: 뒷배경 + 둥글게 마스킹된 전면 피사체 -->
-                            <div class="artbook-card-bg" style="background-image: url('${lookbookBasePath}${dbData.images[0]}');"></div>
-                            <div class="artbook-card-fg" style="background-image: url('${lookbookBasePath}${dbData.images[0]}');"></div>
-                            
-                            <!-- 럭셔리 네온 테크 코너 장식 -->
-                            <div class="tech-corner top-left"></div>
-                            <div class="tech-corner top-right"></div>
-                            <div class="tech-corner bottom-left"></div>
-                            <div class="tech-corner bottom-right"></div>
-
-                            <!-- 카드 하단 HUD 메타데이터 패널 -->
-                            <div class="artbook-card-hud">
-                                <div class="artbook-card-header">
-                                    <span class="artbook-vol-tag" style="border-color: var(--artbook-theme-color); color: var(--artbook-theme-color);">Vol.${recipeId}</span>
-                                    <span class="artbook-category-tag">NOSTALGIA</span>
-                                </div>
-                                <h2 class="artbook-card-title">${recipe.title}</h2>
-                                <p class="artbook-card-desc">${dbData.desc}</p>
-                                <button class="artbook-recipe-btn" onclick="viewRecipeFromArtbook(${recipeId})" style="background: var(--artbook-theme-color); box-shadow: 0 0 15px rgba(var(--artbook-theme-color-rgb), 0.45);">
-                                    <i class="fa-solid fa-book-open"></i> 레시피 펼치기
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 하단 갤러리 안내 문구 -->
-            <div class="artbook-viewer-footer">
-                <p class="viewer-footer-text">DESSERT ARTBOOK ARCHIVE // 1차 테스트 (Vol.39 흑임자테린)</p>
-            </div>
-        </div>
-    `;
-
-    document.body.appendChild(viewer);
-    document.body.style.overflow = 'hidden';
 
     // 페이드인 클래스 추가
     setTimeout(() => {
         viewer.classList.add('active');
     }, 50);
 
+    // 로딩 인디케이터 렌더링
+    viewer.innerHTML = `
+        <div class="artbook-loading-container">
+            <div class="artbook-spinner"></div>
+            <p class="artbook-loading-text">화보집 아카이브 불러오는 중...</p>
+        </div>
+    `;
+
+    try {
+        const response = await fetch('/api/photobooks');
+        if (!response.ok) throw new Error('API 호출 실패');
+        const data = await response.json();
+        const activePhotobooks = data.activePhotobooks || [];
+
+        // 화보집 그리드 메인 렌더링
+        renderArtbookMainGrid(viewer, activePhotobooks);
+    } catch (error) {
+        console.error('화보집 스캔 에러:', error);
+        viewer.innerHTML = `
+            <div class="artbook-error-container">
+                <p class="artbook-error-text">화보집 아카이브를 불러오지 못했습니다.</p>
+                <div class="artbook-error-btns">
+                    <button class="artbook-retry-btn" onclick="openArtbookViewer()">다시 시도</button>
+                    <button class="artbook-close-btn-error" onclick="closeArtbookViewer(false, true)">&times; 닫기</button>
+                </div>
+            </div>
+        `;
+    }
+
     initArtbookEvents();
+}
+
+function renderArtbookMainGrid(viewer, activePhotobooks) {
+    function cleanFolderName(name) {
+        if (!name) return '';
+        return name.replace('_완', '').trim();
+    }
+
+    // 화보 활성화 여부를 사전에 가중치로 주어 PROJECTS 정렬
+    const sortedProjects = [...PROJECTS].sort((a, b) => {
+        const folderPartA = a.path ? a.path.split('/')[0] : '';
+        const cleanFolderA = cleanFolderName(folderPartA);
+        const isActiveA = activePhotobooks.some(d => cleanFolderName(d) === cleanFolderA);
+
+        const folderPartB = b.path ? b.path.split('/')[0] : '';
+        const cleanFolderB = cleanFolderName(folderPartB);
+        const isActiveB = activePhotobooks.some(d => cleanFolderName(d) === cleanFolderB);
+
+        if (isActiveA && !isActiveB) return -1;
+        if (!isActiveA && isActiveB) return 1;
+        return 0; // 활성화 여부가 같으면 기존 순서 유지
+    });
+
+    let gridHtml = `
+        <div class="artbook-viewer-container">
+            <!-- 우측 상단 닫기 버튼 -->
+            <button class="artbook-close-btn" onclick="closeArtbookViewer()">&times;</button>
+            
+            <div class="artbook-header">
+                <h1 class="artbook-title serif">DESSERT ARTBOOK</h1>
+                <p class="artbook-subtitle">프로젝트 두부 프리미엄 디지털 화보집 아카이브</p>
+            </div>
+
+            <div class="artbook-grid-wrapper">
+                <div class="artbook-grid">
+    `;
+
+    sortedProjects.forEach(p => {
+        const folderPart = p.path ? p.path.split('/')[0] : '';
+        const cleanFolder = cleanFolderName(folderPart);
+        
+        // activePhotobooks에서 매칭되는 실제 폴더명 찾기
+        const matchedDir = activePhotobooks.find(d => cleanFolderName(d) === cleanFolder);
+        const isActive = !!matchedDir;
+
+        let imgUrl = '';
+        let cardClass = 'artbook-card-item';
+        let onClickAttr = '';
+
+        if (isActive) {
+            imgUrl = `/${matchedDir}/화보집/0.jpg`;
+            cardClass += ' active-card';
+            // 임시로 클릭 시 얼럿 처리 (3단계에서 슬라이더 모달 연결 예정)
+            onClickAttr = `onclick="openArtbookSlider(${p.id}, '${matchedDir}')"`;
+        } else {
+            // 비활성(준비중)인 경우 디저트의 기본 이미지(p.img)를 백그라운드로 보여줌
+            imgUrl = p.img ? `/${p.img}` : '';
+            cardClass += ' pending-card';
+        }
+
+        gridHtml += `
+            <div class="${cardClass}" ${onClickAttr}>
+                <div class="artbook-card-visual" style="background-image: url('${imgUrl}');">
+                    ${!isActive ? `
+                        <div class="pending-overlay">
+                            <span class="pending-text">화보 준비중</span>
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="artbook-card-info">
+                    <span class="artbook-card-name">${p.title}</span>
+                </div>
+            </div>
+        `;
+    });
+
+    gridHtml += `
+                </div>
+            </div>
+            
+            <div class="artbook-viewer-footer">
+                <p class="viewer-footer-text">Maison de Dubu Premium Brand Assets // © 2026 Project Dubu</p>
+            </div>
+        </div>
+    viewer.innerHTML = gridHtml;
 }
 
 function closeArtbookViewer(isFromPopstate = false) {

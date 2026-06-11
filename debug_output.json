@@ -1,0 +1,107 @@
+{
+  "cardCount": 36,
+  "cardDetails": [
+    {
+      "index": 0,
+      "className": "artbook-card-item pending-card",
+      "title": "순두부 모찌 찜케이크",
+      "computedPosition": "relative",
+      "computedDisplay": "block",
+      "rect": {
+        "top": 189.125,
+        "left": 270.66668701171875,
+        "width": 360,
+        "height": 480
+      },
+      "inlineStyle": ""
+    },
+    {
+      "index": 1,
+      "className": "artbook-card-item active-card",
+      "title": "순두부 콩물 파운드케익",
+      "computedPosition": "relative",
+      "computedDisplay": "block",
+      "rect": {
+        "top": 189.125,
+        "left": 670.6666870117188,
+        "width": 360,
+        "height": 480
+      },
+      "inlineStyle": ""
+    },
+    {
+      "index": 2,
+      "className": "artbook-card-item active-card",
+      "title": "순두부 흑임자 테린",
+      "computedPosition": "relative",
+      "computedDisplay": "block",
+      "rect": {
+        "top": 189.125,
+        "left": 1070.666748046875,
+        "width": 360,
+        "height": 480
+      },
+      "inlineStyle": ""
+    },
+    {
+      "index": 3,
+      "className": "artbook-card-item pending-card",
+      "title": "순두부 쑥 찰떡브라우니",
+      "computedPosition": "relative",
+      "computedDisplay": "block",
+      "rect": {
+        "top": 709.125,
+        "left": 270.66668701171875,
+        "width": 360,
+        "height": 480
+      },
+      "inlineStyle": ""
+    },
+    {
+      "index": 4,
+      "className": "artbook-card-item pending-card",
+      "title": "순두부 화이트바크초콜릿",
+      "computedPosition": "relative",
+      "computedDisplay": "block",
+      "rect": {
+        "top": 709.125,
+        "left": 670.6666870117188,
+        "width": 360,
+        "height": 480
+      },
+      "inlineStyle": ""
+    }
+  ],
+  "grid": {
+    "className": "artbook-grid",
+    "display": "grid",
+    "gridTemplateColumns": "360px 360px 360px",
+    "position": "static",
+    "rect": {
+      "x": 250.6666717529297,
+      "y": 189.125,
+      "width": 1200,
+      "height": 6200,
+      "top": 189.125,
+      "right": 1450.6666717529297,
+      "bottom": 6389.125,
+      "left": 250.6666717529297
+    }
+  },
+  "wrapper": {
+    "className": "artbook-grid-wrapper",
+    "display": "flex",
+    "position": "static",
+    "rect": {
+      "x": 20,
+      "y": 169.125,
+      "width": 1667.3333740234375,
+      "height": 722.875,
+      "top": 169.125,
+      "right": 1687.3333740234375,
+      "bottom": 892,
+      "left": 20
+    }
+  },
+  "gridOuterHTML": "<div class=\"artbook-grid\">\n    \n            <div class=\"artbook-card-item pending-card\">\n                <div class=\"artbook-card-visual\" style=\"background-image: url('/42. 순두부 찜케익/순두부 찜케익 (0).jpg');\">\n                    \n                        <div class=\"pending-overlay\">\n                            <span class=\"pending-text\">화보 준비중</span>\n                        </div>\n                    \n                </div>\n                <div class=\"artbook-card-info\">\n                    <span class=\"artbook-card-name\">순두부 모찌 찜케이크</span>\n                </div>\n            </div>\n        \n            <div class=\"artbook-card-item active-card\" onclick=\"openArtbookSlider(40, '41. 순두부콩물 파운드케익_완')\">\n                <div class=\"artbook-card-visual\" style=\"background-image: url('/41. 순두부콩물 파운드케익_완/화보집/0.jpg');\">\n                    \n                </div>\n                <div class=\"artbook-card-info\">\n                    <span class=\"artbook-card-name\">순두부 콩물 파운드케익</span>\n                </div>\n            </div>\n        \n            <div class=\"artbook-card-item active-card\" onclick=\"openArtbookSlider(39, '40. 순두부 흑임자테린_완')\">\n                <div class=\"artbook-card-visual\" style=\"background-image: url('/40. 순두부 흑임자테린_완/화보집/0.jpg');\">\n                    \n                </div>\n                <div class=\"artbook-card-info\">\n                    <span class=\"artbook-card-name\">순두부 흑임자 테린</span>\n                </div>\n            </div>\n        \n            <div class=\"artbook-card-item"
+}

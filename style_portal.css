@@ -1,3 +1,4 @@
+/* Last Updated: 2026-06-11 17:55:00 */
 :root {
     --dubu-black: #1F1A17;
     --dubu-gray: #4A4038;
@@ -3605,24 +3606,22 @@ footer {
    🎬 디저트 화보북 단독 뷰어 시스템 (방식 B - 풀스크린 전용 3D 모달)
    ========================================================================== */
 #artbook-viewer-overlay {
-    --artbook-theme-color: #ff0066;
-    --artbook-theme-color-rgb: 255, 0, 102;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #050608 !important; /* 뒷배경 완전 격리를 위한 불투명 솔리드 배경 */
-    background: radial-gradient(circle at center, rgba(var(--artbook-theme-color-rgb), 0.22) 0%, rgba(var(--artbook-theme-color-rgb), 0.05) 55%, #050608 100%) !important;
+    background-color: #08090b !important;
+    background: radial-gradient(circle at center, #14161d 0%, #08090b 100%) !important;
     z-index: 12000;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), background 0.6s ease;
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    font-family: 'Noto Serif KR', 'Noto Sans KR', sans-serif;
+    font-family: 'Montserrat', 'Noto Serif KR', sans-serif;
 }
 
 #artbook-viewer-overlay.active {
@@ -3636,8 +3635,9 @@ footer {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    box-sizing: border-box;
+    padding: 40px 20px;
+    overflow: hidden;
 }
 
 /* 닫기 버튼 */
@@ -3647,7 +3647,7 @@ footer {
     right: 45px;
     background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.45);
     font-size: 2.8rem;
     cursor: pointer;
     z-index: 12100;
@@ -3657,58 +3657,85 @@ footer {
 }
 
 .artbook-close-btn:hover {
-    color: var(--artbook-theme-color);
+    color: #fff;
     transform: rotate(90deg) scale(1.1);
-    text-shadow: 0 0 15px rgba(var(--artbook-theme-color-rgb), 0.6);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-/* 3D 카드덱 공간 */
-.artbook-card-deck-wrapper {
-    perspective: 1600px;
+/* 헤더 */
+.artbook-header {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-shrink: 0;
+}
+
+.artbook-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #fff;
+    margin: 0 0 8px 0;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.artbook-subtitle {
+    font-size: 0.88rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+}
+
+/* 그리드 스크롤 영역 */
+.artbook-grid-wrapper {
+    flex-grow: 1;
+    overflow-y: auto;
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 70%;
-    margin-top: -30px;
+    align-items: flex-start;
+    padding: 20px 0 80px 0;
 }
 
-.artbook-card-deck {
+.artbook-grid-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+.artbook-grid-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+.artbook-grid-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+.artbook-grid-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.artbook-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    align-self: flex-start;
+}
+
+/* 개별 카드 아이템 */
+.artbook-card-item {
     position: relative;
-    width: 440px;
-    height: 580px;
-    transform-style: preserve-3d;
-}
-
-/* 개별 화보 카드 프레임 */
-.artbook-card-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    cursor: pointer;
-}
-
-.artbook-card-inner {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    border: 1.5px solid rgba(var(--artbook-theme-color-rgb), 0.4);
-    box-shadow: 
-        0 30px 75px rgba(0, 0, 0, 0.9), 
-        0 0 40px rgba(var(--artbook-theme-color-rgb), 0.2),
-        inset 0 0 25px rgba(255, 255, 255, 0.05);
-    transform-style: preserve-3d;
-    transition: border-color 0.4s, box-shadow 0.4s;
-    position: relative;
+    aspect-ratio: 3/4;
+    border-radius: 16px;
     overflow: hidden;
+    background-color: #0e1015;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* 2중 레이어: 배경 */
-.artbook-card-bg {
+/* 비주얼 이미지 */
+.artbook-card-visual {
     position: absolute;
     top: 0;
     left: 0;
@@ -3716,156 +3743,196 @@ footer {
     height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 1;
-    transform: translateZ(0) scale(1);
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
 }
 
-/* 2중 레이어: 피사체 (마스크 적용) */
-.artbook-card-fg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    z-index: 2;
-    pointer-events: none;
-    -webkit-mask-image: radial-gradient(circle at center, black 46%, rgba(0, 0, 0, 0.82) 56%, transparent 66%);
-    mask-image: radial-gradient(circle at center, black 46%, rgba(0, 0, 0, 0.82) 56%, transparent 66%);
-    transform: translateZ(0) scale(1);
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
-}
-
-/* 마우스 오버 시 볼록 팝업 효과 */
-.artbook-card-frame:hover .artbook-card-inner {
-    border-color: var(--artbook-theme-color);
-    box-shadow: 
-        0 50px 95px rgba(0, 0, 0, 0.98), 
-        0 0 50px rgba(var(--artbook-theme-color-rgb), 0.6);
-}
-
-.artbook-card-frame:hover .artbook-card-bg {
-    transform: translateZ(-30px) scale(0.95);
-    filter: brightness(0.48) blur(4px);
-}
-
-.artbook-card-frame:hover .artbook-card-fg {
-    transform: scale(1.18) translateZ(140px);
-    filter: drop-shadow(0 30px 22px rgba(0, 0, 0, 0.88));
-}
-
-/* 카드 하단 HUD 메타데이터 패널 */
-.artbook-card-hud {
+/* 정보 영역 오버레이 (디저트 이름) */
+.artbook-card-info {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to top, rgba(10, 11, 14, 0.96) 0%, rgba(10, 11, 14, 0.82) 65%, transparent 100%);
-    padding: 30px 24px 24px 24px;
+    padding: 40px 24px 24px 24px;
     box-sizing: border-box;
-    z-index: 10;
-    font-family: 'Noto Sans KR', sans-serif;
-    color: #fff;
-    transform: translateZ(30px);
+    background: linear-gradient(to top, rgba(8, 9, 11, 0.95) 0%, rgba(8, 9, 11, 0.6) 60%, transparent 100%);
+    z-index: 5;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
 }
 
-.artbook-card-header {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.artbook-vol-tag {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 800;
-    border: 1px solid var(--artbook-theme-color);
-    color: var(--artbook-theme-color);
-    padding: 2px 8px;
-    border-radius: 4px;
-    letter-spacing: 0.05em;
-}
-
-.artbook-category-tag {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 0.1em;
-}
-
-.artbook-card-title {
+.artbook-card-name {
     font-family: 'Noto Serif KR', serif;
-    font-size: 1.65rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 600;
     color: #fff;
-    margin: 0 0 10px 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    letter-spacing: 0.03em;
+    display: block;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.artbook-card-desc {
-    font-size: 0.98rem;
-    line-height: 1.5;
-    color: #cbd5e0;
-    margin: 0 0 18px 0;
-}
-
-.artbook-recipe-btn {
-    width: 100%;
-    border: none;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 12px;
-    border-radius: 10px;
+/* [활성 카드 호버 및 3D 효과] */
+.artbook-card-item.active-card {
     cursor: pointer;
+}
+
+.artbook-card-item.active-card:hover {
+    transform: translateY(-12px) scale(1.03) rotateX(4deg) rotateY(-2deg);
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.8), 
+        0 0 40px rgba(255, 255, 255, 0.03);
+}
+
+.artbook-card-item.active-card:hover .artbook-card-visual {
+    transform: scale(1.06);
+    filter: brightness(0.9);
+}
+
+.artbook-card-item.active-card:hover .artbook-card-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* [준비중 카드 예외 효과] */
+.artbook-card-item.pending-card {
+    cursor: default;
+}
+
+.artbook-card-item.pending-card .artbook-card-visual {
+    filter: grayscale(40%) blur(2px) brightness(0.5);
+    opacity: 0.65;
+}
+
+.pending-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 8px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    align-items: center;
+    background: rgba(8, 9, 11, 0.35);
+    z-index: 2;
 }
 
-.artbook-recipe-btn:hover {
-    transform: translateY(-3px);
-    filter: brightness(1.1);
+.pending-text {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 6px 18px;
+    border-radius: 30px;
+    letter-spacing: 0.05em;
+    background: rgba(8, 9, 11, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-/* 하단 안내 풋터 */
+/* 풋터 */
 .artbook-viewer-footer {
     position: absolute;
-    bottom: 30px;
-    z-index: 12050;
+    bottom: 25px;
+    left: 0;
+    width: 100%;
     text-align: center;
+    flex-shrink: 0;
+    pointer-events: none;
+    z-index: 10;
 }
 
 .viewer-footer-text {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.4);
-    letter-spacing: 0.2em;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.15em;
     margin: 0;
 }
 
-/* 반응형 조율 */
+/* 로딩 & 에러 스타일 */
+.artbook-loading-container,
+.artbook-error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.artbook-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    animation: artbook-spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes artbook-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.artbook-loading-text {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.05em;
+}
+
+.artbook-error-text {
+    font-size: 1rem;
+    color: #ff5577;
+    margin-bottom: 20px;
+}
+
+.artbook-error-btns {
+    display: flex;
+    gap: 15px;
+}
+
+.artbook-retry-btn,
+.artbook-close-btn-error {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.artbook-retry-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+.artbook-close-btn-error:hover {
+    background: rgba(255, 85, 119, 0.2);
+    border-color: rgba(255, 85, 119, 0.4);
+    color: #ff5577;
+}
+
+/* 반응형 모바일 스타일 */
 @media (max-width: 768px) {
-    .artbook-card-deck {
-        width: 320px;
-        height: 440px;
+    .artbook-title {
+        font-size: 1.85rem;
     }
-    .artbook-card-title {
-        font-size: 1.3rem;
-    }
-    .artbook-card-desc {
-        font-size: 0.82rem;
-        margin-bottom: 12px;
+    .artbook-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 24px;
+        padding: 0 10px;
     }
     .artbook-close-btn {
         top: 20px;
         right: 25px;
         font-size: 2.2rem;
+    }
+    .artbook-header {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 }

@@ -87,6 +87,43 @@ http.createServer((req, res) => {
         return;
     }
 
+    // GET /api/photobooks API 구현
+    if (req.method === 'GET' && urlPath === '/api/photobooks') {
+        fs.readdir(__dirname, (err, files) => {
+            if (err) {
+                res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+                res.end(JSON.stringify({ error: "Failed to read directory" }));
+                return;
+            }
+
+            const activePhotobooks = [];
+            files.forEach(file => {
+                const dirPath = path.join(__dirname, file);
+                try {
+                    const isDir = fs.statSync(dirPath).isDirectory();
+                    if (isDir) {
+                        const pbPath = path.join(dirPath, '화보집');
+                        if (fs.existsSync(pbPath) && fs.statSync(pbPath).isDirectory()) {
+                            const has0 = fs.existsSync(path.join(pbPath, '0.jpg'));
+                            const has1 = fs.existsSync(path.join(pbPath, '1.jpg'));
+                            const has2 = fs.existsSync(path.join(pbPath, '2.jpg'));
+                            if (has0 && has1 && has2) {
+                                activePhotobooks.push(file);
+                            }
+                        }
+                    }
+                } catch(e) {}
+            });
+
+            res.writeHead(200, { 
+                'Content-Type': 'application/json; charset=utf-8',
+                'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
+            });
+            res.end(JSON.stringify({ activePhotobooks }));
+        });
+        return;
+    }
+
     // SPA Fallback: /lookbook 또는 /artbook 으로 시작하면서 확장자가 없는 주소는 index.html로 서빙
     const isSPARoute = (urlPath.startsWith('/lookbook') || urlPath.startsWith('/artbook')) && !path.extname(urlPath);
     let filePath = path.join(__dirname, (urlPath === '/' || isSPARoute) ? 'index.html' : urlPath);
