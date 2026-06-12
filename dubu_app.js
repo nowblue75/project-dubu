@@ -2419,6 +2419,7 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
                 40: '#2a1f14', // 콩물파운드케익
                 39: '#f0ede8', // 흑임자테린
                 32: '#2a1810', // 초코마들렌
+                2: '#1c120c',  // 순두부 크림치즈 티라미수
                 1: '#252421'   // 순두부 크림치즈
             };
             const bgColor = bgColors[p.id] || '#0e1015';
