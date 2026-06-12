@@ -2418,7 +2418,8 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
                 42: '#2c220b', // 레몬포슈에케익
                 40: '#2a1f14', // 콩물파운드케익
                 39: '#f0ede8', // 흑임자테린
-                32: '#2a1810'  // 초코마들렌
+                32: '#2a1810', // 초코마들렌
+                1: '#252421'   // 순두부 크림치즈
             };
             const bgColor = bgColors[p.id] || '#0e1015';
             visualStyle = `background-image: url('${imgUrl}'); background-size: contain; background-repeat: no-repeat; background-position: center; background-color: ${bgColor};`;
