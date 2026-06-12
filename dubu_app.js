@@ -2415,6 +2415,7 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
             
             const bgColors = {
                 43: '#452c50', // 자색고구마 롤치즈스콘
+                42: '#2c220b', // 레몬포슈에케익
                 40: '#2a1f14', // 콩물파운드케익
                 39: '#f0ede8', // 흑임자테린
                 32: '#2a1810'  // 초코마들렌
