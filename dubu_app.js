@@ -1515,7 +1515,7 @@ function renderBookshelf() {
     if (!section) return;
 
     // 1. 오래된 순 정렬 (1 -> 40)
-    const sorted = [...PROJECTS].sort((a, b) => a.id - b.id);
+    const sorted = [...PROJECTS].filter(p => p.id !== 43).sort((a, b) => a.id - b.id);
     const totalPages = Math.ceil(sorted.length / 16);
 
     // 2. 현재 페이지 보정
@@ -2414,6 +2414,7 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
             onClickAttr = `onclick="openArtbookSlider(this, ${p.id}, '${matchedDir}', ${imgsJson})"`;
             
             const bgColors = {
+                43: '#452c50', // 자색고구마 롤치즈스콘
                 40: '#2a1f14', // 콩물파운드케익
                 39: '#f0ede8', // 흑임자테린
                 32: '#2a1810'  // 초코마들렌

@@ -33,6 +33,27 @@ const PROJECTS = [
         "isNew": true
     },
     {
+        "id": 43,
+        "title": "순두부 자색고구마 롤치즈스콘",
+        "noOven": false,
+        "noFlour": false,
+        "noButter": false,
+        "oneBowl": true,
+        "desc": "자색고구마의 달콤하고 고소한 반죽에 롤치즈가 콕콕 박혀 담백하게 즐기는 웰빙 스콘. 다음 주 정식 포스팅 후 레시피가 업데이트됩니다.",
+        "path": "44. 순두부 자색고구마 롤치즈스콘/index.html",
+        "img": "44. 순두부 자색고구마 롤치즈스콘/0.jpeg",
+        "calcPath": "44. 순두부 자색고구마 롤치즈스콘/calculator/index.html",
+        "isInteractive": false,
+        "blogUrl": "",
+        "categories": [
+            "teatime"
+        ],
+        "pairing": "따뜻한 우유 또는 홍차",
+        "time": "35분",
+        "emotionalQuote": "자색고구마와 롤치즈의 담백하고 든든한 만남! 💜",
+        "troubleShoot": ""
+    },
+    {
         "id": 41,
         "title": "순두부 모찌 찜케이크",
         "noOven": true,
