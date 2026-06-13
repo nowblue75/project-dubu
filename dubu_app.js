@@ -1089,82 +1089,86 @@ function renderAccordionArtbook() {
     const container = document.getElementById('accordion-showroom-container');
     if (!container) return;
 
-    const activeRecipes = [
-        {
-            id: 37,
-            title: "순두부 화이트바크초콜릿",
-            img: "36. 순두부화이트바크초콜릿_완/0.jpg",
-            creatorsNote: "순두부 시트 위에 화이트 커버춰를 부어 피스타치오와 스프링클로 장식해 굳히는 바크 초콜릿.",
-            themeColor: "#C25D7E",
-            themeGlow: "rgba(194, 93, 126, 0.15)",
-            accentColor: "#F48FB1"
+    // 1. 아코디언 전용 스타일 및 크리에이터 노트 매핑 데이터
+    const accordionMetaMap = {
+        42: {
+            creatorsNote: "뜨거울 때 새콤한 레몬 시럽을 흠뻑 적셔 속까지 촉촉하게 즐기는 순두부 포슈에 케이크.",
+            themeColor: "#D4AC0D",
+            themeGlow: "rgba(212, 172, 13, 0.15)",
+            accentColor: "#F7DC6F"
         },
-        {
-            id: 38,
-            title: "순두부 쑥 찰떡브라우니",
-            img: "39. 순두부 쑥 찰떡브라우니_완/assets/0.jpg",
-            creatorsNote: "찹쌀가루 없이 완성한 반전의 찰기! 향긋한 쑥 반죽과 콩고물의 고소한 동행.",
-            themeColor: "#4E6B56",
-            themeGlow: "rgba(78, 107, 86, 0.15)",
-            accentColor: "#A5D6A7"
-        },
-        {
-            id: 39,
-            title: "순두부 흑임자 테린",
-            img: "40. 순두부 흑임자테린/assets/08.png",
-            creatorsNote: "오븐 중탕 공법으로 진하고 크리미하게 구워낸, 다음날 더 고소한 흑임자 테린.",
-            themeColor: "#4A4F54",
-            themeGlow: "rgba(74, 79, 84, 0.15)",
-            accentColor: "#78909C"
-        },
-        {
-            id: 40,
-            title: "순두부 콩물 파운드케익",
-            img: "41. 순두부콩물 파운드케익_완/순두부 콩물 파운드케익 (0).png",
-            creatorsNote: "순두부와 콩물을 함께 갈아 고소하고 촉촉하게 완성한 웰빙 파운드케익.",
-            themeColor: "#7B6F55",
-            themeGlow: "rgba(123, 111, 85, 0.15)",
-            accentColor: "#F5E6C8"
-        },
-        {
-            id: 41,
-            title: "순두부 모찌 찜케이크",
-            img: "42. 순두부 찜케익_완/순두부 찜케익 (0).jpg",
+        41: {
             creatorsNote: "물기 안 짠 순두부를 우유, 오일과 갈아 찹쌀가루 및 팥앙금을 얹어 쪄낸 쫀득 촉촉한 찜케이크.",
             themeColor: "#5A3816",
             themeGlow: "rgba(90, 56, 22, 0.15)",
             accentColor: "#EAD7A8"
         },
-        {
-            id: 42,
-            title: "순두부 레몬포슈에케익",
-            img: "43. 순두부 레몬포슈에케익/0.jpg",
-            creatorsNote: "뜨거울 때 새콤한 레몬 시럽을 흠뻑 적셔 속까지 촉촉하게 즐기는 순두부 포슈에 케이크.",
-            themeColor: "#D4AC0D",
-            themeGlow: "rgba(212, 172, 13, 0.15)",
-            accentColor: "#F7DC6F",
-            isNew: true
+        40: {
+            creatorsNote: "순두부와 콩물을 함께 갈아 고소하고 촉촉하게 완성한 웰빙 파운드케익.",
+            themeColor: "#7B6F55",
+            themeGlow: "rgba(123, 111, 85, 0.15)",
+            accentColor: "#F5E6C8"
         },
-        {
-            id: 'coming-soon',
-            title: "순두부 자색고구마 롤치즈스콘",
-            comingSoonSubtitle: "Vol.43 Coming Soon",
-            img: "",
-            creatorsNote: "자색고구마의 달콤하고 고소한 반죽에 롤치즈가 콕콕 박혀 담백하게 즐기는 웰빙 스콘이 곧 찾아옵니다.",
-            themeColor: "#6C3483",
-            themeGlow: "rgba(108, 52, 131, 0.15)",
-            accentColor: "#BB8FCE",
-            isComingSoon: true
+        39: {
+            creatorsNote: "오븐 중탕 공법으로 완성하는 극강의 고소하고 꾸덕한 흑임자 테린",
+            themeColor: "#4A4F54",
+            themeGlow: "rgba(74, 79, 84, 0.15)",
+            accentColor: "#78909C"
+        },
+        38: {
+            creatorsNote: "찹쌀가루 없이 완성한 반전의 찰기! 향긋한 쑥 반죽과 콩고물의 고소한 동행.",
+            themeColor: "#4E6B56",
+            themeGlow: "rgba(78, 107, 86, 0.15)",
+            accentColor: "#A5D6A7"
+        },
+        37: {
+            creatorsNote: "순두부 시트 위에 화이트 커버춰를 부어 피스타치오와 스프링클로 장식해 굳히는 바크 초콜릿.",
+            themeColor: "#C25D7E",
+            themeGlow: "rgba(194, 93, 126, 0.15)",
+            accentColor: "#F48FB1"
         }
-    ];
+    };
 
-    const maxId = Math.max(...activeRecipes.filter(r => typeof r.id === 'number').map(r => r.id));
+    // 2. PROJECTS에서 자색고구마(id: 43)를 제외한 실질적 완성작 중 최신 5개 동적 추출 (과거 -> 최신 정렬)
+    const latestFive = PROJECTS.filter(p => p.id !== 43)
+                               .sort((a, b) => b.id - a.id)
+                               .slice(0, 5)
+                               .reverse();
+
+    // 3. activeRecipes 배열 동적 매핑
+    const activeRecipes = latestFive.map(p => {
+        const meta = accordionMetaMap[p.id] || {
+            creatorsNote: p.desc || "",
+            themeColor: "#7B6F55",
+            themeGlow: "rgba(123, 111, 85, 0.15)",
+            accentColor: "#F5E6C8"
+        };
+        return {
+            id: p.id,
+            title: p.title,
+            img: p.img,
+            creatorsNote: meta.creatorsNote,
+            themeColor: meta.themeColor,
+            themeGlow: meta.themeGlow,
+            accentColor: meta.accentColor
+        };
+    });
+
+    const maxId = Math.max(...activeRecipes.map(r => r.id));
     const comingSoonVol = maxId + 1;
-    const comingSoonItem = activeRecipes.find(r => r.id === 'coming-soon');
-    if (comingSoonItem) {
-        comingSoonItem.title = "순두부 자색고구마 롤치즈스콘";
-        comingSoonItem.comingSoonSubtitle = `Vol.${comingSoonVol} Coming Soon`;
-    }
+
+    // 4. 커밍순 카드 추가
+    activeRecipes.push({
+        id: 'coming-soon',
+        title: "순두부 자색고구마 롤치즈스콘",
+        comingSoonSubtitle: `Vol.${comingSoonVol} Coming Soon`,
+        img: "",
+        creatorsNote: "자색고구마의 달콤하고 고소한 반죽에 롤치즈가 콕콕 박혀 담백하게 즐기는 웰빙 스콘이 곧 찾아옵니다.",
+        themeColor: "#6C3483",
+        themeGlow: "rgba(108, 52, 131, 0.15)",
+        accentColor: "#BB8FCE",
+        isComingSoon: true
+    });
 
     const specsData = {
         42: { texture: "촉촉하고 부드러움", wellness: "레몬 시럽 코팅, 비타민C 가득", method: "170℃ 오븐 구움" },
