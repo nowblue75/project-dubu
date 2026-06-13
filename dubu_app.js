@@ -1624,7 +1624,6 @@ function renderBookshelf() {
 
             <!-- 푸터 -->
             <footer style="margin-top:25px; text-align:center; opacity:0.4;">
-                <div class="footer-logo serif">PROJECT DUBU</div>
                 <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
             </footer>
         </div>
