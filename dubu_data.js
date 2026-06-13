@@ -469,11 +469,24 @@ const PROJECTS = [
     },
     {
         "id": 7,
-        "title": "얼그레이 순두부 케이크",
-        "isInteractive": false,
-        "path": "7. 얼그레이순두부케이크_완/index.html",
-        "img": "7. 얼그레이순두부케이크_완/완성샷.jpg",
-        "blogUrl": "https://blog.naver.com/project_dubu/223945052824"
+        "title": "순두부 얼그레이케익",
+        "noOven": false,
+        "noFlour": false,
+        "noButter": false,
+        "oneBowl": true,
+        "isInteractive": true,
+        "path": "7. 순두부얼그레이케익_완/index.html",
+        "img": "7. 순두부얼그레이케익_완/완성샷.jpg",
+        "blogUrl": "https://blog.naver.com/project_dubu/223945052824",
+        "categories": [
+            "teatime",
+            "soft"
+        ],
+        "pairing": "향긋한 홍차, 따뜻한 아메리카노 또는 레몬티",
+        "time": "45분",
+        "emotionalQuote": "홍차와 레몬의 풍미 가득, 촉촉하고 부드러운 얼그레이 케이크. 🍰",
+        "desc": "버터의 양을 대폭 줄이는 대신 순두부를 채워 넣어 기름진 묵직함은 덜어내고 향긋함과 부드러운 촉촉함을 극대화한 최고의 티푸드입니다.",
+        "troubleShoot": "Q. 케이크 식감이 너무 질척하고 떡처럼 뭉쳐요!<br>A. [순두부 수분 조절 팁] 순두부의 수분을 면포로 최대한 완전히 짜내야 떡처럼 질척해지지 않고 케이크 특유의 포슬포슬하면서도 부드러운 식감을 제대로 낼 수 있습니다."
     },
     {
         "id": 5,

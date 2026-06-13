@@ -813,6 +813,9 @@ function getRecipeMetadata(recipeId) {
         } else if (recipe.id === 17) {
             bakingTip = "오븐 예열 180℃ / 170℃ 40분";
             cheers = "달콤하고 고소한 밤이 콕콕 박혀 더욱 풍요로운 맛! 가을 감성을 가득 담아 구워내는 영양 만점 순두부 파운드케이크입니다. 🌰";
+        } else if (recipe.id === 7) {
+            bakingTip = "오븐 예열 180℃ / 35분 (식힌 후 홍차시럽 코팅)";
+            cheers = "홍차의 은은한 향과 레몬 제스트의 상큼함이 입안 가득 번지는, 가볍고 촉촉한 원볼 베이킹의 진수를 만나보세요! 🍰";
         }
     }
     return { difficulty, yieldText, bakingTip, cheers };
@@ -2422,6 +2425,7 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
                 40: '#2a1f14', // 콩물파운드케익
                 39: '#f0ede8', // 흑임자테린
                 32: '#2a1810', // 초코마들렌
+                7: '#1a2022',  // 순두부 얼그레이케익
                 5: '#2c1b0c',  // 순두부 황치즈휘낭시에
                 4: '#180b06',  // 순두부 퍼지브라우니
                 3: '#201510',  // 순두부 바스크치즈케이크
@@ -2515,9 +2519,17 @@ function openArtbookSlider(cardEl, recipeId, folderName, images) {
 
     // 3. 디저트별 배경색 매핑
     const bgColors = {
+        43: '#452c50', // 자색고구마 롤치즈스콘
+        42: '#2c220b', // 레몬포슈에케익
         40: '#2a1f14', // 콩물파운드케익
         39: '#f0ede8', // 흑임자테린
-        32: '#2a1810'  // 초코마들렌
+        32: '#2a1810', // 초코마들렌
+        7: '#1a2022',  // 순두부 얼그레이케익
+        5: '#2c1b0c',  // 순두부 황치즈휘낭시에
+        4: '#180b06',  // 순두부 퍼지브라우니
+        3: '#201510',  // 순두부 바스크치즈케이크
+        2: '#1c120c',  // 순두부 크림치즈 티라미수
+        1: '#252421'   // 순두부 크림치즈
     };
     const bgColor = bgColors[recipeId] || '#08090b';
 
