@@ -1529,7 +1529,7 @@ function renderBookshelf() {
     if (!section) return;
 
     // 1. 오래된 순 정렬 (1 -> 40)
-    const sorted = [...PROJECTS].filter(p => p.id !== 43).sort((a, b) => a.id - b.id);
+    const sorted = [...PROJECTS].filter(p => p.id !== 44).sort((a, b) => a.id - b.id);
     const totalPages = Math.ceil(sorted.length / 16);
 
     // 2. 현재 페이지 보정
