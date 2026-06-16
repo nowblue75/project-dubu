@@ -1094,6 +1094,12 @@ function renderAccordionArtbook() {
 
     // 1. 아코디언 전용 스타일 및 크리에이터 노트 매핑 데이터
     const accordionMetaMap = {
+        43: {
+            creatorsNote: "큼직한 다크 초코칩과 고소한 견과류가 아낌없이 들어가 겉바속쫀한 묵직한 르뱅 스타일 쿠키.",
+            themeColor: "#5c3c24",
+            themeGlow: "rgba(92, 60, 36, 0.15)",
+            accentColor: "#d2a679"
+        },
         42: {
             creatorsNote: "뜨거울 때 새콤한 레몬 시럽을 흠뻑 적셔 속까지 촉촉하게 즐기는 순두부 포슈에 케이크.",
             themeColor: "#D4AC0D",
@@ -1132,8 +1138,8 @@ function renderAccordionArtbook() {
         }
     };
 
-    // 2. PROJECTS에서 자색고구마(id: 43)를 제외한 실질적 완성작 중 최신 5개 동적 추출 (과거 -> 최신 정렬)
-    const latestFive = PROJECTS.filter(p => p.id !== 43)
+    // 2. PROJECTS에서 자색고구마(id: 44)를 제외한 실질적 완성작 중 최신 5개 동적 추출 (과거 -> 최신 정렬)
+    const latestFive = PROJECTS.filter(p => p.id !== 44)
                                .sort((a, b) => b.id - a.id)
                                .slice(0, 5)
                                .reverse();
@@ -1174,6 +1180,7 @@ function renderAccordionArtbook() {
     });
 
     const specsData = {
+        43: { texture: "겉바속쫀하고 든든함", wellness: "No밀가루 옵션, 견과류 가득", method: "170℃ 오븐 구움" },
         42: { texture: "촉촉하고 부드러움", wellness: "레몬 시럽 코팅, 비타민C 가득", method: "170℃ 오븐 구움" },
         41: { texture: "쫀득하고 촉촉함", wellness: "No밀가루, No버터, No오븐", method: "찜기 50분 찌기" },
         40: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 구움" },
