@@ -1180,7 +1180,7 @@ function renderAccordionArtbook() {
     });
 
     const specsData = {
-        43: { texture: "겉바속쫀하고 든든함", wellness: "No밀가루 옵션, 견과류 가득", method: "170℃ 오븐 구움" },
+        43: { texture: "겉바속쫀하고 든든함", wellness: "초코칩·견과류 가득 (8개 분량)", method: "170℃ 오븐 구움" },
         42: { texture: "촉촉하고 부드러움", wellness: "레몬 시럽 코팅, 비타민C 가득", method: "170℃ 오븐 구움" },
         41: { texture: "쫀득하고 촉촉함", wellness: "No밀가루, No버터, No오븐", method: "찜기 50분 찌기" },
         40: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 구움" },
