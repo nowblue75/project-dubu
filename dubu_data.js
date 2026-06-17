@@ -16,9 +16,9 @@ const PROJECTS = [
         "noButter": false,
         "oneBowl": true,
         "desc": "뜨거울 때 새콤한 레몬 시럽을 흠뻑 적셔 속까지 촉촉하게 즐기는 미니 케이크. 순두부 반죽의 건강함과 레몬의 상큼함이 조화를 이룹니다.",
-        "path": "43. 순두부 레몬포슈에케익/index.html",
-        "img": "43. 순두부 레몬포슈에케익/0.jpg",
-        "calcPath": "43. 순두부 레몬포슈에케익/calculator/index.html",
+        "path": "43. 순두부 레몬포슈에케익_완/index.html",
+        "img": "43. 순두부 레몬포슈에케익_완/0.jpg",
+        "calcPath": "43. 순두부 레몬포슈에케익_완/calculator/index.html",
         "isInteractive": true,
         "blogUrl": "https://blog.naver.com/project_dubu/224313521986",
         "categories": [
@@ -131,8 +131,8 @@ const PROJECTS = [
         "noButter": true,
         "oneBowl": true,
         "desc": "오란다 대 틀 1판 기준! 오븐 중탕 공법과 오븐 베이킹으로 완성하는 깊고 진한 흑임자 테린. 만든 다음 날 차갑게 굳혀 드실 때 더욱 꾸덕합니다.",
-        "path": "40. 순두부 흑임자테린/index.html",
-        "img": "40. 순두부 흑임자테린/assets/08.png",
+        "path": "40. 순두부 흑임자테린_완/index.html",
+        "img": "40. 순두부 흑임자테린_완/assets/08.png",
         "calcPath": "40. 순두부 흑임자테린_완/calculator/index.html",
         "isInteractive": true,
         "blogUrl": "https://blog.naver.com/project_dubu/224277363532",
@@ -695,7 +695,7 @@ const THEMES = [
         "desc": "정겨운 전통 식감과 고소함이 깃든 명절 테마.",
         "icon": "🧧",
         "bgClass": "theme-traditional-bg",
-        "img": "40. 순두부 흑임자테린/assets/01.png",
+        "img": "40. 순두부 흑임자테린_완/assets/01.png",
         "tag": "Harvest & Thanks",
         "recipes": [
             {
@@ -719,7 +719,7 @@ const THEMES = [
                 "noButter": true,
                 "oneBowl": true,
                 "vol": "VOL. 39",
-                "img": "40. 순두부 흑임자테린/assets/01.png",
+                "img": "40. 순두부 흑임자테린_완/assets/01.png",
                 "path": "40. 순두부 흑임자테린_완/index.html",
                 "desc": "오븐 중탕 공법으로 완성하는 극강의 고소하고 꾸덕한 흑임자 테린",
                 "blogUrl": "https://blog.naver.com/project_dubu/224277363532"
