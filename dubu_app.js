@@ -204,7 +204,7 @@ function getRecipeTheme(recipe) {
     const isHalloween = 
         path.includes('할로윈') || 
         title.includes('단호박') || 
-        [4, 15, 18, 9].includes(id);
+        [4, 15, 18, 8, 9].includes(id);
 
     if (isHalloween) {
         return {
@@ -669,10 +669,10 @@ const BASE_YIELDS = {
     13: { template: "롤케이크 {x}롤 분량 🌀", baseCount: 1 },
     12: { template: "치즈스콘 {x}개 분량 🧀", baseCount: 6 },
     11: { template: "레몬케이크 {x}개 분량 🍋", baseCount: 6 },
-    10: { template: "브라우니쿠키 {x}개 분량 🍪", baseCount: 8 },
-    9: { template: "머핀 틀 {x}개 분량 🧁", baseCount: 6 },
-    8: { template: "크림치즈쿠키 {x}개 분량 🍪", baseCount: 8 },
-    7: { template: "오란다 대자 팬 {x}개 분량 🍵", baseCount: 2 },
+    9: { template: "브라우니쿠키 {x}개 분량 🍪", baseCount: 8 },
+    8: { template: "머핀 틀 {x}개 분량 🧁", baseCount: 6 },
+    7: { template: "크림치즈쿠키 {x}개 분량 🍪", baseCount: 8 },
+    6: { template: "오란다 대자 팬 {x}개 분량 🍵", baseCount: 2 },
     5: { template: "황치즈 휘낭시에 {x}개 분량 🧀", baseCount: 6 },
     4: { template: "퍼지 브라우니 {x}판 분량 🍫", baseCount: 1 },
     3: { template: "바스크 치즈케이크 {x}호 분량 🧀", baseCount: 1 },
@@ -2457,10 +2457,10 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
                 13: '#2c241d', // 순두부 크림치즈롤케익
                 12: '#291e11', // 순두부 치즈스콘
                 11: '#332912', // 순두부 레몬케이크
-                10: '#22120b', // 순두부 브라우니쿠키
-                9: '#321b15',  // 순두부 찹쌀모찌 케이크
-                8: '#2b2017',  // 순두부 크림치즈쿠키
-                7: '#1a2022',  // 순두부 얼그레이케익
+                9: '#22120b',  // 순두부 브라우니쿠키
+                8: '#321b15',  // 순두부 찹쌀모찌 케이크
+                7: '#2b2017',  // 순두부 크림치즈쿠키
+                6: '#1a2022',  // 순두부 얼그레이케익
                 5: '#2c1b0c',  // 순두부 황치즈휘낭시에
                 4: '#180b06',  // 순두부 퍼지브라우니
                 3: '#201510',  // 순두부 바스크치즈케이크
@@ -2575,10 +2575,10 @@ function openArtbookSlider(cardEl, recipeId, folderName, images) {
         13: '#2c241d', // 순두부 크림치즈롤케익
         12: '#291e11', // 순두부 치즈스콘
         11: '#332912', // 순두부 레몬케이크
-        10: '#22120b', // 순두부 브라우니쿠키
-        9: '#321b15',  // 순두부 찹쌀모찌 케이크
-        8: '#2b2017',  // 순두부 크림치즈쿠키
-        7: '#1a2022',  // 순두부 얼그레이케익
+        9: '#22120b',  // 순두부 브라우니쿠키
+        8: '#321b15',  // 순두부 찹쌀모찌 케이크
+        7: '#2b2017',  // 순두부 크림치즈쿠키
+        6: '#1a2022',  // 순두부 얼그레이케익
         5: '#2c1b0c',  // 순두부 황치즈휘낭시에
         4: '#180b06',  // 순두부 퍼지브라우니
         3: '#201510',  // 순두부 바스크치즈케이크

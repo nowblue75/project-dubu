@@ -474,7 +474,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/223969919173"
     },
     {
-        "id": 10,
+        "id": 9,
         "title": "순두부 브라우니쿠키",
         "isInteractive": false,
         "path": "10. 순두부 브라우니쿠키_완/index.html",
@@ -482,7 +482,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/223961946339"
     },
     {
-        "id": 9,
+        "id": 8,
         "title": "순두부 찹쌀모찌 케이크",
         "isInteractive": false,
         "path": "9. 순두부 찹쌀모찌 케이크_완/index.html",
@@ -490,7 +490,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/223953399410"
     },
     {
-        "id": 8,
+        "id": 7,
         "title": "순두부 크림치즈쿠키",
         "isInteractive": false,
         "path": "8. 순두부 크림치즈쿠키_완/index.html",
@@ -498,7 +498,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/223934000393"
     },
     {
-        "id": 7,
+        "id": 6,
         "title": "순두부 얼그레이케익",
         "noOven": false,
         "noFlour": false,
@@ -810,13 +810,13 @@ const THEMES = [
                 "desc": "겉은 바삭하고 속은 쫄깃한 황금빛 단호박 슬라이스 브레드"
             },
             {
-                "id": 10,
+                "id": 9,
                 "title": "순두부 브라우니쿠키",
                 "noOven": false,
                 "noFlour": false,
                 "noButter": false,
                 "oneBowl": true,
-                "vol": "VOL. 10",
+                "vol": "VOL. 9",
                 "img": "10. 순두부 브라우니쿠키_완/12.jpg",
                 "path": "10. 순두부 브라우니쿠키_완/index.html",
                 "desc": "쿠키의 바삭함과 브라우니의 쫀득함을 동시에 구현한 듀얼 텍스처"
@@ -1001,7 +1001,7 @@ const INGREDIENT_DICT = {
         { "name": "황치즈 파우더", "base": 23 },
         { "name": "소금", "base": 1 }
     ],
-    "7": [
+    "6": [
         { "name": "물기 짠 순두부", "base": 250 },
         { "name": "비정제 원당", "base": 90 },
         { "name": "녹인 무염버터", "base": 125 },
@@ -1014,7 +1014,7 @@ const INGREDIENT_DICT = {
         { "name": "베이킹파우더", "base": 6 },
         { "name": "소금", "base": 1 }
     ],
-    "8": [
+    "7": [
         { "name": "순두부 (크림치즈용)", "base": 150 },
         { "name": "크림치즈", "base": 80 },
         { "name": "연유", "base": 35 },
@@ -1031,7 +1031,7 @@ const INGREDIENT_DICT = {
         { "name": "소금 (쿠키용)", "base": 2 },
         { "name": "다크 커버춰 초콜릿", "base": 100 }
     ],
-    "9": [
+    "8": [
         { "name": "롤드 오츠 (오트밀 크럼블)", "base": 35 },
         { "name": "아몬드가루 (오트밀 크럼블)", "base": 25 },
         { "name": "비정제 원당 (오트밀 크럼블)", "base": 25 },
@@ -1362,7 +1362,7 @@ const INGREDIENT_DICT = {
             "base": 30
         }
     ],
-    "10": [
+    "9": [
         { "name": "순두부 (물기 제거 후)", "base": 60 },
         { "name": "무염 버터 (실온)", "base": 80 },
         { "name": "다크 커버춰 초콜릿", "base": 100 },
@@ -1848,7 +1848,7 @@ const RECIPE_STEPS_DB = {
             "desc": "190℃로 예열된 오븐에서 15분간 노릇하게 구워줍니다. 꺼내어 한 김 식힌 후 식힘망에 올려 완전히 식혀 완성합니다."
         }
     ],
-    "7": [
+    "6": [
         {
             "time": "10분",
             "title": "단계 1: 준비하기",
@@ -1875,7 +1875,7 @@ const RECIPE_STEPS_DB = {
             "desc": "오븐에서 꺼내어 뜨거울 때 케이크 윗면에 홍차 시럽(또는 홍차베이스)을 얇게 발라줍니다. 식힘망에 올려 완전히 식혀 완성합니다."
         }
     ],
-    "8": [
+    "7": [
         {
             "time": "10분",
             "title": "단계 1: 크림치즈 코어 블렌딩",
@@ -1912,7 +1912,7 @@ const RECIPE_STEPS_DB = {
             "desc": "180℃로 예열된 오븐에서 12-14분간 구워줍니다. 오븐에서 꺼낸 후 쿠키가 매우 부드러우므로 팬 위에서 한 김 식힌 뒤 식힘망으로 옮겨 완전히 식힙니다. 밀폐용기에 담아 냉장고에서 1~2시간 숙성 후 드시면 가장 꾸덕합니다."
         }
     ],
-    "9": [
+    "8": [
         {
             "time": "10분",
             "title": "단계 1: 크럼블 준비 및 예열",
@@ -2236,7 +2236,7 @@ const RECIPE_STEPS_DB = {
             "desc": "꼬치 테스트 후 꺼내어 윗면에 콩물을 붓으로 얇게 끼얹어 마무리하고, 식힌 뒤 하루 숙성해서 썰어 드세요."
         }
     ],
-    "10": [
+    "9": [
         {
             "time": "30분",
             "title": "단계 1: 순두부 물기 제거",
