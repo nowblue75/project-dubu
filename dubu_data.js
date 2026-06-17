@@ -328,7 +328,7 @@ const PROJECTS = [
         "time": "45분"
     },
     {
-        "id": 29,
+        "id": 24,
         "title": "순두부 찰떡파이",
         "noOven": false,
         "noFlour": false,
@@ -345,7 +345,7 @@ const PROJECTS = [
         "img": "32. 순두부찰떡파이_완/0-0.jpg"
     },
     {
-        "id": 28,
+        "id": 23,
         "title": "순두부 시나몬롤",
         "noOven": false,
         "noFlour": false,
@@ -362,7 +362,7 @@ const PROJECTS = [
         "img": "30. 순두부 시나몬롤_완/0.jpg"
     },
     {
-        "id": 27,
+        "id": 22,
         "title": "순두부 눈꽃컵케이크",
         "isInteractive": false,
         "path": "27. 순두부 눈꽃컵케이크_완/index.html",
@@ -370,7 +370,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224127335052"
     },
     {
-        "id": 26,
+        "id": 21,
         "title": "순두부 3종케익",
         "isInteractive": false,
         "path": "26. 순두부 3종케익_완/index.html",
@@ -378,7 +378,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224113782805"
     },
     {
-        "id": 25,
+        "id": 20,
         "title": "순두부 초코번트케익",
         "isInteractive": false,
         "path": "25. 순두부초코번트케익_완/index.html",
@@ -838,13 +838,13 @@ const THEMES = [
                 "desc": "눈 쌓인 산자락을 닮은 화이트 글레이즈와 상큼한 레몬 번트케이크"
             },
             {
-                "id": 25,
+                "id": 20,
                 "title": "순두부 초코번트케익",
                 "noOven": false,
                 "noFlour": false,
                 "noButter": false,
                 "oneBowl": true,
-                "vol": "VOL. 25",
+                "vol": "VOL. 20",
                 "img": "25. 순두부초코번트케익_완/0.jpg",
                 "path": "25. 순두부초코번트케익_완/index.html",
                 "desc": "달콤하고 묵직한 초콜릿 글레이즈를 듬뿍 얹은 크리스마스 특선 번트케이크"
@@ -886,25 +886,25 @@ const THEMES = [
                 "desc": "짙은 카카오 숲 속에 숨겨진 가장 매혹적이고 비밀스러운 유혹"
             },
             {
-                "id": 26,
+                "id": 21,
                 "title": "순두부 3종케익",
                 "noOven": false,
                 "noFlour": false,
                 "noButter": false,
                 "oneBowl": true,
-                "vol": "VOL. 26",
+                "vol": "VOL. 21",
                 "img": "26. 순두부 3종케익_완/0.jpg",
                 "path": "26. 순두부 3종케익_완/index.html",
                 "desc": "크리스마스 시즌을 화려하게 수놓는 매혹적인 비주얼의 순두부 파운드 3종"
             },
             {
-                "id": 27,
+                "id": 22,
                 "title": "순두부 눈꽃컵케이크",
                 "noOven": false,
                 "noFlour": false,
                 "noButter": false,
                 "oneBowl": true,
-                "vol": "VOL. 27",
+                "vol": "VOL. 22",
                 "img": "27. 순두부 눈꽃컵케이크_완/0.jpg",
                 "path": "27. 순두부 눈꽃컵케이크_완/index.html",
                 "desc": "소복이 내려앉은 하얀 겨울을 표현한 사랑스럽고 부드러운 컵케이크"
@@ -1464,7 +1464,7 @@ const INGREDIENT_DICT = {
         { "name": "슈가파우더 (글레이즈)", "base": 150 },
         { "name": "레몬즙 (글레이즈)", "base": 40 }
     ],
-    "25": [
+    "20": [
         { "name": "설탕", "base": 350 },
         { "name": "녹인 무염 버터", "base": 150 },
         { "name": "녹인 커버춰 초콜릿", "base": 100 },
@@ -1477,7 +1477,7 @@ const INGREDIENT_DICT = {
         { "name": "코코아파우더", "base": 80 },
         { "name": "소금", "base": 5 }
     ],
-    "26": [
+    "21": [
         { "name": "설탕", "base": 210 },
         { "name": "녹인 무염 버터", "base": 170 },
         { "name": "식용유", "base": 60 },
@@ -1500,7 +1500,7 @@ const INGREDIENT_DICT = {
         { "name": "슈가파우더 (딸기글레이즈)", "base": 60 },
         { "name": "딸기 퓨레", "base": 15 }
     ],
-    "27": [
+    "22": [
         { "name": "달걀 (실온)", "base": 50 },
         { "name": "설탕", "base": 70 },
         { "name": "다크 커버춰 초콜릿", "base": 120 },
@@ -1601,7 +1601,7 @@ const INGREDIENT_DICT = {
         { "name": "소금", "base": 1 },
         { "name": "블루베리 필링 (잼)", "base": 50 }
     ],
-    "28": [
+    "23": [
         { "name": "강력분 (탕종용)", "base": 20 },
         { "name": "우유 (탕종용)", "base": 100 },
         { "name": "순두부 (생순두부 그대로)", "base": 180 },
@@ -1621,7 +1621,7 @@ const INGREDIENT_DICT = {
         { "name": "우유 (프로스팅)", "base": 20 },
         { "name": "바닐라 익스트랙", "base": 2 }
     ],
-    "29": [
+    "24": [
         { "name": "통밀가루 (타르트지)", "base": 80 },
         { "name": "무염버터 (타르트지 차가운것)", "base": 35 },
         { "name": "설탕 (타르트지)", "base": 15 },
@@ -2499,7 +2499,7 @@ const RECIPE_STEPS_DB = {
             "desc": "오븐에서 꺼내어 10분간 틀째 식힌 후 가장자리를 떼어내 접시 위로 뒤집어 탈형한 뒤, 살짝 따뜻할 때 레몬 글레이즈를 끼얹어 장식합니다."
         }
     ],
-    "25": [
+    "20": [
         {
             "time": "10분",
             "title": "단계 1: 번트틀 코팅하기",
@@ -2531,7 +2531,7 @@ const RECIPE_STEPS_DB = {
             "desc": "식힘망에서 한 김 식혀 따뜻한 기운이 남았을 때 가나슈를 윗면에 지그재그로 뿌리고 슈가파우더와 체리 등으로 크리스마스 장식을 완성합니다."
         }
     ],
-    "26": [
+    "21": [
         {
             "time": "15분",
             "title": "단계 1: 틀 코팅 & 액체 믹싱",
@@ -2563,7 +2563,7 @@ const RECIPE_STEPS_DB = {
             "desc": "초코(초콜릿 55g + 우유 20g 중탕), 녹차(슈가파우더 60g + 레몬즙 15g), 딸기(슈가파우더 60g + 퓨레 15g) 글레이즈를 섞어 각 케이크에 장식하여 완성합니다."
         }
     ],
-    "27": [
+    "22": [
         {
             "time": "10분",
             "title": "단계 1: 틀 코팅 & 초콜릿 녹이기",
@@ -2772,7 +2772,7 @@ const RECIPE_STEPS_DB = {
             "desc": "완성된 롤케이크를 랩이나 유산지로 단단히 감싸 냉장고에 2~3시간 이상 넣어 크림이 굳도록 숙성한 뒤 잘라서 제공합니다."
         }
     ],
-    "28": [
+    "23": [
         {
             "time": "10분",
             "title": "단계 1: 탕종 및 순두부 혼합물 준비",
@@ -2804,7 +2804,7 @@ const RECIPE_STEPS_DB = {
             "desc": "빵이 구워지는 동안 크림치즈를 부드럽게 풀고 슈가파우더, 우유, 바닐라 익스트랙을 섞어 프로스팅을 만듭니다. 구워져 나온 빵이 따뜻할 때 프로스팅을 듬뿍 발라 완성합니다."
         }
     ],
-    "29": [
+    "24": [
         {
             "time": "35분",
             "title": "단계 1: 타르트지 초벌 굽기",

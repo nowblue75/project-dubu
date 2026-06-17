@@ -187,7 +187,7 @@ function getRecipeTheme(recipe) {
         title.includes('부쉬드노엘') || 
         title.includes('블랙포레스트') || 
         title.includes('눈꽃') || 
-        [16, 17, 18, 19, 25, 26].includes(id);
+        [16, 17, 18, 19, 20, 21].includes(id);
 
     if (isChristmas) {
         return {
@@ -654,11 +654,11 @@ const BASE_YIELDS = {
     32: { template: "마들렌 틀 {x}개 분량 🍫", baseCount: 12 },
     31: { template: "마들렌 틀 {x}개 분량 🍋", baseCount: 12 },
     30: { template: "실리콘 틀 {x}개 분량 🍫", baseCount: 8 },
-    29: { template: "찰떡파이 {x}판 분량 🥧", baseCount: 1 },
-    28: { template: "시나몬롤 {x}개 분량 🍥", baseCount: 6 },
-    27: { template: "머핀 틀 {x}개 분량 🧁", baseCount: 6 },
-    26: { template: "오란다 대 틀 {x}개 분량 🍓", baseCount: 3 },
-    25: { template: "번트틀 {x}개 분량 🍫", baseCount: 1 },
+    24: { template: "찰떡파이 {x}판 분량 🥧", baseCount: 1 },
+    23: { template: "시나몬롤 {x}개 분량 🍥", baseCount: 6 },
+    22: { template: "머핀 틀 {x}개 분량 🧁", baseCount: 6 },
+    21: { template: "오란다 대 틀 {x}개 분량 🍓", baseCount: 3 },
+    20: { template: "번트틀 {x}개 분량 🍫", baseCount: 1 },
     19: { template: "번트틀 {x}개 분량 🍋", baseCount: 1 },
     18: { template: "원형 컵 {x}개 분량 🍒", baseCount: 4 },
     17: { template: "정사각 팬 {x}판 분량 🍫", baseCount: 1 },
@@ -2438,14 +2438,14 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
                 38: '#1b2a1e', // 순두부 쑥 찰떡브라우니
                 35: '#251c14', // 순두부 모찌떡케이크
                 32: '#2a1810', // 초코마들렌
-                29: '#2e1b10', // 순두부 찰떡파이
+                24: '#2e1b10', // 순두부 찰떡파이
                 30: '#221109', // 순두부 미니초코케익
                 31: '#2f2608', // 순두부 레몬마들렌
                 33: '#1a2c1d', // 순두부 녹차요거트파운드케익
                 34: '#2d261e', // 순두부 얼그레이그릭스콘
-                27: '#101726', // 순두부 눈꽃컵케이크
-                26: '#241b15', // 순두부 3종케익
-                25: '#1d1007', // 순두부 초코번트케익
+                22: '#101726', // 순두부 눈꽃컵케이크
+                21: '#241b15', // 순두부 3종케익
+                20: '#1d1007', // 순두부 초코번트케익
                 19: '#2e2509', // 순두부 레몬번트케익
                 18: '#2a1215', // 순두부 블랙포레스트 컵케익
                 17: '#1a100a', // 순두부 부쉬드노엘
@@ -2560,9 +2560,9 @@ function openArtbookSlider(cardEl, recipeId, folderName, images) {
         39: '#f0ede8', // 흑임자테린
         35: '#251c14', // 순두부 모찌떡케이크
         32: '#2a1810', // 초코마들렌
-        27: '#101726', // 순두부 눈꽃컵케이크
-        26: '#241b15', // 순두부 3종케익
-        25: '#1d1007', // 순두부 초코번트케익
+        22: '#101726', // 순두부 눈꽃컵케이크
+        21: '#241b15', // 순두부 3종케익
+        20: '#1d1007', // 순두부 초코번트케익
         19: '#2e2509', // 순두부 레몬번트케익
         18: '#2a1215', // 순두부 블랙포레스트 컵케익
         17: '#1a100a', // 순두부 부쉬드노엘
