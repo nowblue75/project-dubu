@@ -226,7 +226,7 @@ const PROJECTS = [
         "noButter": true,
         "oneBowl": true,
         "desc": "물기 안 짠 순두부를 곱게 갈아 타피오카와 찹쌀가루를 배합해 굽고 슈가파우더로 마무리하는 쫀득 폭신한 케이크.",
-        "path": "28. 순두부 모찌떡케이크/index.html",
+        "path": "28. 순두부 모찌떡케이크_완/index.html",
         "img": "28. 순두부 모찌떡케이크_완/0.jpg",
         "isInteractive": true,
         "blogUrl": "https://blog.naver.com/project_dubu/224139999891",
