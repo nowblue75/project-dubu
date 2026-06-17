@@ -394,7 +394,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224103127145"
     },
     {
-        "id": 23,
+        "id": 19,
         "title": "순두부 블랙포레스트 컵케익",
         "isInteractive": false,
         "path": "23. 순두부블랙포레스트 컵케익_완/index.html",
@@ -402,7 +402,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224089622187"
     },
     {
-        "id": 22,
+        "id": 18,
         "title": "순두부 부쉬드노엘",
         "isInteractive": false,
         "path": "22. 순두부 부쉬드노엘_완/index.html",
@@ -410,7 +410,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224097606202"
     },
     {
-        "id": 21,
+        "id": 17,
         "title": "순두부 슈톨렌",
         "isInteractive": false,
         "path": "21. 순두부슈톨렌_완/index.html",
@@ -418,7 +418,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224083029266"
     },
     {
-        "id": 19,
+        "id": 16,
         "title": "순두부 단호박 찹쌀빵",
         "isInteractive": false,
         "path": "19. 순두부 단호박 찹쌀빵_완/index.html",
@@ -426,7 +426,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224044280791"
     },
     {
-        "id": 18,
+        "id": 15,
         "title": "순두부 코코넛단팥찹쌀구움바",
         "isInteractive": false,
         "path": "18. 순두부 코코넛 단팥찹쌀구움바/index.html",
@@ -798,13 +798,13 @@ const THEMES = [
                 "desc": "단호박의 달콤함와 바스크 치즈케이크의 부드러움이 공존하는 테이스트"
             },
             {
-                "id": 19,
+                "id": 16,
                 "title": "순두부 단호박 찹쌀빵",
                 "noOven": false,
                 "noFlour": true,
                 "noButter": true,
                 "oneBowl": true,
-                "vol": "VOL. 19",
+                "vol": "VOL. 16",
                 "img": "19. 순두부 단호박 찹쌀빵_완/KakaoTalk_20251002_083711682.jpg",
                 "path": "19. 순두부 단호박 찹쌀빵_완/index.html",
                 "desc": "겉은 바삭하고 속은 쫄깃한 황금빛 단호박 슬라이스 브레드"
@@ -858,37 +858,37 @@ const THEMES = [
                 "desc": "달콤하고 묵직한 초콜릿 글레이즈를 듬뿍 얹은 크리스마스 특선 번트케이크"
             },
             {
-                "id": 21,
+                "id": 17,
                 "title": "순두부 슈톨렌",
                 "noOven": false,
                 "noFlour": false,
                 "noButter": false,
                 "oneBowl": false,
-                "vol": "VOL. 21",
+                "vol": "VOL. 17",
                 "img": "21. 순두부슈톨렌_완/0.jpg",
                 "path": "21. 순두부슈톨렌_완/index.html",
                 "desc": "크리스마스를 기다리며 얇게 썰어 먹는 독일 전통 겨울철 웰빙 슈톨렌"
             },
             {
-                "id": 22,
+                "id": 18,
                 "title": "순두부 부쉬드노엘",
                 "noOven": false,
                 "noFlour": false,
                 "noButter": false,
                 "oneBowl": false,
-                "vol": "VOL. 22",
+                "vol": "VOL. 18",
                 "img": "22. 순두부 부쉬드노엘_완/0.jpg",
                 "path": "22. 순두부 부쉬드노엘_완/index.html",
                 "desc": "통나무 모양의 크리스마스 전통 케이크를 건강한 순두부 시트로 오마주"
             },
             {
-                "id": 23,
+                "id": 19,
                 "title": "순두부 블랙포레스트 컵케익",
                 "noOven": false,
                 "noFlour": false,
                 "noButter": false,
                 "oneBowl": true,
-                "vol": "VOL. 23",
+                "vol": "VOL. 19",
                 "img": "23. 순두부블랙포레스트 컵케익_완/0.jpg",
                 "path": "23. 순두부블랙포레스트 컵케익_완/index.html",
                 "desc": "짙은 카카오 숲 속에 숨겨진 가장 매혹적이고 비밀스러운 유혹"
@@ -1397,7 +1397,7 @@ const INGREDIENT_DICT = {
         { "name": "Rum주 (옵션)", "base": 5 },
         { "name": "바닐라 익스트랙 (옵션)", "base": 3 }
     ],
-    "19": [
+    "16": [
         { "name": "순두부 (물기 제거 후)", "base": 100 },
         { "name": "찐 단호박", "base": 130 },
         { "name": "찹쌀가루", "base": 150 },
@@ -1407,7 +1407,7 @@ const INGREDIENT_DICT = {
         { "name": "소금", "base": 1 },
         { "name": "다진 호두", "base": 30 }
     ],
-    "21": [
+    "17": [
         { "name": "강력분 (반죽용)", "base": 250 },
         { "name": "순두부 (반죽용)", "base": 100 },
         { "name": "우유", "base": 90 },
@@ -1426,7 +1426,7 @@ const INGREDIENT_DICT = {
         { "name": "소금 (마지팬용)", "base": 1 },
         { "name": "바닐라 익스트랙", "base": 2 }
     ],
-    "22": [
+    "18": [
         { "name": "달걀 (실온)", "base": 150 },
         { "name": "설탕 (시트용)", "base": 80 },
         { "name": "박력분", "base": 70 },
@@ -1442,7 +1442,7 @@ const INGREDIENT_DICT = {
         { "name": "설탕 (시럽용)", "base": 30 },
         { "name": "뜨거운 물", "base": 60 }
     ],
-    "23": [
+    "19": [
         { "name": "달걀 (실온)", "base": 150 },
         { "name": "설탕 (시트용)", "base": 80 },
         { "name": "박력분", "base": 70 },
@@ -2337,7 +2337,7 @@ const RECIPE_STEPS_DB = {
             "desc": "틀에서 즉시 꺼내 식힘망에 완전히 식힌 후 밀봉하여 하루 정도 숙성하면 더욱 촉촉한 풍미가 가득해집니다."
         }
     ],
-    "19": [
+    "16": [
         {
             "time": "30분",
             "title": "단계 1: 순두부 전처리",
@@ -2369,7 +2369,7 @@ const RECIPE_STEPS_DB = {
             "desc": "구워진 찹쌀빵은 한 김 식혀 틀에서 부드럽게 분리하며 식힌 뒤 쫠깃한 맛으로 즐기면 됩니다."
         }
     ],
-    "21": [
+    "17": [
         {
             "time": "15분",
             "title": "단계 1: 건과일 준비 & 마지팬 제조",
@@ -2411,7 +2411,7 @@ const RECIPE_STEPS_DB = {
             "desc": "구워져 따뜻한 상태일 때 녹인 버터를 듬뿍 코팅하고 슈가파우더를 뿌려 완전히 식힌 뒤 파우더를 2차로 뿌려 랩핑해 숙성합니다."
         }
     ],
-    "22": [
+    "18": [
         {
             "time": "15분",
             "title": "단계 1: 시트 반죽 준비 및 가루 섞기",
@@ -2443,7 +2443,7 @@ const RECIPE_STEPS_DB = {
             "desc": "롤케이크 겉면에 남은 크림을 바르고 포크나 스패츌라로 나뭇결 모양을 그린 뒤, 냉장고에서 1~2시간 굳힌 후 슈가파우더 등을 뿌려 장식합니다."
         }
     ],
-    "23": [
+    "19": [
         {
             "time": "15분",
             "title": "단계 1: 시트 반죽 및 가루 혼합",
