@@ -426,14 +426,6 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224044280791"
     },
     {
-        "id": 15,
-        "title": "순두부 코코넛단팥찹쌀구움바",
-        "isInteractive": false,
-        "path": "18. 순두부 코코넛 단팥찹쌀구움바/index.html",
-        "img": "18. 순두부 코코넛 단팥찹쌀구움바/KakaoTalk_20251002_083305924.jpg",
-        "blogUrl": "https://blog.naver.com/project_dubu/224067692065"
-    },
-    {
         "id": 14,
         "title": "순두부 밤파운드케이크",
         "isInteractive": false,
