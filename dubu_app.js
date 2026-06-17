@@ -187,7 +187,7 @@ function getRecipeTheme(recipe) {
         title.includes('부쉬드노엘') || 
         title.includes('블랙포레스트') || 
         title.includes('눈꽃') || 
-        [17, 18, 19, 24, 25, 26].includes(id);
+        [16, 17, 18, 19, 25, 26].includes(id);
 
     if (isChristmas) {
         return {
@@ -659,11 +659,11 @@ const BASE_YIELDS = {
     27: { template: "머핀 틀 {x}개 분량 🧁", baseCount: 6 },
     26: { template: "오란다 대 틀 {x}개 분량 🍓", baseCount: 3 },
     25: { template: "번트틀 {x}개 분량 🍫", baseCount: 1 },
-    24: { template: "번트틀 {x}개 분량 🍋", baseCount: 1 },
-    19: { template: "원형 컵 {x}개 분량 🍒", baseCount: 4 },
-    18: { template: "정사각 팬 {x}판 분량 🍫", baseCount: 1 },
-    17: { template: "슈톨렌 {x}개 분량 🎄", baseCount: 2 },
-    16: { template: "실리콘 오발틀 {x}개 분량 🎃", baseCount: 8 },
+    19: { template: "번트틀 {x}개 분량 🍋", baseCount: 1 },
+    18: { template: "원형 컵 {x}개 분량 🍒", baseCount: 4 },
+    17: { template: "정사각 팬 {x}판 분량 🍫", baseCount: 1 },
+    16: { template: "슈톨렌 {x}개 분량 🎄", baseCount: 2 },
+    15: { template: "실리콘 오발틀 {x}개 분량 🎃", baseCount: 8 },
     14: { template: "오란다 대자 팬 {x}개 분량 🌰", baseCount: 2 },
     13: { template: "원형 1호틀 {x}개 분량 🎃", baseCount: 1 },
     12: { template: "롤케이크 {x}롤 분량 🌀", baseCount: 1 },
@@ -768,7 +768,7 @@ function getRecipeMetadata(recipeId) {
         }
         const isLongTime = timeMinutes >= 50;
         const isManySteps = steps.length >= 8 && recipeId !== 42;
-        const hasComplexProcess = fullText.includes("머랭") || fullText.includes("발효") || recipeId === 21 || recipeId === 13;
+        const hasComplexProcess = fullText.includes("머랭") || fullText.includes("발효") || recipeId === 16 || recipeId === 13;
         
         // 쉬움 우선 적용 (예외 공정이 없는 원볼 또는 믹서기 레시피)
         if (isEasy) {
@@ -2446,12 +2446,11 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
                 27: '#101726', // 순두부 눈꽃컵케이크
                 26: '#241b15', // 순두부 3종케익
                 25: '#1d1007', // 순두부 초코번트케익
-                24: '#2e2509', // 순두부 레몬번트케익
-                19: '#2a1215', // 순두부 블랙포레스트 컵케익
-                18: '#1a100a', // 순두부 부쉬드노엘
-                17: '#1a2b23', // 순두부 슈톨렌
-                16: '#291a0c', // 순두부 단호박 찹쌀빵
-                15: '#2d1f18', // 순두부 코코넛단팥찹쌀구움바
+                19: '#2e2509', // 순두부 레몬번트케익
+                18: '#2a1215', // 순두부 블랙포레스트 컵케익
+                17: '#1a100a', // 순두부 부쉬드노엘
+                16: '#1a2b23', // 순두부 슈톨렌
+                15: '#291a0c', // 순두부 단호박 찹쌀빵
                 14: '#22160d', // 순두부 밤파운드케이크
                 13: '#281b0b', // 순두부 단호박바스크치즈케이크
                 12: '#2c241d', // 순두부 크림치즈롤케익
@@ -2564,12 +2563,11 @@ function openArtbookSlider(cardEl, recipeId, folderName, images) {
         27: '#101726', // 순두부 눈꽃컵케이크
         26: '#241b15', // 순두부 3종케익
         25: '#1d1007', // 순두부 초코번트케익
-        24: '#2e2509', // 순두부 레몬번트케익
-        19: '#2a1215', // 순두부 블랙포레스트 컵케익
-        18: '#1a100a', // 순두부 부쉬드노엘
-        17: '#1a2b23', // 순두부 슈톨렌
-        16: '#291a0c', // 순두부 단호박 찹쌀빵
-        15: '#2d1f18', // 순두부 코코넛단팥찹쌀구움바
+        19: '#2e2509', // 순두부 레몬번트케익
+        18: '#2a1215', // 순두부 블랙포레스트 컵케익
+        17: '#1a100a', // 순두부 부쉬드노엘
+        16: '#1a2b23', // 순두부 슈톨렌
+        15: '#291a0c', // 순두부 단호박 찹쌀빵
         14: '#22160d', // 순두부 밤파운드케이크
         13: '#281b0b', // 순두부 단호박바스크치즈케이크
         12: '#2c241d', // 순두부 크림치즈롤케익
