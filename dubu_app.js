@@ -224,10 +224,10 @@ function getRecipeTheme(recipe) {
         title.includes('바크초콜릿') || 
         title.includes('초코케익') || 
         title.includes('초코마들렌') || 
-        [37, 25, 26, 27].includes(id);
+        [32, 25, 26, 27].includes(id);
 
     if (isRomantic) {
-        if (id === 37 || id === 25) {
+        if (id === 32 || id === 25) {
             return {
                 themeColor: '#5A0E1F',
                 themeGlow: 'rgba(90, 14, 31, 0.45)',
@@ -257,7 +257,7 @@ function getRecipeTheme(recipe) {
         title.includes('단팥') || 
         title.includes('모찌') || 
         categories.includes('nostalgia') || 
-        [41, 39, 38, 14, 13, 28, 7, 35, 11, 10].includes(id);
+        [41, 34, 33, 14, 13, 28, 7, 30, 11, 10].includes(id);
 
     if (isTraditional) {
         if (title.includes('쑥') || categories.includes('soymilk')) {
@@ -644,11 +644,11 @@ const BASE_YIELDS = {
     42: { template: "미니 번트틀 6구 2개 (총 12개) + 오란다 대 1개 기준 {x}배 분량 🍋", baseCount: 1 },
     41: { template: "찜케이크 1호 {x}개 분량 🧧", baseCount: 1 },
     40: { template: "오란다 대 틀 {x}개 분량 🍞", baseCount: 3 },
-    39: { template: "오란다 대 틀 {x}개 분량 🖤", baseCount: 1 },
-    38: { template: "쑥 찰떡브라우니 {x}판 분량 🌿", baseCount: 1 },
-    37: { template: "화이트 바크초콜릿 {x}판 분량 🍫", baseCount: 1 },
-    36: { template: "티라미수 푸딩 {x}컵 분량 🍮", baseCount: 2 },
-    35: { template: "모찌떡 케이크 {x}호 1개 분량 🎂", baseCount: 1 },
+    34: { template: "오란다 대 틀 {x}개 분량 🖤", baseCount: 1 },
+    33: { template: "쑥 찰떡브라우니 {x}판 분량 🌿", baseCount: 1 },
+    32: { template: "화이트 바크초콜릿 {x}판 분량 🍫", baseCount: 1 },
+    31: { template: "티라미수 푸딩 {x}컵 분량 🍮", baseCount: 2 },
+    30: { template: "모찌떡 케이크 {x}호 1개 분량 🎂", baseCount: 1 },
     29: { template: "얼그레이그릭스콘 {x}개 분량 🍪", baseCount: 6 },
     28: { template: "오란다 대 팬 {x}개 분량 🍵", baseCount: 3 },
     27: { template: "마들렌 틀 {x}개 분량 🍫", baseCount: 12 },
@@ -2433,10 +2433,10 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
                 42: '#2c220b', // 레몬포슈에케익
                 41: '#36231a', // 순두부 찜케익
                 40: '#2a1f14', // 콩물파운드케익
-                39: '#f0ede8', // 흑임자테린
-                37: '#321a22', // 순두부 화이트바크초콜릿
-                38: '#1b2a1e', // 순두부 쑥 찰떡브라우니
-                35: '#251c14', // 순두부 모찌떡케이크
+                34: '#f0ede8', // 흑임자테린
+                32: '#321a22', // 순두부 화이트바크초콜릿
+                33: '#1b2a1e', // 순두부 쑥 찰떡브라우니
+                30: '#251c14', // 순두부 모찌떡케이크
                 27: '#2a1810', // 초코마들렌
                 24: '#2e1b10', // 순두부 찰떡파이
                 25: '#221109', // 순두부 미니초코케익
@@ -2557,8 +2557,8 @@ function openArtbookSlider(cardEl, recipeId, folderName, images) {
         43: '#251810', // 순두부 르뱅쿠키
         42: '#2c220b', // 레몬포슈에케익
         40: '#2a1f14', // 콩물파운드케익
-        39: '#f0ede8', // 흑임자테린
-        35: '#251c14', // 순두부 모찌떡케이크
+        34: '#f0ede8', // 흑임자테린
+        30: '#251c14', // 순두부 모찌떡케이크
         27: '#2a1810', // 초코마들렌
         22: '#101726', // 순두부 눈꽃컵케이크
         21: '#241b15', // 순두부 3종케익
