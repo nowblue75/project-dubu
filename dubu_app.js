@@ -204,7 +204,7 @@ function getRecipeTheme(recipe) {
     const isHalloween = 
         path.includes('할로윈') || 
         title.includes('단호박') || 
-        [4, 15, 18, 8, 9].includes(id);
+        [4, 18, 8, 9].includes(id);
 
     if (isHalloween) {
         return {
@@ -257,7 +257,7 @@ function getRecipeTheme(recipe) {
         title.includes('단팥') || 
         title.includes('모찌') || 
         categories.includes('nostalgia') || 
-        [41, 39, 38, 17, 16, 33, 8, 35, 12, 11].includes(id);
+        [41, 39, 38, 14, 13, 33, 7, 35, 11, 10].includes(id);
 
     if (isTraditional) {
         if (title.includes('쑥') || categories.includes('soymilk')) {
@@ -664,11 +664,11 @@ const BASE_YIELDS = {
     22: { template: "정사각 팬 {x}판 분량 🍫", baseCount: 1 },
     21: { template: "슈톨렌 {x}개 분량 🎄", baseCount: 2 },
     19: { template: "실리콘 오발틀 {x}개 분량 🎃", baseCount: 8 },
-    17: { template: "오란다 대자 팬 {x}개 분량 🌰", baseCount: 2 },
-    16: { template: "원형 1호틀 {x}개 분량 🎃", baseCount: 1 },
-    13: { template: "롤케이크 {x}롤 분량 🌀", baseCount: 1 },
-    12: { template: "치즈스콘 {x}개 분량 🧀", baseCount: 6 },
-    11: { template: "레몬케이크 {x}개 분량 🍋", baseCount: 6 },
+    14: { template: "오란다 대자 팬 {x}개 분량 🌰", baseCount: 2 },
+    13: { template: "원형 1호틀 {x}개 분량 🎃", baseCount: 1 },
+    12: { template: "롤케이크 {x}롤 분량 🌀", baseCount: 1 },
+    11: { template: "치즈스콘 {x}개 분량 🧀", baseCount: 6 },
+    10: { template: "레몬케이크 {x}개 분량 🍋", baseCount: 6 },
     9: { template: "브라우니쿠키 {x}개 분량 🍪", baseCount: 8 },
     8: { template: "머핀 틀 {x}개 분량 🧁", baseCount: 6 },
     7: { template: "크림치즈쿠키 {x}개 분량 🍪", baseCount: 8 },
@@ -811,10 +811,10 @@ function getRecipeMetadata(recipeId) {
         } else if (recipe.id === 35) {
             bakingTip = "오븐 예열 180℃ / 160℃ 50~55분";
             cheers = "명절의 기품을 한껏 높여주는 굳지 않는 비법 모찌떡케이크, 정성으로 완성해 보아요! 🧧";
-        } else if (recipe.id === 17) {
+        } else if (recipe.id === 14) {
             bakingTip = "오븐 예열 180℃ / 170℃ 40분";
             cheers = "달콤하고 고소한 밤이 콕콕 박혀 더욱 풍요로운 맛! 가을 감성을 가득 담아 구워내는 영양 만점 순두부 파운드케이크입니다. 🌰";
-        } else if (recipe.id === 7) {
+        } else if (recipe.id === 6) {
             bakingTip = "오븐 예열 180℃ / 35분 (식힌 후 홍차시럽 코팅)";
             cheers = "홍차의 은은한 향과 레몬 제스트의 상큼함이 입안 가득 번지는, 가볍고 촉촉한 원볼 베이킹의 진수를 만나보세요! 🍰";
         }
@@ -2452,11 +2452,11 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
                 21: '#1a2b23', // 순두부 슈톨렌
                 19: '#291a0c', // 순두부 단호박 찹쌀빵
                 18: '#2d1f18', // 순두부 코코넛단팥찹쌀구움바
-                17: '#22160d', // 순두부 밤파운드케이크
-                16: '#281b0b', // 순두부 단호박바스크치즈케이크
-                13: '#2c241d', // 순두부 크림치즈롤케익
-                12: '#291e11', // 순두부 치즈스콘
-                11: '#332912', // 순두부 레몬케이크
+                14: '#22160d', // 순두부 밤파운드케이크
+                13: '#281b0b', // 순두부 단호박바스크치즈케이크
+                12: '#2c241d', // 순두부 크림치즈롤케익
+                11: '#291e11', // 순두부 치즈스콘
+                10: '#332912', // 순두부 레몬케이크
                 9: '#22120b',  // 순두부 브라우니쿠키
                 8: '#321b15',  // 순두부 찹쌀모찌 케이크
                 7: '#2b2017',  // 순두부 크림치즈쿠키
@@ -2570,11 +2570,11 @@ function openArtbookSlider(cardEl, recipeId, folderName, images) {
         21: '#1a2b23', // 순두부 슈톨렌
         19: '#291a0c', // 순두부 단호박 찹쌀빵
         18: '#2d1f18', // 순두부 코코넛단팥찹쌀구움바
-        17: '#22160d', // 순두부 밤파운드케이크
-        16: '#281b0b', // 순두부 단호박바스크치즈케이크
-        13: '#2c241d', // 순두부 크림치즈롤케익
-        12: '#291e11', // 순두부 치즈스콘
-        11: '#332912', // 순두부 레몬케이크
+        14: '#22160d', // 순두부 밤파운드케이크
+        13: '#281b0b', // 순두부 단호박바스크치즈케이크
+        12: '#2c241d', // 순두부 크림치즈롤케익
+        11: '#291e11', // 순두부 치즈스콘
+        10: '#332912', // 순두부 레몬케이크
         9: '#22120b',  // 순두부 브라우니쿠키
         8: '#321b15',  // 순두부 찹쌀모찌 케이크
         7: '#2b2017',  // 순두부 크림치즈쿠키

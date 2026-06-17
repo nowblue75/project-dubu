@@ -434,7 +434,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224067692065"
     },
     {
-        "id": 17,
+        "id": 14,
         "title": "순두부 밤파운드케이크",
         "isInteractive": false,
         "path": "17. 순두부 밤파운드케이크_완/index.html",
@@ -442,7 +442,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224035441110"
     },
     {
-        "id": 16,
+        "id": 13,
         "title": "순두부 단호박바스크치즈케이크",
         "isInteractive": false,
         "path": "16. 순두부단호박바스크치즈케이크_완/index.html",
@@ -450,7 +450,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224029278133"
     },
     {
-        "id": 13,
+        "id": 12,
         "title": "순두부 크림치즈롤케익",
         "isInteractive": false,
         "path": "13. 순두부크림치즈롤케익_완/index.html",
@@ -458,7 +458,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/224012454408"
     },
     {
-        "id": 12,
+        "id": 11,
         "title": "순두부 치즈스콘",
         "isInteractive": false,
         "path": "12. 순두부 치즈스콘_완/index.html",
@@ -466,7 +466,7 @@ const PROJECTS = [
         "blogUrl": "https://blog.naver.com/project_dubu/223977891669"
     },
     {
-        "id": 11,
+        "id": 10,
         "title": "순두부 레몬케이크",
         "isInteractive": false,
         "path": "11. 순두부 레몬케이크_완/index.html",
@@ -738,13 +738,13 @@ const THEMES = [
                 "blogUrl": "https://blog.naver.com/project_dubu/224247304779"
             },
             {
-                "id": 17,
+                "id": 14,
                 "title": "순두부 밤파운드케이크",
                 "noOven": false,
                 "noFlour": false,
                 "noButter": false,
                 "oneBowl": true,
-                "vol": "VOL. 17",
+                "vol": "VOL. 14",
                 "img": "17. 순두부 밤파운드케이크_완/KakaoTalk_20251002_083513712_15.jpg",
                 "path": "17. 순두부 밤파운드케이크_완/index.html",
                 "desc": "가을 밤의 풍성함을 가득 담은 포슬촉촉한 영양 만점 파운드케이크"
@@ -786,13 +786,13 @@ const THEMES = [
                 "desc": "진하고 묵직한 다크 초콜릿의 풍미를 담은 웰빙 퍼지 브라우니"
             },
             {
-                "id": 16,
+                "id": 13,
                 "title": "순두부 단호박바스크치즈케이크",
                 "noOven": false,
                 "noFlour": true,
                 "noButter": true,
                 "oneBowl": true,
-                "vol": "VOL. 16",
+                "vol": "VOL. 13",
                 "img": "16. 순두부단호박바스크치즈케이크_완/KakaoTalk_20251002_082631387_17.jpg",
                 "path": "16. 순두부단호박바스크치즈케이크_완/index.html",
                 "desc": "단호박의 달콤함와 바스크 치즈케이크의 부드러움이 공존하는 테이스트"
@@ -1046,7 +1046,7 @@ const INGREDIENT_DICT = {
         { "name": "녹인 무염버터 (반죽용)", "base": 65 },
         { "name": "바닐라 익스트랙 (선택)", "base": 4 }
     ],
-    "11": [
+    "10": [
         { "name": "설탕 (반죽용)", "base": 105 },
         { "name": "레몬 제스트", "base": 10 },
         { "name": "무염 버터 (실온)", "base": 80 },
@@ -1374,7 +1374,7 @@ const INGREDIENT_DICT = {
         { "name": "소금", "base": 1 },
         { "name": "초코칩 (또는 견과류)", "base": 40 }
     ],
-    "16": [
+    "13": [
         { "name": "크림치즈 (실온)", "base": 250 },
         { "name": "순두부 (물기 제거 후)", "base": 150 },
         { "name": "찐 단호박", "base": 100 },
@@ -1385,7 +1385,7 @@ const INGREDIENT_DICT = {
         { "name": "레몬즙", "base": 5 },
         { "name": "바닐라 익스트랙 (선택)", "base": 3 }
     ],
-    "17": [
+    "14": [
         { "name": "무염버터 (실온)", "base": 150 },
         { "name": "순두부 (물기 제거 후)", "base": 80 },
         { "name": "설탕", "base": 110 },
@@ -1584,7 +1584,7 @@ const INGREDIENT_DICT = {
         { "name": "녹차가루 (가나슈)", "base": 3 },
         { "name": "빙수떡 (데코)", "base": 30 }
     ],
-    "12": [
+    "11": [
         { "name": "박력분", "base": 200 },
         { "name": "베이킹파우더", "base": 8 },
         { "name": "설탕", "base": 10 },
@@ -1594,7 +1594,7 @@ const INGREDIENT_DICT = {
         { "name": "순두부 (물기 짠 상태)", "base": 50 },
         { "name": "우유", "base": 30 }
     ],
-    "13": [
+    "12": [
         { "name": "순두부 (크림용)", "base": 80 },
         { "name": "크림치즈", "base": 200 },
         { "name": "생크림 (크림용)", "base": 130 },
@@ -1944,7 +1944,7 @@ const RECIPE_STEPS_DB = {
             "desc": "오븐에서 꺼낸 케이크는 머핀 틀 안에서 5~10분간 한 김 식힌 뒤, 조심스럽게 꺼내어 식힘망에 올려 완전히 식힙니다. 완전히 식은 후 유산지를 제거하고 시식하십시오."
         }
     ],
-    "11": [
+    "10": [
         {
             "time": "15분",
             "title": "단계 1: 순두부 전처리",
@@ -2263,7 +2263,7 @@ const RECIPE_STEPS_DB = {
             "desc": "구워진 쿠키는 트레이 위에서 한 김 식힌 뒤 식힘망으로 옮겨 완전히 식히면 겉바속촉 식감이 완성됩니다."
         }
     ],
-    "16": [
+    "13": [
         {
             "time": "30분",
             "title": "단계 1: 재료 및 순두부 준비",
@@ -2300,7 +2300,7 @@ const RECIPE_STEPS_DB = {
             "desc": "실온에서 충분히 식힌 뒤 냉장실에서 최소 6시간 이상 충분히 차갑게 굳혀 꾸덕한 텍스처로 완성합니다."
         }
     ],
-    "17": [
+    "14": [
         {
             "time": "30분",
             "title": "단계 1: 순두부 물기 제거",
@@ -2716,7 +2716,7 @@ const RECIPE_STEPS_DB = {
             "desc": "화이트 커버춰 초콜릿과 생크림을 함께 녹이고 녹차가루를 섞어 녹차 화이트 가나슈를 만든 후, 식은 파운드 윗면에 붓고 빙수떡으로 장식해 완성합니다."
         }
     ],
-    "12": [
+    "11": [
         {
             "time": "15분",
             "title": "단계 1: 순두부 전처리",
@@ -2748,7 +2748,7 @@ const RECIPE_STEPS_DB = {
             "desc": "윗면이 노릇하게 구워지면 오븐에서 꺼내 식힘망에 올려 충분히 식힌 후 잼이나 클로티드 크림과 함께 즐깁니다."
         }
     ],
-    "13": [
+    "12": [
         {
             "time": "15분",
             "title": "단계 1: 순두부 전처리",
