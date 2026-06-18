@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 두부 - 순두부 디저트 레시피 아카이브</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style_portal.css?v=107.2">
+    <style>
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased portal-page">
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo-text serif">프로젝트 두부</a>
+            <div class="nav-links">
+                <a href="#home" class="nav-btn active"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="#events" class="nav-btn"><i class="fa-regular fa-calendar-days"></i> 시즌 이벤트</a>
+                <a href="#archive" class="nav-btn"><i class="fa-solid fa-book-open"></i> 실패없는 베이킹노트</a>
+                <a href="#" class="nav-btn" onclick="openArtbookViewer(); return false;"><i class="fa-solid fa-images"></i> 디저트 화보북</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 홈: 아코디언 쇼룸 -->
+    <section id="home" class="hero-showroom flex justify-center items-center">
+        <div id="accordion-showroom-container" class="accordion-showroom-container">
+            <!-- Dynamic Content: renderAccordionArtbook() -->
+        </div>
+    </section>
+
+    <!-- 시즌 이벤트 -->
+    <section id="events" class="events-section">
+        <div class="container">
+            <div class="section-tag serif">ANNUAL TRADITION</div>
+            <h2 class="serif section-title fade-in-up">시즌 이벤트</h2>
+            <div id="events-container" class="events-grid">
+                <!-- Dynamic Content: renderDashboard() -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 실패없는 베이킹노트: 3D 책장 -->
+    <section id="archive" class="archive-section">
+        <!-- Dynamic Content: renderBookshelf() -->
+    </section>
+
+    <!-- FontAwesome (For Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Atelier Focus Stage Overlay Modal (Dynamically managed via dubu_app.js) -->
+
+    <!-- Scripts -->
+    <script src="/dubu_data.js?v=9.5"></script>
+    <script src="/dubu_app.js?v=9.5"></script>
+</body>
+</html>
