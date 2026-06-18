@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300);
         }
     }
+
 });
 
 // ==========================================================================
@@ -1270,25 +1271,44 @@ function renderAccordionArtbook() {
 
     // 페이지 로드 시 가장 최신(ID가 가장 높은) 슬라이스를 기본 활성화(확장) 상태로 세팅
     setTimeout(() => {
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+            // 모바일에서는 아코디언이 아닌 전체 카드 리스트 형태이므로 개별 카드 높이 활성화를 하지 않습니다.
+            return;
+        }
+
         const validRecipes = activeRecipes.filter(r => typeof r.id === 'number');
+        let targetSlice = null;
+
         if (validRecipes.length > 0) {
             const maxRecipe = validRecipes.reduce((max, curr) => curr.id > max.id ? curr : max, validRecipes[0]);
-            const targetSlice = container.querySelector(`[data-vol="${maxRecipe.id}"]`);
-            if (targetSlice) {
-                targetSlice.style.flex = '5.4';
-                targetSlice.classList.add('active-expanded');
-            }
+            targetSlice = container.querySelector(`[data-vol="${maxRecipe.id}"]`);
         } else {
-            const firstSlice = container.querySelector('.accordion-slice');
-            if (firstSlice) {
-                firstSlice.style.flex = '5.4';
-                firstSlice.classList.add('active-expanded');
-            }
+            targetSlice = container.querySelector('.accordion-slice');
         }
-    }, 50);
+
+        if (targetSlice) {
+            targetSlice.style.flex = '5.4';
+            targetSlice.style.height = '';
+            targetSlice.classList.add('active-expanded');
+        }
+    }, 150);
 }
 
 function handleSliceClick(event, projectId) {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        // 모바일 카드 리스트에서는 카드를 누르는 즉시 상세 모달이 열립니다.
+        if (projectId === 'coming-soon') {
+            const slice = event.currentTarget;
+            const vol = slice.getAttribute('data-vol') || '39';
+            alert(`🔒 Vol.${vol} 레시피는 업데이트 예정입니다.\n\n프로젝트 두부의 새로운 컬렉션 소식을 기대해 주세요! 🖤`);
+            return;
+        }
+        openFocusStage(projectId);
+        return;
+    }
+
     const slice = event.currentTarget;
     const isButton = event.target.closest('.editorial-action-box') || event.target.closest('.action-btn');
     const isHovered = slice.classList.contains('active-expanded');
@@ -1304,10 +1324,12 @@ function handleSliceClick(event, projectId) {
         document.querySelectorAll('.accordion-slice').forEach(s => {
             if (s !== slice) {
                 s.style.flex = '1';
+                s.style.height = '';
                 s.classList.remove('active-expanded');
             }
         });
         slice.style.flex = '5.4';
+        slice.style.height = '';
         slice.classList.add('active-expanded');
     }
 }

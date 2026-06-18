@@ -4177,4 +4177,145 @@ footer {
     .artbook-slider-dots {
         bottom: 25px;
     }
+
+    /* 1단계: 모바일 카드 리스트 최적화 (아코디언 대체) */
+    .hero-showroom {
+        padding-top: 80px;
+        min-height: auto;
+        padding-bottom: 40px;
+    }
+    .accordion-showroom-container {
+        flex-direction: column;
+        height: auto;
+        min-height: unset;
+        max-height: unset;
+        gap: 12px;
+        width: 92%;
+        margin: 0 auto;
+    }
+    .accordion-slice {
+        flex: none !important;
+        width: 100% !important;
+        height: 200px !important;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        filter: none !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .accordion-slice:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+    /* 세로 타이틀 숨김 */
+    .slice-vertical-title {
+        display: none !important;
+    }
+    /* 상세 정보 영역 강제 노출 */
+    .slice-content-wrapper {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        padding: 20px !important;
+        height: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-end !important; /* 아래쪽으로 밀착 */
+        box-sizing: border-box;
+    }
+    
+    /* 겹치거나 필요 없는 요소 숨김 */
+    .editorial-essence,
+    .editorial-spec-grid,
+    .editorial-footer-essence {
+        display: none !important;
+    }
+
+    /* 좌하단 디저트 타이틀 영역 */
+    .editorial-title-block {
+        margin-top: 0 !important;
+        position: absolute;
+        left: 20px;
+        bottom: 18px;
+        z-index: 3;
+    }
+    .editorial-volume {
+        font-size: 0.72rem !important;
+        color: var(--accent-color, #E2DCCF) !important;
+        letter-spacing: 1px !important;
+        font-weight: 600 !important;
+    }
+    .showcase-title {
+        font-size: 1.25rem !important;
+        margin: 3px 0 0 0 !important;
+        color: #FAF8F3 !important;
+        font-weight: 700 !important;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    /* 우하단 상세보기 버튼 */
+    .editorial-action-box {
+        position: absolute !important;
+        right: 20px !important;
+        bottom: 16px !important;
+        left: auto !important;
+        width: auto !important;
+        z-index: 5 !important;
+    }
+    .editorial-action-box .action-btn {
+        background: rgba(250, 248, 243, 0.18) !important;
+        color: #FAF8F3 !important;
+        border: 1px solid rgba(250, 248, 243, 0.4) !important;
+        padding: 6px 14px !important;
+        border-radius: 20px !important;
+        font-size: 0.75rem !important;
+        font-weight: 700 !important;
+        width: auto !important;
+        display: inline-flex !important;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s;
+    }
+    .editorial-action-box .action-btn:hover {
+        background: #FAF8F3 !important;
+        color: #1F1A17 !important;
+    }
+
+    /* 그라디언트 하단 오버레이 강화 */
+    .slice-overlay {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.75) 100%) !important;
+    }
+
+    /* 커밍순 카드 별도 스타일 (자색 톤다운) */
+    .coming-soon-slice {
+        filter: grayscale(0.2) contrast(0.95) !important;
+        background: linear-gradient(135deg, #2c1a35 0%, #0d0612 100%) !important;
+        border: 1px solid rgba(108, 52, 131, 0.25);
+    }
+    .coming-soon-slice .coming-soon-glowing-core {
+        position: absolute !important;
+        left: 20px !important;
+        bottom: 18px !important;
+        top: auto !important;
+        transform: none !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        width: auto !important;
+        z-index: 3;
+    }
+    .coming-soon-slice .coming-soon-glowing-core i {
+        font-size: 1.1rem !important;
+        margin-bottom: 2px !important;
+        color: #BB8FCE !important;
+    }
+    .coming-soon-slice .coming-soon-text-en {
+        font-size: 0.65rem !important;
+        color: #BB8FCE !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 2px !important;
+    }
+    .coming-soon-slice .coming-soon-text-ko {
+        font-size: 0.78rem !important;
+        color: #D7BDE2 !important;
+        font-weight: 500 !important;
+        display: block !important;
+    }
 }
