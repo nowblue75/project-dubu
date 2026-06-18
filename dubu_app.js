@@ -167,8 +167,8 @@ function getRecipeTheme(recipe) {
     const categories = recipe.categories || [];
     const title = recipe.title || '';
 
-    // Vol.42 순두부 레몬포슈에케익 전용 골드/옐로우 앤티크 테마
-    if (id === 42) {
+    // Vol.37 순두부 레몬포슈에케익 전용 골드/옐로우 앤티크 테마
+    if (id === 37) {
         return {
             themeColor: '#4A3B18',
             themeGlow: 'rgba(212, 172, 13, 0.45)',
@@ -257,7 +257,7 @@ function getRecipeTheme(recipe) {
         title.includes('단팥') || 
         title.includes('모찌') || 
         categories.includes('nostalgia') || 
-        [41, 34, 33, 14, 13, 28, 7, 30, 11, 10].includes(id);
+        [36, 34, 33, 14, 13, 28, 7, 30, 11, 10].includes(id);
 
     if (isTraditional) {
         if (title.includes('쑥') || categories.includes('soymilk')) {
@@ -640,10 +640,10 @@ function updateTimelineProgress(timelineContainer, totalSteps) {
 // 5. 역비례 & 다중 앵커 양방향 비례 연산 (Atelier Scale)
 // ==========================================================================
 const BASE_YIELDS = {
-    43: { template: "르뱅쿠키 {x}개 분량 🍪", baseCount: 8 },
-    42: { template: "미니 번트틀 6구 2개 (총 12개) + 오란다 대 1개 기준 {x}배 분량 🍋", baseCount: 1 },
-    41: { template: "찜케이크 1호 {x}개 분량 🧧", baseCount: 1 },
-    40: { template: "오란다 대 틀 {x}개 분량 🍞", baseCount: 3 },
+    38: { template: "르뱅쿠키 {x}개 분량 🍪", baseCount: 8 },
+    37: { template: "미니 번트틀 6구 2개 (총 12개) + 오란다 대 1개 기준 {x}배 분량 🍋", baseCount: 1 },
+    36: { template: "찜케이크 1호 {x}개 분량 🧧", baseCount: 1 },
+    35: { template: "오란다 대 틀 {x}개 분량 🍞", baseCount: 3 },
     34: { template: "오란다 대 틀 {x}개 분량 🖤", baseCount: 1 },
     33: { template: "쑥 찰떡브라우니 {x}판 분량 🌿", baseCount: 1 },
     32: { template: "화이트 바크초콜릿 {x}판 분량 🍫", baseCount: 1 },
@@ -767,7 +767,7 @@ function getRecipeMetadata(recipeId) {
             if (timeMatch) timeMinutes = parseInt(timeMatch[1]);
         }
         const isLongTime = timeMinutes >= 50;
-        const isManySteps = steps.length >= 8 && recipeId !== 42;
+        const isManySteps = steps.length >= 8 && recipeId !== 37;
         const hasComplexProcess = fullText.includes("머랭") || fullText.includes("발효") || recipeId === 16 || recipeId === 13;
         
         // 쉬움 우선 적용 (예외 공정이 없는 원볼 또는 믹서기 레시피)
@@ -790,25 +790,25 @@ function getRecipeMetadata(recipeId) {
     let cheers = "오늘 내 손끝으로 빚는 건강한 두부 베이킹, 설레는 시작입니다! ✨";
 
     if (recipe) {
-        if (recipe.id === 41) {
+        if (recipe.id === 36) {
             bakingTip = "물이 끓는 찜기 중불 / 50분 (뜸 10분)";
             cheers = "케이크처럼 폭신하지만 떡처럼 쫀득함이 살아있는 단팥 찜케이크! 🧧";
-        } else if (recipe.id === 40) {
+        } else if (recipe.id === 35) {
             bakingTip = "180°C 예열 → 170°C / 40분 (콩물 마무리 + 하루 숙성 권장)";
             cheers = "다음 날이 진짜입니다! 하루 숙성 후 먹는 그 촉촉함 and 고소함은 레시피의 진짜 얼굴이에요. ☀️";
-        } else if (recipe.id === 39) {
+        } else if (recipe.id === 34) {
             bakingTip = "중탕 예열 140℃ / 140℃ 60분 (뜸 10분)";
             cheers = "순두부 물기를 짜지 않고 그대로 사용하여, 촉촉함과 꾸덕함이 극대화되는 특별한 레시피입니다. 🖤";
-        } else if (recipe.id === 38) {
+        } else if (recipe.id === 33) {
             bakingTip = "오븐 예열 180℃ / 160℃ 30~35분";
             cheers = "향긋한 쑥과 찰기가 만든 한국적 쫀득함! 부모님 선물용 부동의 1위 레시피랍니다. 🌿";
-        } else if (recipe.id === 37) {
+        } else if (recipe.id === 32) {
             bakingTip = "오븐 예열 165℃ / 25분";
             cheers = "단 한 방울의 수분도 허용하지 않는 수분 박멸 비법으로 완성하는 극강의 바삭함! 💝";
-        } else if (recipe.id === 36) {
+        } else if (recipe.id === 31) {
             bakingTip = "냉장실 냉각 / 4시간";
             cheers = "사르르 사그라지는 두부 크림의 극상 부드러움! 컵에 소복히 담으면 더욱 기쁩니다. 🍮";
-        } else if (recipe.id === 35) {
+        } else if (recipe.id === 30) {
             bakingTip = "오븐 예열 180℃ / 160℃ 50~55분";
             cheers = "명절의 기품을 한껏 높여주는 굳지 않는 비법 모찌떡케이크, 정성으로 완성해 보아요! 🧧";
         } else if (recipe.id === 14) {
@@ -1095,43 +1095,43 @@ function renderAccordionArtbook() {
 
     // 1. 아코디언 전용 스타일 및 크리에이터 노트 매핑 데이터
     const accordionMetaMap = {
-        43: {
+        38: {
             creatorsNote: "큼직한 다크 초코칩과 고소한 견과류가 아낌없이 들어가 겉바속쫀한 묵직한 르뱅 스타일 쿠키.",
             themeColor: "#5c3c24",
             themeGlow: "rgba(92, 60, 36, 0.15)",
             accentColor: "#d2a679"
         },
-        42: {
+        37: {
             creatorsNote: "뜨거울 때 새콤한 레몬 시럽을 흠뻑 적셔 속까지 촉촉하게 즐기는 순두부 포슈에 케이크.",
             themeColor: "#D4AC0D",
             themeGlow: "rgba(212, 172, 13, 0.15)",
             accentColor: "#F7DC6F"
         },
-        41: {
+        36: {
             creatorsNote: "물기 안 짠 순두부를 우유, 오일과 갈아 찹쌀가루 및 팥앙금을 얹어 쪄낸 쫀득 촉촉한 찜케이크.",
             themeColor: "#5A3816",
             themeGlow: "rgba(90, 56, 22, 0.15)",
             accentColor: "#EAD7A8"
         },
-        40: {
+        35: {
             creatorsNote: "순두부와 콩물을 함께 갈아 고소하고 촉촉하게 완성한 웰빙 파운드케익.",
             themeColor: "#7B6F55",
             themeGlow: "rgba(123, 111, 85, 0.15)",
             accentColor: "#F5E6C8"
         },
-        39: {
+        34: {
             creatorsNote: "오븐 중탕 공법으로 완성하는 극강의 고소하고 꾸덕한 흑임자 테린",
             themeColor: "#4A4F54",
             themeGlow: "rgba(74, 79, 84, 0.15)",
             accentColor: "#78909C"
         },
-        38: {
+        33: {
             creatorsNote: "찹쌀가루 없이 완성한 반전의 찰기! 향긋한 쑥 반죽과 콩고물의 고소한 동행.",
             themeColor: "#4E6B56",
             themeGlow: "rgba(78, 107, 86, 0.15)",
             accentColor: "#A5D6A7"
         },
-        37: {
+        32: {
             creatorsNote: "순두부 시트 위에 화이트 커버춰를 부어 피스타치오와 스프링클로 장식해 굳히는 바크 초콜릿.",
             themeColor: "#C25D7E",
             themeGlow: "rgba(194, 93, 126, 0.15)",
@@ -1139,8 +1139,8 @@ function renderAccordionArtbook() {
         }
     };
 
-    // 2. PROJECTS에서 자색고구마(id: 44)를 제외한 실질적 완성작 중 최신 5개 동적 추출 (과거 -> 최신 정렬)
-    const latestFive = PROJECTS.filter(p => p.id !== 44)
+    // 2. PROJECTS에서 자색고구마(id: 39)를 제외한 실질적 완성작 중 최신 5개 동적 추출 (과거 -> 최신 정렬)
+    const latestFive = PROJECTS.filter(p => p.id !== 39)
                                .sort((a, b) => b.id - a.id)
                                .slice(0, 5)
                                .reverse();
@@ -1181,13 +1181,13 @@ function renderAccordionArtbook() {
     });
 
     const specsData = {
-        43: { texture: "겉바속쫀하고 든든함", wellness: "초코칩·견과류 가득 (8개 분량)", method: "170℃ 오븐 구움" },
-        42: { texture: "촉촉하고 부드러움", wellness: "레몬 시럽 코팅, 비타민C 가득", method: "170℃ 오븐 구움" },
-        41: { texture: "쫀득하고 촉촉함", wellness: "No밀가루, No버터, No오븐", method: "찜기 50분 찌기" },
-        40: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 구움" },
-        39: { texture: "꾸덕함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
-        38: { texture: "쫀득함", wellness: "No버터, 비건 지향", method: "160℃ 오븐 구움" },
-        37: { texture: "바삭하고 달콤함", wellness: "No버터, 볶은 순두부", method: "165℃ 오븐 구움" }
+        38: { texture: "겉바속쫀하고 든든함", wellness: "초코칩·견과류 가득 (8개 분량)", method: "170℃ 오븐 구움" },
+        37: { texture: "촉촉하고 부드러움", wellness: "레몬 시럽 코팅, 비타민C 가득", method: "170℃ 오븐 구움" },
+        36: { texture: "쫀득하고 촉촉함", wellness: "No밀가루, No버터, No오븐", method: "찜기 50분 찌기" },
+        35: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 구움" },
+        34: { texture: "꾸덕함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
+        33: { texture: "쫀득함", wellness: "No버터, 비건 지향", method: "160℃ 오븐 구움" },
+        32: { texture: "바삭하고 달콤함", wellness: "No버터, 볶은 순두부", method: "165℃ 오븐 구움" }
     };
 
     container.innerHTML = activeRecipes.map((p, idx) => {
@@ -1290,7 +1290,7 @@ function handleSliceClick(event, projectId) {
 
     if (isButton || isHovered) {
         if (projectId === 'coming-soon') {
-            const vol = slice.getAttribute('data-vol') || '41';
+            const vol = slice.getAttribute('data-vol') || '39';
             alert(`🔒 Vol.${vol} 레시피는 업데이트 예정입니다.\n\n프로젝트 두부의 새로운 컬렉션 소식을 기대해 주세요! 🖤`);
             return;
         }
@@ -1529,8 +1529,8 @@ function renderBookshelf() {
     const section = document.getElementById('archive');
     if (!section) return;
 
-    // 1. 오래된 순 정렬 (1 -> 40)
-    const sorted = [...PROJECTS].filter(p => p.id !== 44).sort((a, b) => a.id - b.id);
+    // 1. 오래된 순 정렬 (1 -> 38)
+    const sorted = [...PROJECTS].filter(p => p.id !== 39).sort((a, b) => a.id - b.id);
     const totalPages = Math.ceil(sorted.length / 16);
 
     // 2. 현재 페이지 보정
@@ -2135,7 +2135,7 @@ function renderQuickNavigator(currentRecipeId, forcedGroupIdx = null) {
         { label: "Vol.1-10", start: 1, end: 10 },
         { label: "Vol.11-20", start: 11, end: 20 },
         { label: "Vol.21-30", start: 21, end: 30 },
-        { label: "Vol.31-41", start: 31, end: 41 }
+        { label: "Vol.31-39", start: 31, end: 39 }
     ];
 
     // 현재 레시피가 속한 그룹 또는 강제 지정된 그룹 찾기
@@ -2428,11 +2428,11 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
             onClickAttr = `onclick="openArtbookSlider(this, ${p.id}, '${matchedDir}', ${imgsJson})"`;
             
             const bgColors = {
-                44: '#452c50', // 순두부 자색고구마 롤치즈스콘
-                43: '#251810', // 순두부 르뱅쿠키
-                42: '#2c220b', // 레몬포슈에케익
-                41: '#36231a', // 순두부 찜케익
-                40: '#2a1f14', // 콩물파운드케익
+                39: '#452c50', // 순두부 자색고구마 롤치즈스콘
+                38: '#251810', // 순두부 르뱅쿠키
+                37: '#2c220b', // 레몬포슈에케익
+                36: '#36231a', // 순두부 찜케익
+                35: '#2a1f14', // 콩물파운드케익
                 34: '#f0ede8', // 흑임자테린
                 32: '#321a22', // 순두부 화이트바크초콜릿
                 33: '#1b2a1e', // 순두부 쑥 찰떡브라우니
@@ -2553,10 +2553,10 @@ function openArtbookSlider(cardEl, recipeId, folderName, images) {
 
     // 3. 디저트별 배경색 매핑
     const bgColors = {
-        44: '#452c50', // 순두부 자색고구마 롤치즈스콘
-        43: '#251810', // 순두부 르뱅쿠키
-        42: '#2c220b', // 레몬포슈에케익
-        40: '#2a1f14', // 콩물파운드케익
+        39: '#452c50', // 순두부 자색고구마 롤치즈스콘
+        38: '#251810', // 순두부 르뱅쿠키
+        37: '#2c220b', // 레몬포슈에케익
+        35: '#2a1f14', // 콩물파운드케익
         34: '#f0ede8', // 흑임자테린
         30: '#251c14', // 순두부 모찌떡케이크
         27: '#2a1810', // 초코마들렌

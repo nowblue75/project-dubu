@@ -9,7 +9,7 @@
 // 1. 디저트 메인 데이터베이스 (각 고유의 '베이킹 DNA 속성' 및 '물성 식감 카테고리' 매핑)
 const PROJECTS = [
     {
-        "id": 42,
+        "id": 37,
         "title": "순두부 레몬포슈에케익",
         "noOven": false,
         "noFlour": false,
@@ -33,7 +33,7 @@ const PROJECTS = [
         "isNew": true
     },
     {
-        "id": 43,
+        "id": 38,
         "title": "순두부 르뱅쿠키",
         "noOven": false,
         "noFlour": false,
@@ -55,7 +55,7 @@ const PROJECTS = [
         "troubleShoot": "Q. 쿠키가 너무 납작하게 퍼지고 르뱅쿠키 특유의 두툼함이 안 살아요!<br>A. [냉장 휴지의 마법 팁] 반죽 후 냉장실에서 최소 12시간, 가능하면 하룻밤 충분히 휴지시켜주어야 구울 때 버터가 급격히 녹아 퍼지는 것을 방지할 수 있습니다. 굽기 직전 차가운 상태로 오븐에 넣는 것을 잊지 마세요!"
     },
     {
-        "id": 44,
+        "id": 39,
         "title": "순두부 자색고구마 롤치즈스콘",
         "noOven": false,
         "noFlour": false,
@@ -76,7 +76,7 @@ const PROJECTS = [
         "troubleShoot": ""
     },
     {
-        "id": 41,
+        "id": 36,
         "title": "순두부 모찌 찜케이크",
         "noOven": true,
         "noFlour": true,
@@ -101,7 +101,7 @@ const PROJECTS = [
         "troubleShoot": "Q. 찜케이크가 덜 익거나 표면이 축축해요. 어떻게 해야 하나요?<br>A. [수분 낙하 방지 & 시간 조절 팁] 찜기 뚜껑에 면포를 둘러 수증기가 반죽 위로 떨어지지 않게 해주시고, 반드시 물이 팔팔 끓을 때 팬을 올려 중불에서 50분간 충분히 쪄주세요. 찌는 시간 후 불을 끄고 10분간 뜸을 들여주시면 반죽 속까지 골고루 쫀득하게 익습니다."
     },
     {
-        "id": 40,
+        "id": 35,
         "title": "순두부 콩물 파운드케익",
         "noOven": false,
         "noFlour": false,
@@ -691,13 +691,13 @@ const THEMES = [
         "tag": "Harvest & Thanks",
         "recipes": [
             {
-                "id": 41,
+                "id": 36,
                 "title": "순두부 모찌 찜케이크",
                 "noOven": true,
                 "noFlour": true,
                 "noButter": true,
                 "oneBowl": true,
-                "vol": "VOL. 41",
+                "vol": "VOL. 36",
                 "img": "42. 순두부 찜케익_완/순두부 찜케익 (0).jpg",
                 "path": "42. 순두부 찜케익_완/index.html",
                 "desc": "물기 안 짠 순두부와 찹쌀가루를 믹서로 갈아 찜기에 쪄낸 쫀득 폭신한 단팥 찜케이크",
@@ -913,7 +913,7 @@ const THEMES = [
     }
 ];
 const INGREDIENT_DICT = {
-    "43": [
+    "38": [
         { "name": "물기 짠 순두부", "base": 100 },
         { "name": "차가운 무염버터", "base": 180 },
         { "name": "황설탕", "base": 180 },
@@ -927,7 +927,7 @@ const INGREDIENT_DICT = {
         { "name": "견과류 (호두 또는 피칸)", "base": 150 },
         { "name": "다크 초코칩", "base": 200 }
     ],
-    "42": [
+    "37": [
         { "name": "무염버터 (실온)", "base": 105 },
         { "name": "백설탕", "base": 130 },
         { "name": "비정제설탕", "base": 65 },
@@ -943,7 +943,7 @@ const INGREDIENT_DICT = {
         { "name": "물", "base": 40 },
         { "name": "슈가파우더 (마무리)", "base": 10 }
     ],
-    "41": [
+    "36": [
         {
             "name": "순두부 (물기 안 짠 그대로)",
             "base": 240
@@ -1290,7 +1290,7 @@ const INGREDIENT_DICT = {
             "base": 5
         }
     ],
-    "40": [
+    "35": [
         {
             "name": "버터 (실온 상태)",
             "base": 120
@@ -1650,7 +1650,7 @@ const INGREDIENT_DICT = {
 
 // 4. 레시피 공정 단계 데이터베이스 (3D 타임라인 연동용)
 const RECIPE_STEPS_DB = {
-    "43": [
+    "38": [
         {
             "time": "10분",
             "title": "단계 1: 가루류 섞기",
@@ -1692,7 +1692,7 @@ const RECIPE_STEPS_DB = {
             "desc": "구워져 나온 쿠키는 매우 부드러우므로 팬에 담긴 상태로 완전히 식힌 뒤 꺼내어 포장하여 마무리합니다."
         }
     ],
-    "42": [
+    "37": [
         {
             "time": "10분",
             "title": "단계 1: 재료 준비 및 계량",
@@ -1749,7 +1749,7 @@ const RECIPE_STEPS_DB = {
             "desc": "케이크가 완전히 식으면 틀에서 조심스럽게 꺼내고, 슈가파우더를 체 쳐서 솔솔 뿌려 예쁘게 마무리합니다."
         }
     ],
-    "41": [
+    "36": [
         {
             "time": "10분",
             "title": "단계 1: 액체 블렌딩 & 찜기 예열",
@@ -2147,7 +2147,7 @@ const RECIPE_STEPS_DB = {
             "desc": "실온에서 충분히 식힌 후 냉장고에서 최소 4시간 이상 차갑게 굳혀 꾸덕한 질감을 극대화하여 슬라이스합니다."
         }
     ],
-    "40": [
+    "35": [
         {
             "time": "10분",
             "title": "단계 1: 오븐 예열 & 가루 체 치기",
