@@ -74,18 +74,23 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => scrollObserver.observe(section));
 
     // 최초 진입 시 URL 라우팅 처리 (/lookbook/39 및 /artbook 대응)
+    // 로컬 개발 환경(localhost, 127.0.0.1) 및 로컬 파일(file:) 환경에서는 개발 편의성을 위해 자동 팝업 라우팅을 제외합니다.
     const initPath = window.location.pathname;
-    if (initPath.includes('/lookbook/39')) {
-        setTimeout(() => {
-            openFocusStage(39);
+    const isLocalEnv = ['localhost', '127.0.0.1'].includes(window.location.hostname) || window.location.protocol === 'file:';
+
+    if (!isLocalEnv) {
+        if (initPath.endsWith('/lookbook/39')) {
             setTimeout(() => {
-                openLookbook(39);
-            }, 150);
-        }, 300);
-    } else if (initPath.includes('/artbook')) {
-        setTimeout(() => {
-            openArtbookViewer();
-        }, 300);
+                openFocusStage(39);
+                setTimeout(() => {
+                    openLookbook(39);
+                }, 150);
+            }, 300);
+        } else if (initPath.endsWith('/artbook')) {
+            setTimeout(() => {
+                openArtbookViewer();
+            }, 300);
+        }
     }
 });
 
