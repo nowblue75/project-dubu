@@ -2243,7 +2243,9 @@ function closeLookbook(isFromPopstate = false) {
     lookbookOverlay.classList.add('closing');
     
     // popstate가 아닐 때에만 브라우저 뒤로가기 실행 (가상 라우팅 원복)
-    if (!isFromPopstate) {
+    if (window.location.pathname.includes('/lookbook/')) {
+        history.replaceState({ page: 'home' }, '', '/');
+    } else if (!isFromPopstate) {
         history.back();
     }
 
@@ -2517,7 +2519,9 @@ function closeArtbookViewer(isFromPopstate = false) {
     viewer.classList.remove('active');
     document.body.style.overflow = '';
 
-    if (!isFromPopstate) {
+    if (window.location.pathname.endsWith('/artbook')) {
+        history.replaceState({ page: 'home' }, '', '/');
+    } else if (!isFromPopstate) {
         history.back(); // 가상 라우팅 원복
     }
 
