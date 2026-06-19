@@ -1220,9 +1220,11 @@ function renderAccordionArtbook() {
         const metaText = p.isComingSoon ? "RECIPE FILE // COMING SOON" : `RECIPE FILE // Vol.${p.id}`;
         const actionBtnText = p.isComingSoon ? `공개 예정 <i class="fa-solid fa-lock" style="margin-left: 5px;"></i>` : `상세보기 <i class="fa-solid fa-chevron-right" style="margin-left: 5px;"></i>`;
 
+        const mobileOrder = p.isComingSoon ? 6 : (5 - idx);
+
         return `
             <div class="accordion-slice ${p.isComingSoon ? 'coming-soon-slice' : ''}" 
-                 style="${bgStyle} --theme-color: ${p.themeColor}; --theme-glow: ${p.themeGlow}; --accent-color: ${p.accentColor};" 
+                 style="${bgStyle} --theme-color: ${p.themeColor}; --theme-glow: ${p.themeGlow}; --accent-color: ${p.accentColor}; --mobile-order: ${mobileOrder};" 
                  onclick="handleSliceClick(event, '${p.id}')"
                  data-vol="${p.isComingSoon ? comingSoonVol : p.id}">
                 
@@ -1558,18 +1560,7 @@ function renderBookshelf() {
 
     // 1. 오래된 순 정렬 (1 -> 38)
     const sorted = [...PROJECTS].filter(p => p.id !== 39).sort((a, b) => a.id - b.id);
-    const totalPages = Math.ceil(sorted.length / 16);
-
-    // 2. 현재 페이지 보정
-    if (bookshelfState.currentPage < 1) bookshelfState.currentPage = 1;
-    if (bookshelfState.currentPage > totalPages) bookshelfState.currentPage = totalPages;
-
-    // 3. 현재 페이지의 16권(2단 * 8권) 슬라이싱
-    const startIndex = (bookshelfState.currentPage - 1) * 16;
-    const pageBooks = sorted.slice(startIndex, startIndex + 16);
-
-    const row0Books = pageBooks.slice(0, 8); // 상단 선반 (최대 8권)
-    const row1Books = pageBooks.slice(8, 16); // 하단 선반 (최대 8권)
+    const isMobile = window.innerWidth <= 768;
 
     // 마법 기호 목록
     const magicSymbols = ['⚜', '✦', '🜚', '🝎', '🜔', '🕮', '🜏', '🝔', '✺', '🜛'];
@@ -1589,96 +1580,168 @@ function renderBookshelf() {
             </div>`;
     }
 
-    const row0Html = row0Books.map(buildBookHtml).join('');
-    const row1Html = row1Books.map(buildBookHtml).join('');
+    if (isMobile) {
+        // 모바일: 38권 전체를 4권씩 여러 shelf-row에 나누어 렌더링
+        const rowsCount = Math.ceil(sorted.length / 4);
+        let shelfRowsHtml = '';
+        for (let i = 0; i < rowsCount; i++) {
+            const rowBooks = sorted.slice(i * 4, (i + 1) * 4);
+            const rowHtml = rowBooks.map(buildBookHtml).join('');
+            shelfRowsHtml += `
+                <div class="shelf-row">
+                    <div class="shelf-books under-flow">${rowHtml}</div>
+                    <div class="shelf-plank"></div>
+                </div>
+            `;
+        }
 
-    // 화살표 활성/비활성 플래그
-    const isFirstPage = bookshelfState.currentPage === 1;
-    const isLastPage = bookshelfState.currentPage === totalPages;
-
-    section.innerHTML = `
-        <div class="bookshelf-wrapper">
-            <!-- 헤더 -->
-            <div class="bookshelf-header">
-                <div class="bookshelf-tag">RECIPE ARCHIVE</div>
-                <h2 class="serif bookshelf-title">실패없는 베이킹노트</h2>
-                <p class="bookshelf-hint">🚪 앤티크 양옆 화살표를 눌러 서가 페이지를 넘겨보세요</p>
-            </div>
-
-            <!-- 책장 무대 -->
-            <div class="bookshelf-scene">
-                <!-- 왼쪽 화살표 (1페이지면 비활성) -->
-                <button class="shelf-nav-btn shelf-nav-left left-arrow ${isFirstPage ? 'disabled' : ''}" 
-                        onclick="scrollBookshelf('left')" 
-                        style="${isFirstPage ? 'opacity: 0.2; pointer-events: none;' : ''}">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-
-                <!-- 책장 프레임 -->
-                <div class="bookshelf-frame" id="bookshelf-frame">
-                    <!-- 중앙 페이지 토스트 -->
-                    <div id="bookshelf-toast" class="bookshelf-toast">PAGE ${bookshelfState.currentPage} / ${totalPages}</div>
-
-                    <!-- 별빛 -->
-                    <div class="shelf-stars">
-                        <div class="star" style="top:8%;left:12%;width:2px;height:2px;animation-delay:0s;"></div>
-                        <div class="star" style="top:18%;left:55%;width:1.5px;height:1.5px;animation-delay:0.8s;"></div>
-                        <div class="star" style="top:55%;left:82%;width:2px;height:2px;animation-delay:0.4s;"></div>
-                        <div class="star" style="top:75%;left:28%;width:1.5px;height:1.5px;animation-delay:1.2s;"></div>
-                        <div class="star" style="top:40%;left:68%;width:1px;height:1px;animation-delay:0.6s;"></div>
-                    </div>
-
-                    <!-- 선반 2개 -->
-                    <div class="shelf-row" id="shelf-row-1">
-                        <div class="shelf-books" id="shelf-books-0">${row0Html}</div>
-                        <div class="shelf-plank"></div>
-                    </div>
-                    <div class="shelf-row" id="shelf-row-2">
-                        <div class="shelf-books" id="shelf-books-1">${row1Html}</div>
-                        <div class="shelf-plank"></div>
-                    </div>
-
-                    <!-- 책장 바닥 -->
-                    <div class="shelf-floor"></div>
+        section.innerHTML = `
+            <div class="bookshelf-wrapper">
+                <!-- 헤더 -->
+                <div class="bookshelf-header">
+                    <div class="bookshelf-tag">RECIPE ARCHIVE</div>
+                    <h2 class="serif bookshelf-title">실패없는 베이킹노트</h2>
+                    <p class="bookshelf-hint">📖 38개의 베이킹 기록이 서가에 보관되어 있습니다</p>
                 </div>
 
-                <!-- 오른쪽 화살표 (마지막 페이지면 비활성) -->
-                <button class="shelf-nav-btn shelf-nav-right right-arrow ${isLastPage ? 'disabled' : ''}" 
-                        onclick="scrollBookshelf('right')" 
-                        style="${isLastPage ? 'opacity: 0.2; pointer-events: none;' : ''}">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
+                <!-- 책장 무대 -->
+                <div class="bookshelf-scene">
+                    <!-- 책장 프레임 -->
+                    <div class="bookshelf-frame" id="bookshelf-frame">
+                        <!-- 별빛 -->
+                        <div class="shelf-stars">
+                            <div class="star" style="top:8%;left:12%;width:2px;height:2px;animation-delay:0s;"></div>
+                            <div class="star" style="top:18%;left:55%;width:1.5px;height:1.5px;animation-delay:0.8s;"></div>
+                            <div class="star" style="top:55%;left:82%;width:2px;height:2px;animation-delay:0.4s;"></div>
+                            <div class="star" style="top:75%;left:28%;width:1.5px;height:1.5px;animation-delay:1.2s;"></div>
+                            <div class="star" style="top:40%;left:68%;width:1px;height:1px;animation-delay:0.6s;"></div>
+                        </div>
+
+                        <!-- 선반들 -->
+                        ${shelfRowsHtml}
+
+                        <!-- 책장 바닥 -->
+                        <div class="shelf-floor"></div>
+                    </div>
+                </div>
+
+                <!-- 푸터 -->
+                <footer style="margin-top:25px; text-align:center; opacity:0.4;">
+                    <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
+                </footer>
             </div>
+        `;
 
-            <!-- 페이지 인디케이터 -->
-            <div class="shelf-page-info serif">- PAGE ${bookshelfState.currentPage} / ${totalPages} -</div>
-            <div class="shelf-dots-container">
-                ${Array.from({ length: totalPages }, (_, i) => {
-                    const pageNum = i + 1;
-                    const isActive = pageNum === bookshelfState.currentPage;
-                    return `<span class="shelf-dot ${isActive ? 'active' : ''}" onclick="goToBookshelfPage(${pageNum})"></span>`;
-                }).join('')}
+        setTimeout(() => {
+            recalculateBookshelfBounds();
+        }, 50);
+
+    } else {
+        // 데스크탑: 기존 페이지 네비게이션 방식 16권씩 렌더링 유지
+        const totalPages = Math.ceil(sorted.length / 16);
+
+        // 2. 현재 페이지 보정
+        if (bookshelfState.currentPage < 1) bookshelfState.currentPage = 1;
+        if (bookshelfState.currentPage > totalPages) bookshelfState.currentPage = totalPages;
+
+        // 3. 현재 페이지의 16권(2단 * 8권) 슬라이싱
+        const startIndex = (bookshelfState.currentPage - 1) * 16;
+        const pageBooks = sorted.slice(startIndex, startIndex + 16);
+
+        const row0Books = pageBooks.slice(0, 8); // 상단 선반 (최대 8권)
+        const row1Books = pageBooks.slice(8, 16); // 하단 선반 (최대 8권)
+
+        const row0Html = row0Books.map(buildBookHtml).join('');
+        const row1Html = row1Books.map(buildBookHtml).join('');
+
+        // 화살표 활성/비활성 플래그
+        const isFirstPage = bookshelfState.currentPage === 1;
+        const isLastPage = bookshelfState.currentPage === totalPages;
+
+        section.innerHTML = `
+            <div class="bookshelf-wrapper">
+                <!-- 헤더 -->
+                <div class="bookshelf-header">
+                    <div class="bookshelf-tag">RECIPE ARCHIVE</div>
+                    <h2 class="serif bookshelf-title">실패없는 베이킹노트</h2>
+                    <p class="bookshelf-hint">🚪 앤티크 양옆 화살표를 눌러 서가 페이지를 넘겨보세요</p>
+                </div>
+
+                <!-- 책장 무대 -->
+                <div class="bookshelf-scene">
+                    <!-- 왼쪽 화살표 (1페이지면 비활성) -->
+                    <button class="shelf-nav-btn shelf-nav-left left-arrow ${isFirstPage ? 'disabled' : ''}" 
+                            onclick="scrollBookshelf('left')" 
+                            style="${isFirstPage ? 'opacity: 0.2; pointer-events: none;' : ''}">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <!-- 책장 프레임 -->
+                    <div class="bookshelf-frame" id="bookshelf-frame">
+                        <!-- 중앙 페이지 토스트 -->
+                        <div id="bookshelf-toast" class="bookshelf-toast">PAGE ${bookshelfState.currentPage} / ${totalPages}</div>
+
+                        <!-- 별빛 -->
+                        <div class="shelf-stars">
+                            <div class="star" style="top:8%;left:12%;width:2px;height:2px;animation-delay:0s;"></div>
+                            <div class="star" style="top:18%;left:55%;width:1.5px;height:1.5px;animation-delay:0.8s;"></div>
+                            <div class="star" style="top:55%;left:82%;width:2px;height:2px;animation-delay:0.4s;"></div>
+                            <div class="star" style="top:75%;left:28%;width:1.5px;height:1.5px;animation-delay:1.2s;"></div>
+                            <div class="star" style="top:40%;left:68%;width:1px;height:1px;animation-delay:0.6s;"></div>
+                        </div>
+
+                        <!-- 선반 2개 -->
+                        <div class="shelf-row" id="shelf-row-1">
+                            <div class="shelf-books" id="shelf-books-0">${row0Html}</div>
+                            <div class="shelf-plank"></div>
+                        </div>
+                        <div class="shelf-row" id="shelf-row-2">
+                            <div class="shelf-books" id="shelf-books-1">${row1Html}</div>
+                            <div class="shelf-plank"></div>
+                        </div>
+
+                        <!-- 책장 바닥 -->
+                        <div class="shelf-floor"></div>
+                    </div>
+
+                    <!-- 오른쪽 화살표 (마지막 페이지면 비활성) -->
+                    <button class="shelf-nav-btn shelf-nav-right right-arrow ${isLastPage ? 'disabled' : ''}" 
+                            onclick="scrollBookshelf('right')" 
+                            style="${isLastPage ? 'opacity: 0.2; pointer-events: none;' : ''}">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- 페이지 인디케이터 -->
+                <div class="shelf-page-info serif">- PAGE ${bookshelfState.currentPage} / ${totalPages} -</div>
+                <div class="shelf-dots-container">
+                    ${Array.from({ length: totalPages }, (_, i) => {
+                        const pageNum = i + 1;
+                        const isActive = pageNum === bookshelfState.currentPage;
+                        return `<span class="shelf-dot ${isActive ? 'active' : ''}" onclick="goToBookshelfPage(${pageNum})"></span>`;
+                    }).join('')}
+                </div>
+
+                <!-- 푸터 -->
+                <footer style="margin-top:25px; text-align:center; opacity:0.4;">
+                    <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
+                </footer>
             </div>
+        `;
 
-            <!-- 푸터 -->
-            <footer style="margin-top:25px; text-align:center; opacity:0.4;">
-                <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
-            </footer>
-        </div>
-    `;
+        // 강제 정렬 동기화 및 휠 리스너 바인딩, 페이지 전환 토스트 트리거
+        setTimeout(() => {
+            recalculateBookshelfBounds();
+            bindBookshelfWheelEvent();
 
-    // 강제 정렬 동기화 및 휠 리스너 바인딩, 페이지 전환 토스트 트리거
-    setTimeout(() => {
-        recalculateBookshelfBounds();
-        bindBookshelfWheelEvent();
-
-        const toast = document.getElementById('bookshelf-toast');
-        if (toast) {
-            toast.classList.remove('show');
-            void toast.offsetWidth; // reflow 트리거하여 CSS 애니메이션 초기화
-            toast.classList.add('show');
-        }
-    }, 50);
+            const toast = document.getElementById('bookshelf-toast');
+            if (toast) {
+                toast.classList.remove('show');
+                void toast.offsetWidth; // reflow 트리거하여 CSS 애니메이션 초기화
+                toast.classList.add('show');
+            }
+        }, 50);
+    }
 }
 
 // ==========================================================================
