@@ -4306,29 +4306,31 @@ footer {
         height: auto;
         min-height: unset;
         max-height: unset;
-        gap: 10px; /* 카드 간격 10px */
+        gap: 8px !important; /* 카드 간격 8px */
         width: 92%;
         margin: 0 auto;
     }
     .accordion-slice {
         flex: none !important;
         width: 100% !important;
-        height: 260px !important; /* 모든 카드 높이: 260px 고정 */
-        border-radius: 16px !important; /* border-radius 16px */
+        height: 220px !important; /* 일반 카드 높이: 220px 고정 */
+        border-radius: 16px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
         filter: none !important;
+        background-size: cover !important;
+        background-position: top center !important; /* 이미지 풀커버, 상단 기준 */
         transition: transform 0.2s ease, box-shadow 0.2s ease;
-        order: var(--mobile-order) !important; /* 동적 표시 로직 적용 */
+        order: var(--mobile-order) !important;
     }
-    /* 활성화된 카드도 모바일에서는 일반 카드와 완전히 똑같은 260px 크기로 노출되도록 강제 고정 */
+    /* 활성화된 카드도 모바일에서는 일반 카드와 완전히 똑같은 220px 크기로 노출되도록 강제 고정 */
     .accordion-slice.active-expanded {
         flex: none !important;
-        height: 260px !important;
+        height: 220px !important;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06) !important;
         order: var(--mobile-order) !important;
     }
     .accordion-slice.active-expanded .slice-content-wrapper {
-        padding: 20px !important;
+        padding: 16px !important;
         opacity: 1 !important;
         pointer-events: auto !important;
         display: flex !important;
@@ -4344,7 +4346,7 @@ footer {
     .slice-content-wrapper {
         opacity: 1 !important;
         pointer-events: auto !important;
-        padding: 20px !important;
+        padding: 16px !important;
         height: 100% !important;
         display: flex !important;
         flex-direction: column !important;
@@ -4370,18 +4372,18 @@ footer {
         flex-direction: column !important;
         align-items: flex-start !important;
     }
-    /* 1줄: metaText ('RECIPE FILE // VOL.XX' 대문자 골드 0.65rem) */
+    /* 1줄: metaText ('RECIPE FILE // VOL.XX' 대문자 골드 0.6rem) */
     .editorial-volume {
-        font-size: 0.65rem !important;
+        font-size: 0.6rem !important;
         color: #c5a059 !important; /* 골드색 */
         letter-spacing: 2px !important;
         font-weight: 600 !important;
-        text-transform: uppercase !important; /* 대문자 */
+        text-transform: uppercase !important;
         margin-bottom: 2px !important;
     }
-    /* 2줄: 디저트명 (흰색, 1.3rem, bold) */
+    /* 2줄: 디저트명 (흰색, 1.2rem, bold) */
     .showcase-title {
-        font-size: 1.3rem !important;
+        font-size: 1.2rem !important;
         font-weight: 700 !important;
         color: #ffffff !important;
         margin: 0 !important;
@@ -4396,53 +4398,67 @@ footer {
         background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.85) 100%) !important;
     }
 
-    /* 커밍순 카드 별도 스타일 (어두운 퍼플 그라디언트, 이미지 없음, 260px 고정) */
+    /* 커밍순 카드 (배너 형태) */
     .coming-soon-slice {
-        background: linear-gradient(135deg, #2c1a35 0%, #0d0612 100%) !important; /* 어두운 퍼플 그라디언트 */
+        background: linear-gradient(90deg, #1b0e24 0%, #0b0510 100%) !important; /* 어두운 색상 */
         filter: none !important;
-        height: 260px !important;
+        height: 64px !important; /* 높이 64px 얇게 */
+        border-radius: 12px !important;
+        border: 1px solid rgba(187, 143, 206, 0.15) !important;
+    }
+    .coming-soon-slice.active-expanded {
+        height: 64px !important;
     }
     /* 일반 텍스트 영역 숨김 (커밍순 중앙 컨텐츠와 겹침 방지) */
     .coming-soon-slice .slice-content-wrapper {
         display: none !important;
     }
-    /* 중앙 정렬 코어 */
+    /* 가로 배치 정렬 코어 */
     .coming-soon-slice .coming-soon-glowing-core {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-align: center !important;
-        width: 90% !important;
-        height: 100% !important;
-        position: absolute !important;
+        position: relative !important;
         top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%) !important;
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        padding: 0 16px !important;
+        box-sizing: border-box !important;
         z-index: 3;
     }
-    /* Flex Order를 사용한 순서 재배치 */
+    /* 🔒 아이콘 (좌측) */
     .coming-soon-slice .coming-soon-glowing-core i {
-        order: 1 !important; /* 🔒 아이콘 */
-        font-size: 2rem !important;
-        color: var(--accent-color, #E2DCCF) !important;
-        margin-bottom: 8px !important;
+        order: 1 !important;
+        font-size: 0.9rem !important;
+        color: #BB8FCE !important;
+        margin-bottom: 0 !important;
+        margin-right: 6px !important;
         opacity: 0.9;
+        animation: none !important;
     }
+    /* 'NEXT COMING SOON' (좌측) */
     .coming-soon-slice .coming-soon-glowing-core .coming-soon-text-en {
-        order: 2 !important; /* COMING SOON */
-        font-size: 0.65rem !important; /* 작게 */
+        order: 2 !important;
+        font-size: 0.6rem !important;
         color: #95A5A6 !important;
-        letter-spacing: 2px !important;
-        margin-bottom: 6px !important;
-        display: block !important;
+        letter-spacing: 1px !important;
+        margin-bottom: 0 !important;
+        display: inline-block !important;
         text-transform: uppercase !important;
     }
+    .coming-soon-slice .coming-soon-glowing-core .coming-soon-text-en::before {
+        content: "NEXT " !important;
+    }
+    /* 디저트명 (우측 끝) */
     .coming-soon-slice .coming-soon-glowing-core span:not(.coming-soon-text-en):not(.coming-soon-text-ko) {
-        order: 3 !important; /* 디저트명 (크게) */
+        order: 3 !important;
+        margin-left: auto !important;
         color: #FAF8F3 !important;
-        font-size: 1.25rem !important;
-        font-weight: 700 !important;
+        font-size: 0.8rem !important;
+        font-weight: 600 !important;
         margin-bottom: 0 !important;
     }
     .coming-soon-slice .coming-soon-glowing-core .coming-soon-text-ko {
