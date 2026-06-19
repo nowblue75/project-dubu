@@ -4307,7 +4307,7 @@ footer {
 
     /* 1단계: 모바일 카드 리스트 최적화 (nowblue75.github.io/plamodel 스타일) */
     .hero-showroom {
-        padding-top: 110px !important; /* 네비바 고정으로 가려짐 방지를 위한 넉넉한 padding-top */
+        padding-top: 135px !important; /* 네비바 고정으로 가려짐 방지를 위한 넉넉한 padding-top */
         min-height: auto;
         padding-bottom: 40px;
     }
@@ -4337,6 +4337,24 @@ footer {
     }
     .accordion-slice.bg-horizontal {
         background-position: center center !important; /* 가로형 사진: center center 크롭 */
+    }
+    /* 최신 카드 하이라이트 디자인 (골드 테두리 + 글로우 아우라 + 미세 축척 확대) */
+    .accordion-slice.latest-highlight {
+        border: 2px solid #D4AF37 !important;
+        box-shadow: 
+            0 8px 25px rgba(212, 175, 55, 0.25), 
+            0 0 15px rgba(212, 175, 55, 0.15),
+            inset 0 0 10px rgba(212, 175, 55, 0.1) !important;
+        transform: scale(1.015) !important;
+        z-index: 10 !important;
+    }
+    .new-badge {
+        display: inline-block !important; /* 모바일에서 노출 강제 */
+        background: linear-gradient(135deg, #FFE596 0%, #D4AF37 100%) !important;
+        color: #1A0D00 !important;
+        font-weight: 800 !important;
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.5) !important;
+        border: 1px solid rgba(212, 175, 55, 0.3) !important;
     }
     /* 활성화된 카드도 모바일에서는 일반 카드와 완전히 똑같은 220px 크기로 노출되도록 강제 고정 */
     .accordion-slice.active-expanded {

@@ -1213,9 +1213,12 @@ function renderAccordionArtbook() {
                </div>`
             : '';
 
+        const isLatest = p.id === maxId;
+        const showNewBadge = p.isNew || isLatest;
+
         const titleHtml = p.isComingSoon 
             ? `<h3 class="serif showcase-title" style="color: #7f8c8d;">${p.comingSoonSubtitle || 'Coming Soon'}</h3>`
-            : `<h3 class="serif showcase-title">${p.title}${p.isNew ? ` <span style="display: inline-block; background: #FF3D71; color: white; font-family: var(--font-playfair), serif; font-weight: 700; font-size: 0.65rem; padding: 2px 8px; border-radius: 20px; vertical-align: middle; margin-left: 10px; box-shadow: 0 0 10px rgba(255, 61, 113, 0.4); text-transform: uppercase; letter-spacing: 0.5px;">NEW</span>` : ''}</h3>`;
+            : `<h3 class="serif showcase-title">${p.title}${showNewBadge ? ` <span class="new-badge" style="display: inline-block; background: #FF3D71; color: white; font-family: var(--font-playfair), serif; font-weight: 700; font-size: 0.65rem; padding: 2px 8px; border-radius: 20px; vertical-align: middle; margin-left: 10px; box-shadow: 0 0 10px rgba(255, 61, 113, 0.4); text-transform: uppercase; letter-spacing: 0.5px;">NEW</span>` : ''}</h3>`;
 
         const metaText = p.isComingSoon ? "RECIPE FILE // COMING SOON" : `RECIPE FILE // Vol.${p.id}`;
         const actionBtnText = p.isComingSoon ? `공개 예정 <i class="fa-solid fa-lock" style="margin-left: 5px;"></i>` : `상세보기 <i class="fa-solid fa-chevron-right" style="margin-left: 5px;"></i>`;
@@ -1223,7 +1226,7 @@ function renderAccordionArtbook() {
         const mobileOrder = p.isComingSoon ? 6 : (5 - idx);
 
         return `
-            <div class="accordion-slice ${p.isComingSoon ? 'coming-soon-slice' : ''}" 
+            <div class="accordion-slice ${p.isComingSoon ? 'coming-soon-slice' : ''} ${isLatest ? 'latest-highlight' : ''}" 
                  style="${bgStyle} --theme-color: ${p.themeColor}; --theme-glow: ${p.themeGlow}; --accent-color: ${p.accentColor}; --mobile-order: ${mobileOrder};" 
                  onclick="handleSliceClick(event, '${p.id}')"
                  data-vol="${p.isComingSoon ? comingSoonVol : p.id}">
