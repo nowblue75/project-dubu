@@ -4318,9 +4318,15 @@ footer {
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
         filter: none !important;
         background-size: cover !important;
-        background-position: top center !important; /* 이미지 풀커버, 상단 기준 */
+        background-position: center top !important; /* 기본값: 이미지 상단 기준 크롭 */
         transition: transform 0.2s ease, box-shadow 0.2s ease;
         order: var(--mobile-order) !important;
+    }
+    .accordion-slice.bg-vertical {
+        background-position: center top !important; /* 세로형 사진: center top 크롭 */
+    }
+    .accordion-slice.bg-horizontal {
+        background-position: center center !important; /* 가로형 사진: center center 크롭 */
     }
     /* 활성화된 카드도 모바일에서는 일반 카드와 완전히 똑같은 220px 크기로 노출되도록 강제 고정 */
     .accordion-slice.active-expanded {

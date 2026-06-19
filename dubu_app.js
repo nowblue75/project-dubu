@@ -1275,7 +1275,25 @@ function renderAccordionArtbook() {
     setTimeout(() => {
         const isMobile = window.innerWidth <= 768;
         if (isMobile) {
-            // 모바일에서는 아코디언이 아닌 전체 카드 리스트 형태이므로 개별 카드 높이 활성화를 하지 않습니다.
+            // 모바일: 렌더링된 카드의 이미지 비율을 감지하여 클래스 동적 주입 (가로/세로 최적 크롭)
+            container.querySelectorAll('.accordion-slice').forEach(slice => {
+                const bg = slice.style.backgroundImage;
+                if (bg && bg.startsWith('url(')) {
+                    let url = bg.slice(4, -1);
+                    if (url.startsWith('"') || url.startsWith("'")) {
+                        url = url.slice(1, -1);
+                    }
+                    const img = new Image();
+                    img.onload = function() {
+                        if (this.naturalWidth > this.naturalHeight) {
+                            slice.classList.add('bg-horizontal');
+                        } else {
+                            slice.classList.add('bg-vertical');
+                        }
+                    };
+                    img.src = url;
+                }
+            });
             return;
         }
 
