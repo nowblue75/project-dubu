@@ -8,6 +8,39 @@ let currentTab = 'calc';
 // 1. 초기화 및 페이지 로드
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
+    // 임시 디버그 뷰: ?debug_view=archive 일 때 책장만 스크린샷 캡처하기 위해 타 섹션 및 헤더 숨김, 가로폭 강제 클램핑
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('debug_view') === 'archive') {
+        const homeEl = document.getElementById('home');
+        const eventsEl = document.getElementById('events');
+        const headerEl = document.querySelector('header');
+        if (homeEl) homeEl.style.setProperty('display', 'none', 'important');
+        if (eventsEl) eventsEl.style.setProperty('display', 'none', 'important');
+        if (headerEl) headerEl.style.setProperty('display', 'none', 'important');
+        
+        document.documentElement.style.setProperty('width', '390px', 'important');
+        document.documentElement.style.setProperty('overflow-x', 'hidden', 'important');
+        document.body.style.setProperty('width', '390px', 'important');
+        document.body.style.setProperty('overflow-x', 'hidden', 'important');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Hero 섹션 화보 로테이션 시작
     const slides = document.querySelectorAll('.visual-slide');
     if (slides.length > 0) {
@@ -447,13 +480,13 @@ function openFocusStage(recipeId) {
     const tabGradient = `linear-gradient(135deg, ${theme.themeColor} 0%, ${theme.spineColor1} 100%)`;
 
     overlay.innerHTML = `
-        <!-- 책 바깥 우측 상단 닫기 버튼 -->
-        <button class="focus-overlay-close" onclick="closeFocusStage()" style="z-index: 10600;">&times;</button>
-
         <div id="focus-modal-board" class="atelier-focus-board magic-book-theme" style="
             --magic-book-color: ${theme.themeColor};
             --magic-book-glow: ${theme.themeGlow};
             --magic-book-accent: ${theme.accentColor};">
+            
+            <!-- 책 표지 우측 상단 모퉁이에 고정되는 닫기 버튼 -->
+            <button class="focus-overlay-close" onclick="closeFocusStage()" style="z-index: 30000;">&times;</button>
 
             <!-- 왼쪽 페이지: 요리 화보 및 한마디 -->
             <div class="focus-stage-left">
@@ -539,6 +572,7 @@ function openFocusStage(recipeId) {
 
     document.body.appendChild(overlay);
     document.body.style.overflow = 'hidden';
+
     setTimeout(() => {
         overlay.classList.add('active');
     }, 30);
@@ -1409,7 +1443,7 @@ function openTheme(themeId) {
     const overlay = document.createElement('div');
     overlay.id = 'theme-modal-overlay';
     overlay.className = 'theme-modal-overlay';
-    overlay.style.cssText = `background: ${pal.bg}; color: ${pal.text};`;
+    overlay.style.cssText = `background: ${pal.bg}; color: ${pal.text}; --theme-accent: ${pal.accent};`;
     overlay.onclick = (e) => { if (e.target === overlay) closeThemeModal(); };
 
     const recipesCount = (theme.recipes || []).length;
@@ -1432,14 +1466,24 @@ function openTheme(themeId) {
             </div>`;
     }).join('');
 
-    overlay.innerHTML = `
+    const dotsHtml = (theme.recipes || []).map((_, idx) => {
+        return `<span class="theme-mobile-dot ${idx === 0 ? 'active' : ''}" onclick="jumpToThemeMobile(${idx})"></span>`;
+    }).join('');
+
+overlay.innerHTML = `
         <button class="theme-modal-close-btn" onclick="closeThemeModal()" style="color:${pal.subtext};">&times;</button>
         <div class="theme-modal-header">
             <div class="theme-modal-tag" style="color:${pal.subtext};">${theme.icon} ${theme.tag}</div>
             <h2 class="theme-modal-title serif" style="color:${pal.text};">${theme.title}</h2>
             <p class="theme-modal-desc" style="color:${pal.subtext};">${theme.desc}</p>
         </div>
+        
         <div class="theme-modal-carousel-wrapper">
+            <!-- 모바일 전용 좌측 화살표 -->
+            <button id="theme-mobile-prev" class="theme-mobile-arrow-btn prev" onclick="scrollThemeMobile('prev')" style="opacity: 0; pointer-events: none;">
+                <span>&lt;</span>
+            </button>
+
             ${showButtons ? `
             <button class="theme-slider-btn prev" onclick="slideTheme(-1, ${maxIndex})" style="color: ${pal.text}; opacity: 0.2; pointer-events: none;">
                 <i class="fa-solid fa-circle-chevron-left"></i>
@@ -1452,25 +1496,156 @@ function openTheme(themeId) {
                 </div>
             </div>
             
+            <!-- 모바일 전용 우측 화살표 -->
+            <button id="theme-mobile-next" class="theme-mobile-arrow-btn next" onclick="scrollThemeMobile('next')" style="${recipesCount <= 1 ? 'opacity: 0; pointer-events: none;' : ''}">
+                <span>&gt;</span>
+            </button>
+
             ${showButtons ? `
             <button class="theme-slider-btn next" onclick="slideTheme(1, ${maxIndex})" style="color: ${pal.text};">
                 <i class="fa-solid fa-circle-chevron-right"></i>
             </button>
             ` : ''}
         </div>
+
+        <!-- 모바일 전용 도트 인디케이터 -->
+        <div id="theme-mobile-dots" class="theme-mobile-dots">
+            ${dotsHtml}
+        </div>
     `;
 
     document.body.appendChild(overlay);
     document.body.style.overflow = 'hidden';
     setTimeout(() => overlay.classList.add('active'), 30);
+
+    const viewport = overlay.querySelector('.theme-modal-cards-viewport');
+    if (viewport) {
+        viewport.addEventListener('scroll', onThemeMobileScroll);
+        
+        // URL 쿼리 파라미터에서 slide_index를 읽어서 초기 스크롤 위치 강제 세팅 (디버그 캡처 지원용)
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetSlide = parseInt(urlParams.get('slide_index') || '0', 10);
+        
+        setTimeout(() => {
+            if (targetSlide > 0) {
+                const card = viewport.querySelector('.theme-recipe-card');
+                const cardWidth = card ? card.offsetWidth : 390;
+                viewport.scrollLeft = targetSlide * cardWidth;
+            }
+            onThemeMobileScroll();
+        }, 150);
+    }
 }
 
 function closeThemeModal() {
     const overlay = document.getElementById('theme-modal-overlay');
-    if (!overlay) return;
-    overlay.classList.remove('active');
+    if (overlay) {
+        overlay.classList.remove('active');
+        setTimeout(() => overlay.remove(), 400);
+    }
+    
     document.body.style.overflow = '';
-    setTimeout(() => overlay.remove(), 400);
+    
+    // 모바일(768px 이하)일 때, 시즌 이벤트 목록(#events)으로 자연스럽게 스크롤 이동
+    if (window.innerWidth <= 768) {
+        const eventsSection = document.getElementById('events');
+        if (eventsSection) {
+            eventsSection.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+}
+
+function onThemeMobileScroll() {
+    const viewport = document.querySelector('.theme-modal-cards-viewport');
+    if (!viewport) return;
+    const cards = viewport.querySelectorAll('.theme-recipe-card');
+    if (cards.length === 0) return;
+    
+    const cardWidth = cards[0].offsetWidth || 300; /* offsetWidth가 0일 때의 레이아웃 fallback 추가 */
+    const gap = 0; /* 모바일 카드간 gap이 0이므로 0으로 변경 */
+    const step = cardWidth + gap;
+    
+    const scrollLeft = viewport.scrollLeft;
+    const index = Math.round(scrollLeft / step);
+    
+    updateThemeMobileDots(index);
+    
+    const prevBtn = document.getElementById('theme-mobile-prev');
+    const nextBtn = document.getElementById('theme-mobile-next');
+    
+    if (prevBtn) {
+        if (index === 0) {
+            prevBtn.style.opacity = '0';
+            prevBtn.style.pointerEvents = 'none';
+        } else {
+            prevBtn.style.opacity = '1';
+            prevBtn.style.pointerEvents = 'auto';
+        }
+    }
+    
+    if (nextBtn) {
+        if (index === cards.length - 1) {
+            nextBtn.style.opacity = '0';
+            nextBtn.style.pointerEvents = 'none';
+        } else {
+            nextBtn.style.opacity = '1';
+            nextBtn.style.pointerEvents = 'auto';
+        }
+    }
+}
+
+function scrollThemeMobile(direction) {
+    const viewport = document.querySelector('.theme-modal-cards-viewport');
+    if (!viewport) return;
+    const cards = viewport.querySelectorAll('.theme-recipe-card');
+    if (cards.length === 0) return;
+    
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 0; /* gap이 0이므로 0으로 변경 */
+    const step = cardWidth + gap;
+    
+    const currentScroll = viewport.scrollLeft;
+    let targetIndex = Math.round(currentScroll / step);
+    
+    if (direction === 'prev') {
+        targetIndex = Math.max(0, targetIndex - 1);
+    } else {
+        targetIndex = Math.min(cards.length - 1, targetIndex + 1);
+    }
+    
+    viewport.scrollTo({
+        left: targetIndex * step,
+        behavior: 'smooth'
+    });
+}
+
+function jumpToThemeMobile(index) {
+    const viewport = document.querySelector('.theme-modal-cards-viewport');
+    if (!viewport) return;
+    const cards = viewport.querySelectorAll('.theme-recipe-card');
+    if (cards.length === 0) return;
+    
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 0; /* gap이 0이므로 0으로 변경 */
+    const step = cardWidth + gap;
+    
+    viewport.scrollTo({
+        left: index * step,
+        behavior: 'smooth'
+    });
+}
+
+function updateThemeMobileDots(activeIndex) {
+    const dots = document.querySelectorAll('.theme-mobile-dot');
+    dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
 }
 
 // ==========================================================================
@@ -1583,75 +1758,127 @@ function renderBookshelf() {
     const sorted = [...PROJECTS].filter(p => p.id !== 39).sort((a, b) => a.id - b.id);
     const isMobile = window.innerWidth <= 768;
 
-    // 마법 기호 목록
-    const magicSymbols = ['⚜', '✦', '🜚', '🝎', '🜔', '🕮', '🜏', '🝔', '✺', '🜛'];
-
-    function buildBookHtml(p) {
-        const colors = getBookSpineColors(p);
+    function buildMagazineCardHtml(p, index) {
         const shortTitle = p.title.replace('순두부 ','').replace('순두부','');
-        const magicSymbol = magicSymbols[p.id % magicSymbols.length];
         return `
-            <div class="magic-book" onclick="openFocusStage(${p.id})" title="VOL.${p.id} ${p.title}"
-                 style="--spine1:${colors.spine1}; --spine2:${colors.spine2}; --book-text:${colors.textColor}; --book-accent:${colors.accentColor};">
-                <div class="book-spine">
-                    <span class="book-vol">VOL.${p.id}</span>
-                    <span class="book-title-spine">${shortTitle}</span>
-                    <span class="book-deco">${magicSymbol}</span>
+            <div class="magazine-card" onclick="openFocusStage(${p.id})">
+                <div class="magazine-card-img" style="background-image: url('/${p.img}');"></div>
+                <div class="magazine-card-overlay">
+                    <div class="magazine-gold-frame">
+                        <div class="corner-deco top-left"></div>
+                        <div class="corner-deco top-right"></div>
+                        <div class="corner-deco bottom-left"></div>
+                        <div class="corner-deco bottom-right"></div>
+                    </div>
+                    <div class="magazine-content">
+                        <div class="magazine-vol">RECIPE FILE // VOL.${p.id}</div>
+                        <h3 class="serif magazine-title">${shortTitle}</h3>
+                    </div>
                 </div>
             </div>`;
     }
 
-    if (isMobile) {
-        // 모바일: 38권 전체를 4권씩 여러 shelf-row에 나누어 렌더링
-        const rowsCount = Math.ceil(sorted.length / 4);
-        let shelfRowsHtml = '';
-        for (let i = 0; i < rowsCount; i++) {
-            const rowBooks = sorted.slice(i * 4, (i + 1) * 4);
-            const rowHtml = rowBooks.map(buildBookHtml).join('');
-            shelfRowsHtml += `
-                <div class="shelf-row">
-                    <div class="shelf-books under-flow">${rowHtml}</div>
-                    <div class="shelf-plank"></div>
+    function buildBookHtml(p) {
+        const colors = getBookSpineColors(p);
+        const shortTitle = p.title.replace('순두부 ','').replace('순두부','');
+        return `
+            <div class="magic-book" onclick="openFocusStage(${p.id})" title="VOL.${p.id} ${p.title}"
+                 style="--spine1:${colors.spine1};--spine2:${colors.spine2};--book-text:${colors.textColor};--book-accent:${colors.accentColor};">
+                <div class="book-spine">
+                    <div class="book-vol">VOL.${p.id}</div>
+                    <div class="book-title-spine">${shortTitle}</div>
+                    <div class="book-deco">✦</div>
                 </div>
-            `;
-        }
+                <div class="book-cover">
+                    <div class="book-cover-inner">
+                        <div class="book-cover-vol">Vol.${p.id}</div>
+                        <div class="book-cover-title">${shortTitle}</div>
+                    </div>
+                </div>
+            </div>`;
+    }
 
+    window.slideMagazine = function(direction) {
+        const track = document.getElementById('magazine-track');
+        if (!track) return;
+        const card = track.firstElementChild;
+        if (!card) return;
+        const cardWidth = card.offsetWidth;
+        const trackStyle = window.getComputedStyle(track);
+        const gap = parseFloat(trackStyle.columnGap) || parseFloat(trackStyle.gap) || 0;
+        const step = cardWidth + gap;
+        
+        if (direction === 'left') {
+            track.scrollBy({ left: -step, behavior: 'smooth' });
+        } else {
+            track.scrollBy({ left: step, behavior: 'smooth' });
+        }
+    };
+
+    if (isMobile) {
+        // 모바일: 38권 전체를 매거진 스프레드 카드로 렌더링 (순서: Vol.1 -> Vol.38)
+        const cardsHtml = sorted.map((p, idx) => buildMagazineCardHtml(p, idx)).join('');
+        
         section.innerHTML = `
-            <div class="bookshelf-wrapper">
+            <div class="bookshelf-wrapper magazine-mode">
                 <!-- 헤더 -->
                 <div class="bookshelf-header">
-                    <div class="bookshelf-tag">RECIPE ARCHIVE</div>
                     <h2 class="serif bookshelf-title">실패없는 베이킹노트</h2>
-                    <p class="bookshelf-hint">📖 38개의 베이킹 기록이 서가에 보관되어 있습니다</p>
                 </div>
 
-                <!-- 책장 무대 -->
+                <!-- 매거진 무대 -->
                 <div class="bookshelf-scene">
-                    <!-- 책장 프레임 -->
-                    <div class="bookshelf-frame" id="bookshelf-frame">
-                        <!-- 별빛 -->
-                        <div class="shelf-stars">
-                            <div class="star" style="top:8%;left:12%;width:2px;height:2px;animation-delay:0s;"></div>
-                            <div class="star" style="top:18%;left:55%;width:1.5px;height:1.5px;animation-delay:0.8s;"></div>
-                            <div class="star" style="top:55%;left:82%;width:2px;height:2px;animation-delay:0.4s;"></div>
-                            <div class="star" style="top:75%;left:28%;width:1.5px;height:1.5px;animation-delay:1.2s;"></div>
-                            <div class="star" style="top:40%;left:68%;width:1px;height:1px;animation-delay:0.6s;"></div>
+                    <div class="magazine-container">
+                        <!-- 터치 보조용 왼쪽 화살표 -->
+                        <button class="magazine-nav-btn magazine-nav-left" onclick="slideMagazine('left')">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+
+                        <!-- 가로 스냅 트랙 -->
+                        <div class="magazine-track" id="magazine-track">
+                            ${cardsHtml}
                         </div>
 
-                        <!-- 선반들 -->
-                        ${shelfRowsHtml}
-
-                        <!-- 책장 바닥 -->
-                        <div class="shelf-floor"></div>
+                        <!-- 터치 보조용 오른쪽 화살표 -->
+                        <button class="magazine-nav-btn magazine-nav-right" onclick="slideMagazine('right')">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
                     </div>
                 </div>
 
+                <!-- 페이지 카운터 -->
+                <div class="magazine-counter" id="magazine-counter">
+                    Vol.${sorted[0] ? sorted[0].id : 1} / 38
+                </div>
+
                 <!-- 푸터 -->
-                <footer style="margin-top:25px; text-align:center; opacity:0.4;">
+                <footer style="margin-top:40px; text-align:center; opacity:0.4;">
                     <p class="copy">&copy; 2025 PROJECT DUBU - All Rights Reserved.</p>
                 </footer>
             </div>
         `;
+
+        // 가로 슬라이드 스크롤 리스너 바인딩 (Vol.X / 38 실시간 업데이트)
+        setTimeout(() => {
+            const track = document.getElementById('magazine-track');
+            const counter = document.getElementById('magazine-counter');
+            if (track && counter) {
+                track.addEventListener('scroll', () => {
+                    const card = track.firstElementChild;
+                    if (!card) return;
+                    const cardWidth = card.offsetWidth;
+                    const trackStyle = window.getComputedStyle(track);
+                    const gap = parseFloat(trackStyle.columnGap) || parseFloat(trackStyle.gap) || 0;
+                    const index = Math.round(track.scrollLeft / (cardWidth + gap));
+                    
+                    const safeIndex = Math.max(0, Math.min(sorted.length - 1, index));
+                    const activeProject = sorted[safeIndex];
+                    if (activeProject) {
+                        counter.innerText = `Vol.${activeProject.id} / 38`;
+                    }
+                });
+            }
+        }, 100);
 
         setTimeout(() => {
             recalculateBookshelfBounds();
@@ -2720,9 +2947,15 @@ function openArtbookSlider(cardEl, recipeId, folderName, images) {
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
             
-            <div class="artbook-slide-item active" data-slide="1" style="background-image: url('/${folderName}/화보집/${images[0]}'); background-color: ${bgColor};"></div>
-            <div class="artbook-slide-item" data-slide="2" style="background-image: url('/${folderName}/화보집/${images[1]}'); background-color: ${bgColor};"></div>
-            <div class="artbook-slide-item" data-slide="3" style="background-image: url('/${folderName}/화보집/${images[2]}'); background-color: ${bgColor};"></div>
+            <div class="artbook-slide-item active" data-slide="1" style="background-image: url('/${folderName}/화보집/${images[0]}'); background-color: ${bgColor};">
+                <img src="/${folderName}/화보집/${images[0]}" class="mobile-artbook-img" alt="">
+            </div>
+            <div class="artbook-slide-item" data-slide="2" style="background-image: url('/${folderName}/화보집/${images[1]}'); background-color: ${bgColor};">
+                <img src="/${folderName}/화보집/${images[1]}" class="mobile-artbook-img" alt="">
+            </div>
+            <div class="artbook-slide-item" data-slide="3" style="background-image: url('/${folderName}/화보집/${images[2]}'); background-color: ${bgColor};">
+                <img src="/${folderName}/화보집/${images[2]}" class="mobile-artbook-img" alt="">
+            </div>
             
             <div class="artbook-slider-dots">
                 <span class="artbook-slider-dot active" onclick="goArtbookSliderPage(1)"></span>
