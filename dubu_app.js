@@ -932,7 +932,7 @@ function openUnifiedRecipeCardModal(id, title, img, yieldText, bakingTip, cheers
         top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(0, 0, 0, 0.5);
         display: flex; align-items: center; justify-content: center;
-        z-index: 11000; opacity: 0; transition: opacity 0.3s ease;
+        z-index: 40000; opacity: 0; transition: opacity 0.3s ease;
     `;
 
     modal.innerHTML = `
