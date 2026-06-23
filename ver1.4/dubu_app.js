@@ -176,7 +176,7 @@ function renderDashboard() {
                  style="animation-delay:${index * 0.12}s; border: 2.5px solid ${tc.badge};"
                  onclick="openTheme('${theme.id}')">
                 <div class="season-card-img-wrap">
-                    <img src="${theme.img}" alt="${theme.title}" loading="lazy"
+                    <img src="${getBasePath() + encodeURI(theme.img)}" alt="${theme.title}" loading="lazy"
                          onerror="this.onerror=null; this.parentNode.style.background='#f0ece5'">
                     <span class="season-card-badge" style="background:${tc.badgeBg};">${theme.tag}</span>
                 </div>
@@ -929,7 +929,7 @@ function openUnifiedRecipeCardModal(id, title, img, yieldText, bakingTip, cheers
     if (oldModal) oldModal.remove();
 
     // 가상 라우팅 우회용 절대 경로 변환
-    const finalImgSrc = img.startsWith('/') ? img : '/' + img;
+    const finalImgSrc = getBasePath() + encodeURI(img.startsWith('/') ? img.slice(1) : img);
 
     const modal = document.createElement('div');
     modal.id = 'recipe-card-modal';
@@ -1242,7 +1242,7 @@ function renderAccordionArtbook() {
 
         const bgStyle = p.isComingSoon 
             ? `background: linear-gradient(135deg, #1A1C1E 0%, #0D0E10 100%); display: flex; align-items: center; justify-content: center; flex-direction: column;` 
-            : `background-image: url('${p.img}');`;
+            : `background-image: url('${getBasePath() + encodeURI(p.img)}');`;
 
         const comingSoonOverlay = p.isComingSoon 
             ? `<div class="coming-soon-glowing-core" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align:center; padding:0 10px;">
@@ -1457,7 +1457,7 @@ function openTheme(themeId) {
     const showButtons = recipesCount > 4;
 
     const recipesHtml = (theme.recipes || []).map(recipe => {
-        const imgSrc = recipe.img || '';
+        const imgSrc = recipe.img ? getBasePath() + encodeURI(recipe.img) : '';
         const displayTitle = recipe.title.replace('순두부 ', '');
         return `
             <div class="theme-recipe-card" onclick="openFocusStage(${recipe.id});">
@@ -1768,7 +1768,7 @@ function renderBookshelf() {
         const shortTitle = p.title.replace('순두부 ','').replace('순두부','');
         return `
             <div class="magazine-card" onclick="openFocusStage(${p.id})">
-                <div class="magazine-card-img" style="background-image: url('/${p.img}');"></div>
+                <div class="magazine-card-img" style="background-image: url('${getBasePath() + encodeURI(p.img)}');"></div>
                 <div class="magazine-card-overlay">
                     <div class="magazine-gold-frame">
                         <div class="corner-deco top-left"></div>
