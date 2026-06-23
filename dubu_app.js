@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     openLookbook(39);
                 }, 150);
             }, 300);
-        } else if (initPath.endsWith('/artbook')) {
+        } else if (initPath.endsWith('/artbook') || initPath === getBasePath() + 'artbook') {
             setTimeout(() => {
                 openArtbookViewer();
             }, 300);
@@ -2679,7 +2679,7 @@ async function openArtbookViewer() {
     document.body.style.overflow = 'hidden';
 
     // 가상 라우팅 (디저트 화보집 전용 경로)
-    history.pushState({ page: 'artbook' }, '', '/artbook');
+    history.pushState({ page: 'artbook' }, '', getBasePath() + 'artbook');
 
     // 페이드인 클래스 추가
     setTimeout(() => {
@@ -2862,7 +2862,7 @@ function closeArtbookViewer(isFromPopstate = false) {
     document.body.style.overflow = '';
 
     if (window.location.pathname.endsWith('/artbook')) {
-        history.replaceState({ page: 'home' }, '', '/');
+        history.replaceState({ page: 'home' }, '', getBasePath());
     } else if (!isFromPopstate) {
         history.back(); // 가상 라우팅 원복
     }
