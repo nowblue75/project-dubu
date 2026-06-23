@@ -492,7 +492,7 @@ function openFocusStage(recipeId) {
             <div class="focus-stage-left">
                 <div class="focus-tag-top" style="font-family:'Playfair Display',serif; font-weight:600; letter-spacing:2px;">RECIPE FILE // Vol.${recipe.id}</div>
                 <div class="focus-img-wrapper" style="height:62%; margin-top:20px; border-radius:14px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.5);">
-                    <img src="${recipe.img.startsWith('/') ? recipe.img : '/' + recipe.img}" alt="${recipe.title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.src='/assets/default_dubu.jpg'">
+                    <img src="${recipe.img.startsWith('/') ? recipe.img.slice(1) : recipe.img}" alt="${recipe.title}" style="width:100%; height:100%; object-fit:cover;" onerror="this.onerror=null; this.src='assets/default_dubu.jpg'">
                 </div>
                 <div class="focus-cheers-box" style="border-left-color:${theme.accentColor}; background:rgba(255,255,255,0.03); margin-top:15px; padding:10px 14px;">
                     <i class="fa-solid fa-quote-left" style="color:${theme.accentColor}; opacity:0.6; margin-bottom:6px; font-size:0.9rem;"></i>
@@ -2762,7 +2762,7 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
         if (isActive) {
             const matchedDir = matchedBook.folder;
             const images = matchedBook.images;
-            imgUrl = `/${matchedDir}/화보집/${images[0]}`;
+            imgUrl = `${matchedDir}/화보집/${images[0]}`;
             cardClass += ' active-card';
             // 임시로 클릭 시 얼럿 처리 (3단계에서 슬라이더 모달 연결 예정)
             const imgsJson = JSON.stringify(images).replace(/"/g, '&quot;');
@@ -2811,7 +2811,7 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
             visualStyle = `background-image: url('${imgUrl}'); background-size: contain; background-repeat: no-repeat; background-position: center; background-color: ${bgColor};`;
         } else {
             // 비활성(준비중)인 경우 디저트의 기본 이미지(p.img)를 백그라운드로 보여줌
-            imgUrl = p.img ? `/${p.img}` : '';
+            imgUrl = p.img ? `${p.img}` : '';
             cardClass += ' pending-card';
             visualStyle = `background-image: url('${imgUrl}');`;
         }
@@ -2948,14 +2948,14 @@ function openArtbookSlider(cardEl, recipeId, folderName, images) {
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
             
-            <div class="artbook-slide-item active" data-slide="1" style="background-image: url('/${folderName}/화보집/${images[0]}'); background-color: ${bgColor};">
-                <img src="/${folderName}/화보집/${images[0]}" class="mobile-artbook-img" alt="">
+            <div class="artbook-slide-item active" data-slide="1" style="background-image: url('${folderName}/화보집/${images[0]}'); background-color: ${bgColor};">
+                <img src="${folderName}/화보집/${images[0]}" class="mobile-artbook-img" alt="">
             </div>
-            <div class="artbook-slide-item" data-slide="2" style="background-image: url('/${folderName}/화보집/${images[1]}'); background-color: ${bgColor};">
-                <img src="/${folderName}/화보집/${images[1]}" class="mobile-artbook-img" alt="">
+            <div class="artbook-slide-item" data-slide="2" style="background-image: url('${folderName}/화보집/${images[1]}'); background-color: ${bgColor};">
+                <img src="${folderName}/화보집/${images[1]}" class="mobile-artbook-img" alt="">
             </div>
-            <div class="artbook-slide-item" data-slide="3" style="background-image: url('/${folderName}/화보집/${images[2]}'); background-color: ${bgColor};">
-                <img src="/${folderName}/화보집/${images[2]}" class="mobile-artbook-img" alt="">
+            <div class="artbook-slide-item" data-slide="3" style="background-image: url('${folderName}/화보집/${images[2]}'); background-color: ${bgColor};">
+                <img src="${folderName}/화보집/${images[2]}" class="mobile-artbook-img" alt="">
             </div>
             
             <div class="artbook-slider-dots">
