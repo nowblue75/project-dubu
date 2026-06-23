@@ -3118,6 +3118,54 @@ const PHOTOBOOKS = {
             "1.jpeg",
             "2.jpeg"
         ]
+    },
+    "39": {
+        "folder": "39. 순두부 쑥 찰떡브라우니_완",
+        "images": [
+            "0.jpeg",
+            "1.jpeg",
+            "2.jpeg"
+        ]
+    },
+    "40": {
+        "folder": "40. 순두부 흑임자테린_완",
+        "images": [
+            "0.jpeg",
+            "1.jpeg",
+            "2.jpeg"
+        ]
+    },
+    "41": {
+        "folder": "41. 순두부콩물 파운드케익_완",
+        "images": [
+            "0.jpeg",
+            "1.jpeg",
+            "2.jpeg"
+        ]
+    },
+    "42": {
+        "folder": "42. 순두부 찜케익_완",
+        "images": [
+            "0.jpeg",
+            "1.jpeg",
+            "2.jpeg"
+        ]
+    },
+    "43": {
+        "folder": "43. 순두부 레몬포슈에케익_완",
+        "images": [
+            "0.jpeg",
+            "1.jpeg",
+            "2.jpeg"
+        ]
+    },
+    "44": {
+        "folder": "44. 순두부 자색고구마 롤치즈스콘",
+        "images": [
+            "0.jpeg",
+            "1.jpeg",
+            "2.jpeg"
+        ]
     }
 };
 
