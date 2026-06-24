@@ -1007,37 +1007,54 @@ function downloadRecipeCard(title) {
     const btn = card.querySelector('button[onclick*="downloadRecipeCard"]');
     if (btn) btn.style.display = 'none';
     
-    // 스크롤 영역 찾아서 max-height 임시 제거
-    const scrollArea = card.querySelector('[style*="max-height"]');
-    const originalMaxHeight = scrollArea ? scrollArea.style.maxHeight : null;
-    const originalOverflow = scrollArea ? scrollArea.style.overflowY : null;
-    if (scrollArea) {
-        scrollArea.style.maxHeight = 'none';
-        scrollArea.style.overflowY = 'visible';
-    }
+    // 모든 스크롤 가능한 요소 찾아서 임시 해제
+    const allElements = card.querySelectorAll('*');
+    const scrollElements = [];
+    allElements.forEach(el => {
+        const style = window.getComputedStyle(el);
+        if (style.overflowY === 'auto' || style.overflowY === 'scroll' || 
+            style.overflow === 'auto' || style.overflow === 'scroll') {
+            scrollElements.push({
+                el: el,
+                maxHeight: el.style.maxHeight,
+                overflow: el.style.overflow,
+                overflowY: el.style.overflowY,
+                height: el.style.height
+            });
+            el.style.maxHeight = 'none';
+            el.style.height = 'auto';
+            el.style.overflow = 'visible';
+            el.style.overflowY = 'visible';
+        }
+    });
     
     html2canvas(card, {
         useCORS: true,
         allowTaint: true,
         scale: 2,
-        backgroundColor: '#FDFBF4'
+        backgroundColor: '#FDFBF4',
+        windowHeight: card.scrollHeight + 500
     }).then(canvas => {
         if (btn) btn.style.display = '';
-        if (scrollArea) {
-            scrollArea.style.maxHeight = originalMaxHeight;
-            scrollArea.style.overflowY = originalOverflow;
-        }
+        scrollElements.forEach(item => {
+            item.el.style.maxHeight = item.maxHeight;
+            item.el.style.overflow = item.overflow;
+            item.el.style.overflowY = item.overflowY;
+            item.el.style.height = item.height;
+        });
         const link = document.createElement('a');
         link.download = `프로젝트두부_${title}_레시피.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
     }).catch(err => {
         if (btn) btn.style.display = '';
-        if (scrollArea) {
-            scrollArea.style.maxHeight = originalMaxHeight;
-            scrollArea.style.overflowY = originalOverflow;
-        }
-        alert('이미지 저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+        scrollElements.forEach(item => {
+            item.el.style.maxHeight = item.maxHeight;
+            item.el.style.overflow = item.overflow;
+            item.el.style.overflowY = item.overflowY;
+            item.el.style.height = item.height;
+        });
+        alert('이미지 저장 중 오류가 발생했습니다.');
         console.error(err);
     });
 }
