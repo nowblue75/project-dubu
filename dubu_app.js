@@ -1000,7 +1000,29 @@ function closeRecipeCardModal() {
 }
 
 function downloadRecipeCard(title) {
-    alert(`💾 [레시피 저장 완료]\n\n"${title}" 맞춤 레시피 카드가 이미지 파일(PNG)로 다운로드 폴더에 저장되었습니다. 필요할 때 편하게 열어보며 베이킹에 활용해 보세요!`);
+    const modal = document.getElementById('recipe-card-modal');
+    const card = modal ? modal.querySelector('div') : null;
+    if (!card) return;
+    
+    const btn = card.querySelector('button[onclick*="downloadRecipeCard"]');
+    if (btn) btn.style.display = 'none';
+    
+    html2canvas(card, {
+        useCORS: true,
+        allowTaint: true,
+        scale: 2,
+        backgroundColor: '#FDFBF4'
+    }).then(canvas => {
+        if (btn) btn.style.display = '';
+        const link = document.createElement('a');
+        link.download = `프로젝트두부_${title}_레시피.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    }).catch(err => {
+        if (btn) btn.style.display = '';
+        alert('이미지 저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+        console.error(err);
+    });
 }
 
 function shareRecipe(event, title) {
