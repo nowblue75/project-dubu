@@ -1007,6 +1007,15 @@ function downloadRecipeCard(title) {
     const btn = card.querySelector('button[onclick*="downloadRecipeCard"]');
     if (btn) btn.style.display = 'none';
     
+    // 스크롤 영역 찾아서 max-height 임시 제거
+    const scrollArea = card.querySelector('[style*="max-height"]');
+    const originalMaxHeight = scrollArea ? scrollArea.style.maxHeight : null;
+    const originalOverflow = scrollArea ? scrollArea.style.overflowY : null;
+    if (scrollArea) {
+        scrollArea.style.maxHeight = 'none';
+        scrollArea.style.overflowY = 'visible';
+    }
+    
     html2canvas(card, {
         useCORS: true,
         allowTaint: true,
@@ -1014,12 +1023,20 @@ function downloadRecipeCard(title) {
         backgroundColor: '#FDFBF4'
     }).then(canvas => {
         if (btn) btn.style.display = '';
+        if (scrollArea) {
+            scrollArea.style.maxHeight = originalMaxHeight;
+            scrollArea.style.overflowY = originalOverflow;
+        }
         const link = document.createElement('a');
         link.download = `프로젝트두부_${title}_레시피.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
     }).catch(err => {
         if (btn) btn.style.display = '';
+        if (scrollArea) {
+            scrollArea.style.maxHeight = originalMaxHeight;
+            scrollArea.style.overflowY = originalOverflow;
+        }
         alert('이미지 저장 중 오류가 발생했습니다. 다시 시도해주세요.');
         console.error(err);
     });
