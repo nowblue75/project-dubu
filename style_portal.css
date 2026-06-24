@@ -1363,6 +1363,15 @@ footer {
         overflow-y: visible !important;
         min-height: 0 !important;
     }
+
+    /* 모바일 레시피 모달 이미지 숨김으로 공간 확보 */
+    .atelier-focus-board.magic-book-theme .focus-stage-left {
+        display: none !important;
+    }
+
+    .atelier-focus-board.magic-book-theme .focus-img-wrap {
+        display: none !important;
+    }
 }
 
 /* Navigation Badge/Pill Style */
