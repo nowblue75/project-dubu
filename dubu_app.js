@@ -1003,60 +1003,58 @@ function downloadRecipeCard(title) {
     const modal = document.getElementById('recipe-card-modal');
     const card = modal ? modal.querySelector('div') : null;
     if (!card) return;
+
+    // 카드 클론 생성
+    const clone = card.cloneNode(true);
     
-    const btn = card.querySelector('button[onclick*="downloadRecipeCard"]');
+    // 클론을 화면 밖 임시 컨테이너에 배치
+    const container = document.createElement('div');
+    container.style.cssText = `
+        position: fixed;
+        top: -99999px;
+        left: -99999px;
+        width: 400px;
+        background: #FDFBF4;
+        z-index: -1;
+    `;
+    
+    // 클론 안의 모든 스크롤/overflow 제거
+    clone.querySelectorAll('*').forEach(el => {
+        el.style.maxHeight = 'none';
+        el.style.height = 'auto';
+        el.style.overflow = 'visible';
+        el.style.overflowY = 'visible';
+        el.style.overflowX = 'visible';
+    });
+    
+    // 다운로드 버튼 숨기기
+    const btn = clone.querySelector('button[onclick*="downloadRecipeCard"]');
     if (btn) btn.style.display = 'none';
     
-    // 모든 스크롤 가능한 요소 찾아서 임시 해제
-    const allElements = card.querySelectorAll('*');
-    const scrollElements = [];
-    allElements.forEach(el => {
-        const style = window.getComputedStyle(el);
-        if (style.overflowY === 'auto' || style.overflowY === 'scroll' || 
-            style.overflow === 'auto' || style.overflow === 'scroll') {
-            scrollElements.push({
-                el: el,
-                maxHeight: el.style.maxHeight,
-                overflow: el.style.overflow,
-                overflowY: el.style.overflowY,
-                height: el.style.height
-            });
-            el.style.maxHeight = 'none';
-            el.style.height = 'auto';
-            el.style.overflow = 'visible';
-            el.style.overflowY = 'visible';
-        }
-    });
+    container.appendChild(clone);
+    document.body.appendChild(container);
     
-    html2canvas(card, {
-        useCORS: true,
-        allowTaint: true,
-        scale: 2,
-        backgroundColor: '#FDFBF4',
-        windowHeight: card.scrollHeight + 500
-    }).then(canvas => {
-        if (btn) btn.style.display = '';
-        scrollElements.forEach(item => {
-            item.el.style.maxHeight = item.maxHeight;
-            item.el.style.overflow = item.overflow;
-            item.el.style.overflowY = item.overflowY;
-            item.el.style.height = item.height;
+    // 렌더링 대기 후 캡처
+    setTimeout(() => {
+        html2canvas(clone, {
+            useCORS: true,
+            allowTaint: true,
+            scale: 2,
+            backgroundColor: '#FDFBF4',
+            width: clone.scrollWidth,
+            height: clone.scrollHeight
+        }).then(canvas => {
+            document.body.removeChild(container);
+            const link = document.createElement('a');
+            link.download = `프로젝트두부_${title}_레시피.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }).catch(err => {
+            document.body.removeChild(container);
+            alert('이미지 저장 중 오류가 발생했습니다.');
+            console.error(err);
         });
-        const link = document.createElement('a');
-        link.download = `프로젝트두부_${title}_레시피.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-    }).catch(err => {
-        if (btn) btn.style.display = '';
-        scrollElements.forEach(item => {
-            item.el.style.maxHeight = item.maxHeight;
-            item.el.style.overflow = item.overflow;
-            item.el.style.overflowY = item.overflowY;
-            item.el.style.height = item.height;
-        });
-        alert('이미지 저장 중 오류가 발생했습니다.');
-        console.error(err);
-    });
+    }, 300);
 }
 
 function shareRecipe(event, title) {
