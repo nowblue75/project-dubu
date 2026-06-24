@@ -1299,6 +1299,44 @@ footer {
         font-size: 0.68rem !important;
         padding: 3px 8px !important;
     }
+
+    /* 모바일 레시피 모달 레이아웃 최적화 */
+    .atelier-focus-board.magic-book-theme .focus-stage-left,
+    .atelier-focus-board.magic-book-theme .focus-img-wrap {
+        max-height: 180px !important;
+        min-height: 150px !important;
+    }
+
+    .atelier-focus-board.magic-book-theme .focus-img-wrap img {
+        height: 180px !important;
+        object-fit: cover !important;
+    }
+
+    .atelier-focus-board.magic-book-theme .focus-stage-right h2 {
+        font-size: 1.1rem !important;
+        margin-bottom: 4px !important;
+    }
+
+    .atelier-focus-board.magic-book-theme .focus-meta-row {
+        margin-bottom: 4px !important;
+        font-size: 0.8rem !important;
+    }
+
+    .atelier-focus-board.magic-book-theme .focus-tab-btn {
+        padding: 6px 8px !important;
+        font-size: 0.78rem !important;
+    }
+
+    .atelier-focus-board.magic-book-theme .focus-action-btn,
+    .atelier-focus-board.magic-book-theme .focus-blog-btn {
+        padding: 8px !important;
+        font-size: 0.82rem !important;
+        margin-top: 4px !important;
+    }
+
+    .atelier-focus-board.magic-book-theme .focus-stage-right {
+        padding: 10px !important;
+    }
 }
 
 /* Navigation Badge/Pill Style */
