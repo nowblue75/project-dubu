@@ -1004,57 +1004,73 @@ function downloadRecipeCard(title) {
     const card = modal ? modal.querySelector('div') : null;
     if (!card) return;
 
-    // 카드 클론 생성
-    const clone = card.cloneNode(true);
+    const imgEl = card.querySelector('img');
     
-    // 클론을 화면 밖 임시 컨테이너에 배치
-    const container = document.createElement('div');
-    container.style.cssText = `
-        position: fixed;
-        top: -99999px;
-        left: -99999px;
-        width: 400px;
-        background: #FDFBF4;
-        z-index: -1;
-    `;
-    
-    // 클론 안의 모든 스크롤/overflow 제거
-    clone.querySelectorAll('*').forEach(el => {
-        el.style.maxHeight = 'none';
-        el.style.height = 'auto';
-        el.style.overflow = 'visible';
-        el.style.overflowY = 'visible';
-        el.style.overflowX = 'visible';
-    });
-    
-    // 다운로드 버튼 숨기기
-    const btn = clone.querySelector('button[onclick*="downloadRecipeCard"]');
-    if (btn) btn.style.display = 'none';
-    
-    container.appendChild(clone);
-    document.body.appendChild(container);
-    
-    // 렌더링 대기 후 캡처
-    setTimeout(() => {
-        html2canvas(clone, {
-            useCORS: true,
-            allowTaint: true,
-            scale: 2,
-            backgroundColor: '#FDFBF4',
-            width: clone.scrollWidth,
-            height: clone.scrollHeight
-        }).then(canvas => {
-            document.body.removeChild(container);
-            const link = document.createElement('a');
-            link.download = `프로젝트두부_${title}_레시피.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        }).catch(err => {
-            document.body.removeChild(container);
-            alert('이미지 저장 중 오류가 발생했습니다.');
-            console.error(err);
+    const doCapture = () => {
+        const clone = card.cloneNode(true);
+        const container = document.createElement('div');
+        container.style.cssText = `
+            position: fixed;
+            top: -99999px;
+            left: -99999px;
+            width: 400px;
+            background: #FDFBF4;
+            z-index: -1;
+        `;
+        clone.querySelectorAll('*').forEach(el => {
+            el.style.maxHeight = 'none';
+            el.style.height = 'auto';
+            el.style.overflow = 'visible';
+            el.style.overflowY = 'visible';
+            el.style.overflowX = 'visible';
         });
-    }, 300);
+        const btn = clone.querySelector('button[onclick*="downloadRecipeCard"]');
+        if (btn) btn.style.display = 'none';
+        container.appendChild(clone);
+        document.body.appendChild(container);
+
+        setTimeout(() => {
+            html2canvas(clone, {
+                useCORS: true,
+                allowTaint: true,
+                scale: 2,
+                backgroundColor: '#FDFBF4',
+                width: clone.scrollWidth,
+                height: clone.scrollHeight,
+                logging: false
+            }).then(canvas => {
+                document.body.removeChild(container);
+                const link = document.createElement('a');
+                link.download = `프로젝트두부_${title}_레시피.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).catch(err => {
+                document.body.removeChild(container);
+                alert('이미지 저장 중 오류가 발생했습니다.');
+                console.error(err);
+            });
+        }, 500);
+    };
+
+    // 이미지를 base64로 변환 후 캡처
+    if (imgEl && imgEl.src) {
+        fetch(imgEl.src)
+            .then(res => res.blob())
+            .then(blob => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    imgEl.src = reader.result;
+                    doCapture();
+                };
+                reader.readAsDataURL(blob);
+            })
+            .catch(() => {
+                // fetch 실패시 그냥 캡처
+                doCapture();
+            });
+    } else {
+        doCapture();
+    }
 }
 
 function shareRecipe(event, title) {
