@@ -3145,6 +3145,31 @@ function initArtbookSliderEvents() {
         }, 600); // 휠 디바운스
     }, { passive: false });
 
+    // 3. 모바일 터치 스와이프 이벤트
+    let touchStartX = 0;
+    let touchStartY = 0;
+    
+    overlay.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    overlay.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        const diffX = touchStartX - touchEndX;
+        const diffY = Math.abs(touchStartY - e.changedTouches[0].clientY);
+        
+        // 수평 스와이프가 수직보다 클 때만 처리
+        if (Math.abs(diffX) > 50 && Math.abs(diffX) > diffY) {
+            if (diffX > 0) {
+                changeArtbookSliderPage(1);  // 왼쪽으로 스와이프 → 다음
+            } else {
+                changeArtbookSliderPage(-1); // 오른쪽으로 스와이프 → 이전
+            }
+        }
+    }, { passive: true });
+
     // 2. 키보드 이벤트 감지
     const handleKeyDown = (e) => {
         if (!document.getElementById('artbook-slider-overlay')) {
