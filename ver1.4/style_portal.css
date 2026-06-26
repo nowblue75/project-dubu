@@ -1298,7 +1298,7 @@ footer {
     .focus-diff-pill, .focus-yield-pill {
         font-size: 0.68rem !important;
         padding: 3px 8px !important;
-     }
+    }
 
     /* 모바일 레시피 모달 레이아웃 최적화 */
     .atelier-focus-board.magic-book-theme .focus-stage-left,
