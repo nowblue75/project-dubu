@@ -1407,12 +1407,6 @@ footer {
         background: var(--magic-book-bg, #f5f0e8) !important;
         border-top: 1px solid rgba(197,160,89,0.3) !important;
     }
-
-    .artbook-slider-overlay,
-    .artbook-slider-container {
-        padding-bottom: 80px !important;
-        box-sizing: border-box !important;
-    }
 }
 
 /* Navigation Badge/Pill Style */
@@ -4847,7 +4841,7 @@ footer {
         min-height: 100% !important;
         display: flex !important;
         flex-direction: column !important;
-        padding: 60px 0 20px 0 !important;
+        padding: 60px 0 100px 0 !important;
         box-sizing: border-box !important;
     }
     
