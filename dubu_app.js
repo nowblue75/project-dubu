@@ -115,19 +115,28 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => scrollObserver.observe(section));
 
     // 최초 진입 시 URL 라우팅 처리 (/lookbook/34 및 /artbook 대응)
-    // 로컬 개발 환경(localhost, 127.0.0.1) 및 로컬 파일(file:) 환경에서는 개발 편의성을 위해 자동 팝업 라우팅을 제외합니다.
-    const initPath = window.location.pathname;
+    // 404.html 리다이렉트가 동작했을 경우 쿼리 파라미터(?redirect=)에서 가상 경로 복구
+    const redirectRoute = urlParams.get('redirect');
+    
+    let activePath = window.location.pathname;
+    if (redirectRoute) {
+        activePath = redirectRoute;
+        // 브라우저 주소창을 깔끔하게 복구 (예: /project-dubu/artbook)
+        const cleanRoute = redirectRoute.replace(/^\//, '');
+        window.history.replaceState(null, null, getBasePath() + cleanRoute);
+    }
+
     const isLocalEnv = ['localhost', '127.0.0.1'].includes(window.location.hostname) || window.location.protocol === 'file:';
 
     if (!isLocalEnv) {
-        if (initPath.endsWith('/lookbook/34')) {
+        if (activePath.endsWith('/lookbook/34') || activePath.endsWith('/lookbook/34/')) {
             setTimeout(() => {
                 openFocusStage(34);
                 setTimeout(() => {
                     openLookbook(34);
                 }, 150);
             }, 300);
-        } else if (initPath.endsWith('/artbook') || initPath === getBasePath() + 'artbook') {
+        } else if (activePath.endsWith('/artbook') || activePath.endsWith('/artbook/') || activePath === getBasePath() + 'artbook') {
             setTimeout(() => {
                 openArtbookViewer();
             }, 300);
