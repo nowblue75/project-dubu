@@ -9,6 +9,49 @@
 // 1. 디저트 메인 데이터베이스 (각 고유의 '베이킹 DNA 속성' 및 '물성 식감 카테고리' 매핑)
 const PROJECTS = [
     {
+        "id": 39,
+        "title": "순두부 자색고구마 롤치즈스콘",
+        "noOven": false,
+        "noFlour": false,
+        "noButter": false,
+        "oneBowl": true,
+        "desc": "자색고구마의 달콤하고 고소한 반죽에 롤치즈가 콕콕 박혀 담백하게 즐기는 웰빙 스콘.",
+        "path": "44. 순두부 자색고구마 롤치즈스콘/index.html",
+        "img": "44. 순두부 자색고구마 롤치즈스콘/1.jpg",
+        "calcPath": "44. 순두부 자색고구마 롤치즈스콘/calculator/index.html",
+        "isInteractive": true,
+        "blogUrl": "https://blog.naver.com/project_dubu/224333893071",
+        "categories": [
+            "teatime"
+        ],
+        "pairing": "따뜻한 우유 또는 홍차",
+        "time": "35분",
+        "emotionalQuote": "자색고구마와 롤치즈의 담백하고 든든한 만남! 💜",
+        "troubleShoot": ""
+    },
+    {
+        "id": 38,
+        "title": "순두부 르뱅쿠키",
+        "noOven": false,
+        "noFlour": false,
+        "noButter": false,
+        "oneBowl": true,
+        "desc": "물기 짠 순두부를 곱게 갈아 중력분과 강력분을 배합해 겉바속쫀하게 구워낸 르뱅 스타일 쿠키. 큼직한 다크 초코칩과 고소한 견과류가 듬뿍 들어간 8개 분량의 든든한 디저트입니다.",
+        "path": "29. 순두부 르뱅쿠키_완/index.html",
+        "img": "29. 순두부 르뱅쿠키_완/0.jpg",
+        "isInteractive": true,
+        "blogUrl": "https://blog.naver.com/project_dubu/224148501012",
+        "categories": [
+            "gift",
+            "teatime",
+            "fudgy"
+        ],
+        "pairing": "따뜻한 아메리카노 또는 깔끔한 홍차",
+        "time": "45분",
+        "emotionalQuote": "하룻밤 푹 재운 반죽이 선사하는 바삭함 and 쫀득함의 완벽한 밸런스! 🍪",
+        "troubleShoot": "Q. 쿠키가 너무 납작하게 퍼지고 르뱅쿠키 특유의 두툼함이 안 살아요!<br>A. [냉장 휴지의 마법 팁] 반죽 후 냉장실에서 최소 12시간, 가능하면 하룻밤 충분히 휴지시켜주어야 구울 때 버터가 급격히 녹아 퍼지는 것을 방지할 수 있습니다. 굽기 직전 차가운 상태로 오븐에 넣는 것을 잊지 마세요!"
+    },
+    {
         "id": 37,
         "title": "순두부 레몬포슈에케익",
         "noOven": false,
@@ -31,49 +74,6 @@ const PROJECTS = [
         "emotionalQuote": "뜨거울 때 시럽을 흠뻑 적셔 맛의 결을 바꿉니다. 하루 숙성하면 더 깊어지는 레몬의 향긋함! 🍋",
         "troubleShoot": "Q. 시럽이 겉돌고 속까지 잘 스며들지 않아요.<br>A. [뜨거울 때 포슈에 & 꼬치 구멍 팁] 케이크를 오븐에서 꺼내자마자 뜨거운 상태일 때 꼬치로 구멍을 1~2개 뚫고 레몬 시럽을 부어주셔야 합니다. 식은 뒤에는 시럽이 잘 스며들지 않고 겉돌게 되니 꼭 오븐에서 꺼내자마자 즉시 작업을 진행해 주세요.",
         "isNew": true
-    },
-    {
-        "id": 38,
-        "title": "순두부 르뱅쿠키",
-        "noOven": false,
-        "noFlour": false,
-        "noButter": false,
-        "oneBowl": true,
-        "desc": "물기 짠 순두부를 곱게 갈아 중력분과 강력분을 배합해 겉바속쫀하게 구워낸 르뱅 스타일 쿠키. 큼직한 다크 초코칩과 고소한 견과류가 듬뿍 들어간 8개 분량의 든든한 디저트입니다.",
-        "path": "29. 순두부 르뱅쿠키_완/index.html",
-        "img": "29. 순두부 르뱅쿠키_완/0.jpg",
-        "isInteractive": true,
-        "blogUrl": "https://blog.naver.com/project_dubu/224148501012",
-        "categories": [
-            "gift",
-            "teatime",
-            "fudgy"
-        ],
-        "pairing": "따뜻한 아메리카노 또는 깔끔한 홍차",
-        "time": "45분",
-        "emotionalQuote": "하룻밤 푹 재운 반죽이 선사하는 바삭함과 쫀득함의 완벽한 밸런스! 🍪",
-        "troubleShoot": "Q. 쿠키가 너무 납작하게 퍼지고 르뱅쿠키 특유의 두툼함이 안 살아요!<br>A. [냉장 휴지의 마법 팁] 반죽 후 냉장실에서 최소 12시간, 가능하면 하룻밤 충분히 휴지시켜주어야 구울 때 버터가 급격히 녹아 퍼지는 것을 방지할 수 있습니다. 굽기 직전 차가운 상태로 오븐에 넣는 것을 잊지 마세요!"
-    },
-    {
-        "id": 39,
-        "title": "순두부 자색고구마 롤치즈스콘",
-        "noOven": false,
-        "noFlour": false,
-        "noButter": false,
-        "oneBowl": true,
-        "desc": "자색고구마의 달콤하고 고소한 반죽에 롤치즈가 콕콕 박혀 담백하게 즐기는 웰빙 스콘.",
-        "path": "44. 순두부 자색고구마 롤치즈스콘/index.html",
-        "img": "44. 순두부 자색고구마 롤치즈스콘/1.jpg",
-        "calcPath": "44. 순두부 자색고구마 롤치즈스콘/calculator/index.html",
-        "isInteractive": true,
-        "blogUrl": "https://blog.naver.com/project_dubu/224333893071",
-        "categories": [
-            "teatime"
-        ],
-        "pairing": "따뜻한 우유 또는 홍차",
-        "time": "35분",
-        "emotionalQuote": "자색고구마와 롤치즈의 담백하고 든든한 만남! 💜",
-        "troubleShoot": ""
     },
     {
         "id": 36,
@@ -3205,9 +3205,9 @@ const PHOTOBOOKS = {
     "44": {
         "folder": "44. 순두부 자색고구마 롤치즈스콘",
         "images": [
-            "1.jpg",
-            "2.jpg",
-            "3.jpg"
+            "0.jpeg",
+            "1.jpeg",
+            "2.jpeg"
         ]
     }
 };
