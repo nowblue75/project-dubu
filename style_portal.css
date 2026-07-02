@@ -2644,13 +2644,18 @@ footer {
     }
     .magazine-title {
         font-family: 'Noto Serif KR', serif !important;
-        font-size: 1.7rem !important;
+        font-size: 1.45rem !important;
         color: #ffffff !important;
         font-weight: 700 !important;
         margin-bottom: 8px !important;
         letter-spacing: 0.5px !important;
         z-index: 2 !important;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+        word-break: keep-all !important;
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical !important;
+        -webkit-line-clamp: 3 !important;
+        overflow: hidden !important;
     }
 
     /* 터치 보조용 좌우 내비게이션 버튼 */

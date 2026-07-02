@@ -1867,11 +1867,10 @@ function renderBookshelf() {
     const isMobile = window.innerWidth <= 900;
 
     function buildMagazineCardHtml(p, index) {
-        const shortTitle = p.title.replace('순두부 ','').replace('순두부','');
         return `
             <div class="magazine-card" onclick="openFocusStage(${p.id})">
                 <div class="magazine-card-img">
-                    <img src="${getBasePath() + encodeURI(p.img)}" alt="${shortTitle}" onerror="console.warn('실패없는 베이킹노트 모바일 이미지 로드 실패:', this.src)" style="width:100%; height:100%; object-fit:cover;">
+                    <img src="${getBasePath() + encodeURI(p.img)}" alt="${p.title}" onerror="console.warn('실패없는 베이킹노트 모바일 이미지 로드 실패:', this.src)" style="width:100%; height:100%; object-fit:cover;">
                 </div>
                 <div class="magazine-card-overlay">
                     <div class="magazine-gold-frame">
@@ -1882,7 +1881,7 @@ function renderBookshelf() {
                     </div>
                     <div class="magazine-content">
                         <div class="magazine-vol">RECIPE FILE // VOL.${p.id}</div>
-                        <h3 class="serif magazine-title">${shortTitle}</h3>
+                        <h3 class="serif magazine-title">${p.title}</h3>
                     </div>
                 </div>
             </div>`;
@@ -1958,7 +1957,7 @@ function renderBookshelf() {
 
                 <!-- 페이지 카운터 -->
                 <div class="magazine-counter" id="magazine-counter">
-                    Vol.${sorted[0] ? sorted[0].id : 1} / 38
+                    Vol.${sorted[0] ? sorted[0].id : 1} / ${sorted.length}
                 </div>
 
                 <!-- 푸터 -->
@@ -1984,7 +1983,7 @@ function renderBookshelf() {
                     const safeIndex = Math.max(0, Math.min(sorted.length - 1, index));
                     const activeProject = sorted[safeIndex];
                     if (activeProject) {
-                        counter.innerText = `Vol.${activeProject.id} / 38`;
+                        counter.innerText = `Vol.${activeProject.id} / ${sorted.length}`;
                     }
                 });
             }
