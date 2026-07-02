@@ -114,17 +114,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => scrollObserver.observe(section));
 
-    // 최초 진입 시 URL 라우팅 처리 (/lookbook/39 및 /artbook 대응)
+    // 최초 진입 시 URL 라우팅 처리 (/lookbook/34 및 /artbook 대응)
     // 로컬 개발 환경(localhost, 127.0.0.1) 및 로컬 파일(file:) 환경에서는 개발 편의성을 위해 자동 팝업 라우팅을 제외합니다.
     const initPath = window.location.pathname;
     const isLocalEnv = ['localhost', '127.0.0.1'].includes(window.location.hostname) || window.location.protocol === 'file:';
 
     if (!isLocalEnv) {
-        if (initPath.endsWith('/lookbook/39')) {
+        if (initPath.endsWith('/lookbook/34')) {
             setTimeout(() => {
-                openFocusStage(39);
+                openFocusStage(34);
                 setTimeout(() => {
-                    openLookbook(39);
+                    openLookbook(34);
                 }, 150);
             }, 300);
         } else if (initPath.endsWith('/artbook') || initPath === getBasePath() + 'artbook') {
@@ -1213,6 +1213,12 @@ function renderAccordionArtbook() {
 
     // 1. 아코디언 전용 스타일 및 크리에이터 노트 매핑 데이터
     const accordionMetaMap = {
+        39: {
+            creatorsNote: "자색고구마의 달콤하고 고소한 반죽에 롤치즈가 콕콕 박혀 담백하게 즐기는 웰빙 스콘.",
+            themeColor: "#452c50",
+            themeGlow: "rgba(69, 44, 80, 0.15)",
+            accentColor: "#BB8FCE"
+        },
         38: {
             creatorsNote: "큼직한 다크 초코칩과 고소한 견과류가 아낌없이 들어가 겉바속쫀한 묵직한 르뱅 스타일 쿠키.",
             themeColor: "#5c3c24",
@@ -1258,9 +1264,9 @@ function renderAccordionArtbook() {
     };
 
     // 2. PROJECTS에서 최신 5개 동적 추출 (과거 -> 최신 정렬)
-    const latestFive = PROJECTS.sort((a, b) => b.id - a.id)
-                               .slice(0, 5)
-                               .reverse();
+    const latestFive = [...PROJECTS].sort((a, b) => b.id - a.id)
+                                  .slice(0, 5)
+                                  .reverse();
 
     // 3. activeRecipes 배열 동적 매핑
     const activeRecipes = latestFive.map(p => {
@@ -1287,17 +1293,18 @@ function renderAccordionArtbook() {
     // 4. 커밍순 카드 추가
     activeRecipes.push({
         id: 'coming-soon',
-        title: "순두부 자색고구마 롤치즈스콘",
+        title: "다음 디저트 레시피",
         comingSoonSubtitle: `Vol.${comingSoonVol} Coming Soon`,
         img: "",
-        creatorsNote: "자색고구마의 달콤하고 고소한 반죽에 롤치즈가 콕콕 박혀 담백하게 즐기는 웰빙 스콘이 곧 찾아옵니다.",
-        themeColor: "#6C3483",
-        themeGlow: "rgba(108, 52, 131, 0.15)",
-        accentColor: "#BB8FCE",
+        creatorsNote: "더욱 맛있고 건강한 다음 순두부 디저트 레시피가 곧 찾아옵니다. 기대해 주세요!",
+        themeColor: "#7B6F55",
+        themeGlow: "rgba(123, 111, 85, 0.15)",
+        accentColor: "#F5E6C8",
         isComingSoon: true
     });
 
     const specsData = {
+        39: { texture: "담백하고 고소함", wellness: "자색고구마·롤치즈 듬뿍", method: "180℃ 오븐 구움" },
         38: { texture: "겉바속쫀하고 든든함", wellness: "초코칩·견과류 가득 (8개 분량)", method: "170℃ 오븐 구움" },
         37: { texture: "촉촉하고 부드러움", wellness: "레몬 시럽 코팅, 비타민C 가득", method: "170℃ 오븐 구움" },
         36: { texture: "쫀득하고 촉촉함", wellness: "No밀가루, No버터, No오븐", method: "찜기 50분 찌기" },
@@ -2200,9 +2207,9 @@ const LOOKBOOK_DB = {
         completeTitle: "순두부 황치즈 휘낭시에 완성",
         drinks: ["따뜻한 아메리카노", "보리차", "흰 우유", "아이스 라떼"]
     },
-    39: {
+    34: {
         title: "순두부 흑임자 테린",
-        subtitle: "RECIPE ARCHIVE // Vol.39",
+        subtitle: "RECIPE ARCHIVE // Vol.34",
         images: [
             "40. 순두부 흑임자테린/assets/01.png",
             "40. 순두부 흑임자테린/assets/07.png",
@@ -2228,15 +2235,15 @@ const LOOKBOOK_DB = {
 
 let lookbookCurrentPage = 1;
 const lookbookTotalPages = 4;
-let currentLookbookRecipeId = 39;
+let currentLookbookRecipeId = 34;
 
 function openLookbook(recipeId) {
     recipeId = Number(recipeId);
     
-    // 1그룹(1~5) 및 39번 이외의 레시피는 준비중 처리
-    const allowedIds = [1, 2, 3, 4, 5, 39];
+    // 1그룹(1~5) 및 34번 이외의 레시피는 준비중 처리
+    const allowedIds = [1, 2, 3, 4, 5, 34];
     if (!allowedIds.includes(recipeId)) {
-        alert('Vol.' + recipeId + ' 레시피 룩북은 준비 중입니다. 1그룹(Vol.1~5)과 Vol.39(흑임자테린) 룩북을 감상해 보세요!');
+        alert('Vol.' + recipeId + ' 레시피 룩북은 준비 중입니다. 1그룹(Vol.1~5)과 Vol.34(흑임자테린) 룩북을 감상해 보세요!');
         return;
     }
 
@@ -2572,8 +2579,7 @@ function renderQuickNavigator(currentRecipeId, forcedGroupIdx = null) {
         const recipe = PROJECTS.find(p => p.id === id);
         if (!recipe) continue;
 
-        const isCurrent = id === currentRecipeId;
-        const allowedIds = [1, 2, 3, 4, 5, 39];
+        const allowedIds = [1, 2, 3, 4, 5, 34];
         const isReady = allowedIds.includes(id);
 
         itemsHtml.push(`
@@ -2602,7 +2608,7 @@ function onQuickGroupSelectChange(selectEl, currentRecipeId) {
 
 function onQuickRecipeClick(recipeId, isReady) {
     if (!isReady) {
-        alert('Vol.' + recipeId + ' 레시피 룩북은 준비 중입니다. 1그룹(Vol.1~5)과 Vol.39(흑임자테린) 룩북을 감상해 보세요!');
+        alert('Vol.' + recipeId + ' 레시피 룩북은 준비 중입니다. 1그룹(Vol.1~5)과 Vol.34(흑임자테린) 룩북을 감상해 보세요!');
         return;
     }
     openLookbook(recipeId);
