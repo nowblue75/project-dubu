@@ -61,12 +61,12 @@ const PROJECTS = [
         "noFlour": false,
         "noButter": false,
         "oneBowl": true,
-        "desc": "자색고구마의 달콤하고 고소한 반죽에 롤치즈가 콕콕 박혀 담백하게 즐기는 웰빙 스콘. 다음 주 정식 포스팅 후 레시피가 업데이트됩니다.",
+        "desc": "자색고구마의 달콤하고 고소한 반죽에 롤치즈가 콕콕 박혀 담백하게 즐기는 웰빙 스콘.",
         "path": "44. 순두부 자색고구마 롤치즈스콘/index.html",
         "img": "44. 순두부 자색고구마 롤치즈스콘/0.jpeg",
         "calcPath": "44. 순두부 자색고구마 롤치즈스콘/calculator/index.html",
-        "isInteractive": false,
-        "blogUrl": "",
+        "isInteractive": true,
+        "blogUrl": "https://blog.naver.com/project_dubu/224333893071",
         "categories": [
             "teatime"
         ],

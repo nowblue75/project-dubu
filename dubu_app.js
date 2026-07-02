@@ -1257,9 +1257,8 @@ function renderAccordionArtbook() {
         }
     };
 
-    // 2. PROJECTS에서 자색고구마(id: 39)를 제외한 실질적 완성작 중 최신 5개 동적 추출 (과거 -> 최신 정렬)
-    const latestFive = PROJECTS.filter(p => p.id !== 39)
-                               .sort((a, b) => b.id - a.id)
+    // 2. PROJECTS에서 최신 5개 동적 추출 (과거 -> 최신 정렬)
+    const latestFive = PROJECTS.sort((a, b) => b.id - a.id)
                                .slice(0, 5)
                                .reverse();
 
@@ -1832,8 +1831,8 @@ function renderBookshelf() {
     const section = document.getElementById('archive');
     if (!section) return;
 
-    // 1. 오래된 순 정렬 (1 -> 38)
-    const sorted = [...PROJECTS].filter(p => p.id !== 39).sort((a, b) => a.id - b.id);
+    // 1. 오래된 순 정렬 (1 -> 39)
+    const sorted = [...PROJECTS].sort((a, b) => a.id - b.id);
     const isMobile = window.innerWidth <= 768;
 
     function buildMagazineCardHtml(p, index) {
