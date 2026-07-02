@@ -697,6 +697,7 @@ function updateTimelineProgress(timelineContainer, totalSteps) {
 // 5. 역비례 & 다중 앵커 양방향 비례 연산 (Atelier Scale)
 // ==========================================================================
 const BASE_YIELDS = {
+    39: { template: "자색고구마 롤치즈스콘 {x}개 분량 💜", baseCount: 8 },
     38: { template: "르뱅쿠키 {x}개 분량 🍪", baseCount: 8 },
     37: { template: "미니 번트틀 6구 2개 (총 12개) + 오란다 대 1개 기준 {x}배 분량 🍋", baseCount: 1 },
     36: { template: "찜케이크 1호 {x}개 분량 🧧", baseCount: 1 },
