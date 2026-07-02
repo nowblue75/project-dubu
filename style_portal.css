@@ -2648,10 +2648,12 @@ footer {
         color: #ffffff !important;
         font-weight: 700 !important;
         margin-bottom: 8px !important;
-        letter-spacing: 0.5px !important;
+        letter-spacing: -0.3px !important;
+        line-height: 1.4 !important;
         z-index: 2 !important;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
         word-break: keep-all !important;
+        overflow-wrap: break-word !important;
         display: -webkit-box !important;
         -webkit-box-orient: vertical !important;
         -webkit-line-clamp: 3 !important;
