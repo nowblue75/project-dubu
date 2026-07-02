@@ -143,6 +143,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // 실패없는 베이킹노트 (책장/매거진 뷰) 전환을 위한 스마트 리사이즈 리스너
+    let wasMobile = window.innerWidth <= 900;
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const isNowMobile = window.innerWidth <= 900;
+            if (wasMobile !== isNowMobile) {
+                wasMobile = isNowMobile;
+                renderBookshelf();
+            }
+        }, 150);
+    });
+
 });
 
 // ==========================================================================
@@ -1850,13 +1864,15 @@ function renderBookshelf() {
 
     // 1. 오래된 순 정렬 (1 -> 39)
     const sorted = [...PROJECTS].sort((a, b) => a.id - b.id);
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = window.innerWidth <= 900;
 
     function buildMagazineCardHtml(p, index) {
         const shortTitle = p.title.replace('순두부 ','').replace('순두부','');
         return `
             <div class="magazine-card" onclick="openFocusStage(${p.id})">
-                <div class="magazine-card-img" style="background-image: url('${getBasePath() + encodeURI(p.img)}');"></div>
+                <div class="magazine-card-img">
+                    <img src="${getBasePath() + encodeURI(p.img)}" alt="${shortTitle}" onerror="console.warn('실패없는 베이킹노트 모바일 이미지 로드 실패:', this.src)" style="width:100%; height:100%; object-fit:cover;">
+                </div>
                 <div class="magazine-card-overlay">
                     <div class="magazine-gold-frame">
                         <div class="corner-deco top-left"></div>

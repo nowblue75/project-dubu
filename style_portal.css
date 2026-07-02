@@ -2445,7 +2445,7 @@ footer {
 }
 
 /* 반응형 */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .archive-section {
         display: block !important;
         width: 100% !important;
@@ -2563,8 +2563,12 @@ footer {
     .magazine-card-img {
         width: 100% !important;
         height: 100% !important;
-        background-size: cover !important;
-        background-position: center center !important;
+        overflow: hidden !important;
+    }
+    .magazine-card-img img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
     }
 
     /* 카드 콘텐츠 오버레이 */
