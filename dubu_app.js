@@ -1318,13 +1318,13 @@ function renderAccordionArtbook() {
     // 4. 커밍순 카드 추가
     activeRecipes.push({
         id: 'coming-soon',
-        title: "순두부 황도코코넛컵",
+        title: "다음 디저트 레시피",
         comingSoonSubtitle: `Vol.${comingSoonVol} Coming Soon`,
-        img: "48. 순두부 황도코코넛컵/순두부 황도코코넛컵 공정과정 (0).jpg",
-        creatorsNote: "상큼한 황도와 고소한 코코넛이 순두부와 부드럽게 어우러진 여름철 웰빙 컵 디저트가 곧 찾아옵니다! 🍑",
-        themeColor: "#E67E22",
-        themeGlow: "rgba(230, 126, 34, 0.15)",
-        accentColor: "#F1C40F",
+        img: "",
+        creatorsNote: "더욱 맛있고 건강한 다음 순두부 디저트 레시피가 곧 찾아옵니다. 기대해 주세요!",
+        themeColor: "#7B6F55",
+        themeGlow: "rgba(123, 111, 85, 0.15)",
+        accentColor: "#F5E6C8",
         isComingSoon: true
     });
 
@@ -1345,7 +1345,7 @@ function renderAccordionArtbook() {
         const specs = specsData[p.id] || { texture: "???", wellness: "???", method: "???" };
 
         const bgStyle = p.isComingSoon 
-            ? `background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.65) 100%), url('${getBasePath() + encodeURI(p.img)}'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; flex-direction: column;` 
+            ? `background: linear-gradient(135deg, #1A1C1E 0%, #0D0E10 100%); display: flex; align-items: center; justify-content: center; flex-direction: column;` 
             : `background-image: url('${getBasePath() + encodeURI(p.img)}');`;
 
         const comingSoonOverlay = p.isComingSoon 
