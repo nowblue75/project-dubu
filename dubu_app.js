@@ -1317,23 +1317,24 @@ function renderAccordionArtbook() {
     // 4. 커밍순 카드 추가
     activeRecipes.push({
         id: 'coming-soon',
-        title: "다음 디저트 레시피",
+        title: "순두부 황도코코넛컵",
         comingSoonSubtitle: `Vol.${comingSoonVol} Coming Soon`,
-        img: "",
-        creatorsNote: "더욱 맛있고 건강한 다음 순두부 디저트 레시피가 곧 찾아옵니다. 기대해 주세요!",
-        themeColor: "#7B6F55",
-        themeGlow: "rgba(123, 111, 85, 0.15)",
-        accentColor: "#F5E6C8",
+        img: "48. 순두부 황도코코넛컵/순두부 황도코코넛컵 공정과정 (0).jpg",
+        creatorsNote: "상큼한 황도와 고소한 코코넛이 순두부와 부드럽게 어우러진 여름철 웰빙 컵 디저트가 곧 찾아옵니다! 🍑",
+        themeColor: "#E67E22",
+        themeGlow: "rgba(230, 126, 34, 0.15)",
+        accentColor: "#F1C40F",
         isComingSoon: true
     });
 
     const specsData = {
+        40: { texture: "단짠의 바삭 고소함", wellness: "쌈장의 깊은 감칠맛", method: "190℃ 오븐 구움" },
         39: { texture: "담백하고 고소함", wellness: "자색고구마·롤치즈 듬뿍", method: "180℃ 오븐 구움" },
         38: { texture: "겉바속쫀하고 든든함", wellness: "초코칩·견과류 가득 (8개 분량)", method: "170℃ 오븐 구움" },
         37: { texture: "촉촉하고 부드러움", wellness: "레몬 시럽 코팅, 비타민C 가득", method: "170℃ 오븐 구움" },
         36: { texture: "쫀득하고 촉촉함", wellness: "No밀가루, No버터, No오븐", method: "찜기 50분 찌기" },
         35: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 구움" },
-        34: { texture: "꾸덕함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
+        34: { texture: "꾸다운함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
         33: { texture: "쫀득함", wellness: "No버터, 비건 지향", method: "160℃ 오븐 구움" },
         32: { texture: "바삭하고 달콤함", wellness: "No버터, 볶은 순두부", method: "165℃ 오븐 구움" }
     };
@@ -1343,7 +1344,7 @@ function renderAccordionArtbook() {
         const specs = specsData[p.id] || { texture: "???", wellness: "???", method: "???" };
 
         const bgStyle = p.isComingSoon 
-            ? `background: linear-gradient(135deg, #1A1C1E 0%, #0D0E10 100%); display: flex; align-items: center; justify-content: center; flex-direction: column;` 
+            ? `background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.65) 100%), url('${getBasePath() + encodeURI(p.img)}'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; flex-direction: column;` 
             : `background-image: url('${getBasePath() + encodeURI(p.img)}');`;
 
         const comingSoonOverlay = p.isComingSoon 
