@@ -2848,7 +2848,7 @@ function renderArtbookMainGrid(viewer, activePhotobooks) {
             <button class="artbook-close-btn" onclick="closeArtbookViewer()">&times;</button>
             
             <div class="artbook-header">
-                <h1 class="artbook-title serif">DESSERT ARTBOOK</h1>
+                <h1 class="artbook-title serif">디저트 화보북</h1>
                 <p class="artbook-subtitle">프로젝트 두부 프리미엄 디지털 화보집 아카이브</p>
             </div>
 
