@@ -499,8 +499,8 @@ function openFocusStage(recipeId) {
     const hasTrouble = rawTrouble.includes('Q.') && rawTrouble.includes('A.');
     if (hasTrouble) {
         const parts = rawTrouble.split('<br>');
-        const q = (parts[0] || '').replace('Q.', '').trim();
-        const a = (parts[1] || '').replace('A.', '').trim();
+        const q = (parts[0] || '').replace(/^Q\.\s*/, '').trim();
+        const a = parts.slice(1).join('<br>').replace(/^A\.\s*/, '').trim();
         troubleHtml = `
             <div class="fc-qa-q"><span class="fc-qa-badge fc-qa-q-badge" style="background:#e53935;">Q</span>${q}</div>
             <div class="fc-qa-a" style="border-color:${theme.themeColor};"><span class="fc-qa-badge" style="background:${theme.themeColor};">A</span>${a}</div>`;
@@ -898,7 +898,7 @@ function getRecipeMetadata(recipeId) {
         } else if (recipe.id === 37) {
             bakingTip = "오븐 예열 180℃ / 35분 (식힌 후 홍차시럽 코팅)";
             cheers = "홍차의 은은한 향과 레몬 제스트의 상큼함이 입안 가득 번지는, 가볍고 촉촉한 원볼 베이킹의 진수를 만나보세요! 🍰";
-        } else if (recipe.id === 42) {
+        } else if (recipe.id === 41) {
             bakingTip = "오븐 예열 190~200℃ / 22~25분 (저온숙성 12~16시간 필요)";
             cheers = "밀가루를 익혀 만든 탕종과 저온숙성, 순두부가 만나 다음 날 데워 먹어도 갓 구운 듯 촉촉쫄깃함이 유지됩니다! 🧄";
         }
