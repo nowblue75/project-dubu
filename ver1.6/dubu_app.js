@@ -185,37 +185,41 @@ function renderDashboard() {
     const eventsContainer = document.getElementById('events-container');
     if (!eventsContainer) return;
 
-    // THEMES 데이터가 있으면 사용, 없으면 기본 매핑
-    const themeList = (typeof THEMES !== 'undefined') ? THEMES : [];
+    const eventList = (typeof EVENTS !== 'undefined') ? EVENTS : [];
 
-    if (themeList.length === 0) {
+    if (eventList.length === 0) {
         eventsContainer.innerHTML = '<p style="color:#aaa;text-align:center;">이벤트 데이터 로딩 중...</p>';
         return;
     }
 
-    // 태그 배지 색상 매핑
-    const tagColors = {
-        romantic:    { badge: '#e91e63', badgeBg: 'rgba(233,30,99,0.9)'   },
-        traditional: { badge: '#8d5524', badgeBg: 'rgba(141,85,36,0.9)'   },
-        halloween:   { badge: '#e65100', badgeBg: 'rgba(50,20,0,0.88)'    },
-        christmas:   { badge: '#1b5e20', badgeBg: 'rgba(15,60,20,0.9)'    }
+    // 이벤트별 테마 색상 및 아이콘 이미지 매핑
+    const eventMeta = {
+        valentine:  { badge: '#e91e63', badgeBg: 'rgba(233,30,99,0.9)',   engTitle: 'Romantic Holiday',       img: '36. 순두부화이트바크초콜릿_완/0.jpeg', tag: 'Valentine'       },
+        whiteday:   { badge: '#e91e63', badgeBg: 'rgba(233,30,99,0.9)',   engTitle: 'Sweet White Day',         img: '37. 순두부녹차요거트파운드케익_완/0.jpeg', tag: 'White Day'    },
+        family:     { badge: '#43a047', badgeBg: 'rgba(30,90,30,0.88)',   engTitle: 'Family & Gratitude',      img: '39. 순두부 쑥 찰떡브라우니_완/0.jpeg', tag: 'Family Month'  },
+        holidays:   { badge: '#8d5524', badgeBg: 'rgba(141,85,36,0.9)',   engTitle: 'Korean Traditional',      img: '40. 순두부 흑임자테린_완/0.jpeg', tag: 'Harvest & Thanks' },
+        halloween:  { badge: '#e65100', badgeBg: 'rgba(50,20,0,0.88)',    engTitle: 'Halloween Night',         img: '33. 순두부 미니초코케익_완/0.jpeg', tag: 'Halloween'      },
+        pepero:     { badge: '#c62828', badgeBg: 'rgba(60,10,10,0.88)',   engTitle: 'Pepero Day',              img: '35. 순두부초코마들렌_완/0.jpeg', tag: 'Pepero Day'       },
+        sooneung:   { badge: '#1565c0', badgeBg: 'rgba(10,30,80,0.88)',   engTitle: 'CSAT Cheers',             img: '32. 순두부찰떡파이_완/0.jpeg', tag: 'CSAT Day'          },
+        christmas:  { badge: '#1b5e20', badgeBg: 'rgba(15,60,20,0.9)',    engTitle: 'Christmas Collection',    img: '22. 순두부 부쉬드노엘_완/0.jpeg', tag: 'Christmas'       }
     };
 
-    eventsContainer.innerHTML = themeList.map((theme, index) => {
-        const tc = tagColors[theme.id] || { badge: '#333', badgeBg: 'rgba(30,30,30,0.85)' };
+    eventsContainer.innerHTML = eventList.map((ev, index) => {
+        const meta = eventMeta[ev.id] || { badge: '#555', badgeBg: 'rgba(30,30,30,0.85)', engTitle: ev.title, img: '', tag: ev.month };
+        const imgSrc = getBasePath() + encodeURI(meta.img);
         return `
             <div class="season-event-card fade-in-up"
-                 style="animation-delay:${index * 0.12}s; border: 2.5px solid ${tc.badge};"
-                 onclick="openTheme('${theme.id}')">
+                 style="animation-delay:${index * 0.12}s; border: 2.5px solid ${meta.badge};"
+                 onclick="location.href='${getBasePath() + encodeURI(ev.path)}'">
                 <div class="season-card-img-wrap">
-                    <img src="${getBasePath() + encodeURI(theme.img)}" alt="${theme.title}" loading="lazy"
+                    <img src="${imgSrc}" alt="${ev.title}" loading="lazy"
                          onerror="this.onerror=null; this.parentNode.style.background='#f0ece5'">
-                    <span class="season-card-badge" style="background:${tc.badgeBg};">${theme.tag}</span>
+                    <span class="season-card-badge" style="background:${meta.badgeBg};">${meta.tag}</span>
                 </div>
                 <div class="season-card-footer">
                     <div class="season-card-info">
-                        <span class="season-card-icon">${theme.icon}</span>
-                        <span class="season-card-title">${theme.engTitle}</span>
+                        <span class="season-card-icon">${ev.icon}</span>
+                        <span class="season-card-title">${meta.engTitle}</span>
                     </div>
                     <span class="season-card-arrow">→</span>
                 </div>
