@@ -728,6 +728,55 @@ var EVENTS = [
     }
 ];
 
+
+var THEMES = [
+    {
+        "id": "romantic",
+        "title": "발렌타인데이",
+        "engTitle": "Romantic Holiday",
+        "desc": "초콜릿과 부드러운 크림이 흘러 넘치는 달콤하고 로맨틱한 테마.",
+        "icon": "💝",
+        "bgClass": "theme-romantic-bg",
+        "img": "36. 순두부화이트바크초콜릿_완/0.jpeg",
+        "tag": "Valentine"
+    },
+    {
+        "id": "traditional",
+        "title": "명절 (설/추석)",
+        "engTitle": "Korean Traditional",
+        "desc": "오래된 전통 감성과 고소함이 깃든 명절 테마.",
+        "icon": "🧧",
+        "bgClass": "theme-traditional-bg",
+        "img": "40. 순두부 흑임자테린_완/0.jpeg",
+        "tag": "Harvest & Thanks"
+    },
+    {
+        "id": "halloween",
+        "title": "할로윈 데이",
+        "engTitle": "Halloween Night",
+        "desc": "짜릿한 공포와 달콤한 초콜릿이 뒤섞이는 미스터리 테마.",
+        "icon": "🎃",
+        "bgClass": "theme-halloween-bg",
+        "img": "33. 순두부 미니초코케익_완/0.jpeg",
+        "tag": "Halloween"
+    },
+    {
+        "id": "christmas",
+        "title": "성탄절 시리즈",
+        "engTitle": "Christmas Collection",
+        "desc": "눈 내리는 크리스마스를 닮은 고소하고 따뜻한 홀리데이 테마.",
+        "icon": "🎄",
+        "bgClass": "theme-christmas-bg",
+        "img": "22. 순두부 부쉬드노엘_완/0.jpeg",
+        "tag": "Christmas"
+    }
+];
+
+if (typeof window !== 'undefined') {
+    window.THEMES = THEMES;
+}
+
+
 var INGREDIENT_DICT = {
     "1": [
         {
