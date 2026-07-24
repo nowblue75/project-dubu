@@ -3992,6 +3992,13 @@ var PHOTOBOOKS = {
         ]
     },
     "41": {
+        "folder": "6. 순두부갈릭포카치아_완",
+        "images": [
+            "0.jpeg",
+            "1.jpeg",
+            "2.jpeg",
+            "3.jpeg"
+        ],
         "cover": "6. 순두부갈릭포카치아_완/화보집/0.jpeg",
         "pages": [
             {

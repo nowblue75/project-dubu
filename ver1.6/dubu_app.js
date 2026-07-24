@@ -1320,12 +1320,11 @@ function renderAccordionArtbook() {
     const maxId = Math.max(...activeRecipes.filter(r => r.id !== 'coming-soon').map(r => r.id));
 
     const specsData = {
-        42: { texture: "겉바속촉 쫄깃함", wellness: "올리브오일 & 바삭한 마늘 칩", method: "190~200℃ 오븐 구움" },
-        41: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 베이킹" },
-        40: { texture: "꾸덕하고 촉촉함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
-        39: { texture: "쫀득함", wellness: "No버터, 비건 지향", method: "160℃ 오븐 구움" },
-        38: { texture: "겉은 바삭, 속은 쫄깃함", wellness: "은은한 홍차 향, 레몬 글레이즈", method: "190℃ 오븐 베이킹" },
-        37: { texture: "묵직하고 촉촉함", wellness: "진한 녹차 향 & 요거트 조합", method: "170℃ 오븐 베이킹" }
+        41: { texture: "겉바속촉 쫄깃함", wellness: "올리브오일 & 바삭한 마늘 칩", method: "190~200℃ 오븐 구움" },
+        40: { texture: "단짠의 바삭 고소함", wellness: "태운 브라운버터 & 쌈장", method: "190℃ 오븐 구움" },
+        39: { texture: "담백하고 고소함", wellness: "자색고구마 & 롤치즈", method: "170℃ 오븐 구움" },
+        38: { texture: "새콤달콤 촉촉함", wellness: "레몬 포슈에 시럽", method: "180℃ 오븐 베이킹" },
+        37: { texture: "쫀득하고 촉촉함", wellness: "우유 & 찹쌀가루 찜", method: "찜기 찜베이킹" }
     };
 
     container.innerHTML = activeRecipes.map((p, idx) => {
