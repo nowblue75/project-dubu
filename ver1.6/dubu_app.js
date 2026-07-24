@@ -1,11 +1,11 @@
 // 프로젝트 두부: 포털 핵심 애플리케이션 스크립트 (v16.0 Rebranding)
 
 function getBasePath() {
-    const host = window.location.hostname;
+    const host = (window.location && window.location.hostname) ? window.location.hostname : '';
     if (host.includes('github.io')) {
         return '/project-dubu/';
     }
-    return '/';
+    return './';
 }
 
 let heroSlideIndex = 0;

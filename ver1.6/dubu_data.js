@@ -3,7 +3,7 @@
  * Premium Digital Archive - Static Database Module (v1.0)
  */
 
-const PROJECTS = [
+var PROJECTS = [
     {
         "id": 41,
         "title": "순두부 갈릭 포카치아",
@@ -656,7 +656,7 @@ const PROJECTS = [
     }
 ];
 
-const INGREDIENT_DICT = {
+var INGREDIENT_DICT = {
     "1": [
         {
             "name": "순두부 (물기 꽉 짠 것)",
@@ -2474,7 +2474,7 @@ const INGREDIENT_DICT = {
     ]
 };
 
-const RECIPE_STEPS_DB = {
+var RECIPE_STEPS_DB = {
     "1": [
         {
             "time": "15분",
@@ -3616,7 +3616,7 @@ const RECIPE_STEPS_DB = {
     ]
 };
 
-const PHOTOBOOKS = {
+var PHOTOBOOKS = {
     "1": {
         "folder": "1. 순두부크림치즈_완",
         "images": [
@@ -3906,3 +3906,10 @@ const PHOTOBOOKS = {
         ]
     }
 };
+
+if (typeof window !== 'undefined') {
+    window.PROJECTS = PROJECTS;
+    window.INGREDIENT_DICT = INGREDIENT_DICT;
+    window.RECIPE_STEPS_DB = RECIPE_STEPS_DB;
+    window.PHOTOBOOKS = PHOTOBOOKS;
+}
