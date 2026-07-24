@@ -1,3 +1,7 @@
+/* ========================================================
+   🗺️ ChapterSelect.css - 햇살 비치는 부엌 위 챕터 레시피 지도
+   ======================================================== */
+
 .chapter-select-container {
   width: 860px;
   height: 640px;
@@ -8,20 +12,23 @@
   flex-direction: column;
   gap: 15px;
   border-radius: 24px;
+  background: var(--color-bg-base);
+  border: 2px solid var(--paper-border-strong);
+  box-shadow: 0 16px 40px rgba(58, 36, 24, 0.25);
 }
 
 .select-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px dashed rgba(252, 231, 170, 0.2);
+  border-bottom: 2px dashed var(--paper-border-strong);
   padding-bottom: 12px;
 }
 
 .select-title {
   margin: 0;
   font-size: 1.4rem;
-  color: var(--color-butter);
+  color: var(--color-text-primary);
 }
 
 /* 40개 챕터 확장 대응 세로 스크롤 영역 */
@@ -35,14 +42,15 @@
 }
 
 .chapter-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-card-bg);
+  border: 1.5px solid var(--paper-border-strong);
   border-radius: 16px;
   padding: 16px 20px;
   display: flex;
   align-items: center;
   gap: 18px;
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: var(--paper-shadow);
 }
 
 .chapter-card.playable {
@@ -50,36 +58,38 @@
 }
 
 .chapter-card.playable:hover {
-  background: rgba(252, 231, 170, 0.08);
-  border-color: var(--color-butter);
+  background: #FDF6EB;
+  border-color: var(--color-accent);
   transform: translateX(6px);
+  box-shadow: var(--paper-shadow-hover);
 }
 
 /* 완료 상태 (Completed) */
 .chapter-card.completed {
-  border-left: 5px solid var(--color-leaf);
-  background: rgba(141, 166, 116, 0.08);
+  border-left: 6px solid var(--color-success);
+  background: #F2F6F0;
 }
 
 /* 진행 중 상태 (Unlocked) */
 .chapter-card.unlocked {
-  border-left: 5px solid var(--color-crust);
-  background: rgba(191, 126, 61, 0.08);
+  border-left: 6px solid var(--color-accent);
+  background: #FDF4E3;
 }
 
 /* 잠김 상태 (Locked) */
 .chapter-card.locked {
-  opacity: 0.45;
+  opacity: 0.55;
   border-style: dashed;
   cursor: not-allowed;
+  background: #E2D0B2;
 }
 
 .card-left {
   width: 60px;
   height: 60px;
-  background: rgba(0, 0, 0, 0.3);
+  background: #FDF6EB;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--paper-border-strong);
   flex-shrink: 0;
   overflow: hidden;
 }
@@ -110,7 +120,7 @@
 .card-chapter-title {
   margin: 0;
   font-size: 1.15rem;
-  color: var(--color-butter);
+  color: var(--color-text-primary);
 }
 
 .status-badge {
@@ -121,26 +131,26 @@
 }
 
 .status-badge.completed {
-  background: rgba(141, 166, 116, 0.25);
-  color: #a4c48c;
-  border: 1px solid var(--color-leaf);
+  background: #E2EBE0;
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
 }
 
 .status-badge.unlocked {
-  background: rgba(217, 93, 57, 0.25);
-  color: #f6ad55;
-  border: 1px solid #f6ad55;
+  background: #FDF4E3;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
 }
 
 .status-badge.locked {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-card-bg);
   color: var(--color-text-muted);
 }
 
 .card-subtitle {
   margin: 0;
   font-size: 0.88rem;
-  color: var(--color-text-light);
+  color: var(--color-text-primary);
   font-weight: 600;
 }
 

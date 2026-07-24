@@ -1,10 +1,16 @@
+/* ========================================================
+   📜 RecipeBook.css - 햇살 비치는 스승의 레시피북
+   ======================================================== */
+
 .recipe-book-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(15, 8, 5, 0.85);
+  background: rgba(43, 31, 21, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 100;
   padding: 20px;
 }
@@ -17,16 +23,19 @@
   flex-direction: column;
   gap: 15px;
   border-radius: 24px;
+  background: var(--color-bg-base);
+  border: 2px solid var(--paper-border-strong);
+  box-shadow: 0 16px 40px rgba(58, 36, 24, 0.3);
 }
 
 .mentor-avatar-frame {
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  border: 3px solid var(--color-butter);
+  border: 3px solid var(--color-accent);
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(252, 231, 170, 0.4);
-  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 18px rgba(88, 58, 38, 0.2);
+  background: var(--color-card-bg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,24 +51,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px dashed rgba(252, 231, 170, 0.2);
+  border-bottom: 2px dashed var(--paper-border-strong);
   padding-bottom: 12px;
 }
 
 .nav-back-btn {
-  background: transparent;
-  color: var(--color-text-muted);
-  border: 1px solid rgba(255, 221, 153, 0.2);
+  background: var(--color-card-bg);
+  color: var(--color-text-primary);
+  border: 1px solid var(--paper-border-strong);
   border-radius: 8px;
-  padding: 6px 12px;
+  padding: 6px 14px;
   cursor: pointer;
   font-family: var(--font-game);
   font-size: 0.85rem;
+  font-weight: bold;
 }
 
 .nav-back-btn:hover {
-  color: var(--color-butter);
-  border-color: var(--color-butter);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: #FDF6EB;
 }
 
 .nav-placeholder {
@@ -69,14 +80,14 @@
 .book-title {
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--color-butter);
+  color: var(--color-text-primary);
 }
 
 .affection-badge {
-  background: rgba(217, 93, 57, 0.2);
-  color: var(--color-strawberry);
-  border: 1px solid rgba(217, 93, 57, 0.3);
-  padding: 4px 10px;
+  background: #FDF4E3;
+  color: var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+  padding: 4px 12px;
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: bold;
@@ -98,28 +109,12 @@
   margin-bottom: 5px;
 }
 
-.mentor-avatar {
-  width: 90px;
-  height: 90px;
-  background: radial-gradient(circle, #ffdd99 0%, #d9a05b 100%);
-  border-radius: 50%;
-  border: 4px solid var(--color-butter);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.avatar-emoji {
-  font-size: 3rem;
-}
-
 .mentor-name-tag {
   font-weight: 700;
-  color: var(--color-butter);
-  font-size: 1rem;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(252, 231, 170, 0.3);
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  background: var(--color-card-bg);
+  border: 1px solid var(--paper-border-strong);
   padding: 4px 14px;
   border-radius: 12px;
   margin-top: 4px;
@@ -128,22 +123,22 @@
 
 .dialogue-bubble {
   width: 100%;
-  background: rgba(245, 237, 227, 0.08);
-  border: 1px solid rgba(252, 231, 170, 0.2);
+  background: #FDF6EB;
+  border: 1.5px solid var(--paper-border-strong);
   padding: 18px 24px;
   border-radius: 16px;
   min-height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 2px 4px rgba(88, 58, 38, 0.06);
 }
 
 .dialogue-text {
   font-size: 1.1rem;
   line-height: 1.6;
   text-align: center;
-  color: var(--color-text-light);
+  color: var(--color-text-primary);
   margin: 0;
   word-break: keep-all;
 }

@@ -1,5 +1,5 @@
 /* ========================================================
-   🍮 BakingTable.css - Potion Craft Style 3-Panel Grid Layout
+   🍮 BakingTable.css - 햇살 비치는 부엌 위 3-패널 레시피북
    ======================================================== */
 
 .baking-table-container {
@@ -13,7 +13,7 @@
   overflow: hidden;
 }
 
-/* 🛡️ 상단 헤더: 고정 규격 Potion Craft 탭 */
+/* 🛡️ 상단 헤더: 고정 규격 탭 */
 .baking-header {
   width: 100%;
   height: 64px;
@@ -22,8 +22,9 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 16px;
-  background: var(--color-surface-panel);
-  border: 1px solid var(--glass-border);
+  background: var(--color-bg-secondary);
+  border: 1.5px solid var(--paper-border-strong);
+  box-shadow: var(--paper-shadow);
   flex-shrink: 0;
 }
 
@@ -34,12 +35,12 @@
 .header-nav-btn {
   height: 42px;
   padding: 0 16px;
-  background: rgba(58, 42, 29, 0.8);
-  border: 1px solid var(--glass-border);
+  background: var(--color-card-bg);
+  border: 1px solid var(--paper-border-strong);
   border-radius: 10px;
-  color: var(--color-text-main);
+  color: var(--color-text-primary);
   font-family: var(--font-game);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
   white-space: nowrap;
@@ -47,9 +48,9 @@
 }
 
 .header-nav-btn:hover {
-  background: var(--color-surface-card);
-  border-color: var(--color-amber-gold);
-  color: #fff;
+  background: #FDF6EB;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .chapter-badge {
@@ -57,15 +58,15 @@
   flex-direction: column;
   justify-content: center;
   padding: 4px 16px;
-  background: rgba(23, 13, 8, 0.6);
-  border: 1px solid var(--glass-border);
+  background: #E8D5B7;
+  border: 1px solid var(--paper-border-strong);
   border-radius: 10px;
   max-width: 220px;
 }
 
 .ch-num {
   font-size: 0.7rem;
-  color: var(--color-amber-gold);
+  color: var(--color-accent);
   font-family: var(--font-english);
   font-weight: 800;
   letter-spacing: 1px;
@@ -74,18 +75,18 @@
 .ch-title {
   font-size: 0.9rem;
   font-weight: 700;
-  color: var(--color-text-main);
+  color: var(--color-text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* 상단 탭 (활성 탭 3D 앰버 Glow 강조) */
+/* 상단 탭 (활성 탭 앰버 3D 하이라이트) */
 .header-tab-btn {
   height: 42px;
   padding: 0 18px;
-  background: rgba(38, 28, 20, 0.7);
-  border: 1px solid var(--glass-border);
+  background: var(--color-card-bg);
+  border: 1px solid var(--paper-border-strong);
   border-radius: 10px;
   color: var(--color-text-muted);
   font-family: var(--font-game);
@@ -93,19 +94,19 @@
   font-size: 0.9rem;
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s ease;
 }
 
 .header-tab-btn:hover {
-  color: var(--color-text-main);
-  border-color: var(--color-amber-gold);
+  color: var(--color-text-primary);
+  border-color: var(--color-accent);
 }
 
 .header-tab-btn.active {
-  background: linear-gradient(135deg, var(--color-amber-gold) 0%, var(--color-amber-dark) 100%);
-  color: #ffffff;
-  border: 1.5px solid var(--color-butter);
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.55), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  background: linear-gradient(135deg, var(--color-accent) 0%, #b45309 100%);
+  color: #FDF6EB;
+  border: 1.5px solid #FDF6EB;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
   transform: translateY(-2px);
 }
 
@@ -125,8 +126,9 @@
   display: flex;
   flex-direction: column;
   border-radius: 20px;
-  background: var(--color-surface-panel);
-  border: 1px solid var(--glass-border);
+  background: var(--color-bg-secondary);
+  border: 1.5px solid var(--paper-border-strong);
+  box-shadow: var(--paper-shadow);
   min-height: 0;
 }
 
@@ -134,23 +136,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1.5px dashed var(--glass-border);
+  border-bottom: 1.5px dashed var(--paper-border-strong);
   padding-bottom: 12px;
   margin-bottom: 14px;
 }
 
 .panel-title-bar h3 {
   margin: 0;
-  font-size: 1.1rem;
-  color: var(--color-butter);
+  font-size: 1.08rem;
+  color: var(--color-text-primary);
 }
 
 .ing-count-badge {
   font-size: 0.8rem;
-  color: var(--color-amber-gold);
-  background: rgba(0, 0, 0, 0.35);
+  color: var(--color-accent);
+  background: #E8D5B7;
+  border: 1px solid var(--paper-border);
   padding: 3px 10px;
   border-radius: 10px;
+  font-weight: 700;
 }
 
 /* 👈 좌측 패널: 보유 재료 선반 (Ingredients Shelf) */
@@ -167,8 +171,8 @@
 .ingredient-card {
   height: 110px;
   min-height: 110px;
-  background: var(--color-surface-card);
-  border: 1.5px solid var(--glass-border);
+  background: var(--color-card-bg);
+  border: 1.5px solid var(--paper-border-strong);
   border-radius: 14px;
   padding: 12px;
   display: flex;
@@ -177,25 +181,28 @@
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
+  box-shadow: 0 2px 8px rgba(88, 58, 38, 0.08);
 }
 
 .ingredient-card:hover {
   transform: translateY(-3px);
-  border-color: var(--color-amber-gold);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  border-color: var(--color-accent);
+  box-shadow: var(--paper-shadow-hover);
+  background: #FDF6EB;
 }
 
 .ingredient-card.selected {
-  border: 2px solid var(--color-butter);
-  background: linear-gradient(135deg, rgba(69, 50, 36, 0.95) 0%, rgba(55, 38, 25, 0.95) 100%);
-  box-shadow: 0 0 15px rgba(252, 231, 170, 0.4);
+  border: 2px solid var(--color-accent);
+  background: #FDF4E3;
+  box-shadow: 0 0 14px rgba(217, 119, 6, 0.28);
 }
 
 /* 사용 완료(Used) 카드 페이드아웃 및 툴팁 */
 .ingredient-card.used-up-dimmed {
-  opacity: 0.45;
-  filter: grayscale(40%);
-  border-color: rgba(168, 144, 122, 0.2);
+  opacity: 0.55;
+  filter: grayscale(30%);
+  border-color: var(--paper-border);
+  background: #E2D0B2;
 }
 
 .ingredient-card.used-up-dimmed:hover {
@@ -214,7 +221,7 @@
 }
 
 .selected-check {
-  color: var(--color-butter);
+  color: var(--color-accent);
   font-weight: bold;
   font-size: 1rem;
 }
@@ -228,7 +235,7 @@
 .ing-name {
   font-size: 0.88rem;
   font-weight: 700;
-  color: var(--color-text-main);
+  color: var(--color-text-primary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -241,7 +248,7 @@
 
 .used-tag {
   font-size: 0.72rem;
-  color: #f87171;
+  color: var(--color-warning);
   font-weight: 600;
 }
 
@@ -249,11 +256,11 @@
 .panel-center {
   justify-content: space-between;
   align-items: center;
-  background: radial-gradient(circle at 50% 50%, rgba(58, 42, 29, 0.6) 0%, rgba(27, 19, 13, 0.9) 100%);
+  background: radial-gradient(circle at 50% 45%, #FDF6EB 0%, var(--color-bg-secondary) 100%);
   position: relative;
 }
 
-/* 스승 대사 박스 슬롯 (고정 높이 68px로 위치 변형 방지!) */
+/* 스승 대사 박스 슬롯 (고정 높이 68px) */
 .mentor-dialogue-slot {
   width: 100%;
   min-height: 68px;
@@ -268,7 +275,7 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  border: 1.5px solid var(--color-butter);
+  border: 1.5px solid var(--color-accent);
   object-fit: cover;
 }
 
@@ -282,7 +289,7 @@
 
 .mentor-name {
   font-size: 0.78rem;
-  color: var(--color-amber-gold);
+  color: var(--color-accent);
   font-weight: bold;
 }
 
@@ -293,9 +300,10 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--color-text-primary) !important;
 }
 
-/* 오가닉 믹싱볼 뷰 */
+/* 믹싱볼 뷰 (따뜻한 레시피북 무드) */
 .mixing-bowl-stage {
   flex: 1;
   width: 100%;
@@ -303,12 +311,12 @@
 }
 
 .bowl-graphic {
-  width: 240px;
-  height: 240px;
+  width: 230px;
+  height: 230px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(69, 50, 36, 0.9) 0%, rgba(30, 20, 13, 0.98) 100%);
-  border: 4px solid var(--color-amber-dark);
-  box-shadow: 0 0 35px rgba(0, 0, 0, 0.6), inset 0 0 25px rgba(245, 158, 11, 0.25);
+  background: radial-gradient(circle, #FDF8F0 0%, #E8D5B7 100%);
+  border: 4px solid var(--paper-border-strong);
+  box-shadow: 0 8px 24px rgba(88, 58, 38, 0.15), inset 0 0 20px rgba(217, 119, 6, 0.1);
   position: relative;
 }
 
@@ -319,8 +327,8 @@
   right: -6px;
   bottom: -6px;
   border-radius: 50%;
-  border: 2px dashed var(--color-butter);
-  opacity: 0.4;
+  border: 2px dashed var(--color-accent);
+  opacity: 0.35;
 }
 
 .bowl-interior {
@@ -347,7 +355,7 @@
 
 .selected-in-bowl label {
   font-size: 0.8rem;
-  color: var(--color-butter);
+  color: var(--color-accent);
   font-weight: bold;
 }
 
@@ -355,7 +363,8 @@
 .feedback-bar {
   width: 100%;
   padding: 8px 16px;
-  background: rgba(0, 0, 0, 0.3);
+  background: #E8D5B7;
+  border: 1px solid var(--paper-border);
   border-radius: 10px;
   margin-bottom: 12px;
   flex-shrink: 0;
@@ -364,11 +373,12 @@
 .feedback-text {
   margin: 0;
   font-size: 0.85rem;
-  color: var(--color-text-main);
+  color: var(--color-text-primary);
   text-align: center;
+  font-weight: 600;
 }
 
-/* 중앙 조작 버튼부 (고정 크기 & 고정 위치) */
+/* 중앙 조작 버튼부 (고정 위치) */
 .workbench-actions {
   gap: 12px;
   width: 100%;
@@ -384,17 +394,18 @@
 .ready-bain-marie-btn, .ready-chilling-btn {
   height: 46px;
   padding: 0 24px;
-  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
-  border: 1.5px solid #6ee7b7;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, var(--color-success) 0%, #5b7253 100%);
+  border: 1.5px solid #a3b899;
+  box-shadow: 0 4px 14px rgba(124, 148, 115, 0.35);
+  color: #FDF6EB;
 }
 
 /* 📜 3. 우측 패널: 레시피 목표 & 수동 힌트 (Recipe & Hints) */
 .recipe-target-card {
   gap: 14px;
   padding: 12px;
-  background: var(--color-surface-card);
-  border: 1px solid var(--glass-border);
+  background: var(--color-card-bg);
+  border: 1px solid var(--paper-border-strong);
   border-radius: 14px;
   margin-bottom: 14px;
 }
@@ -404,13 +415,13 @@
   height: 64px;
   border-radius: 12px;
   object-fit: cover;
-  border: 1.5px solid var(--color-butter);
+  border: 1.5px solid var(--color-accent);
 }
 
 .target-info h4 {
   margin: 0 0 4px 0;
   font-size: 0.95rem;
-  color: var(--color-butter);
+  color: var(--color-text-primary);
 }
 
 .target-info p {
@@ -421,8 +432,8 @@
 }
 
 .manual-hint-card {
-  background: rgba(38, 28, 20, 0.7);
-  border: 1.5px solid var(--glass-border-light);
+  background: #FDF4E3;
+  border: 1.5px solid var(--paper-border-strong);
   border-radius: 14px;
   padding: 14px;
   margin-bottom: 14px;
@@ -436,7 +447,7 @@
 .hint-title {
   font-size: 0.88rem;
   font-weight: bold;
-  color: var(--color-amber-gold);
+  color: var(--color-accent);
 }
 
 .manual-hint-btn {
@@ -447,7 +458,7 @@
 .hint-body {
   margin: 0;
   font-size: 0.82rem;
-  color: var(--color-text-main);
+  color: var(--color-text-primary);
   line-height: 1.45;
 }
 
@@ -461,15 +472,15 @@
 .discovered-tray h4 {
   margin: 0;
   font-size: 0.88rem;
-  color: var(--color-butter);
+  color: var(--color-text-primary);
 }
 
 .discovered-item {
   gap: 12px;
   padding: 10px;
-  background: var(--color-surface-card);
+  background: var(--color-card-bg);
   border-radius: 12px;
-  border: 1px solid var(--glass-border);
+  border: 1px solid var(--paper-border-strong);
 }
 
 .d-emoji {
@@ -479,7 +490,7 @@
 .d-text strong {
   display: block;
   font-size: 0.85rem;
-  color: var(--color-text-main);
+  color: var(--color-text-primary);
 }
 
 .d-text p {

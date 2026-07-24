@@ -1,10 +1,16 @@
+/* ========================================================
+   ✨ CustomRecipeOvercome.css - 햇살 아래 커스텀 배합 극복
+   ======================================================== */
+
 .overcome-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(15, 8, 5, 0.85);
+  background: rgba(43, 31, 21, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 100;
   padding: 20px;
 }
@@ -17,6 +23,9 @@
   flex-direction: column;
   gap: 20px;
   border-radius: 24px;
+  background: var(--color-bg-base);
+  border: 2px solid var(--paper-border-strong);
+  box-shadow: 0 16px 40px rgba(58, 36, 24, 0.3);
 }
 
 .overcome-header {
@@ -25,15 +34,15 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  border-bottom: 1px dashed rgba(252, 231, 170, 0.2);
+  border-bottom: 2px dashed var(--paper-border-strong);
   padding-bottom: 15px;
 }
 
 .overcome-badge {
-  background: rgba(141, 166, 116, 0.2);
-  color: var(--color-leaf);
-  border: 1px solid var(--color-leaf);
-  padding: 4px 12px;
+  background: #E2EBE0;
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+  padding: 4px 14px;
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: bold;
@@ -42,7 +51,7 @@
 .overcome-title {
   margin: 0;
   font-size: 1.5rem;
-  color: var(--color-butter);
+  color: var(--color-text-primary);
 }
 
 .overcome-sub {
@@ -61,16 +70,16 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--color-card-bg);
+  border: 1px solid var(--paper-border-strong);
   padding: 12px 16px;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
 .form-label {
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--color-text-light);
+  color: var(--color-text-primary);
 }
 
 .label-with-val {
@@ -81,35 +90,36 @@
 
 .val-badge {
   font-size: 0.85rem;
-  color: var(--color-butter);
+  color: var(--color-accent);
   font-weight: bold;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 2px 8px;
+  background: #FDF6EB;
+  border: 1px solid var(--paper-border);
+  padding: 2px 10px;
   border-radius: 8px;
 }
 
 .custom-input {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid var(--glass-border);
+  background: #FDF6EB;
+  border: 1.5px solid var(--paper-border-strong);
   border-radius: 8px;
   padding: 10px 14px;
-  color: #fff;
+  color: var(--color-text-primary);
   font-family: var(--font-game);
   font-size: 0.95rem;
   outline: none;
 }
 
 .custom-input:focus {
-  border-color: var(--color-butter);
+  border-color: var(--color-accent);
 }
 
 .custom-range {
-  accent-color: var(--color-butter);
+  accent-color: var(--color-accent);
   cursor: pointer;
 }
 
 .range-hint {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   color: var(--color-text-muted);
 }
 
@@ -121,8 +131,8 @@
 
 .toggle-btn {
   flex: 1;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #FDF6EB;
+  border: 1px solid var(--paper-border-strong);
   color: var(--color-text-muted);
   padding: 8px;
   border-radius: 8px;
@@ -133,9 +143,9 @@
 }
 
 .toggle-btn.active {
-  background: rgba(252, 231, 170, 0.15);
-  border-color: var(--color-butter);
-  color: var(--color-butter);
+  background: #FDF4E3;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
   font-weight: bold;
 }
 

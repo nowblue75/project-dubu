@@ -1,7 +1,15 @@
+/* ========================================================
+   ❄️ ChillingGesture.css - 햇살 아래 차가운 냉장 휴지
+   ======================================================== */
+
 .chilling-gesture-container {
-  width: 620px;
+  width: 640px;
   height: 480px;
   padding: 30px;
+  background: var(--color-bg-base);
+  border: 2px solid var(--paper-border-strong);
+  box-shadow: 0 16px 40px rgba(58, 36, 24, 0.25);
+  border-radius: 24px;
 }
 
 .chilling-screen {
@@ -16,14 +24,14 @@
 
 .chilling-instruction {
   font-size: 1.25rem;
-  color: var(--color-butter);
+  color: var(--color-text-primary);
   margin: 0;
   line-height: 1.5;
   word-break: keep-all;
 }
 
 .gold-text {
-  color: #fef08a !important;
+  color: var(--color-accent) !important;
 }
 
 .chilling-desc {
@@ -35,18 +43,18 @@
 .refrigerator-graphic {
   width: 200px;
   height: 220px;
-  background: linear-gradient(135deg, #2b231d 0%, #1a1410 100%);
-  border: 3px solid #d97706;
+  background: linear-gradient(135deg, #E8D5B7 0%, #D8C29E 100%);
+  border: 3px solid var(--color-accent);
   border-radius: 18px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(245, 158, 11, 0.2);
+  box-shadow: 0 10px 25px rgba(88, 58, 38, 0.15);
   position: relative;
 }
 
 .fridge-door {
   width: 90%;
   height: 90%;
-  background: rgba(255, 255, 255, 0.03);
-  border: 2px solid rgba(245, 158, 11, 0.3);
+  background: #FDF6EB;
+  border: 2px solid var(--paper-border-strong);
   border-radius: 12px;
   position: relative;
 }
@@ -55,18 +63,18 @@
   width: 90px;
   height: 90px;
   border-radius: 16px;
-  border: 2px solid var(--color-butter);
+  border: 2px solid var(--color-accent);
   object-fit: cover;
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
+  box-shadow: 0 4px 12px rgba(88, 58, 38, 0.2);
 }
 
 .tiramisu-done-img {
   width: 130px;
   height: 130px;
   border-radius: 20px;
-  border: 3px solid var(--color-butter);
+  border: 3px solid var(--color-accent);
   object-fit: cover;
-  box-shadow: 0 0 25px rgba(252, 231, 170, 0.9);
+  box-shadow: 0 8px 20px rgba(217, 119, 6, 0.25);
 }
 
 .fridge-handle {
@@ -76,31 +84,23 @@
   transform: translateY(-50%);
   width: 8px;
   height: 60px;
-  background: #f59e0b;
+  background: var(--color-accent);
   border-radius: 4px;
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
 }
 
 .chill-action-btn {
-  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
   font-size: 1.1rem;
   padding: 14px 28px;
-  color: #fff;
-}
-
-.chill-action-btn:hover {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
 }
 
 /* Chilling Active Screen */
 .chilling-animation-area {
   width: 220px;
   height: 220px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, rgba(26, 20, 16, 0.9) 100%);
-  border: 3px solid #f59e0b;
+  background: radial-gradient(circle, #FDF4E3 0%, #E8D5B7 100%);
+  border: 3px solid var(--color-accent);
   border-radius: 50%;
-  box-shadow: 0 0 30px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 25px rgba(217, 119, 6, 0.25);
 }
 
 .frost-overlay {
@@ -114,9 +114,8 @@
 .chilling-countdown {
   font-size: 3.2rem;
   font-weight: bold;
-  color: var(--color-butter);
+  color: var(--color-accent);
   font-family: var(--font-english);
-  text-shadow: 0 0 12px rgba(252, 231, 170, 0.8);
 }
 
 .chill-sub-text {
@@ -127,6 +126,5 @@
 
 .tiramisu-perfect-preview {
   font-size: 5rem;
-  filter: drop-shadow(0 0 20px rgba(252, 231, 170, 0.9));
   margin: 20px 0;
 }

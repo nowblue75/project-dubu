@@ -1,77 +1,70 @@
+/* ========================================================
+   📖 RecipeJournal.css - 햇살이 비치는 부엌 위 디저트 도감
+   ======================================================== */
+
 .journal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(18, 12, 8, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(43, 31, 21, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 99999;
   padding: 20px;
 }
 
 .journal-panel {
-  width: 800px;
+  width: 840px;
   max-width: 95vw;
-  height: 650px;
+  height: 660px;
   max-height: 95vh;
   padding: 25px 30px;
   display: flex;
   flex-direction: column;
   gap: 15px;
   border-radius: 24px;
+  background: var(--color-bg-base);
+  border: 2px solid var(--paper-border-strong);
+  box-shadow: 0 16px 40px rgba(58, 36, 24, 0.3);
 }
 
 .journal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px dashed rgba(252, 231, 170, 0.2);
+  border-bottom: 2px dashed var(--paper-border-strong);
   padding-bottom: 12px;
 }
 
 .journal-title {
   margin: 0;
   font-size: 1.35rem;
-  color: var(--color-butter);
+  color: var(--color-text-primary);
 }
 
 .journal-stats {
   font-size: 0.9rem;
-  color: var(--color-text-muted);
-  background: rgba(0, 0, 0, 0.3);
-  padding: 4px 12px;
+  color: var(--color-text-primary);
+  background: var(--color-card-bg);
+  border: 1px solid var(--paper-border-strong);
+  padding: 4px 14px;
   border-radius: 12px;
+  font-weight: bold;
 }
 
 .journal-stats strong {
-  color: var(--color-butter);
-}
-
-.journal-progress-track {
-  width: 100%;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-top: -8px;
-}
-
-.journal-progress-bar {
-  height: 100%;
-  background: linear-gradient(90deg, #f6ad55 0%, #48bb78 50%, #ecc94b 100%);
-  border-radius: 4px;
-  transition: width 0.4s ease;
+  color: var(--color-accent);
 }
 
 .journal-content {
   flex: 1;
   overflow-y: auto;
-  padding-right: 5px;
+  padding-right: 6px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .chapter-section {
@@ -82,65 +75,59 @@
 
 .chapter-title {
   margin: 0;
-  font-size: 1.1rem;
-  color: var(--color-butter);
-  border-left: 4px solid var(--color-crust);
-  padding-left: 8px;
+  font-size: 1.05rem;
+  color: var(--color-accent);
+  border-left: 4px solid var(--color-accent);
+  padding-left: 10px;
 }
 
 .journal-card-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
 }
 
-/* Journal Card - Unlocked */
-.journal-card.unlocked {
-  background: rgba(255, 255, 255, 0.04);
-  border: 2px solid var(--color-butter);
-  border-radius: 16px;
+.journal-card {
+  background: var(--color-bg-secondary);
+  border: 1.5px solid var(--paper-border-strong);
+  border-radius: 18px;
   padding: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(252, 231, 170, 0.15);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 14px;
+  box-shadow: var(--paper-shadow);
 }
 
-.journal-card.ch2-card {
-  border-color: #a3d9ff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(163, 217, 255, 0.2);
+.journal-card.locked {
+  background: var(--color-card-bg);
+  opacity: 0.7;
+  text-align: center;
+  padding: 40px 20px;
+  border-style: dashed;
 }
 
 .card-top {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding-bottom: 10px;
+  gap: 16px;
 }
 
 .journal-dessert-img {
-  width: 54px;
-  height: 54px;
-  border-radius: 12px;
-  border: 2px solid var(--color-butter);
+  width: 80px;
+  height: 80px;
+  border-radius: 14px;
   object-fit: cover;
-  flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--color-accent);
 }
 
 .card-title-group {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
 }
 
 .card-custom-name {
   margin: 0;
-  font-size: 1.3rem;
-  color: var(--color-butter);
+  font-size: 1.15rem;
+  color: var(--color-text-primary);
 }
 
 .card-original-name {
@@ -152,66 +139,61 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 4px;
+  gap: 6px;
 }
 
 .card-attempt-badge {
-  font-size: 0.75rem;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-butter);
-  border: 1px solid rgba(252, 231, 170, 0.3);
-  padding: 2px 8px;
+  font-size: 0.8rem;
+  background: var(--color-card-bg);
+  border: 1px solid var(--paper-border-strong);
+  padding: 3px 10px;
   border-radius: 10px;
+  color: var(--color-text-primary);
 }
 
 .card-grade-badge {
-  background: linear-gradient(135deg, #ffcc00 0%, #ff6600 100%);
-  color: #fff;
   font-size: 0.85rem;
   font-weight: bold;
-  padding: 6px 14px;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  color: var(--color-accent);
+  background: #FDF4E3;
+  border: 1px solid var(--color-accent);
+  padding: 4px 12px;
+  border-radius: 10px;
 }
 
 .grade-distribution-bar {
-  font-size: 0.8rem;
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(252, 231, 170, 0.2);
-  padding: 6px 12px;
-  border-radius: 8px;
-  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  background: var(--color-card-bg);
+  border: 1px solid var(--paper-border);
+  padding: 8px 14px;
+  border-radius: 10px;
+  color: var(--color-text-primary);
 }
 
 .grade-distribution-bar strong {
-  color: var(--color-butter);
+  color: var(--color-accent);
 }
 
 .section-label {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--color-text-light);
+  margin: 8px 0 4px 0;
+  font-size: 0.85rem;
+  color: var(--color-accent);
 }
 
 .ratio-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 8px;
-  background: rgba(0, 0, 0, 0.25);
-  padding: 12px 16px;
-  border-radius: 12px;
-  font-size: 0.85rem;
 }
 
 .ratio-item {
+  background: #FDF6EB;
+  border: 1px solid var(--paper-border);
+  padding: 8px 12px;
+  border-radius: 10px;
   display: flex;
   justify-content: space-between;
+  font-size: 0.82rem;
 }
 
 .r-label {
@@ -219,20 +201,20 @@
 }
 
 .r-val {
-  color: var(--color-butter);
   font-weight: bold;
+  color: var(--color-text-primary);
 }
 
 .card-mentor-quote {
-  background: rgba(245, 237, 227, 0.05);
-  border: 1px dashed rgba(252, 231, 170, 0.2);
+  background: #FDF4E3;
+  border: 1.5px solid var(--color-accent);
   border-radius: 12px;
-  padding: 10px 14px;
+  padding: 12px 16px;
 }
 
 .quote-header {
-  font-size: 0.8rem;
-  color: var(--color-butter);
+  font-size: 0.82rem;
+  color: var(--color-accent);
   font-weight: bold;
   display: block;
   margin-bottom: 4px;
@@ -240,85 +222,49 @@
 
 .quote-body {
   margin: 0;
-  font-size: 0.88rem;
-  color: #e5dec9;
-  line-height: 1.4;
+  font-size: 0.92rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-mentor);
+  line-height: 1.5;
 }
 
-/* Blog Link Box */
 .blog-link-box {
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  background: rgba(3, 199, 90, 0.08);
-  border: 1px solid rgba(3, 199, 90, 0.35);
-  padding: 10px 14px;
-  border-radius: 12px;
-  margin-top: 4px;
 }
 
 .blog-label {
-  font-size: 0.78rem;
-  color: #68d391;
-  font-weight: bold;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
 }
 
 .blog-url-btn {
-  color: #03c75a;
+  display: inline-block;
+  background: linear-gradient(135deg, var(--color-success) 0%, #5b7253 100%);
+  color: #FDF6EB;
   text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 12px;
   font-size: 0.88rem;
   font-weight: bold;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  text-align: center;
   transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(124, 148, 115, 0.25);
 }
 
 .blog-url-btn:hover {
-  color: #2bf07b;
-  text-decoration: underline;
-  transform: translateX(3px);
-}
-
-/* Journal Card - Locked (Silhouette) */
-.journal-card.locked {
-  background: rgba(0, 0, 0, 0.3);
-  border: 2px dashed rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 25px;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  opacity: 0.6;
-  transition: opacity 0.2s ease;
-}
-
-.journal-card.locked:hover {
-  opacity: 0.85;
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-.lock-icon {
-  font-size: 2.2rem;
-}
-
-.locked-title {
-  margin: 0;
-  font-size: 1.1rem;
-  color: var(--color-text-muted);
-}
-
-.locked-hint {
-  margin: 0;
-  font-size: 0.82rem;
-  color: var(--color-text-muted);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(124, 148, 115, 0.35);
 }
 
 .journal-footer {
   padding-top: 10px;
+  border-top: 1.5px dashed var(--paper-border-strong);
 }
 
 .close-journal-btn {
-  padding: 10px 24px;
-  font-size: 0.95rem;
+  padding: 12px 30px;
+  font-size: 1rem;
 }

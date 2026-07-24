@@ -1,11 +1,19 @@
+/* ========================================================
+   ♨️ GestureMiniGame.css - 햇살 아래 중탕 게이지 미니게임
+   ======================================================== */
+
 .gesture-game-container {
-  width: 620px;
+  width: 640px;
   height: 500px;
   padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  background: var(--color-bg-base);
+  border: 2px solid var(--paper-border-strong);
+  box-shadow: 0 16px 40px rgba(58, 36, 24, 0.25);
+  border-radius: 24px;
 }
 
 .gesture-header {
@@ -15,7 +23,7 @@
 .gesture-title {
   margin: 0 0 6px 0;
   font-size: 1.3rem;
-  color: var(--color-butter);
+  color: var(--color-text-primary);
 }
 
 .gesture-subtitle {
@@ -34,10 +42,10 @@
 .amber-pot-graphic {
   width: 130px;
   height: 130px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.05) 100%);
-  border: 3px solid #f59e0b;
+  background: radial-gradient(circle, #FDF4E3 0%, #E8D5B7 100%);
+  border: 3px solid var(--color-accent);
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.2);
 }
 
 .pot-icon {
@@ -46,20 +54,17 @@
 
 .start-guide {
   font-size: 0.92rem;
-  color: var(--color-text-light);
+  color: var(--color-text-primary);
   text-align: center;
   margin: 0;
 }
 
 .start-bain-marie-btn {
-  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
   font-size: 1.1rem;
   padding: 12px 28px;
-  color: #1a0f05;
-  font-weight: bold;
 }
 
-/* Play Screen (세피아/앰버 톤 정리) */
+/* Play Screen */
 .gesture-play-screen {
   flex: 1;
   width: 100%;
@@ -68,8 +73,8 @@
 }
 
 .timer-badge {
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: var(--color-card-bg);
+  border: 1px solid var(--paper-border-strong);
   padding: 4px 14px;
   border-radius: 12px;
   font-size: 0.9rem;
@@ -77,13 +82,12 @@
 }
 
 .timer-badge strong {
-  color: var(--color-butter);
+  color: var(--color-accent);
 }
 
-/* 앰버 목표 온도 카드 (게이지 상단에 별도 배치하여 좁은 게이지 해소) */
 .amber-target-info-card {
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.25);
+  background: #FDF4E3;
+  border: 1px solid var(--color-accent);
   border-radius: 12px;
   padding: 8px 18px;
   display: flex;
@@ -92,29 +96,28 @@
   width: 100%;
   max-width: 480px;
   font-size: 0.9rem;
-  color: #fef3c7;
+  color: var(--color-text-primary);
   transition: all 0.2s ease;
 }
 
 .amber-target-info-card.perfect-in-range {
-  background: rgba(245, 158, 11, 0.25);
-  border-color: #f59e0b;
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+  background: #FEF08A;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 15px rgba(217, 119, 6, 0.35);
 }
 
 .current-temp-readout strong {
-  color: var(--color-butter);
+  color: var(--color-accent);
   font-size: 1.1rem;
 }
 
-/* 게이지 바 (초록색 ➔ 세피아/앰버 골드 톤으로 변경) */
 .amber-gauge-wrapper {
   position: relative;
   width: 100%;
   max-width: 480px;
   height: 28px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 2px solid rgba(245, 158, 11, 0.3);
+  background: var(--color-card-bg);
+  border: 2px solid var(--paper-border-strong);
   border-radius: 14px;
   overflow: hidden;
 }
@@ -123,22 +126,22 @@
   position: absolute;
   top: 0;
   height: 100%;
-  background: rgba(254, 243, 199, 0.25);
-  border-left: 2px dashed #f59e0b;
-  border-right: 2px dashed #f59e0b;
+  background: rgba(245, 158, 11, 0.25);
+  border-left: 2px dashed var(--color-accent);
+  border-right: 2px dashed var(--color-accent);
   z-index: 2;
   box-sizing: border-box;
 }
 
 .amber-gauge-fill {
   height: 100%;
-  background: linear-gradient(90deg, #b45309 0%, #d97706 70%, #f59e0b 100%);
+  background: linear-gradient(90deg, #b45309 0%, var(--color-accent) 70%, var(--color-accent-hover) 100%);
   border-radius: 12px;
   transition: width 0.1s linear;
 }
 
 .amber-gauge-fill.perfect-gold-fill {
-  background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 50%, #fef08a 100%);
+  background: linear-gradient(90deg, var(--color-accent) 0%, #fbbf24 50%, #fef08a 100%);
   box-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
 }
 
@@ -154,12 +157,12 @@
 }
 
 .status-msg.gold {
-  color: #fef08a;
+  color: var(--color-accent);
   font-weight: bold;
 }
 
 .status-msg.warning {
-  color: #f87171;
+  color: var(--color-warning);
 }
 
 .status-msg.normal {
@@ -173,19 +176,14 @@
 }
 
 .stop-bain-marie-btn {
-  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   padding: 14px 36px;
   border-radius: 16px;
-  color: #fff;
-  border: 1px solid #f59e0b;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease;
 }
 
 .stop-bain-marie-btn.ready-pulse {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.9), 0 0 15px rgba(254, 243, 199, 0.6);
+  background: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-accent) 100%);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.6);
   transform: scale(1.05);
   font-weight: bold;
 }
