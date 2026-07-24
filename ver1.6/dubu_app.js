@@ -1249,41 +1249,35 @@ function renderAccordionArtbook() {
 
     // 1. 아코디언 전용 스타일 및 크리에이터 노트 매핑 데이터
     const accordionMetaMap = {
-        42: {
+        41: {
             creatorsNote: "밀가루를 익혀 만든 탕종과 저온숙성, 그리고 순두부가 합쳐져 다음 날 데워 먹어도 갓 구운 듯 촉촉함을 유지하는 든든한 건강 갈릭 포카치아.",
             themeColor: "#3eb489",
             themeGlow: "rgba(62, 180, 137, 0.15)",
             accentColor: "#A3E4D7"
         },
-        41: {
-            creatorsNote: "순두부와 콩물을 함께 갈아 고소하고 촉촉하게 완성한 웰빙 파운드케익.",
+        40: {
+            creatorsNote: "태운 브라운버터의 향긋함에 쌈장의 짭조름한 감칠맛과 으깬 순두부가 만나 깊고 든든한 단짠의 묘미를 완성한 이색 웰빙 휘낭시에.",
             themeColor: "#7B6F55",
             themeGlow: "rgba(123, 111, 85, 0.15)",
             accentColor: "#F5E6C8"
         },
-        40: {
-            creatorsNote: "오븐 중탕 공법으로 완성하는 극강의 고소하고 꾸덕한 흑임자 테린.",
-            themeColor: "#4A4F54",
-            themeGlow: "rgba(74, 79, 84, 0.15)",
-            accentColor: "#78909C"
-        },
         39: {
-            creatorsNote: "찹쌀가루 없이 완성한 반전의 찰기! 향긋한 쑥 반죽과 콩고물의 고소한 동행.",
+            creatorsNote: "자색고구마의 달콤하고 고소한 반죽에 롤치즈가 콕콕 박혀 담백하게 즐기는 웰빙 스콘.",
+            themeColor: "#6B4E71",
+            themeGlow: "rgba(107, 78, 113, 0.15)",
+            accentColor: "#D8BFD8"
+        },
+        38: {
+            creatorsNote: "뜨거울 때 새콤한 레몬 시럽을 흠뻑 적셔 속까지 촉촉하게 즐기는 미니 케이크.",
+            themeColor: "#D4AC0D",
+            themeGlow: "rgba(212, 172, 13, 0.15)",
+            accentColor: "#FYN987"
+        },
+        37: {
+            creatorsNote: "물기 안 짠 순두부를 우유, 설탕, 오일과 함께 곱게 갈아 찹쌀가루와 함께 찜기에 쪄낸 쫀득하고 촉촉한 찜케이크.",
             themeColor: "#4E6B56",
             themeGlow: "rgba(78, 107, 86, 0.15)",
             accentColor: "#A5D6A7"
-        },
-        38: {
-            creatorsNote: "겉은 바삭하고 속은 촉촉 쫄깃한 그릭 스콘에 향긋한 얼그레이와 레몬 글레이즈의 싱그러움을 얹었습니다.",
-            themeColor: "#8D6E63",
-            themeGlow: "rgba(141, 110, 99, 0.15)",
-            accentColor: "#FFCCBC"
-        },
-        37: {
-            creatorsNote: "순두부의 촉촉함에 그릭요거트의 묵직함을 얹고, 진한 녹차 향과 화이트 가나슈, 빙수떡을 올린 파운드케이크.",
-            themeColor: "#2E5A36",
-            themeGlow: "rgba(46, 90, 54, 0.15)",
-            accentColor: "#81C784"
         }
     };
 
