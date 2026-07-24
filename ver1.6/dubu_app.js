@@ -1280,11 +1280,9 @@ function renderAccordionArtbook() {
         }
     };
 
-    // 2. PROJECTS에서 사용자가 지정한 최신 6종 명시적 추출 및 정렬 (Vol.37 -> Vol.42 순)
-    // ID: 37(Vol.37), 38(Vol.38), 39(Vol.39), 40(Vol.40), 41(Vol.41), 42(Vol.42)
-    const targetIds = [37, 38, 39, 40, 41, 42];
-    const latestFive = [...PROJECTS].filter(p => targetIds.includes(p.id))
-                                   .sort((a, b) => targetIds.indexOf(a.id) - targetIds.indexOf(b.id));
+    // 2. PROJECTS 배열의 최신 5종 동적 추출 (오래된 순 -> 최신순 슬라이드 정렬)
+    const latestFive = PROJECTS.slice(0, 5).reverse();
+    const comingSoonVol = (PROJECTS[0] ? PROJECTS[0].id : 0) + 1;
 
     // 3. activeRecipes 배열 동적 매핑
     const activeRecipes = latestFive.map(p => {
@@ -1304,8 +1302,6 @@ function renderAccordionArtbook() {
             accentColor: meta.accentColor
         };
     });
-
-    const comingSoonVol = 43;
 
     // 4. 커밍순 카드 추가
     activeRecipes.push({
