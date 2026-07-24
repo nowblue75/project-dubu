@@ -888,7 +888,7 @@ function getRecipeMetadata(recipeId) {
         } else if (recipe.id === 14) {
             bakingTip = "오븐 예열 180℃ / 170℃ 40분";
             cheers = "달콤하고 고소한 밤이 콕콕 박혀 더욱 풍요로운 맛! 가을 감성을 가득 담아 구워내는 영양 만점 순두부 파운드케이크입니다. 🌰";
-        } else if (recipe.id === 6) {
+        } else if (recipe.id === 37) {
             bakingTip = "오븐 예열 180℃ / 35분 (식힌 후 홍차시럽 코팅)";
             cheers = "홍차의 은은한 향과 레몬 제스트의 상큼함이 입안 가득 번지는, 가볍고 촉촉한 원볼 베이킹의 진수를 만나보세요! 🍰";
         } else if (recipe.id === 42) {
@@ -1248,31 +1248,31 @@ function renderAccordionArtbook() {
             themeGlow: "rgba(62, 180, 137, 0.15)",
             accentColor: "#A3E4D7"
         },
-        35: {
+        41: {
             creatorsNote: "순두부와 콩물을 함께 갈아 고소하고 촉촉하게 완성한 웰빙 파운드케익.",
             themeColor: "#7B6F55",
             themeGlow: "rgba(123, 111, 85, 0.15)",
             accentColor: "#F5E6C8"
         },
-        34: {
+        40: {
             creatorsNote: "오븐 중탕 공법으로 완성하는 극강의 고소하고 꾸덕한 흑임자 테린.",
             themeColor: "#4A4F54",
             themeGlow: "rgba(74, 79, 84, 0.15)",
             accentColor: "#78909C"
         },
-        33: {
+        39: {
             creatorsNote: "찹쌀가루 없이 완성한 반전의 찰기! 향긋한 쑥 반죽과 콩고물의 고소한 동행.",
             themeColor: "#4E6B56",
             themeGlow: "rgba(78, 107, 86, 0.15)",
             accentColor: "#A5D6A7"
         },
-        29: {
+        38: {
             creatorsNote: "겉은 바삭하고 속은 촉촉 쫄깃한 그릭 스콘에 향긋한 얼그레이와 레몬 글레이즈의 싱그러움을 얹었습니다.",
             themeColor: "#8D6E63",
             themeGlow: "rgba(141, 110, 99, 0.15)",
             accentColor: "#FFCCBC"
         },
-        28: {
+        37: {
             creatorsNote: "순두부의 촉촉함에 그릭요거트의 묵직함을 얹고, 진한 녹차 향과 화이트 가나슈, 빙수떡을 올린 파운드케이크.",
             themeColor: "#2E5A36",
             themeGlow: "rgba(46, 90, 54, 0.15)",
@@ -1281,8 +1281,8 @@ function renderAccordionArtbook() {
     };
 
     // 2. PROJECTS에서 사용자가 지정한 최신 6종 명시적 추출 및 정렬 (Vol.37 -> Vol.42 순)
-    // ID: 28(Vol.37), 29(Vol.38), 33(Vol.39), 34(Vol.40), 35(Vol.41), 42(Vol.42)
-    const targetIds = [28, 29, 33, 34, 35, 42];
+    // ID: 37(Vol.37), 38(Vol.38), 39(Vol.39), 40(Vol.40), 41(Vol.41), 42(Vol.42)
+    const targetIds = [37, 38, 39, 40, 41, 42];
     const latestFive = [...PROJECTS].filter(p => targetIds.includes(p.id))
                                    .sort((a, b) => targetIds.indexOf(a.id) - targetIds.indexOf(b.id));
 
@@ -1324,11 +1324,11 @@ function renderAccordionArtbook() {
 
     const specsData = {
         42: { texture: "겉바속촉 쫄깃함", wellness: "올리브오일 & 바삭한 마늘 칩", method: "190~200℃ 오븐 구움" },
-        35: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 베이킹" },
-        34: { texture: "꾸덕하고 촉촉함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
-        33: { texture: "쫀득함", wellness: "No버터, 비건 지향", method: "160℃ 오븐 구움" },
-        29: { texture: "겉은 바삭, 속은 쫄깃함", wellness: "은은한 홍차 향, 레몬 글레이즈", method: "190℃ 오븐 베이킹" },
-        28: { texture: "묵직하고 촉촉함", wellness: "진한 녹차 향 & 요거트 조합", method: "170℃ 오븐 베이킹" }
+        41: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 베이킹" },
+        40: { texture: "꾸덕하고 촉촉함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
+        39: { texture: "쫀득함", wellness: "No버터, 비건 지향", method: "160℃ 오븐 구움" },
+        38: { texture: "겉은 바삭, 속은 쫄깃함", wellness: "은은한 홍차 향, 레몬 글레이즈", method: "190℃ 오븐 베이킹" },
+        37: { texture: "묵직하고 촉촉함", wellness: "진한 녹차 향 & 요거트 조합", method: "170℃ 오븐 베이킹" }
     };
 
     container.innerHTML = activeRecipes.map((p, idx) => {

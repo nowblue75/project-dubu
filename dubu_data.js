@@ -9,7 +9,7 @@
 // 1. 디저트 메인 데이터베이스 (각 고유의 '베이킹 DNA 속성' 및 '물성 식감 카테고리' 매핑)
 const PROJECTS = [
     {
-        "id": 40,
+        "id": 45,
         "title": "순두부 쌈장호두 휘낭시에",
         "noOven": false,
         "noFlour": false,
@@ -31,7 +31,7 @@ const PROJECTS = [
         "troubleShoot": "Q. 휘낭시에의 겉이 바삭하지 않고 눅눅해요.<br>A. [휴지와 높은 온도 베이킹 팁] 반죽을 냉장고에서 최소 1시간, 가능하면 하룻밤 이상 충분히 숙성해 차가운 상태로 오븐에 넣으셔야 합니다. 또한 200℃ 예열 오븐에서 구울 때 190℃로 온도를 낮추어 14분간 바삭하게 구워내야 겉바속촉한 결이 고정됩니다."
     },
     {
-        "id": 39,
+        "id": 44,
         "title": "순두부 자색고구마 롤치즈스콘",
         "noOven": false,
         "noFlour": false,
@@ -52,7 +52,7 @@ const PROJECTS = [
         "troubleShoot": ""
     },
     {
-        "id": 38,
+        "id": 29,
         "title": "순두부 르뱅쿠키",
         "noOven": false,
         "noFlour": false,
@@ -74,7 +74,7 @@ const PROJECTS = [
         "troubleShoot": "Q. 쿠키가 너무 납작하게 퍼지고 르뱅쿠키 특유의 두툼함이 안 살아요!<br>A. [냉장 휴지의 마법 팁] 반죽 후 냉장실에서 최소 12시간, 가능하면 하룻밤 충분히 휴지시켜주어야 구울 때 버터가 급격히 녹아 퍼지는 것을 방지할 수 있습니다. 굽기 직전 차가운 상태로 오븐에 넣는 것을 잊지 마세요!"
     },
     {
-        "id": 37,
+        "id": 43,
         "title": "순두부 레몬포슈에케익",
         "noOven": false,
         "noFlour": false,
@@ -98,7 +98,7 @@ const PROJECTS = [
         "isNew": true
     },
     {
-        "id": 36,
+        "id": 46,
         "title": "순두부 모찌 찜케이크",
         "noOven": true,
         "noFlour": true,
@@ -123,7 +123,7 @@ const PROJECTS = [
         "troubleShoot": "Q. 찜케이크가 덜 익거나 표면이 축축해요. 어떻게 해야 하나요?<br>A. [수분 낙하 방지 & 시간 조절 팁] 찜기 뚜껑에 면포를 둘러 수증기가 반죽 위로 떨어지지 않게 해주시고, 반드시 물이 팔팔 끓을 때 팬을 올려 중불에서 50분간 충분히 쪄주세요. 찌는 시간 후 불을 끄고 10분간 뜸을 들여주시면 반죽 속까지 골고루 쫀득하게 익습니다."
     },
     {
-        "id": 35,
+        "id": 41,
         "title": "순두부 콩물 파운드케익",
         "noOven": false,
         "noFlour": false,
@@ -146,7 +146,7 @@ const PROJECTS = [
         "troubleShoot": "Q. 반죽 분리가 일어나지 않고 속이 촉촉하게 잘 익으려면 어떻게 해야 하나요?<br>A. [수분 제거 & 유화 팁] 순두부의 물기를 확실히 제거한 뒤, 실온 버터와 설탕을 충분히 크림화하고 순두부, 달걀, 콩물을 조금씩 나누어 넣으며 분리되지 않도록 유화시켜 섞어줍니다. 오븐 온도가 너무 높으면 겉만 타고 속은 안 익을 수 있으니, 170도에서 은은하게 구워주시고 이쑤시개 테스트 후 꺼내어 주세요."
     },
     {
-        "id": 34,
+        "id": 40,
         "title": "순두부 흑임자 테린",
         "noOven": false,
         "noFlour": true,
@@ -171,7 +171,7 @@ const PROJECTS = [
         "troubleShoot": "Q. 만든 직후에는 단단하지 않고 흐물거리는데 성공한 건가요? 더 꾸덕하고 깊은 맛으로 즐기려면 어떻게 보관해야 하나요?<br>A. [숙성 & 서빙 꿀팁] 오븐에서 갓 나온 테린은 부드러운 상태입니다. 실온에서 완전히 식힌 뒤 냉장고에서 최소 4시간 이상 차갑게 굳혀주세요! 만든 당일보다 다음 날 드실 때 밀도가 밀착하여 훨씬 더 꾸덕한 극강의 흑임자 풍미가 완성됩니다. 드실 때는 그냥 드셔도 아주 고소하고, 꿀 한 방울을 곁들여 차가운 음료와 매치하시면 고급 디저트숍 부럽지 않은 깊은 풍미를 느낄 수 있습니다. (냉장 보관 3일 이내 권장) ✨"
     },
     {
-        "id": 33,
+        "id": 39,
         "title": "순두부 쑥 찰떡브라우니",
         "noOven": false,
         "noFlour": false,
@@ -192,6 +192,110 @@ const PROJECTS = [
         "time": "50분",
         "emotionalQuote": "찹쌀가루 없이 완성하는 반전의 찰기! 향긋한 쑥 반죽과 콩고물의 고소한 동행. 💚",
         "troubleShoot": "Q. 만든 직후에는 단단하지 않고 흐물거려요!<br>A. [숙성의 마법 팁] 오븐에서 나온 직후에는 다소 부드럽습니다. 실온에서 완전히 식힌 뒤 냉장고에서 최소 3시간 이상 충분히 숙성해주세요! 순두부 입자가 응축되면서 2배 더 쫀득한 극강의 찰떡 식감이 완성됩니다."
+    },
+    {
+        "id": 32,
+        "title": "순두부 화이트바크초콜릿",
+        "noOven": false,
+        "noFlour": true,
+        "noButter": true,
+        "oneBowl": true,
+        "desc": "수분을 완전히 날린 바삭한 순두부 시트와 화이트 초콜릿의 만남.",
+        "path": "36. 순두부화이트바크초콜릿_완/index.html",
+        "img": "36. 순두부화이트바크초콜릿_완/0.jpg",
+        "isInteractive": true,
+        "blogUrl": "https://blog.naver.com/project_dubu/224213464375",
+        "categories": [
+            "gift",
+            "teatime",
+            "fudgy",
+            "flourfree",
+            "butterfree"
+        ],
+        "pairing": "산뜻하게 우려낸 홍차나 가벼운 디저트 와인",
+        "time": "60분",
+        "emotionalQuote": "단 한 방울의 수분도 허용하지 않는 수분 박멸 비법으로 완성하는 극강의 바삭함! 💝",
+        "troubleShoot": "Q. 시트 수분을 빼는 볶기 과정이 너무 오래 걸리거나 시트가 눅눅해요!<br>A. [수분 박멸 & 식감 조율 팁] 볶기 전 무거운 도구로 순두부를 눌러 1차 압착 후 볶아주시면 조리 시간이 절반으로 단축됩니다."
+    },
+    {
+        "id": 31,
+        "title": "순두부 티라미수푸딩",
+        "noOven": true,
+        "noFlour": true,
+        "noButter": true,
+        "oneBowl": true,
+        "desc": "커피 젤리 큐브에 순두부 마스카포네 크림을 올리고 코코아 파우더를 더해 차갑게 떠먹는 부드러운 수제 푸딩.",
+        "path": "31. 순두부 티라미수푸딩_완/index.html",
+        "img": "31. 순두부 티라미수푸딩_완/0.jpg",
+        "isInteractive": true,
+        "blogUrl": "https://blog.naver.com/project_dubu/224164987367",
+        "categories": [
+            "teatime",
+            "creamy",
+            "butterfree",
+            "flourfree"
+        ],
+        "pairing": "진한 콜드브루 커피 또는 디카페인 차",
+        "time": "40분",
+        "emotionalQuote": "순두부와 마스카포네 크림에 커피 젤리 큐브를 레이어로 쌓아 냉장 굳힌 노오븐 티라미수 푸딩. ☕",
+        "troubleShoot": "Q. 커피 젤리가 단단하게 안 굳고 부서져요!<br>A. 판젤라틴을 충분히 찬물에 불린 뒤 뜨거운 커피액에 넣어 완벽히 녹여주어야 겔화가 잘 일어납니다. 만약 젤리가 덜 굳었다면, 냉동실에 30분 정도 살짝 얼려서 잘라주세요."
+    },
+    {
+        "id": 30,
+        "title": "순두부 모찌떡 케이크",
+        "noOven": false,
+        "noFlour": true,
+        "noButter": true,
+        "oneBowl": true,
+        "desc": "물기 안 짠 순두부를 곱게 갈아 타피오카와 찹쌀가루를 배합해 굽고 슈가파우더로 마무리하는 쫀득 폭신한 케이크.",
+        "path": "28. 순두부 모찌떡케이크_완/index.html",
+        "img": "28. 순두부 모찌떡케이크_완/0.jpg",
+        "isInteractive": true,
+        "blogUrl": "https://blog.naver.com/project_dubu/224139999891",
+        "categories": [
+            "gift",
+            "nostalgia",
+            "fudgy",
+            "butterfree"
+        ],
+        "pairing": "향긋한 녹차",
+        "time": "60분",
+        "emotionalQuote": "모찌 공법으로 빚어내어 시간이 지나도 굳지 않고 야들야들함이 유지되는 퓨전 케이크입니다.",
+        "troubleShoot": "Q. 구워내니 겉면 테두리가 너무 딱딱하고 자를 때 부서져요!<br>A. 따뜻할 때 바로 자르면 반죽이 쫀득해서 단면이 뭉개지거나 모양이 안 잡힐 수 있습니다. 반드시 틀째 완전히 식힌 후 조심스럽게 꺼내 자르시면 깔끔하게 단면을 낼 수 있습니다. 드실 때 1분 정도 데우면 다시 부드러운 찰기가 복원됩니다."
+    },
+    {
+        "id": 38,
+        "title": "순두부 얼그레이그릭스콘",
+        "noOven": false,
+        "noFlour": false,
+        "noButter": false,
+        "oneBowl": true,
+        "isInteractive": true,
+        "blogUrl": "https://blog.naver.com/project_dubu/224231139066",
+        "categories": [
+            "teatime",
+            "creamy"
+        ],
+        "time": "30분",
+        "path": "38. 순두부 얼그레이그릭스콘_완/index.html",
+        "img": "38. 순두부 얼그레이그릭스콘_완/0.jpg"
+    },
+    {
+        "id": 37,
+        "title": "순두부 녹차요거트파운드케익",
+        "noOven": false,
+        "noFlour": false,
+        "noButter": false,
+        "oneBowl": true,
+        "isInteractive": true,
+        "path": "37. 순두부녹차요거트파운드케익_완/index.html",
+        "img": "37. 순두부녹차요거트파운드케익_완/0.jpg",
+        "blogUrl": "https://blog.naver.com/project_dubu/224223083246",
+        "categories": [
+            "teatime",
+            "cloud"
+        ],
+        "time": "40분"
     },
     {
         "id": 32,
