@@ -745,8 +745,8 @@ const BASE_YIELDS = {
     9: { template: "브라우니쿠키 {x}개 분량 🍪", baseCount: 8 },
     8: { template: "머핀 틀 {x}개 분량 🧁", baseCount: 6 },
     7: { template: "크림치즈쿠키 {x}개 분량 🍪", baseCount: 8 },
-    42: { template: "오란다 대자 팬 {x}개 분량 🍵", baseCount: 2 },
-    6: { template: "사각 오븐 팬 {x}개 분량 🧄", baseCount: 1 },
+    6: { template: "오란다 대자 팬 {x}개 분량 🍵", baseCount: 2 },
+    42: { template: "사각 오븐 팬 {x}개 분량 🧄", baseCount: 1 },
     5: { template: "황치즈 휘낭시에 {x}개 분량 🧀", baseCount: 6 },
     4: { template: "퍼지 브라우니 {x}판 분량 🍫", baseCount: 1 },
     3: { template: "바스크 치즈케이크 {x}호 분량 🧀", baseCount: 1 },
@@ -888,10 +888,10 @@ function getRecipeMetadata(recipeId) {
         } else if (recipe.id === 14) {
             bakingTip = "오븐 예열 180℃ / 170℃ 40분";
             cheers = "달콤하고 고소한 밤이 콕콕 박혀 더욱 풍요로운 맛! 가을 감성을 가득 담아 구워내는 영양 만점 순두부 파운드케이크입니다. 🌰";
-        } else if (recipe.id === 42) {
+        } else if (recipe.id === 6) {
             bakingTip = "오븐 예열 180℃ / 35분 (식힌 후 홍차시럽 코팅)";
             cheers = "홍차의 은은한 향과 레몬 제스트의 상큼함이 입안 가득 번지는, 가볍고 촉촉한 원볼 베이킹의 진수를 만나보세요! 🍰";
-        } else if (recipe.id === 6) {
+        } else if (recipe.id === 42) {
             bakingTip = "오븐 예열 190~200℃ / 22~25분 (저온숙성 12~16시간 필요)";
             cheers = "밀가루를 익혀 만든 탕종과 저온숙성, 순두부가 만나 다음 날 데워 먹어도 갓 구운 듯 촉촉쫄깃함이 유지됩니다! 🧄";
         }
@@ -1242,6 +1242,12 @@ function renderAccordionArtbook() {
 
     // 1. 아코디언 전용 스타일 및 크리에이터 노트 매핑 데이터
     const accordionMetaMap = {
+        42: {
+            creatorsNote: "밀가루를 익혀 만든 탕종과 저온숙성, 그리고 순두부가 합쳐져 다음 날 데워 먹어도 갓 구운 듯 촉촉함을 유지하는 든든한 건강 갈릭 포카치아.",
+            themeColor: "#3eb489",
+            themeGlow: "rgba(62, 180, 137, 0.15)",
+            accentColor: "#A3E4D7"
+        },
         35: {
             creatorsNote: "순두부와 콩물을 함께 갈아 고소하고 촉촉하게 완성한 웰빙 파운드케익.",
             themeColor: "#7B6F55",
@@ -1265,18 +1271,12 @@ function renderAccordionArtbook() {
             themeColor: "#8D6E63",
             themeGlow: "rgba(141, 110, 99, 0.15)",
             accentColor: "#FFCCBC"
-        },
-        28: {
-            creatorsNote: "순두부의 촉촉함에 그릭요거트의 묵직함을 얹고, 진한 녹차 향과 화이트 가나슈, 빙수떡을 올린 파운드케이크.",
-            themeColor: "#2E5A36",
-            themeGlow: "rgba(46, 90, 54, 0.15)",
-            accentColor: "#81C784"
         }
     };
 
-    // 2. PROJECTS에서 사용자가 지정한 최신 5종 명시적 추출 및 정렬 (Vol.37 -> Vol.41 순)
-    // ID: 28(Vol.37), 29(Vol.38), 33(Vol.39), 34(Vol.40), 35(Vol.41)
-    const targetIds = [28, 29, 33, 34, 35];
+    // 2. PROJECTS에서 사용자가 지정한 최신 5종 명시적 추출 및 정렬 (Vol.38 -> Vol.42 순)
+    // ID: 29(Vol.38), 33(Vol.39), 34(Vol.40), 35(Vol.41), 42(Vol.42)
+    const targetIds = [29, 33, 34, 35, 42];
     const latestFive = [...PROJECTS].filter(p => targetIds.includes(p.id))
                                    .sort((a, b) => targetIds.indexOf(a.id) - targetIds.indexOf(b.id));
 
@@ -1299,7 +1299,7 @@ function renderAccordionArtbook() {
         };
     });
 
-    const comingSoonVol = 42;
+    const comingSoonVol = 43;
 
     // 4. 커밍순 카드 추가
     activeRecipes.push({
@@ -1317,11 +1317,11 @@ function renderAccordionArtbook() {
     const maxId = Math.max(...activeRecipes.filter(r => r.id !== 'coming-soon').map(r => r.id));
 
     const specsData = {
+        42: { texture: "겉바속촉 쫄깃함", wellness: "올리브오일 & 바삭한 마늘 칩", method: "190~200℃ 오븐 구움" },
         35: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 베이킹" },
         34: { texture: "꾸덕하고 촉촉함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
         33: { texture: "쫀득함", wellness: "No버터, 비건 지향", method: "160℃ 오븐 구움" },
-        29: { texture: "겉은 바삭, 속은 쫄깃함", wellness: "은은한 홍차 향, 레몬 글레이즈", method: "190℃ 오븐 베이킹" },
-        28: { texture: "묵직하고 촉촉함", wellness: "진한 녹차 향 & 요거트 조합", method: "170℃ 오븐 베이킹" }
+        29: { texture: "겉은 바삭, 속은 쫄깃함", wellness: "은은한 홍차 향, 레몬 글레이즈", method: "190℃ 오븐 베이킹" }
     };
 
     container.innerHTML = activeRecipes.map((p, idx) => {
