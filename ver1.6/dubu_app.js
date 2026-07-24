@@ -1271,12 +1271,18 @@ function renderAccordionArtbook() {
             themeColor: "#8D6E63",
             themeGlow: "rgba(141, 110, 99, 0.15)",
             accentColor: "#FFCCBC"
+        },
+        28: {
+            creatorsNote: "순두부의 촉촉함에 그릭요거트의 묵직함을 얹고, 진한 녹차 향과 화이트 가나슈, 빙수떡을 올린 파운드케이크.",
+            themeColor: "#2E5A36",
+            themeGlow: "rgba(46, 90, 54, 0.15)",
+            accentColor: "#81C784"
         }
     };
 
-    // 2. PROJECTS에서 사용자가 지정한 최신 5종 명시적 추출 및 정렬 (Vol.38 -> Vol.42 순)
-    // ID: 29(Vol.38), 33(Vol.39), 34(Vol.40), 35(Vol.41), 42(Vol.42)
-    const targetIds = [29, 33, 34, 35, 42];
+    // 2. PROJECTS에서 사용자가 지정한 최신 6종 명시적 추출 및 정렬 (Vol.37 -> Vol.42 순)
+    // ID: 28(Vol.37), 29(Vol.38), 33(Vol.39), 34(Vol.40), 35(Vol.41), 42(Vol.42)
+    const targetIds = [28, 29, 33, 34, 35, 42];
     const latestFive = [...PROJECTS].filter(p => targetIds.includes(p.id))
                                    .sort((a, b) => targetIds.indexOf(a.id) - targetIds.indexOf(b.id));
 
@@ -1321,7 +1327,8 @@ function renderAccordionArtbook() {
         35: { texture: "고소하고 촉촉함", wellness: "진한 콩물, 하루 숙성 비법", method: "170℃ 오븐 베이킹" },
         34: { texture: "꾸덕하고 촉촉함", wellness: "No밀가루, No버터", method: "140℃ 오븐 중탕" },
         33: { texture: "쫀득함", wellness: "No버터, 비건 지향", method: "160℃ 오븐 구움" },
-        29: { texture: "겉은 바삭, 속은 쫄깃함", wellness: "은은한 홍차 향, 레몬 글레이즈", method: "190℃ 오븐 베이킹" }
+        29: { texture: "겉은 바삭, 속은 쫄깃함", wellness: "은은한 홍차 향, 레몬 글레이즈", method: "190℃ 오븐 베이킹" },
+        28: { texture: "묵직하고 촉촉함", wellness: "진한 녹차 향 & 요거트 조합", method: "170℃ 오븐 베이킹" }
     };
 
     container.innerHTML = activeRecipes.map((p, idx) => {
@@ -1351,7 +1358,7 @@ function renderAccordionArtbook() {
         const metaText = p.isComingSoon ? "RECIPE FILE // COMING SOON" : `RECIPE FILE // Vol.${p.id}`;
         const actionBtnText = p.isComingSoon ? `공개 예정 <i class="fa-solid fa-lock" style="margin-left: 5px;"></i>` : `상세보기 <i class="fa-solid fa-chevron-right" style="margin-left: 5px;"></i>`;
 
-        const mobileOrder = p.isComingSoon ? 6 : (5 - idx);
+        const mobileOrder = p.isComingSoon ? 7 : (6 - idx);
 
         return `
             <div class="accordion-slice ${p.isComingSoon ? 'coming-soon-slice' : ''} ${isLatest ? 'latest-highlight' : ''}" 
