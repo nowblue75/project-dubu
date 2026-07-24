@@ -12,6 +12,13 @@ let heroSlideIndex = 0;
 let activeFocusRecipeId = null;
 let currentTab = 'calc';
 
+// 전역 3D 책장 제어 상태 객체
+let bookshelfState = {
+    currentPage: 1,
+    isEngineInitialized: false
+};
+let bookshelfWheelCooldown = false;
+
 // ==========================================================================
 // 1. 초기화 및 페이지 로드
 // ==========================================================================
@@ -1748,14 +1755,7 @@ function updateThemeMobileDots(activeIndex) {
 // ==========================================================================
 // 16. 3D 마법책 책장 렌더링 엔진 (3단계)
 // ==========================================================================
-// 전역 3D 책장 제어 상태 객체
-let bookshelfState = {
-    currentPage: 1, // 오래된순 1페이지를 디폴트로 먼저 표시
-    isEngineInitialized: false
-};
-
-// 휠 스크롤 쿨타임 상태
-let bookshelfWheelCooldown = false;
+// 전역 3D 책장 제어 상태 (상단 선언 참조)
 
 function handleBookshelfWheel(e) {
     const frame = document.getElementById('bookshelf-frame');
