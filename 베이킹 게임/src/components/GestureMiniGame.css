@@ -1,0 +1,196 @@
+.gesture-game-container {
+  width: 620px;
+  height: 500px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gesture-header {
+  text-align: center;
+}
+
+.gesture-title {
+  margin: 0 0 6px 0;
+  font-size: 1.3rem;
+  color: var(--color-butter);
+}
+
+.gesture-subtitle {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+/* Start Screen */
+.gesture-start-screen {
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.amber-pot-graphic {
+  width: 130px;
+  height: 130px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.05) 100%);
+  border: 3px solid #f59e0b;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.pot-icon {
+  font-size: 4rem;
+}
+
+.start-guide {
+  font-size: 0.92rem;
+  color: var(--color-text-light);
+  text-align: center;
+  margin: 0;
+}
+
+.start-bain-marie-btn {
+  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+  font-size: 1.1rem;
+  padding: 12px 28px;
+  color: #1a0f05;
+  font-weight: bold;
+}
+
+/* Play Screen (세피아/앰버 톤 정리) */
+.gesture-play-screen {
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.timer-badge {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 4px 14px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.timer-badge strong {
+  color: var(--color-butter);
+}
+
+/* 앰버 목표 온도 카드 (게이지 상단에 별도 배치하여 좁은 게이지 해소) */
+.amber-target-info-card {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 12px;
+  padding: 8px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+  font-size: 0.9rem;
+  color: #fef3c7;
+  transition: all 0.2s ease;
+}
+
+.amber-target-info-card.perfect-in-range {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: #f59e0b;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+}
+
+.current-temp-readout strong {
+  color: var(--color-butter);
+  font-size: 1.1rem;
+}
+
+/* 게이지 바 (초록색 ➔ 세피아/앰버 골드 톤으로 변경) */
+.amber-gauge-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 28px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(245, 158, 11, 0.3);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.amber-target-zone {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: rgba(254, 243, 199, 0.25);
+  border-left: 2px dashed #f59e0b;
+  border-right: 2px dashed #f59e0b;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.amber-gauge-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #b45309 0%, #d97706 70%, #f59e0b 100%);
+  border-radius: 12px;
+  transition: width 0.1s linear;
+}
+
+.amber-gauge-fill.perfect-gold-fill {
+  background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 50%, #fef08a 100%);
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
+}
+
+.gauge-status-box {
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-msg {
+  font-size: 0.88rem;
+}
+
+.status-msg.gold {
+  color: #fef08a;
+  font-weight: bold;
+}
+
+.status-msg.warning {
+  color: #f87171;
+}
+
+.status-msg.normal {
+  color: var(--color-text-muted);
+}
+
+.heat-control-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.stop-bain-marie-btn {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  font-size: 1.15rem;
+  padding: 14px 36px;
+  border-radius: 16px;
+  color: #fff;
+  border: 1px solid #f59e0b;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.stop-bain-marie-btn.ready-pulse {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.9), 0 0 15px rgba(254, 243, 199, 0.6);
+  transform: scale(1.05);
+  font-weight: bold;
+}
+
+.stop-bain-marie-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

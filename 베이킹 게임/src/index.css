@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap');
+
+:root {
+  /* ========================================================
+     🍮 디자인 토큰 체계 - Warm Tofu Bakery Color Palette
+     ======================================================== */
+  --color-bg-base: #1f140d;            /* 짙은 우드 브라운 (순수 검정 #000 대체) */
+  --color-bg-deep: #170d08;            /* 깊은 비네트 앰버 배경 외곽 */
+  --color-surface-card: #3a2a1d;       /* 카드/패널 표면 (배경보다 1단계 밝은 브라운) */
+  --color-surface-panel: #2b1f15;      /* 메인 3-패널 배경 */
+  
+  --color-amber-gold: #f59e0b;         /* 포인트/강조 앰버 골드 */
+  --color-amber-dark: #d97706;         /* 버튼/경계선 앰버 다크 */
+  --color-butter: #fce7aa;             /* 밝은 앰버 버터 하이라이트 */
+  
+  --color-text-main: #f5e6d3;          /* 본문 텍스트 (따뜻한 크림/아이보리) */
+  --color-text-muted: #a8907a;         /* 보조/흐린 텍스트 (베이지 그레이브라운) */
+  
+  --color-tag-success: #4d7c0f;        /* 성공/조합물 오가닉 그린 */
+  --color-tag-success-light: #84cc16;
+  --color-tag-danger: #9a3412;         /* 실패/경고 톤다운된 테라코타 브라운 */
+  --color-tag-danger-light: #c2410c;
+
+  --glass-border: rgba(252, 231, 170, 0.22);
+  --glass-border-light: rgba(245, 158, 11, 0.35);
+
+  /* Fonts */
+  --font-game: 'Noto Sans KR', sans-serif;
+  --font-mentor: 'Gowun Batang', serif;
+  --font-english: 'Outfit', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-base);
+  background-image: 
+    radial-gradient(circle at 50% 40%, rgba(69, 50, 36, 0.4) 0%, rgba(23, 13, 8, 0.95) 100%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.015) 0, rgba(255, 255, 255, 0.015) 1px, transparent 0, transparent 50px);
+  color: var(--color-text-main);
+  font-family: var(--font-game);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Glassmorphism Panel Base */
+.glass-panel {
+  background: rgba(43, 31, 21, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px 0 rgba(10, 5, 2, 0.55);
+  border-radius: 20px;
+}
+
+/* Cozy Button Utilities */
+.cozy-button {
+  background: linear-gradient(135deg, var(--color-amber-dark) 0%, #b45309 100%);
+  color: #fff;
+  border: 1px solid var(--glass-border-light);
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-family: var(--font-game);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.cozy-button:hover {
+  background: linear-gradient(135deg, var(--color-amber-gold) 0%, var(--color-amber-dark) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(245, 158, 11, 0.35);
+}
+
+.cozy-button:active {
+  transform: translateY(0);
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes floatSlow {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: floatSlow 3.5s ease-in-out infinite;
+}
+
+/* ========================================================
+   스승 온(溫)의 대화창 톤 & 가독성 높은 정갈한 Gowun Batang 서체
+   ======================================================== */
+
+.mentor-speech-text,
+.dialogue-text,
+.mentor-comment {
+  font-family: var(--font-mentor) !important;
+  font-size: 1.02rem !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0.7px !important;
+  font-weight: 600 !important;
+}
+
+/* 1. 온_01 (졸린/기본): 차분한 세피아 톤 */
+.mentor-tone-basic {
+  background: rgba(43, 31, 21, 0.92) !important;
+  border: 1.5px solid rgba(168, 144, 122, 0.4) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35) !important;
+}
+.mentor-tone-basic .dialogue-text,
+.mentor-tone-basic .mentor-speech-text {
+  color: var(--color-text-main) !important;
+}
+
+/* 2. 온_02 (따뜻한 미소): 은은한 골드 글로우 & 밝은 앰버 텍스트 */
+.mentor-tone-warm {
+  background: linear-gradient(135deg, rgba(58, 42, 29, 0.95) 0%, rgba(45, 32, 22, 0.95) 100%) !important;
+  border: 2px solid var(--color-butter) !important;
+  box-shadow: 0 0 25px rgba(252, 231, 170, 0.45), inset 0 0 15px rgba(252, 231, 170, 0.15) !important;
+}
+.mentor-tone-warm .mentor-comment,
+.mentor-tone-warm .mentor-speech-text {
+  color: #fef08a !important;
+}
+
+/* 3. 온_03 (놀란 표정): 반짝이는 하이라이트 테두리 */
+.mentor-tone-surprised {
+  background: linear-gradient(135deg, rgba(68, 49, 26, 0.95) 0%, rgba(45, 32, 17, 0.95) 100%) !important;
+  border: 2px solid #ecc94b !important;
+  box-shadow: 0 0 30px rgba(236, 201, 75, 0.65) !important;
+}
+.mentor-tone-surprised span,
+.mentor-tone-surprised .mentor-speech-text {
+  color: #ffffff !important;
+  text-shadow: 0 0 8px rgba(252, 231, 170, 0.8);
+}
+
+/* 4. 온_04 (장난스러운 반미소): 따뜻한 주황빛 테두리 */
+.mentor-tone-playful {
+  background: linear-gradient(135deg, rgba(55, 35, 22, 0.95) 0%, rgba(38, 24, 15, 0.95) 100%) !important;
+  border: 2px solid #ed8936 !important;
+  box-shadow: 0 0 20px rgba(237, 137, 54, 0.45) !important;
+}
+.mentor-tone-playful .mentor-speech-text {
+  color: #fbd38d !important;
+}

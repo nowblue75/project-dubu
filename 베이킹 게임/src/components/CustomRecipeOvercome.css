@@ -1,0 +1,152 @@
+.overcome-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 8, 5, 0.85);
+  z-index: 100;
+  padding: 20px;
+}
+
+.overcome-panel {
+  width: 650px;
+  max-width: 95%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 24px;
+}
+
+.overcome-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px dashed rgba(252, 231, 170, 0.2);
+  padding-bottom: 15px;
+}
+
+.overcome-badge {
+  background: rgba(141, 166, 116, 0.2);
+  color: var(--color-leaf);
+  border: 1px solid var(--color-leaf);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.overcome-title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--color-butter);
+}
+
+.overcome-sub {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.overcome-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 12px 16px;
+  border-radius: 12px;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+}
+
+.label-with-val {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.val-badge {
+  font-size: 0.85rem;
+  color: var(--color-butter);
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.custom-input {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-family: var(--font-game);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.custom-input:focus {
+  border-color: var(--color-butter);
+}
+
+.custom-range {
+  accent-color: var(--color-butter);
+  cursor: pointer;
+}
+
+.range-hint {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.toggle-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.toggle-btn {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-text-muted);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-game);
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn.active {
+  background: rgba(252, 231, 170, 0.15);
+  border-color: var(--color-butter);
+  color: var(--color-butter);
+  font-weight: bold;
+}
+
+.overcome-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.submit-custom-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.05rem;
+}
