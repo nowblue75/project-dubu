@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 342,
-  "createdAt": "2026-05-30T07:24:33Z",
-  "filePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
-  "content": "I will view `dubu_data.js` starting at line 230 to inspect the `INGREDIENT_DICT` content."
-}

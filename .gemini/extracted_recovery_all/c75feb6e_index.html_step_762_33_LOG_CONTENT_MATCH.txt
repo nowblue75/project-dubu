@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 762,
-  "createdAt": "2026-05-30T22:11:29Z",
-  "filePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/41. 순두부콩물 파운드케익_완/index.html\"",
-  "content": "I will view the `index.html` of `41. 순두부콩물 파운드케익_완` to check its markup structure for ingredient and instruction details."
-}

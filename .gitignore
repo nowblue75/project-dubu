@@ -1,9 +1,38 @@
+# IDE / OS
 .vscode/
 .DS_Store
 Thumbs.db
-*.log
+
+# Node
 node_modules/
+package-lock.json
+
+# Media / Docs
+*.log
 *.pdf
 *.pptx
 *.mp4
+*.xlsx
+*.docx
+
+# Temp / Debug / Dev files (작업 임시파일 - 배포 불필요)
+.gemini/
+scratch/
+recovered_*.txt
+debug_*.json
+*.view
+*_temp.js
+dubu_data_extracted_*.js
+blog_*.html
+blog_*_cleaned.txt
+extract_clean_data.js
+recover_all_html.js
+recover_lost_files.js
+temp_*.js
+old_*.js
+themes_*.js
+themes_*.txt
+themes_*.json
+
+# Version backups (로컬 전용)
 Resolve Project Library/

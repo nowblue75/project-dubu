@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 744,
-  "createdAt": "2026-05-31T00:17:28Z",
-  "filePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_data.js\"",
-  "content": "1번 레시피 스텝 데이터가 매우 부실합니다. 제대로 된 데이터를 넣어야 합니다. 블로그 URL도 있으니 실제 레시피 내용을 기반으로 데이터를 업데이트하고, 현재 CSS와 전체 스타일도 점검하겠습니다."
-}

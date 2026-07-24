@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 788,
-  "createdAt": "2026-05-30T22:12:19Z",
-  "filePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
-  "content": "I will update the resource queries in `index.html` to version `v=30.0` to force the browser to invalidate its cache and load the latest CSS and JS logic."
-}

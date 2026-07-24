@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 799,
-  "createdAt": "2026-05-31T00:22:12Z",
-  "filePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
-  "content": "이제 마인드맵 노드 클릭과 시즌 이벤트 시네마틱에서의 진입점도 교체합니다."
-}

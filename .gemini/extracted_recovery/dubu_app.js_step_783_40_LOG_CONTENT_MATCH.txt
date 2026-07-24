@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 783,
-  "createdAt": "2026-05-31T00:20:05Z",
-  "filePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
-  "content": "이제 `dubu_app.js`에서 탭 콘텐츠 max-height를 더 크게 조정하고, 버전 번호도 업데이트합니다."
-}

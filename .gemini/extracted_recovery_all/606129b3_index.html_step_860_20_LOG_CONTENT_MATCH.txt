@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 860,
-  "createdAt": "2026-05-31T00:40:07Z",
-  "filePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\41. 순두부콩물 파운드케익_완\\\\index.html\"",
-  "content": "좋습니다! 데이터에는 `blogUrl`도 있고 `path`도 정상입니다. 41번 룩북의 하단 버튼을 실제 블로그 URL로 연결되도록 수정합니다."
-}

@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 352,
-  "createdAt": "2026-05-30T07:24:50Z",
-  "filePath": "\"c:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\35. 순두부초코마들렌_완\\\\index.html\"",
-  "content": "I will view the `index.html` of `35. 순두부초코마들렌_완` to check its ingredient quantities and ratios."
-}

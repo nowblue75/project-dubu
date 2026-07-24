@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 785,
-  "createdAt": "2026-05-31T00:20:13Z",
-  "filePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\index.html\"",
-  "content": "이제 CSS와 JS 버전 번호를 업데이트합니다 (캐시 무효화용)."
-}

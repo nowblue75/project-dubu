@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 851,
-  "createdAt": "2026-05-31T00:39:02Z",
-  "filePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\41. 순두부콩물 파운드케익_완\\\\index.html\"",
-  "content": "문제를 정확히 파악했습니다. 41번 콩물 파운드케익이 다른 스타일로 보이는 이유는:\n\n1. **별도 `style.css` 있음** - 자체적인 레이아웃 CSS를 덮어쓰고 있어서 `image-stage`가 아닌 다른 레이아웃 구조 사용\n2. **하단 버튼이 \"아틀리에 계산기 열기\"** - 표준 \"블로그 가기\"와 다름\n3. **`#events` → `#archive`** 링크 일관성도 차이 있음\n\n`style_lookbook.css`를 기준으로 41번 룩북을 표준 패턴(`image-stage` + `content-box`)으로 일치시켜야 합니다. HTML 구조는 이미 표준 패턴을 따르고 있으나 별도 `style.css`가 레이아웃을 깨고 있습니다.\n\n41번 `index.html`에서 별도 `style.css` 링크를 제거하고, 하단 버튼을 표준으로 통일하겠습니다."
-}

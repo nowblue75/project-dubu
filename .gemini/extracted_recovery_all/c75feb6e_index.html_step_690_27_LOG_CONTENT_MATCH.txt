@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 690,
-  "createdAt": "2026-05-30T22:09:02Z",
-  "filePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/index.html\"",
-  "content": "I will inspect the HTML imports in `index.html` to confirm whether cache-busting queries like `v=28.0` are properly applied to the script tags and CSS stylesheets."
-}

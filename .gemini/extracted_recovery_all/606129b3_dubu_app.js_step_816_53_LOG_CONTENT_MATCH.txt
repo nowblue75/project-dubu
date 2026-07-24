@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 816,
-  "createdAt": "2026-05-31T00:27:15Z",
-  "filePath": "\"C:\\\\Users\\\\USER\\\\OneDrive\\\\Desktop\\\\컨텐츠작업\\\\프로젝트 두부\\\\dubu_app.js\"",
-  "content": "이제 전체 그림이 명확합니다. 작업 계획:\n\n1. **FocusStage 오버레이에 책 펼치기 애니메이션 추가** (CSS)\n2. **FocusStage 하단 버튼 2개 → 3개 교체**: 소장하기, 블로그, 룩북 (HTML + JS)\n3. **아코디언 버튼 텍스트 원복** (\"맞춤 분량 계산 🧮\"로 되돌림, 하지만 `openMagicBook` 대신 `openFocusStage` 사용)\n4. `openMagicBook` 관련 변경 정리\n\n먼저 아코디언 카드를 원복합니다."
-}

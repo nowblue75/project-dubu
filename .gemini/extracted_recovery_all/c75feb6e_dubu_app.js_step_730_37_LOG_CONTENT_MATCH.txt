@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 730,
-  "createdAt": "2026-05-30T22:10:08Z",
-  "filePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
-  "content": "I will view lines 1520 to 1560 of `dubu_app.js` to see what other filter logic or event hooks exist."
-}

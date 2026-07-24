@@ -1,7 +1,0 @@
-{
-  "type": "LOG_CONTENT_MATCH",
-  "stepIndex": 688,
-  "createdAt": "2026-05-30T22:09:00Z",
-  "filePath": "\"c:/Users/USER/OneDrive/Desktop/컨텐츠작업/프로젝트 두부/dubu_app.js\"",
-  "content": "I will view the `renderArchive` function in `dubu_app.js` starting at line 940 to see how the filtered recipes are handled."
-}
